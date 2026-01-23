@@ -72,7 +72,7 @@ namespace Azure.ResourceManager.AppService.Models
         /// <param name="unauthenticatedClientAction"> The action to take when an unauthenticated client attempts to access the app. </param>
         /// <param name="isTokenStoreEnabled">
         /// &lt;code&gt;true&lt;/code&gt; to durably store platform-specific security tokens that are obtained during login flows; otherwise, &lt;code&gt;false&lt;/code&gt;.
-        ///  The default is &lt;code&gt;false&lt;/code&gt;.
+        /// The default is &lt;code&gt;false&lt;/code&gt;.
         /// </param>
         /// <param name="allowedExternalRedirectUrls">
         /// External URLs that can be redirected to as part of logging in or logging out of the app. Note that the query string part of the URL is ignored.
@@ -204,7 +204,7 @@ namespace Azure.ResourceManager.AppService.Models
         /// <param name="microsoftAccountOAuthScopes">
         /// The OAuth 2.0 scopes that will be requested as part of Microsoft Account authentication.
         /// This setting is optional. If not specified, "wl.basic" is used as the default scope.
-        /// Microsoft Account Scopes and permissions documentation: https://msdn.microsoft.com/en-us/library/dn631845.aspx
+        /// Microsoft Account Scopes and permissions documentation: https://msdn.Microsoft.com/en-us/library/dn631845.aspx
         /// </param>
         /// <param name="isAuthFromFile">
         /// "true" if the auth config settings should be read from a file,
@@ -278,7 +278,7 @@ namespace Azure.ResourceManager.AppService.Models
         public UnauthenticatedClientAction? UnauthenticatedClientAction { get; set; }
         /// <summary>
         /// &lt;code&gt;true&lt;/code&gt; to durably store platform-specific security tokens that are obtained during login flows; otherwise, &lt;code&gt;false&lt;/code&gt;.
-        ///  The default is &lt;code&gt;false&lt;/code&gt;.
+        /// The default is &lt;code&gt;false&lt;/code&gt;.
         /// </summary>
         [WirePath("properties.tokenStoreEnabled")]
         public bool? IsTokenStoreEnabled { get; set; }
@@ -472,7 +472,7 @@ namespace Azure.ResourceManager.AppService.Models
         /// <summary>
         /// The OAuth 2.0 scopes that will be requested as part of Microsoft Account authentication.
         /// This setting is optional. If not specified, "wl.basic" is used as the default scope.
-        /// Microsoft Account Scopes and permissions documentation: https://msdn.microsoft.com/en-us/library/dn631845.aspx
+        /// Microsoft Account Scopes and permissions documentation: https://msdn.Microsoft.com/en-us/library/dn631845.aspx
         /// </summary>
         [WirePath("properties.microsoftAccountOAuthScopes")]
         public IList<string> MicrosoftAccountOAuthScopes { get; }

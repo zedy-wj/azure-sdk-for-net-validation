@@ -18,12 +18,12 @@ namespace Azure.ResourceManager.AppService.Mocking
     /// <summary> A class to add extension methods to TenantResource. </summary>
     public partial class MockableAppServiceTenantResource : ArmResource
     {
+        private ClientDiagnostics _providerClientDiagnostics;
+        private ProviderRestOperations _providerRestClient;
         private ClientDiagnostics _certificateRegistrationProviderClientDiagnostics;
         private CertificateRegistrationProviderRestOperations _certificateRegistrationProviderRestClient;
         private ClientDiagnostics _domainRegistrationProviderClientDiagnostics;
         private DomainRegistrationProviderRestOperations _domainRegistrationProviderRestClient;
-        private ClientDiagnostics _providerClientDiagnostics;
-        private ProviderRestOperations _providerRestClient;
 
         /// <summary> Initializes a new instance of the <see cref="MockableAppServiceTenantResource"/> class for mocking. </summary>
         protected MockableAppServiceTenantResource()
@@ -37,12 +37,12 @@ namespace Azure.ResourceManager.AppService.Mocking
         {
         }
 
+        private ClientDiagnostics ProviderClientDiagnostics => _providerClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.AppService", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+        private ProviderRestOperations ProviderRestClient => _providerRestClient ??= new ProviderRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
         private ClientDiagnostics CertificateRegistrationProviderClientDiagnostics => _certificateRegistrationProviderClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.AppService", ProviderConstants.DefaultProviderNamespace, Diagnostics);
         private CertificateRegistrationProviderRestOperations CertificateRegistrationProviderRestClient => _certificateRegistrationProviderRestClient ??= new CertificateRegistrationProviderRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
         private ClientDiagnostics DomainRegistrationProviderClientDiagnostics => _domainRegistrationProviderClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.AppService", ProviderConstants.DefaultProviderNamespace, Diagnostics);
         private DomainRegistrationProviderRestOperations DomainRegistrationProviderRestClient => _domainRegistrationProviderRestClient ??= new DomainRegistrationProviderRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
-        private ClientDiagnostics ProviderClientDiagnostics => _providerClientDiagnostics ??= new ClientDiagnostics("Azure.ResourceManager.AppService", ProviderConstants.DefaultProviderNamespace, Diagnostics);
-        private ProviderRestOperations ProviderRestClient => _providerRestClient ??= new ProviderRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
 
         private string GetApiVersionOrNull(ResourceType resourceType)
         {
@@ -77,7 +77,7 @@ namespace Azure.ResourceManager.AppService.Mocking
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
+        /// <description>2025-03-01</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -108,7 +108,7 @@ namespace Azure.ResourceManager.AppService.Mocking
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
+        /// <description>2025-03-01</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -124,6 +124,332 @@ namespace Azure.ResourceManager.AppService.Mocking
         public virtual Response<AppServiceSourceControlResource> GetAppServiceSourceControl(string sourceControlType, CancellationToken cancellationToken = default)
         {
             return GetAppServiceSourceControls().Get(sourceControlType, cancellationToken);
+        }
+
+        /// <summary>
+        /// Description for Get available application frameworks and their versions
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Web/availableStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Provider_GetAvailableStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-03-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="osTypeSelected"> The <see cref="ProviderOSTypeSelected"/>? to use. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="ApplicationStackResource"/> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<ApplicationStackResource> GetAvailableStacksProvidersAsync(ProviderOSTypeSelected? osTypeSelected = null, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetAvailableStacksRequest(osTypeSelected);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetAvailableStacksNextPageRequest(nextLink, osTypeSelected);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => ApplicationStackResource.DeserializeApplicationStackResource(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetAvailableStacksProviders", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Description for Get available application frameworks and their versions
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Web/availableStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Provider_GetAvailableStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-03-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="osTypeSelected"> The <see cref="ProviderOSTypeSelected"/>? to use. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="ApplicationStackResource"/> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<ApplicationStackResource> GetAvailableStacksProviders(ProviderOSTypeSelected? osTypeSelected = null, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetAvailableStacksRequest(osTypeSelected);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetAvailableStacksNextPageRequest(nextLink, osTypeSelected);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => ApplicationStackResource.DeserializeApplicationStackResource(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetAvailableStacksProviders", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Description for Get available Function app frameworks and their versions
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Web/functionAppStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Provider_GetFunctionAppStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-03-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="stackOSType"> Stack OS Type. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="FunctionAppStack"/> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<FunctionAppStack> GetFunctionAppStacksProvidersAsync(ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetFunctionAppStacksRequest(stackOSType);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetFunctionAppStacksNextPageRequest(nextLink, stackOSType);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => FunctionAppStack.DeserializeFunctionAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetFunctionAppStacksProviders", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Description for Get available Function app frameworks and their versions
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Web/functionAppStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Provider_GetFunctionAppStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-03-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="stackOSType"> Stack OS Type. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="FunctionAppStack"/> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<FunctionAppStack> GetFunctionAppStacksProviders(ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetFunctionAppStacksRequest(stackOSType);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetFunctionAppStacksNextPageRequest(nextLink, stackOSType);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => FunctionAppStack.DeserializeFunctionAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetFunctionAppStacksProviders", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Description for Get available Function app frameworks and their versions for location
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Web/locations/{location}/functionAppStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Provider_GetFunctionAppStacksForLocation</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-03-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="location"> The name of the Azure region. </param>
+        /// <param name="stackOSType"> Stack OS Type. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="FunctionAppStack"/> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<FunctionAppStack> GetFunctionAppStacksForLocationProvidersAsync(AzureLocation location, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetFunctionAppStacksForLocationRequest(location, stackOSType);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetFunctionAppStacksForLocationNextPageRequest(nextLink, location, stackOSType);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => FunctionAppStack.DeserializeFunctionAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetFunctionAppStacksForLocationProviders", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Description for Get available Function app frameworks and their versions for location
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Web/locations/{location}/functionAppStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Provider_GetFunctionAppStacksForLocation</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-03-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="location"> The name of the Azure region. </param>
+        /// <param name="stackOSType"> Stack OS Type. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="FunctionAppStack"/> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<FunctionAppStack> GetFunctionAppStacksForLocationProviders(AzureLocation location, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetFunctionAppStacksForLocationRequest(location, stackOSType);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetFunctionAppStacksForLocationNextPageRequest(nextLink, location, stackOSType);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => FunctionAppStack.DeserializeFunctionAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetFunctionAppStacksForLocationProviders", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Description for Get available Web app frameworks and their versions for location
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Web/locations/{location}/webAppStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Provider_GetWebAppStacksForLocation</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-03-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="location"> The name of the Azure region. </param>
+        /// <param name="stackOSType"> Stack OS Type. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="WebAppStack"/> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<WebAppStack> GetWebAppStacksByLocationAsync(AzureLocation location, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetWebAppStacksForLocationRequest(location, stackOSType);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetWebAppStacksForLocationNextPageRequest(nextLink, location, stackOSType);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => WebAppStack.DeserializeWebAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetWebAppStacksByLocation", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Description for Get available Web app frameworks and their versions for location
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Web/locations/{location}/webAppStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Provider_GetWebAppStacksForLocation</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-03-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="location"> The name of the Azure region. </param>
+        /// <param name="stackOSType"> Stack OS Type. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="WebAppStack"/> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<WebAppStack> GetWebAppStacksByLocation(AzureLocation location, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetWebAppStacksForLocationRequest(location, stackOSType);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetWebAppStacksForLocationNextPageRequest(nextLink, location, stackOSType);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => WebAppStack.DeserializeWebAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetWebAppStacksByLocation", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Description for Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Web/operations</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Provider_ListOperations</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-03-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="CsmOperationDescription"/> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<CsmOperationDescription> GetOperationsProvidersAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateListOperationsRequest();
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateListOperationsNextPageRequest(nextLink);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => CsmOperationDescription.DeserializeCsmOperationDescription(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetOperationsProviders", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Description for Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Web/operations</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Provider_ListOperations</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-03-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="CsmOperationDescription"/> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<CsmOperationDescription> GetOperationsProviders(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateListOperationsRequest();
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateListOperationsNextPageRequest(nextLink);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => CsmOperationDescription.DeserializeCsmOperationDescription(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetOperationsProviders", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Description for Get available Web app frameworks and their versions
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Web/webAppStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Provider_GetWebAppStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-03-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="stackOSType"> Stack OS Type. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="WebAppStack"/> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<WebAppStack> GetWebAppStacksProvidersAsync(ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetWebAppStacksRequest(stackOSType);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetWebAppStacksNextPageRequest(nextLink, stackOSType);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => WebAppStack.DeserializeWebAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetWebAppStacksProviders", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Description for Get available Web app frameworks and their versions
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/providers/Microsoft.Web/webAppStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Provider_GetWebAppStacks</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-03-01</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="stackOSType"> Stack OS Type. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="WebAppStack"/> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<WebAppStack> GetWebAppStacksProviders(ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetWebAppStacksRequest(stackOSType);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetWebAppStacksNextPageRequest(nextLink, stackOSType);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => WebAppStack.DeserializeWebAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetWebAppStacksProviders", "value", "nextLink", cancellationToken);
         }
 
         /// <summary>
@@ -228,332 +554,6 @@ namespace Azure.ResourceManager.AppService.Mocking
             HttpMessage FirstPageRequest(int? pageSizeHint) => DomainRegistrationProviderRestClient.CreateListOperationsRequest();
             HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => DomainRegistrationProviderRestClient.CreateListOperationsNextPageRequest(nextLink);
             return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => CsmOperationDescription.DeserializeCsmOperationDescription(e), DomainRegistrationProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetOperationsDomainRegistrationProviders", "value", "nextLink", cancellationToken);
-        }
-
-        /// <summary>
-        /// Description for Get available application frameworks and their versions
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/providers/Microsoft.Web/availableStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Provider_GetAvailableStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="osTypeSelected"> The <see cref="ProviderOSTypeSelected"/>? to use. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="ApplicationStackResource"/> that may take multiple service requests to iterate over. </returns>
-        public virtual AsyncPageable<ApplicationStackResource> GetAvailableStacksProvidersAsync(ProviderOSTypeSelected? osTypeSelected = null, CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetAvailableStacksRequest(osTypeSelected);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetAvailableStacksNextPageRequest(nextLink, osTypeSelected);
-            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => ApplicationStackResource.DeserializeApplicationStackResource(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetAvailableStacksProviders", "value", "nextLink", cancellationToken);
-        }
-
-        /// <summary>
-        /// Description for Get available application frameworks and their versions
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/providers/Microsoft.Web/availableStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Provider_GetAvailableStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="osTypeSelected"> The <see cref="ProviderOSTypeSelected"/>? to use. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="ApplicationStackResource"/> that may take multiple service requests to iterate over. </returns>
-        public virtual Pageable<ApplicationStackResource> GetAvailableStacksProviders(ProviderOSTypeSelected? osTypeSelected = null, CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetAvailableStacksRequest(osTypeSelected);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetAvailableStacksNextPageRequest(nextLink, osTypeSelected);
-            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => ApplicationStackResource.DeserializeApplicationStackResource(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetAvailableStacksProviders", "value", "nextLink", cancellationToken);
-        }
-
-        /// <summary>
-        /// Description for Get available Function app frameworks and their versions
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/providers/Microsoft.Web/functionAppStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Provider_GetFunctionAppStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="stackOSType"> Stack OS Type. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="FunctionAppStack"/> that may take multiple service requests to iterate over. </returns>
-        public virtual AsyncPageable<FunctionAppStack> GetFunctionAppStacksProvidersAsync(ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetFunctionAppStacksRequest(stackOSType);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetFunctionAppStacksNextPageRequest(nextLink, stackOSType);
-            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => FunctionAppStack.DeserializeFunctionAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetFunctionAppStacksProviders", "value", "nextLink", cancellationToken);
-        }
-
-        /// <summary>
-        /// Description for Get available Function app frameworks and their versions
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/providers/Microsoft.Web/functionAppStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Provider_GetFunctionAppStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="stackOSType"> Stack OS Type. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="FunctionAppStack"/> that may take multiple service requests to iterate over. </returns>
-        public virtual Pageable<FunctionAppStack> GetFunctionAppStacksProviders(ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetFunctionAppStacksRequest(stackOSType);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetFunctionAppStacksNextPageRequest(nextLink, stackOSType);
-            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => FunctionAppStack.DeserializeFunctionAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetFunctionAppStacksProviders", "value", "nextLink", cancellationToken);
-        }
-
-        /// <summary>
-        /// Description for Get available Function app frameworks and their versions for location
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/providers/Microsoft.Web/locations/{location}/functionAppStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Provider_GetFunctionAppStacksForLocation</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="location"> Function App stack location. </param>
-        /// <param name="stackOSType"> Stack OS Type. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="FunctionAppStack"/> that may take multiple service requests to iterate over. </returns>
-        public virtual AsyncPageable<FunctionAppStack> GetFunctionAppStacksForLocationProvidersAsync(AzureLocation location, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetFunctionAppStacksForLocationRequest(location, stackOSType);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetFunctionAppStacksForLocationNextPageRequest(nextLink, location, stackOSType);
-            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => FunctionAppStack.DeserializeFunctionAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetFunctionAppStacksForLocationProviders", "value", "nextLink", cancellationToken);
-        }
-
-        /// <summary>
-        /// Description for Get available Function app frameworks and their versions for location
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/providers/Microsoft.Web/locations/{location}/functionAppStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Provider_GetFunctionAppStacksForLocation</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="location"> Function App stack location. </param>
-        /// <param name="stackOSType"> Stack OS Type. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="FunctionAppStack"/> that may take multiple service requests to iterate over. </returns>
-        public virtual Pageable<FunctionAppStack> GetFunctionAppStacksForLocationProviders(AzureLocation location, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetFunctionAppStacksForLocationRequest(location, stackOSType);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetFunctionAppStacksForLocationNextPageRequest(nextLink, location, stackOSType);
-            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => FunctionAppStack.DeserializeFunctionAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetFunctionAppStacksForLocationProviders", "value", "nextLink", cancellationToken);
-        }
-
-        /// <summary>
-        /// Description for Get available Web app frameworks and their versions for location
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/providers/Microsoft.Web/locations/{location}/webAppStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Provider_GetWebAppStacksForLocation</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="location"> Web App stack location. </param>
-        /// <param name="stackOSType"> Stack OS Type. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="WebAppStack"/> that may take multiple service requests to iterate over. </returns>
-        public virtual AsyncPageable<WebAppStack> GetWebAppStacksByLocationAsync(AzureLocation location, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetWebAppStacksForLocationRequest(location, stackOSType);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetWebAppStacksForLocationNextPageRequest(nextLink, location, stackOSType);
-            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => WebAppStack.DeserializeWebAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetWebAppStacksByLocation", "value", "nextLink", cancellationToken);
-        }
-
-        /// <summary>
-        /// Description for Get available Web app frameworks and their versions for location
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/providers/Microsoft.Web/locations/{location}/webAppStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Provider_GetWebAppStacksForLocation</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="location"> Web App stack location. </param>
-        /// <param name="stackOSType"> Stack OS Type. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="WebAppStack"/> that may take multiple service requests to iterate over. </returns>
-        public virtual Pageable<WebAppStack> GetWebAppStacksByLocation(AzureLocation location, ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetWebAppStacksForLocationRequest(location, stackOSType);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetWebAppStacksForLocationNextPageRequest(nextLink, location, stackOSType);
-            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => WebAppStack.DeserializeWebAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetWebAppStacksByLocation", "value", "nextLink", cancellationToken);
-        }
-
-        /// <summary>
-        /// Description for Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/providers/Microsoft.Web/operations</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Provider_ListOperations</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="CsmOperationDescription"/> that may take multiple service requests to iterate over. </returns>
-        public virtual AsyncPageable<CsmOperationDescription> GetOperationsProvidersAsync(CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateListOperationsRequest();
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateListOperationsNextPageRequest(nextLink);
-            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => CsmOperationDescription.DeserializeCsmOperationDescription(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetOperationsProviders", "value", "nextLink", cancellationToken);
-        }
-
-        /// <summary>
-        /// Description for Gets all available operations for the Microsoft.Web resource provider. Also exposes resource metric definitions
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/providers/Microsoft.Web/operations</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Provider_ListOperations</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="CsmOperationDescription"/> that may take multiple service requests to iterate over. </returns>
-        public virtual Pageable<CsmOperationDescription> GetOperationsProviders(CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateListOperationsRequest();
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateListOperationsNextPageRequest(nextLink);
-            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => CsmOperationDescription.DeserializeCsmOperationDescription(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetOperationsProviders", "value", "nextLink", cancellationToken);
-        }
-
-        /// <summary>
-        /// Description for Get available Web app frameworks and their versions
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/providers/Microsoft.Web/webAppStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Provider_GetWebAppStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="stackOSType"> Stack OS Type. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="WebAppStack"/> that may take multiple service requests to iterate over. </returns>
-        public virtual AsyncPageable<WebAppStack> GetWebAppStacksProvidersAsync(ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetWebAppStacksRequest(stackOSType);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetWebAppStacksNextPageRequest(nextLink, stackOSType);
-            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => WebAppStack.DeserializeWebAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetWebAppStacksProviders", "value", "nextLink", cancellationToken);
-        }
-
-        /// <summary>
-        /// Description for Get available Web app frameworks and their versions
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/providers/Microsoft.Web/webAppStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Provider_GetWebAppStacks</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-11-01</description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="stackOSType"> Stack OS Type. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="WebAppStack"/> that may take multiple service requests to iterate over. </returns>
-        public virtual Pageable<WebAppStack> GetWebAppStacksProviders(ProviderStackOSType? stackOSType = null, CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => ProviderRestClient.CreateGetWebAppStacksRequest(stackOSType);
-            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => ProviderRestClient.CreateGetWebAppStacksNextPageRequest(nextLink, stackOSType);
-            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => WebAppStack.DeserializeWebAppStack(e), ProviderClientDiagnostics, Pipeline, "MockableAppServiceTenantResource.GetWebAppStacksProviders", "value", "nextLink", cancellationToken);
         }
     }
 }

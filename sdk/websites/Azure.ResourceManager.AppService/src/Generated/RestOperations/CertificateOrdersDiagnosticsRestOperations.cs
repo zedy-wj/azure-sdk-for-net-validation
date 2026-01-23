@@ -73,9 +73,9 @@ namespace Azure.ResourceManager.AppService
         }
 
         /// <summary> Description for Microsoft.CertificateRegistration to get the list of detectors for this RP. </summary>
-        /// <param name="subscriptionId"> Your Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). </param>
-        /// <param name="resourceGroupName"> Name of the resource group to which the resource belongs. </param>
-        /// <param name="certificateOrderName"> The certificate order name for which the response is needed. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
+        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
+        /// <param name="certificateOrderName"> Name of the certificate order.. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="certificateOrderName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="certificateOrderName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -102,9 +102,9 @@ namespace Azure.ResourceManager.AppService
         }
 
         /// <summary> Description for Microsoft.CertificateRegistration to get the list of detectors for this RP. </summary>
-        /// <param name="subscriptionId"> Your Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). </param>
-        /// <param name="resourceGroupName"> Name of the resource group to which the resource belongs. </param>
-        /// <param name="certificateOrderName"> The certificate order name for which the response is needed. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
+        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
+        /// <param name="certificateOrderName"> Name of the certificate order.. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="certificateOrderName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="certificateOrderName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -142,6 +142,7 @@ namespace Azure.ResourceManager.AppService
             uri.AppendPath(certificateOrderName, true);
             uri.AppendPath("/detectors/", false);
             uri.AppendPath(detectorName, true);
+            uri.AppendQuery("api-version", _apiVersion, true);
             if (startTime != null)
             {
                 uri.AppendQuery("startTime", startTime.Value, "O", true);
@@ -154,7 +155,6 @@ namespace Azure.ResourceManager.AppService
             {
                 uri.AppendQuery("timeGrain", timeGrain, true);
             }
-            uri.AppendQuery("api-version", _apiVersion, true);
             return uri;
         }
 
@@ -173,6 +173,7 @@ namespace Azure.ResourceManager.AppService
             uri.AppendPath(certificateOrderName, true);
             uri.AppendPath("/detectors/", false);
             uri.AppendPath(detectorName, true);
+            uri.AppendQuery("api-version", _apiVersion, true);
             if (startTime != null)
             {
                 uri.AppendQuery("startTime", startTime.Value, "O", true);
@@ -185,7 +186,6 @@ namespace Azure.ResourceManager.AppService
             {
                 uri.AppendQuery("timeGrain", timeGrain, true);
             }
-            uri.AppendQuery("api-version", _apiVersion, true);
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
             _userAgent.Apply(message);
@@ -193,9 +193,9 @@ namespace Azure.ResourceManager.AppService
         }
 
         /// <summary> Description for Microsoft.CertificateRegistration call to get a detector response from App Lens. </summary>
-        /// <param name="subscriptionId"> Your Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). </param>
-        /// <param name="resourceGroupName"> Name of the resource group to which the resource belongs. </param>
-        /// <param name="certificateOrderName"> The certificate order name for which the response is needed. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
+        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
+        /// <param name="certificateOrderName"> Name of the certificate order.. </param>
         /// <param name="detectorName"> The detector name which needs to be run. </param>
         /// <param name="startTime"> The start time for detector response. </param>
         /// <param name="endTime"> The end time for the detector response. </param>
@@ -229,9 +229,9 @@ namespace Azure.ResourceManager.AppService
         }
 
         /// <summary> Description for Microsoft.CertificateRegistration call to get a detector response from App Lens. </summary>
-        /// <param name="subscriptionId"> Your Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). </param>
-        /// <param name="resourceGroupName"> Name of the resource group to which the resource belongs. </param>
-        /// <param name="certificateOrderName"> The certificate order name for which the response is needed. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
+        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
+        /// <param name="certificateOrderName"> Name of the certificate order.. </param>
         /// <param name="detectorName"> The detector name which needs to be run. </param>
         /// <param name="startTime"> The start time for detector response. </param>
         /// <param name="endTime"> The end time for the detector response. </param>
@@ -288,9 +288,9 @@ namespace Azure.ResourceManager.AppService
 
         /// <summary> Description for Microsoft.CertificateRegistration to get the list of detectors for this RP. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> Your Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). </param>
-        /// <param name="resourceGroupName"> Name of the resource group to which the resource belongs. </param>
-        /// <param name="certificateOrderName"> The certificate order name for which the response is needed. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
+        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
+        /// <param name="certificateOrderName"> Name of the certificate order.. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="certificateOrderName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="certificateOrderName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -319,9 +319,9 @@ namespace Azure.ResourceManager.AppService
 
         /// <summary> Description for Microsoft.CertificateRegistration to get the list of detectors for this RP. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> Your Azure subscription ID. This is a GUID-formatted string (e.g. 00000000-0000-0000-0000-000000000000). </param>
-        /// <param name="resourceGroupName"> Name of the resource group to which the resource belongs. </param>
-        /// <param name="certificateOrderName"> The certificate order name for which the response is needed. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
+        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
+        /// <param name="certificateOrderName"> Name of the certificate order.. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="certificateOrderName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="certificateOrderName"/> is an empty string, and was expected to be non-empty. </exception>

@@ -52,7 +52,7 @@ namespace Azure.ResourceManager.AppService
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="WorkflowRunActionData"/>. </summary>
-        internal WorkflowRunActionData()
+        public WorkflowRunActionData()
         {
             RetryHistory = new ChangeTrackingList<WebAppRetryHistory>();
         }
@@ -139,7 +139,7 @@ namespace Azure.ResourceManager.AppService
         public string TrackingId { get; }
         /// <summary> The correlation properties. </summary>
         [WirePath("properties.correlation")]
-        public WebAppRunActionCorrelation Correlation { get; }
+        public WebAppRunActionCorrelation Correlation { get; set; }
         /// <summary> Gets the link to inputs. </summary>
         [WirePath("properties.inputsLink")]
         public WebAppContentLink InputsLink { get; }

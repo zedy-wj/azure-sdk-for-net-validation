@@ -36,7 +36,7 @@ namespace Azure.ResourceManager.AppService.Models
                 throw new FormatException($"The model {nameof(WorkflowEnvelopeProperties)} does not support writing '{format}' format.");
             }
 
-            if (Optional.IsCollectionDefined(Files))
+            if (options.Format != "W" && Optional.IsCollectionDefined(Files))
             {
                 writer.WritePropertyName("files"u8);
                 writer.WriteStartObject();

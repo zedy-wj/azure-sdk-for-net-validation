@@ -54,10 +54,10 @@ namespace Azure.ResourceManager.AppService.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="MetricDimension"/>. </summary>
-        /// <param name="name"></param>
-        /// <param name="displayName"></param>
-        /// <param name="internalName"></param>
-        /// <param name="isToBeExportedForShoebox"></param>
+        /// <param name="name"> Name of the dimension. </param>
+        /// <param name="displayName"> Display name of the dimension. </param>
+        /// <param name="internalName"> Dimension of the internal name. </param>
+        /// <param name="isToBeExportedForShoebox"> Dimension to be exported for shoebox. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MetricDimension(string name, string displayName, string internalName, bool? isToBeExportedForShoebox, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -68,16 +68,16 @@ namespace Azure.ResourceManager.AppService.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the name. </summary>
+        /// <summary> Name of the dimension. </summary>
         [WirePath("name")]
         public string Name { get; }
-        /// <summary> Gets the display name. </summary>
+        /// <summary> Display name of the dimension. </summary>
         [WirePath("displayName")]
         public string DisplayName { get; }
-        /// <summary> Gets the internal name. </summary>
+        /// <summary> Dimension of the internal name. </summary>
         [WirePath("internalName")]
         public string InternalName { get; }
-        /// <summary> Gets the is to be exported for shoebox. </summary>
+        /// <summary> Dimension to be exported for shoebox. </summary>
         [WirePath("toBeExportedForShoebox")]
         public bool? IsToBeExportedForShoebox { get; }
     }

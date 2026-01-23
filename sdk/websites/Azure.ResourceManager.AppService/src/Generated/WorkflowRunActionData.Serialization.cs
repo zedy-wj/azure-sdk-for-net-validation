@@ -105,7 +105,7 @@ namespace Azure.ResourceManager.AppService
                 }
 #endif
             }
-            if (Optional.IsCollectionDefined(RetryHistory))
+            if (options.Format != "W" && Optional.IsCollectionDefined(RetryHistory))
             {
                 writer.WritePropertyName("retryHistory"u8);
                 writer.WriteStartArray();

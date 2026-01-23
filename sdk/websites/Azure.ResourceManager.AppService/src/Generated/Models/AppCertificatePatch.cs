@@ -107,10 +107,6 @@ namespace Azure.ResourceManager.AppService.Models
             Kind = kind;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
-
-        /// <summary> Certificate password. </summary>
-        [WirePath("properties.password")]
-        public string Password { get; set; }
         /// <summary> Friendly name of the certificate. </summary>
         [WirePath("properties.friendlyName")]
         public string FriendlyName { get; }

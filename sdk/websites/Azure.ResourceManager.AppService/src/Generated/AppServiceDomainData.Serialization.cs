@@ -475,6 +475,7 @@ namespace Azure.ResourceManager.AppService
                 systemData,
                 tags ?? new ChangeTrackingDictionary<string, string>(),
                 location,
+                kind,
                 contactAdmin,
                 contactBilling,
                 contactRegistrant,
@@ -495,7 +496,6 @@ namespace Azure.ResourceManager.AppService
                 dnsZoneId,
                 targetDnsType,
                 authCode,
-                kind,
                 serializedAdditionalRawData);
         }
 

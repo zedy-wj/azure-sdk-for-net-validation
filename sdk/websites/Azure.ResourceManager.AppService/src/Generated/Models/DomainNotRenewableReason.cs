@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.AppService.Models
 {
-    /// <summary> The DomainNotRenewableReason. </summary>
+    /// <summary> Reasons why domain is not renewable. </summary>
     public readonly partial struct DomainNotRenewableReason : IEquatable<DomainNotRenewableReason>
     {
         private readonly string _value;
