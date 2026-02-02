@@ -105,7 +105,7 @@ namespace Azure.ResourceManager.AppService
                 }
 #endif
             }
-            if (Optional.IsCollectionDefined(RetryHistory))
+            if (options.Format != "W" && Optional.IsCollectionDefined(RetryHistory))
             {
                 writer.WritePropertyName("retryHistory"u8);
                 writer.WriteStartArray();
@@ -152,7 +152,7 @@ namespace Azure.ResourceManager.AppService
             WebAppContentLink inputsLink = default;
             WebAppContentLink outputsLink = default;
             BinaryData trackedProperties = default;
-            IList<WebAppRetryHistory> retryHistory = default;
+            IReadOnlyList<WebAppRetryHistory> retryHistory = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())

@@ -788,6 +788,13 @@ directive:
   - remove-operation: Move
 # this operation is a LRO operation
   - remove-operation: Global_GetSubscriptionOperationWithAsyncResponse
+# Make retryHistory property readonly
+  - from: openapi.json
+    where: $.definitions.WorkflowRunActionProperties.properties.retryHistory
+    transform: $["readOnly"] = true
+  - from: openapi.json
+    where: $.definitions.WorkflowRunActionRepetitionProperties.properties.retryHistory
+    transform: $["readOnly"] = true
 # ResourceId
   - from: openapi.json
     where: $.definitions.StaticSiteUserProvidedFunctionAppARMResourceProperties.properties.functionAppResourceId
@@ -834,6 +841,9 @@ directive:
   - from: openapi.json
     where: $.definitions.DeletedAppRestoreRequestProperties.properties.deletedSiteId
     transform: $["x-ms-format"] = "arm-id"
+  - from: openapi.json
+    where: $.definitions.SkuInfo.properties.resourceType
+    transform: $["x-ms-format"] = "resource-type"
   - from: openapi.json
     where: $.definitions.SkuInfos.properties.resourceType
     transform: $["x-ms-format"] = "resource-type"
@@ -1122,6 +1132,13 @@ directive:
     where: $.definitions.DetectorInfo.properties.supportTopicList
     transform: >
         $.xml = { "wrapped": true };
+  - from: openapi.json
+    where: $.definitions.CertificatePatchResourceProperties.properties
+    transform: >
+        $.password = {
+            "type": "string",
+            "description": "Certificate password."
+        },
   # Fix for issue: https://github.com/Azure/azure-sdk-for-net/issues/46854
   # TODO: Remove this workaround after the issue is resolved. Issue link: https://github.com/Azure/azure-rest-api-specs/issues/19022
   - from: openapi.json

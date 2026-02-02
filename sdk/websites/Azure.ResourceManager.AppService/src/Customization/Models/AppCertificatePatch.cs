@@ -41,5 +41,9 @@ namespace Azure.ResourceManager.AppService.Models
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This property is obsolete and will be removed in a future release. Please use `ThumbprintString` instead.", false)]
         public BinaryData Thumbprint => BinaryData.FromString(ThumbprintString);
+
+        /// <summary> Certificate password. </summary>
+        [WirePath("properties.password")]
+        public string Password { get; set; }
     }
 }

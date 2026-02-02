@@ -38,7 +38,7 @@ namespace Azure.ResourceManager.AppService.Models
             if (Optional.IsDefined(ResourceType))
             {
                 writer.WritePropertyName("resourceType"u8);
-                writer.WriteStringValue(ResourceType);
+                writer.WriteStringValue(ResourceType.Value);
             }
             if (Optional.IsDefined(Sku))
             {
@@ -87,7 +87,7 @@ namespace Azure.ResourceManager.AppService.Models
             {
                 return null;
             }
-            string resourceType = default;
+            ResourceType? resourceType = default;
             AppServiceSkuDescription sku = default;
             AppServiceSkuCapacity capacity = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
@@ -96,7 +96,11 @@ namespace Azure.ResourceManager.AppService.Models
             {
                 if (property.NameEquals("resourceType"u8))
                 {
-                    resourceType = property.Value.GetString();
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    resourceType = new ResourceType(property.Value.GetString());
                     continue;
                 }
                 if (property.NameEquals("sku"u8))
@@ -148,15 +152,7 @@ namespace Azure.ResourceManager.AppService.Models
                 if (Optional.IsDefined(ResourceType))
                 {
                     builder.Append("  resourceType: ");
-                    if (ResourceType.Contains(Environment.NewLine))
-                    {
-                        builder.AppendLine("'''");
-                        builder.AppendLine($"{ResourceType}'''");
-                    }
-                    else
-                    {
-                        builder.AppendLine($"'{ResourceType}'");
-                    }
+                    builder.AppendLine($"'{ResourceType.Value.ToString()}'");
                 }
             }
 

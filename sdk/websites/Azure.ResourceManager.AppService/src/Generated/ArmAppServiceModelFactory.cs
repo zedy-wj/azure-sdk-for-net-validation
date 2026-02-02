@@ -2551,7 +2551,7 @@ namespace Azure.ResourceManager.AppService.Models
         /// <param name="sku"> Name and tier of the SKU. </param>
         /// <param name="capacity"> Min, max, and default scale values of the SKU. </param>
         /// <returns> A new <see cref="Models.AppServicePoolSkuInfo"/> instance for mocking. </returns>
-        public static AppServicePoolSkuInfo AppServicePoolSkuInfo(string resourceType = null, AppServiceSkuDescription sku = null, AppServiceSkuCapacity capacity = null)
+        public static AppServicePoolSkuInfo AppServicePoolSkuInfo(ResourceType? resourceType = null, AppServiceSkuDescription sku = null, AppServiceSkuCapacity capacity = null)
         {
             return new AppServicePoolSkuInfo(resourceType, sku, capacity, serializedAdditionalRawData: null);
         }

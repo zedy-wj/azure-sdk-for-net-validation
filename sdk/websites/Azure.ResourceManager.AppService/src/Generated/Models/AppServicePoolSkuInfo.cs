@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using Azure.Core;
 
 namespace Azure.ResourceManager.AppService.Models
 {
@@ -55,7 +56,7 @@ namespace Azure.ResourceManager.AppService.Models
         /// <param name="sku"> Name and tier of the SKU. </param>
         /// <param name="capacity"> Min, max, and default scale values of the SKU. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal AppServicePoolSkuInfo(string resourceType, AppServiceSkuDescription sku, AppServiceSkuCapacity capacity, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal AppServicePoolSkuInfo(ResourceType? resourceType, AppServiceSkuDescription sku, AppServiceSkuCapacity capacity, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             ResourceType = resourceType;
             Sku = sku;
@@ -65,7 +66,7 @@ namespace Azure.ResourceManager.AppService.Models
 
         /// <summary> Resource type that this SKU applies to. </summary>
         [WirePath("resourceType")]
-        public string ResourceType { get; }
+        public ResourceType? ResourceType { get; }
         /// <summary> Name and tier of the SKU. </summary>
         [WirePath("sku")]
         public AppServiceSkuDescription Sku { get; }
