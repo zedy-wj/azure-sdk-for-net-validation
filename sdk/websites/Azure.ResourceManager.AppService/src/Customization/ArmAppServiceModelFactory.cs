@@ -885,5 +885,1458 @@ namespace Azure.ResourceManager.AppService.Models
                 isDisabled,
                 serializedAdditionalRawData: null);
         }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.HostNameBindingData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="siteName"> App Service app name. </param>
+        /// <param name="domainId"> Fully qualified ARM domain resource URI. </param>
+        /// <param name="azureResourceName"> Azure resource name. </param>
+        /// <param name="azureResourceType"> Azure resource type. </param>
+        /// <param name="customHostNameDnsRecordType"> Custom DNS record type. </param>
+        /// <param name="hostNameType"> Hostname type. </param>
+        /// <param name="sslState"> SSL type. </param>
+        /// <param name="thumbprintString"> SSL certificate thumbprint. </param>
+        /// <param name="virtualIP"> Virtual IP address assigned to the hostname if IP based SSL is enabled. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.HostNameBindingData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static HostNameBindingData HostNameBindingData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string siteName = null, string domainId = null, string azureResourceName = null, AppServiceResourceType? azureResourceType = null, CustomHostNameDnsRecordType? customHostNameDnsRecordType = null, AppServiceHostNameType? hostNameType = null, HostNameBindingSslState? sslState = null, string thumbprintString = null, string virtualIP = null, string kind = null)
+        {
+            return new HostNameBindingData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                siteName,
+                domainId,
+                azureResourceName,
+                azureResourceType,
+                customHostNameDnsRecordType,
+                hostNameType,
+                sslState,
+                thumbprintString,
+                virtualIP,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.HybridConnectionData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="serviceBusNamespace"> The name of the Service Bus namespace. </param>
+        /// <param name="relayName"> The name of the Service Bus relay. </param>
+        /// <param name="relayArmId"> The ARM URI to the Service Bus relay. </param>
+        /// <param name="hostname"> The hostname of the endpoint. </param>
+        /// <param name="port"> The port of the endpoint. </param>
+        /// <param name="sendKeyName"> The name of the Service Bus key which has Send permissions. This is used to authenticate to Service Bus. </param>
+        /// <param name="sendKeyValue">
+        /// The value of the Service Bus key. This is used to authenticate to Service Bus. In ARM this key will not be returned
+        /// normally, use the POST /listKeys API instead.
+        /// </param>
+        /// <param name="serviceBusSuffix"> The suffix for the service bus endpoint. By default this is .servicebus.windows.net. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.HybridConnectionData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static HybridConnectionData HybridConnectionData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string serviceBusNamespace = null, string relayName = null, ResourceIdentifier relayArmId = null, string hostname = null, int? port = null, string sendKeyName = null, string sendKeyValue = null, string serviceBusSuffix = null, string kind = null)
+        {
+            return new HybridConnectionData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                serviceBusNamespace,
+                relayName,
+                relayArmId,
+                hostname,
+                port,
+                sendKeyName,
+                sendKeyValue,
+                serviceBusSuffix,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.HybridConnectionLimitData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="current"> The current number of Hybrid Connections. </param>
+        /// <param name="maximum"> The maximum number of Hybrid Connections allowed. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.HybridConnectionLimitData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static HybridConnectionLimitData HybridConnectionLimitData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, int? current = null, int? maximum = null, string kind = null)
+        {
+            return new HybridConnectionLimitData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                current,
+                maximum,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.KubeEnvironmentData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="tags"> The tags. </param>
+        /// <param name="location"> The location. </param>
+        /// <param name="extendedLocation"> Extended Location. </param>
+        /// <param name="provisioningState"> Provisioning state of the Kubernetes Environment. </param>
+        /// <param name="deploymentErrors"> Any errors that occurred during deployment or deployment validation. </param>
+        /// <param name="isInternalLoadBalancerEnabled"> Only visible within Vnet/Subnet. </param>
+        /// <param name="defaultDomain"> Default Domain Name for the cluster. </param>
+        /// <param name="staticIP"> Static IP of the KubeEnvironment. </param>
+        /// <param name="environmentType"> Type of Kubernetes Environment. Only supported for Container App Environments with value as Managed. </param>
+        /// <param name="arcConfiguration">
+        /// Cluster configuration which determines the ARC cluster
+        /// components types. Eg: Choosing between BuildService kind,
+        /// FrontEnd Service ArtifactsStorageType etc.
+        /// </param>
+        /// <param name="appLogsConfiguration">
+        /// Cluster configuration which enables the log daemon to export
+        /// app logs to a destination. Currently only "log-analytics" is
+        /// supported
+        /// </param>
+        /// <param name="containerAppsConfiguration"> Cluster configuration for Container Apps Environments to configure Dapr Instrumentation Key and VNET Configuration. </param>
+        /// <param name="aksResourceId"></param>
+        /// <param name="kind"> Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind. </param>
+        /// <returns> A new <see cref="AppService.KubeEnvironmentData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static KubeEnvironmentData KubeEnvironmentData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, IDictionary<string, string> tags = null, AzureLocation location = default, ExtendedLocation extendedLocation = null, KubeEnvironmentProvisioningState? provisioningState = null, string deploymentErrors = null, bool? isInternalLoadBalancerEnabled = null, string defaultDomain = null, string staticIP = null, string environmentType = null, ArcConfiguration arcConfiguration = null, AppLogsConfiguration appLogsConfiguration = null, ContainerAppsConfiguration containerAppsConfiguration = null, ResourceIdentifier aksResourceId = null, string kind = null)
+        {
+            tags ??= new Dictionary<string, string>();
+
+            return new KubeEnvironmentData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                tags,
+                location,
+                extendedLocation,
+                kind,
+                provisioningState,
+                deploymentErrors,
+                isInternalLoadBalancerEnabled,
+                defaultDomain,
+                staticIP,
+                environmentType,
+                arcConfiguration,
+                appLogsConfiguration,
+                containerAppsConfiguration,
+                aksResourceId,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.MigrateMySqlStatusData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="migrationOperationStatus"> Status of the migration task. </param>
+        /// <param name="operationId"> Operation ID for the migration task. </param>
+        /// <param name="isLocalMySqlEnabled"> True if the web app has in app MySql enabled. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.MigrateMySqlStatusData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static MigrateMySqlStatusData MigrateMySqlStatusData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, AppServiceOperationStatus? migrationOperationStatus = null, string operationId = null, bool? isLocalMySqlEnabled = null, string kind = null)
+        {
+            return new MigrateMySqlStatusData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                migrationOperationStatus,
+                operationId,
+                isLocalMySqlEnabled,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.MSDeployStatusData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="deployer"> Username of deployer. </param>
+        /// <param name="provisioningState"> Provisioning state. </param>
+        /// <param name="startOn"> Start time of deploy operation. </param>
+        /// <param name="endOn"> End time of deploy operation. </param>
+        /// <param name="isComplete"> Whether the deployment operation has completed. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.MSDeployStatusData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static MSDeployStatusData MSDeployStatusData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string deployer = null, MSDeployProvisioningState? provisioningState = null, DateTimeOffset? startOn = null, DateTimeOffset? endOn = null, bool? isComplete = null, string kind = null)
+        {
+            return new MSDeployStatusData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                deployer,
+                provisioningState,
+                startOn,
+                endOn,
+                isComplete,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.NetworkFeatureData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="virtualNetworkName"> The Virtual Network name. </param>
+        /// <param name="virtualNetworkConnection"> The Virtual Network summary view. </param>
+        /// <param name="hybridConnections"> The Hybrid Connections summary view. </param>
+        /// <param name="hybridConnectionsV2"> The Hybrid Connection V2 (Service Bus) view. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.NetworkFeatureData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static NetworkFeatureData NetworkFeatureData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string virtualNetworkName = null, AppServiceVirtualNetworkProperties virtualNetworkConnection = null, IEnumerable<RelayServiceConnectionEntityData> hybridConnections = null, IEnumerable<HybridConnectionData> hybridConnectionsV2 = null, string kind = null)
+        {
+            hybridConnections ??= new List<RelayServiceConnectionEntityData>();
+            hybridConnectionsV2 ??= new List<HybridConnectionData>();
+
+            return new NetworkFeatureData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                virtualNetworkName,
+                virtualNetworkConnection,
+                hybridConnections?.ToList(),
+                hybridConnectionsV2?.ToList(),
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.PrivateAccessData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="isEnabled"> Whether private access is enabled or not. </param>
+        /// <param name="virtualNetworks"> The Virtual Networks (and subnets) allowed to access the site privately. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.PrivateAccessData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PrivateAccessData PrivateAccessData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, bool? isEnabled = null, IEnumerable<PrivateAccessVirtualNetwork> virtualNetworks = null, string kind = null)
+        {
+            virtualNetworks ??= new List<PrivateAccessVirtualNetwork>();
+
+            return new PrivateAccessData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                isEnabled,
+                virtualNetworks?.ToList(),
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.ProcessInfoData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="identifier"> ARM Identifier for deployment. </param>
+        /// <param name="deploymentName"> Deployment name. </param>
+        /// <param name="href"> HRef URI. </param>
+        /// <param name="minidump"> Minidump URI. </param>
+        /// <param name="isProfileRunning"> Is profile running?. </param>
+        /// <param name="isIisProfileRunning"> Is the IIS Profile running?. </param>
+        /// <param name="iisProfileTimeoutInSeconds"> IIS Profile timeout (seconds). </param>
+        /// <param name="parent"> Parent process. </param>
+        /// <param name="children"> Child process list. </param>
+        /// <param name="processThreads"> Thread list. </param>
+        /// <param name="openFileHandles"> List of open files. </param>
+        /// <param name="modules"> List of modules. </param>
+        /// <param name="fileName"> File name of this process. </param>
+        /// <param name="commandLine"> Command line. </param>
+        /// <param name="userName"> User name. </param>
+        /// <param name="handleCount"> Handle count. </param>
+        /// <param name="moduleCount"> Module count. </param>
+        /// <param name="threadCount"> Thread count. </param>
+        /// <param name="startOn"> Start time. </param>
+        /// <param name="totalCpuTime"> Total CPU time. </param>
+        /// <param name="userCpuTime"> User CPU time. </param>
+        /// <param name="privilegedCpuTime"> Privileged CPU time. </param>
+        /// <param name="workingSet"> Working set. </param>
+        /// <param name="peakWorkingSet"> Peak working set. </param>
+        /// <param name="privateMemory"> Private memory size. </param>
+        /// <param name="virtualMemory"> Virtual memory size. </param>
+        /// <param name="peakVirtualMemory"> Peak virtual memory usage. </param>
+        /// <param name="pagedSystemMemory"> Paged system memory. </param>
+        /// <param name="nonPagedSystemMemory"> Non-paged system memory. </param>
+        /// <param name="pagedMemory"> Paged memory. </param>
+        /// <param name="peakPagedMemory"> Peak paged memory. </param>
+        /// <param name="timeStamp"> Time stamp. </param>
+        /// <param name="environmentVariables"> List of environment variables. </param>
+        /// <param name="isScmSite"> Is this the SCM site?. </param>
+        /// <param name="isWebjob"> Is this a Web Job?. </param>
+        /// <param name="description"> Description of process. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.ProcessInfoData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static ProcessInfoData ProcessInfoData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, int? identifier = null, string deploymentName = null, string href = null, string minidump = null, bool? isProfileRunning = null, bool? isIisProfileRunning = null, double? iisProfileTimeoutInSeconds = null, string parent = null, IEnumerable<string> children = null, IEnumerable<WebAppProcessThreadProperties> processThreads = null, IEnumerable<string> openFileHandles = null, IEnumerable<ProcessModuleInfoData> modules = null, string fileName = null, string commandLine = null, string userName = null, int? handleCount = null, int? moduleCount = null, int? threadCount = null, DateTimeOffset? startOn = null, string totalCpuTime = null, string userCpuTime = null, string privilegedCpuTime = null, long? workingSet = null, long? peakWorkingSet = null, long? privateMemory = null, long? virtualMemory = null, long? peakVirtualMemory = null, long? pagedSystemMemory = null, long? nonPagedSystemMemory = null, long? pagedMemory = null, long? peakPagedMemory = null, DateTimeOffset? timeStamp = null, IDictionary<string, string> environmentVariables = null, bool? isScmSite = null, bool? isWebjob = null, string description = null, string kind = null)
+        {
+            children ??= new List<string>();
+            processThreads ??= new List<WebAppProcessThreadProperties>();
+            openFileHandles ??= new List<string>();
+            modules ??= new List<ProcessModuleInfoData>();
+            environmentVariables ??= new Dictionary<string, string>();
+
+            return new ProcessInfoData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                identifier,
+                deploymentName,
+                href,
+                minidump,
+                isProfileRunning,
+                isIisProfileRunning,
+                iisProfileTimeoutInSeconds,
+                parent,
+                children?.ToList(),
+                processThreads?.ToList(),
+                openFileHandles?.ToList(),
+                modules?.ToList(),
+                fileName,
+                commandLine,
+                userName,
+                handleCount,
+                moduleCount,
+                threadCount,
+                startOn,
+                totalCpuTime,
+                userCpuTime,
+                privilegedCpuTime,
+                workingSet,
+                peakWorkingSet,
+                privateMemory,
+                virtualMemory,
+                peakVirtualMemory,
+                pagedSystemMemory,
+                nonPagedSystemMemory,
+                pagedMemory,
+                peakPagedMemory,
+                timeStamp,
+                environmentVariables,
+                isScmSite,
+                isWebjob,
+                description,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.ProcessModuleInfoData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="baseAddress"> Base address. Used as module identifier in ARM resource URI. </param>
+        /// <param name="fileName"> File name. </param>
+        /// <param name="href"> HRef URI. </param>
+        /// <param name="filePath"> File path. </param>
+        /// <param name="moduleMemorySize"> Module memory size. </param>
+        /// <param name="fileVersion"> File version. </param>
+        /// <param name="fileDescription"> File description. </param>
+        /// <param name="product"> Product name. </param>
+        /// <param name="productVersion"> Product version. </param>
+        /// <param name="isDebug"> Is debug?. </param>
+        /// <param name="language"> Module language (locale). </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.ProcessModuleInfoData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static ProcessModuleInfoData ProcessModuleInfoData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string baseAddress = null, string fileName = null, string href = null, string filePath = null, int? moduleMemorySize = null, string fileVersion = null, string fileDescription = null, string product = null, string productVersion = null, bool? isDebug = null, string language = null, string kind = null)
+        {
+            return new ProcessModuleInfoData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                baseAddress,
+                fileName,
+                href,
+                filePath,
+                moduleMemorySize,
+                fileVersion,
+                fileDescription,
+                product,
+                productVersion,
+                isDebug,
+                language,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.PublicCertificateData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="blob"> Public Certificate byte array. </param>
+        /// <param name="publicCertificateLocation"> Public Certificate Location. </param>
+        /// <param name="thumbprintString"> Certificate Thumbprint. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.PublicCertificateData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PublicCertificateData PublicCertificateData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, byte[] blob = null, PublicCertificateLocation? publicCertificateLocation = null, string thumbprintString = null, string kind = null)
+        {
+            return new PublicCertificateData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                blob,
+                publicCertificateLocation,
+                thumbprintString,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.PublishingUserData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="publishingUserName"> Username used for publishing. </param>
+        /// <param name="publishingPassword"> Password used for publishing. </param>
+        /// <param name="publishingPasswordHash"> Password hash used for publishing. </param>
+        /// <param name="publishingPasswordHashSalt"> Password hash salt used for publishing. </param>
+        /// <param name="scmUri"> Url of SCM site. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.PublishingUserData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PublishingUserData PublishingUserData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string publishingUserName = null, string publishingPassword = null, string publishingPasswordHash = null, string publishingPasswordHashSalt = null, Uri scmUri = null, string kind = null)
+        {
+            return new PublishingUserData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                publishingUserName,
+                publishingPassword,
+                publishingPasswordHash,
+                publishingPasswordHashSalt,
+                scmUri,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.RecommendationRuleData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="recommendationName"> Unique name of the rule. </param>
+        /// <param name="displayName"> UI friendly name of the rule. </param>
+        /// <param name="message"> Localized name of the rule (Good for UI). </param>
+        /// <param name="recommendationId">
+        /// Recommendation ID of an associated recommendation object tied to the rule, if exists.
+        /// If such an object doesn't exist, it is set to null.
+        /// </param>
+        /// <param name="description"> Localized detailed description of the rule. </param>
+        /// <param name="actionName"> Name of action that is recommended by this rule in string. </param>
+        /// <param name="level"> Level of impact indicating how critical this rule is. </param>
+        /// <param name="channels"> List of available channels that this rule applies. </param>
+        /// <param name="categoryTags"> The list of category tags that this recommendation rule belongs to. </param>
+        /// <param name="isDynamic"> True if this is associated with a dynamically added rule. </param>
+        /// <param name="extensionName"> Extension name of the portal if exists. Applicable to dynamic rule only. </param>
+        /// <param name="bladeName"> Deep link to a blade on the portal. Applicable to dynamic rule only. </param>
+        /// <param name="forwardLink"> Forward link to an external document associated with the rule. Applicable to dynamic rule only. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.RecommendationRuleData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static RecommendationRuleData RecommendationRuleData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string recommendationName = null, string displayName = null, string message = null, Guid? recommendationId = null, string description = null, string actionName = null, NotificationLevel? level = null, RecommendationChannel? channels = null, IEnumerable<string> categoryTags = null, bool? isDynamic = null, string extensionName = null, string bladeName = null, string forwardLink = null, string kind = null)
+        {
+            categoryTags ??= new List<string>();
+
+            return new RecommendationRuleData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                recommendationName,
+                displayName,
+                message,
+                recommendationId,
+                description,
+                actionName,
+                level,
+                channels,
+                categoryTags?.ToList(),
+                isDynamic,
+                extensionName,
+                bladeName,
+                forwardLink,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.RelayServiceConnectionEntityData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="entityName"></param>
+        /// <param name="entityConnectionString"></param>
+        /// <param name="resourceConnectionString"></param>
+        /// <param name="hostname"></param>
+        /// <param name="port"></param>
+        /// <param name="biztalkUri"></param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.RelayServiceConnectionEntityData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static RelayServiceConnectionEntityData RelayServiceConnectionEntityData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string entityName = null, string entityConnectionString = null, string resourceConnectionString = null, string hostname = null, int? port = null, Uri biztalkUri = null, string kind = null)
+        {
+            return new RelayServiceConnectionEntityData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                entityName,
+                entityConnectionString,
+                resourceConnectionString,
+                hostname,
+                port,
+                biztalkUri,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.RemotePrivateEndpointConnectionARMResourceData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="provisioningState"></param>
+        /// <param name="privateEndpointId"> PrivateEndpoint of a remote private endpoint connection. </param>
+        /// <param name="privateLinkServiceConnectionState"> The state of a private link connection. </param>
+        /// <param name="ipAddresses"> Private IPAddresses mapped to the remote private endpoint. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.RemotePrivateEndpointConnectionARMResourceData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static RemotePrivateEndpointConnectionARMResourceData RemotePrivateEndpointConnectionARMResourceData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string provisioningState = null, ResourceIdentifier privateEndpointId = null, PrivateLinkConnectionState privateLinkServiceConnectionState = null, IEnumerable<IPAddress> ipAddresses = null, string kind = null)
+        {
+            ipAddresses ??= new List<IPAddress>();
+
+            return new RemotePrivateEndpointConnectionARMResourceData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                provisioningState,
+                privateEndpointId != null ? ResourceManagerModelFactory.SubResource(privateEndpointId) : null,
+                privateLinkServiceConnectionState,
+                ipAddresses?.ToList(),
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.ResourceHealthMetadataData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="category"> The category that the resource matches in the RHC Policy File. </param>
+        /// <param name="isSignalAvailable"> Is there a health signal for the resource. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.ResourceHealthMetadataData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static ResourceHealthMetadataData ResourceHealthMetadataData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string category = null, bool? isSignalAvailable = null, string kind = null)
+        {
+            return new ResourceHealthMetadataData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                category,
+                isSignalAvailable,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.SiteAuthSettingsV2"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="platform"> The configuration settings of the platform of App Service Authentication/Authorization. </param>
+        /// <param name="globalValidation"> The configuration settings that determines the validation flow of users using App Service Authentication/Authorization. </param>
+        /// <param name="identityProviders"> The configuration settings of each of the identity providers used to configure App Service Authentication/Authorization. </param>
+        /// <param name="login"> The configuration settings of the login flow of users using App Service Authentication/Authorization. </param>
+        /// <param name="httpSettings"> The configuration settings of the HTTP requests for authentication and authorization requests made against App Service Authentication/Authorization. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="Models.SiteAuthSettingsV2"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SiteAuthSettingsV2 SiteAuthSettingsV2(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, AuthPlatform platform = null, GlobalValidation globalValidation = null, AppServiceIdentityProviders identityProviders = null, WebAppLoginInfo login = null, AppServiceHttpSettings httpSettings = null, string kind = null)
+        {
+            return new SiteAuthSettingsV2(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                platform,
+                globalValidation,
+                identityProviders,
+                login,
+                httpSettings,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.SiteExtensionInfoData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="extensionId"> Site extension ID. </param>
+        /// <param name="title"></param>
+        /// <param name="extensionType"> Site extension type. </param>
+        /// <param name="summary"> Summary description. </param>
+        /// <param name="description"> Detailed description. </param>
+        /// <param name="version"> Version information. </param>
+        /// <param name="extensionUri"> Extension URL. </param>
+        /// <param name="projectUri"> Project URL. </param>
+        /// <param name="iconUri"> Icon URL. </param>
+        /// <param name="licenseUri"> License URL. </param>
+        /// <param name="feedUri"> Feed URL. </param>
+        /// <param name="authors"> List of authors. </param>
+        /// <param name="installerCommandLineParams"> Installer command line parameters. </param>
+        /// <param name="publishedOn"> Published timestamp. </param>
+        /// <param name="downloadCount"> Count of downloads. </param>
+        /// <param name="localIsLatestVersion"> &lt;code&gt;true&lt;/code&gt; if the local version is the latest version; &lt;code&gt;false&lt;/code&gt; otherwise. </param>
+        /// <param name="localPath"> Local path. </param>
+        /// <param name="installedOn"> Installed timestamp. </param>
+        /// <param name="provisioningState"> Provisioning state. </param>
+        /// <param name="comment"> Site Extension comment. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.SiteExtensionInfoData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SiteExtensionInfoData SiteExtensionInfoData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string extensionId = null, string title = null, SiteExtensionType? extensionType = null, string summary = null, string description = null, string version = null, Uri extensionUri = null, Uri projectUri = null, Uri iconUri = null, Uri licenseUri = null, Uri feedUri = null, IEnumerable<string> authors = null, string installerCommandLineParams = null, DateTimeOffset? publishedOn = null, int? downloadCount = null, bool? localIsLatestVersion = null, string localPath = null, DateTimeOffset? installedOn = null, string provisioningState = null, string comment = null, string kind = null)
+        {
+            authors ??= new List<string>();
+
+            return new SiteExtensionInfoData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                extensionId,
+                title,
+                extensionType,
+                summary,
+                description,
+                version,
+                extensionUri,
+                projectUri,
+                iconUri,
+                licenseUri,
+                feedUri,
+                authors?.ToList(),
+                installerCommandLineParams,
+                publishedOn,
+                downloadCount,
+                localIsLatestVersion,
+                localPath,
+                installedOn,
+                provisioningState,
+                comment,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.SiteLogsConfigData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="applicationLogs"> Application logs configuration. </param>
+        /// <param name="httpLogs"> HTTP logs configuration. </param>
+        /// <param name="isFailedRequestsTracingEnabled"> Failed requests tracing configuration. </param>
+        /// <param name="isDetailedErrorMessagesEnabled"> Detailed error messages configuration. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.SiteLogsConfigData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SiteLogsConfigData SiteLogsConfigData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, ApplicationLogsConfig applicationLogs = null, AppServiceHttpLogsConfig httpLogs = null, bool? isFailedRequestsTracingEnabled = null, bool? isDetailedErrorMessagesEnabled = null, string kind = null)
+        {
+            return new SiteLogsConfigData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                applicationLogs,
+                httpLogs,
+                isFailedRequestsTracingEnabled != null ? new WebAppEnabledConfig(isFailedRequestsTracingEnabled, serializedAdditionalRawData: null) : null,
+                isDetailedErrorMessagesEnabled != null ? new WebAppEnabledConfig(isDetailedErrorMessagesEnabled, serializedAdditionalRawData: null) : null,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.SiteSourceControlData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="repoUri"> Repository or source control URL. </param>
+        /// <param name="branch"> Name of branch to use for deployment. </param>
+        /// <param name="isManualIntegration"> &lt;code&gt;true&lt;/code&gt; to limit to manual integration; &lt;code&gt;false&lt;/code&gt; to enable continuous integration (which configures webhooks into online repos like GitHub). </param>
+        /// <param name="isGitHubAction"> &lt;code&gt;true&lt;/code&gt; if this is deployed via GitHub action. </param>
+        /// <param name="isDeploymentRollbackEnabled"> &lt;code&gt;true&lt;/code&gt; to enable deployment rollback; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="isMercurial"> &lt;code&gt;true&lt;/code&gt; for a Mercurial repository; &lt;code&gt;false&lt;/code&gt; for a Git repository. </param>
+        /// <param name="gitHubActionConfiguration"> If GitHub Action is selected, than the associated configuration. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.SiteSourceControlData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SiteSourceControlData SiteSourceControlData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, Uri repoUri = null, string branch = null, bool? isManualIntegration = null, bool? isGitHubAction = null, bool? isDeploymentRollbackEnabled = null, bool? isMercurial = null, GitHubActionConfiguration gitHubActionConfiguration = null, string kind = null)
+        {
+            return new SiteSourceControlData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                repoUri,
+                branch,
+                isManualIntegration,
+                isGitHubAction,
+                isDeploymentRollbackEnabled,
+                isMercurial,
+                gitHubActionConfiguration,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.SlotConfigNamesResourceData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="connectionStringNames"> List of connection string names. </param>
+        /// <param name="appSettingNames"> List of application settings names. </param>
+        /// <param name="azureStorageConfigNames"> List of external Azure storage account identifiers. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.SlotConfigNamesResourceData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SlotConfigNamesResourceData SlotConfigNamesResourceData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, IEnumerable<string> connectionStringNames = null, IEnumerable<string> appSettingNames = null, IEnumerable<string> azureStorageConfigNames = null, string kind = null)
+        {
+            connectionStringNames ??= new List<string>();
+            appSettingNames ??= new List<string>();
+            azureStorageConfigNames ??= new List<string>();
+
+            return new SlotConfigNamesResourceData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                connectionStringNames?.ToList(),
+                appSettingNames?.ToList(),
+                azureStorageConfigNames?.ToList(),
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.StaticSiteBasicAuthPropertyData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="password"> The password for basic auth. </param>
+        /// <param name="secretUri"> Url to the secret in Key Vault. </param>
+        /// <param name="applicableEnvironmentsMode"> State indicating if basic auth is enabled and for what environments it is active. </param>
+        /// <param name="environments"> The list of enabled environments for Basic Auth if ApplicableEnvironmentsMode is set to SpecifiedEnvironments. </param>
+        /// <param name="secretState"> State indicating if basic auth has a secret and what type it is. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.StaticSiteBasicAuthPropertyData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static StaticSiteBasicAuthPropertyData StaticSiteBasicAuthPropertyData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string password = null, Uri secretUri = null, string applicableEnvironmentsMode = null, IEnumerable<string> environments = null, string secretState = null, string kind = null)
+        {
+            environments ??= new List<string>();
+
+            return new StaticSiteBasicAuthPropertyData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                password,
+                secretUri,
+                applicableEnvironmentsMode,
+                environments?.ToList(),
+                secretState,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.StaticSiteBuildData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="buildId"> An identifier for the static site build. </param>
+        /// <param name="sourceBranch"> The source branch. </param>
+        /// <param name="pullRequestTitle"> The title of a pull request that a static site build is related to. </param>
+        /// <param name="hostname"> The hostname for a static site build. </param>
+        /// <param name="createdOn"> When this build was created. </param>
+        /// <param name="lastUpdatedOn"> When this build was updated. </param>
+        /// <param name="status"> The status of the static site build. </param>
+        /// <param name="userProvidedFunctionApps"> User provided function apps registered with the static site build. </param>
+        /// <param name="linkedBackends"> Backends linked to the static side build. </param>
+        /// <param name="databaseConnections"> Database connections for the static site build. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.StaticSiteBuildData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static StaticSiteBuildData StaticSiteBuildData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string buildId = null, string sourceBranch = null, string pullRequestTitle = null, string hostname = null, DateTimeOffset? createdOn = null, DateTimeOffset? lastUpdatedOn = null, StaticSiteBuildStatus? status = null, IEnumerable<StaticSiteUserProvidedFunctionAppData> userProvidedFunctionApps = null, IEnumerable<StaticSiteLinkedBackendInfo> linkedBackends = null, IEnumerable<StaticSiteDatabaseConnectionOverview> databaseConnections = null, string kind = null)
+        {
+            userProvidedFunctionApps ??= new List<StaticSiteUserProvidedFunctionAppData>();
+            linkedBackends ??= new List<StaticSiteLinkedBackendInfo>();
+            databaseConnections ??= new List<StaticSiteDatabaseConnectionOverview>();
+
+            return new StaticSiteBuildData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                buildId,
+                sourceBranch,
+                pullRequestTitle,
+                hostname,
+                createdOn,
+                lastUpdatedOn,
+                status,
+                userProvidedFunctionApps?.ToList(),
+                linkedBackends?.ToList(),
+                databaseConnections?.ToList(),
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.StaticSiteCustomDomainOverviewData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="domainName"> The domain name for the static site custom domain. </param>
+        /// <param name="createdOn"> The date and time on which the custom domain was created for the static site. </param>
+        /// <param name="status"> The status of the custom domain. </param>
+        /// <param name="validationToken"> The TXT record validation token. </param>
+        /// <param name="errorMessage"></param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.StaticSiteCustomDomainOverviewData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static StaticSiteCustomDomainOverviewData StaticSiteCustomDomainOverviewData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string domainName = null, DateTimeOffset? createdOn = null, CustomDomainStatus? status = null, string validationToken = null, string errorMessage = null, string kind = null)
+        {
+            return new StaticSiteCustomDomainOverviewData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                domainName,
+                createdOn,
+                status,
+                validationToken,
+                errorMessage,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.StaticSiteData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="tags"> The tags. </param>
+        /// <param name="location"> The location. </param>
+        /// <param name="sku"> Description of a SKU for a scalable resource. </param>
+        /// <param name="identity"> Managed service identity. </param>
+        /// <param name="defaultHostname"> The default autogenerated hostname for the static site. </param>
+        /// <param name="repositoryUri"> URL for the repository of the static site. </param>
+        /// <param name="branch"> The target branch in the repository. </param>
+        /// <param name="customDomains"> The custom domains associated with this static site. </param>
+        /// <param name="repositoryToken"> A user's github repository token. This is used to setup the Github Actions workflow file and API secrets. </param>
+        /// <param name="buildProperties"> Build properties to configure on the repository. </param>
+        /// <param name="privateEndpointConnections"> Private endpoint connections. </param>
+        /// <param name="stagingEnvironmentPolicy"> State indicating whether staging environments are allowed or not allowed for a static web app. </param>
+        /// <param name="allowConfigFileUpdates"> &lt;code&gt;false&lt;/code&gt; if config file is locked for this static web app; otherwise, &lt;code&gt;true&lt;/code&gt;. </param>
+        /// <param name="templateProperties"> Template options for generating a new repository. </param>
+        /// <param name="contentDistributionEndpoint"> The content distribution endpoint for the static site. </param>
+        /// <param name="keyVaultReferenceIdentity"> Identity to use for Key Vault Reference authentication. </param>
+        /// <param name="userProvidedFunctionApps"> User provided function apps registered with the static site. </param>
+        /// <param name="linkedBackends"> Backends linked to the static side. </param>
+        /// <param name="provider"> The provider that submitted the last deployment to the primary environment of the static site. </param>
+        /// <param name="enterpriseGradeCdnStatus"> State indicating the status of the enterprise grade CDN serving traffic to the static web app. </param>
+        /// <param name="publicNetworkAccess"> State indicating whether public traffic are allowed or not for a static web app. Allowed Values: 'Enabled', 'Disabled' or an empty string. </param>
+        /// <param name="databaseConnections"> Database connections for the static site. </param>
+        /// <param name="kind"> Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind. </param>
+        /// <returns> A new <see cref="AppService.StaticSiteData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static StaticSiteData StaticSiteData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, IDictionary<string, string> tags = null, AzureLocation location = default, AppServiceSkuDescription sku = null, ManagedServiceIdentity identity = null, string defaultHostname = null, Uri repositoryUri = null, string branch = null, IEnumerable<string> customDomains = null, string repositoryToken = null, StaticSiteBuildProperties buildProperties = null, IEnumerable<ResponseMessageEnvelopeRemotePrivateEndpointConnection> privateEndpointConnections = null, StagingEnvironmentPolicy? stagingEnvironmentPolicy = null, bool? allowConfigFileUpdates = null, StaticSiteTemplate templateProperties = null, string contentDistributionEndpoint = null, string keyVaultReferenceIdentity = null, IEnumerable<StaticSiteUserProvidedFunctionAppData> userProvidedFunctionApps = null, IEnumerable<StaticSiteLinkedBackendInfo> linkedBackends = null, string provider = null, EnterpriseGradeCdnStatus? enterpriseGradeCdnStatus = null, string publicNetworkAccess = null, IEnumerable<StaticSiteDatabaseConnectionOverview> databaseConnections = null, string kind = null)
+        {
+            tags ??= new Dictionary<string, string>();
+            customDomains ??= new List<string>();
+            privateEndpointConnections ??= new List<ResponseMessageEnvelopeRemotePrivateEndpointConnection>();
+            userProvidedFunctionApps ??= new List<StaticSiteUserProvidedFunctionAppData>();
+            linkedBackends ??= new List<StaticSiteLinkedBackendInfo>();
+            databaseConnections ??= new List<StaticSiteDatabaseConnectionOverview>();
+
+            return new StaticSiteData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                tags,
+                location,
+                kind,
+                sku,
+                identity,
+                defaultHostname,
+                repositoryUri,
+                branch,
+                customDomains?.ToList(),
+                repositoryToken,
+                buildProperties,
+                privateEndpointConnections?.ToList(),
+                stagingEnvironmentPolicy,
+                allowConfigFileUpdates,
+                templateProperties,
+                contentDistributionEndpoint,
+                keyVaultReferenceIdentity,
+                userProvidedFunctionApps?.ToList(),
+                linkedBackends?.ToList(),
+                provider,
+                enterpriseGradeCdnStatus,
+                publicNetworkAccess,
+                databaseConnections?.ToList(),
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.StaticSiteDatabaseConnectionData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="resourceId"> The resource id of the database. </param>
+        /// <param name="connectionIdentity"> If present, the identity is used in conjunction with connection string to connect to the database. Use of the system-assigned managed identity is indicated with the string 'SystemAssigned', while use of a user-assigned managed identity is indicated with the resource id of the managed identity resource. </param>
+        /// <param name="connectionString"> The connection string to use to connect to the database. </param>
+        /// <param name="region"> The region of the database resource. </param>
+        /// <param name="configurationFiles"> A list of configuration files associated with this database connection. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.StaticSiteDatabaseConnectionData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static StaticSiteDatabaseConnectionData StaticSiteDatabaseConnectionData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, ResourceIdentifier resourceId = null, string connectionIdentity = null, string connectionString = null, string region = null, IEnumerable<StaticSiteDatabaseConnectionConfigurationFileOverview> configurationFiles = null, string kind = null)
+        {
+            configurationFiles ??= new List<StaticSiteDatabaseConnectionConfigurationFileOverview>();
+
+            return new StaticSiteDatabaseConnectionData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                resourceId,
+                connectionIdentity,
+                connectionString,
+                region,
+                configurationFiles?.ToList(),
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.StaticSiteLinkedBackendData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="backendResourceId"> The resource id of the backend linked to the static site. </param>
+        /// <param name="region"> The region of the backend linked to the static site. </param>
+        /// <param name="createdOn"> The date and time on which the backend was linked to the static site. </param>
+        /// <param name="provisioningState"> The provisioning state of the linking process. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.StaticSiteLinkedBackendData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static StaticSiteLinkedBackendData StaticSiteLinkedBackendData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, ResourceIdentifier backendResourceId = null, string region = null, DateTimeOffset? createdOn = null, string provisioningState = null, string kind = null)
+        {
+            return new StaticSiteLinkedBackendData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                backendResourceId,
+                region,
+                createdOn,
+                provisioningState,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.StaticSiteUserProvidedFunctionAppData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="functionAppResourceId"> The resource id of the function app registered with the static site. </param>
+        /// <param name="functionAppRegion"> The region of the function app registered with the static site. </param>
+        /// <param name="createdOn"> The date and time on which the function app was registered with the static site. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.StaticSiteUserProvidedFunctionAppData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static StaticSiteUserProvidedFunctionAppData StaticSiteUserProvidedFunctionAppData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, ResourceIdentifier functionAppResourceId = null, string functionAppRegion = null, DateTimeOffset? createdOn = null, string kind = null)
+        {
+            return new StaticSiteUserProvidedFunctionAppData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                functionAppResourceId,
+                functionAppRegion,
+                createdOn,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.SwiftVirtualNetworkData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="subnetResourceId"> The Virtual Network subnet's resource ID. This is the subnet that this Web App will join. This subnet must have a delegation to Microsoft.Web/serverFarms defined first. </param>
+        /// <param name="isSwiftSupported"> A flag that specifies if the scale unit this Web App is on supports Swift integration. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.SwiftVirtualNetworkData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SwiftVirtualNetworkData SwiftVirtualNetworkData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, ResourceIdentifier subnetResourceId = null, bool? isSwiftSupported = null, string kind = null)
+        {
+            return new SwiftVirtualNetworkData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                subnetResourceId,
+                isSwiftSupported,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.TopLevelDomainData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="isDomainPrivacySupported"> If &lt;code&gt;true&lt;/code&gt;, then the top level domain supports domain privacy; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.TopLevelDomainData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static TopLevelDomainData TopLevelDomainData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, bool? isDomainPrivacySupported = null, string kind = null)
+        {
+            return new TopLevelDomainData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                isDomainPrivacySupported,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.TriggeredJobHistoryData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="runs"> List of triggered web job runs. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.TriggeredJobHistoryData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static TriggeredJobHistoryData TriggeredJobHistoryData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, IEnumerable<TriggeredJobRun> runs = null, string kind = null)
+        {
+            runs ??= new List<TriggeredJobRun>();
+
+            return new TriggeredJobHistoryData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                runs?.ToList(),
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.TriggeredWebJobData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="latestRun"> Latest job run information. </param>
+        /// <param name="historyUri"> History URL. </param>
+        /// <param name="schedulerLogsUri"> Scheduler Logs URL. </param>
+        /// <param name="runCommand"> Run command. </param>
+        /// <param name="uri"> Job URL. </param>
+        /// <param name="extraInfoUri"> Extra Info URL. </param>
+        /// <param name="webJobType"> Job type. </param>
+        /// <param name="error"> Error information. </param>
+        /// <param name="isUsingSdk"> Using SDK?. </param>
+        /// <param name="publicNetworkAccess"> Property to allow or block all public traffic. Allowed Values: 'Enabled', 'Disabled' or an empty string. </param>
+        /// <param name="isStorageAccountRequired"> Checks if Customer provided storage account is required. </param>
+        /// <param name="settings"> Job settings. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.TriggeredWebJobData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static TriggeredWebJobData TriggeredWebJobData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, TriggeredJobRun latestRun = null, Uri historyUri = null, Uri schedulerLogsUri = null, string runCommand = null, Uri uri = null, Uri extraInfoUri = null, WebJobType? webJobType = null, string error = null, bool? isUsingSdk = null, string publicNetworkAccess = null, bool? isStorageAccountRequired = null, IDictionary<string, BinaryData> settings = null, string kind = null)
+        {
+            settings ??= new Dictionary<string, BinaryData>();
+
+            return new TriggeredWebJobData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                latestRun,
+                historyUri,
+                schedulerLogsUri,
+                runCommand,
+                uri,
+                extraInfoUri,
+                webJobType,
+                error,
+                isUsingSdk,
+                publicNetworkAccess,
+                isStorageAccountRequired,
+                settings,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.WebAppBackupData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="backupId"> Id of the backup. </param>
+        /// <param name="storageAccountUri"> SAS URL for the storage account container which contains this backup. </param>
+        /// <param name="blobName"> Name of the blob which contains data for this backup. </param>
+        /// <param name="backupName"> Name of this backup. </param>
+        /// <param name="status"> Backup status. </param>
+        /// <param name="sizeInBytes"> Size of the backup in bytes. </param>
+        /// <param name="createdOn"> Timestamp of the backup creation. </param>
+        /// <param name="log"> Details regarding this backup. Might contain an error message. </param>
+        /// <param name="databases"> List of databases included in the backup. </param>
+        /// <param name="isScheduled"> True if this backup has been created due to a schedule being triggered. </param>
+        /// <param name="lastRestoreOn"> Timestamp of a last restore operation which used this backup. </param>
+        /// <param name="finishedOn"> Timestamp when this backup finished. </param>
+        /// <param name="correlationId"> Unique correlation identifier. Please use this along with the timestamp while communicating with Azure support. </param>
+        /// <param name="websiteSizeInBytes"> Size of the original web app which has been backed up. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.WebAppBackupData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static WebAppBackupData WebAppBackupData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, int? backupId = null, Uri storageAccountUri = null, string blobName = null, string backupName = null, WebAppBackupStatus? status = null, long? sizeInBytes = null, DateTimeOffset? createdOn = null, string log = null, IEnumerable<AppServiceDatabaseBackupSetting> databases = null, bool? isScheduled = null, DateTimeOffset? lastRestoreOn = null, DateTimeOffset? finishedOn = null, string correlationId = null, long? websiteSizeInBytes = null, string kind = null)
+        {
+            databases ??= new List<AppServiceDatabaseBackupSetting>();
+
+            return new WebAppBackupData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                backupId,
+                storageAccountUri,
+                blobName,
+                backupName,
+                status,
+                sizeInBytes,
+                createdOn,
+                log,
+                databases?.ToList(),
+                isScheduled,
+                lastRestoreOn,
+                finishedOn,
+                correlationId,
+                websiteSizeInBytes,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.WebAppDeploymentData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="status"> Deployment status. </param>
+        /// <param name="message"> Details about deployment status. </param>
+        /// <param name="author"> Who authored the deployment. </param>
+        /// <param name="deployer"> Who performed the deployment. </param>
+        /// <param name="authorEmail"> Author email. </param>
+        /// <param name="startOn"> Start time. </param>
+        /// <param name="endOn"> End time. </param>
+        /// <param name="isActive"> True if deployment is currently active, false if completed and null if not started. </param>
+        /// <param name="details"> Details on deployment. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.WebAppDeploymentData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static WebAppDeploymentData WebAppDeploymentData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, int? status = null, string message = null, string author = null, string deployer = null, string authorEmail = null, DateTimeOffset? startOn = null, DateTimeOffset? endOn = null, bool? isActive = null, string details = null, string kind = null)
+        {
+            return new WebAppDeploymentData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                status,
+                message,
+                author,
+                deployer,
+                authorEmail,
+                startOn,
+                endOn,
+                isActive,
+                details,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.WebJobData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="runCommand"> Run command. </param>
+        /// <param name="uri"> Job URL. </param>
+        /// <param name="extraInfoUri"> Extra Info URL. </param>
+        /// <param name="webJobType"> Job type. </param>
+        /// <param name="error"> Error information. </param>
+        /// <param name="isUsingSdk"> Using SDK?. </param>
+        /// <param name="settings"> Job settings. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.WebJobData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static WebJobData WebJobData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string runCommand = null, Uri uri = null, Uri extraInfoUri = null, WebJobType? webJobType = null, string error = null, bool? isUsingSdk = null, IDictionary<string, BinaryData> settings = null, string kind = null)
+        {
+            settings ??= new Dictionary<string, BinaryData>();
+
+            return new WebJobData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                runCommand,
+                uri,
+                extraInfoUri,
+                webJobType,
+                error,
+                isUsingSdk,
+                settings,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.WebSiteData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="tags"> The tags. </param>
+        /// <param name="location"> The location. </param>
+        /// <param name="identity"> Managed service identity. </param>
+        /// <param name="extendedLocation"> Extended Location. </param>
+        /// <param name="state"> Current state of the app. </param>
+        /// <param name="hostNames"> Hostnames associated with the app. </param>
+        /// <param name="repositorySiteName"> Name of the repository site. </param>
+        /// <param name="usageState"> State indicating whether the app has exceeded its quota usage. Read-only. </param>
+        /// <param name="isEnabled"> &lt;code&gt;true&lt;/code&gt; if the app is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. Setting this value to false disables the app (takes the app offline). </param>
+        /// <param name="enabledHostNames">
+        /// Enabled hostnames for the app.Hostnames need to be assigned (see HostNames) AND enabled. Otherwise,
+        /// the app is not served on those hostnames.
+        /// </param>
+        /// <param name="availabilityState"> Management information availability state for the app. </param>
+        /// <param name="hostNameSslStates"> Hostname SSL states are used to manage the SSL bindings for app's hostnames. </param>
+        /// <param name="appServicePlanId"> Resource ID of the associated App Service plan, formatted as: "/subscriptions/{subscriptionID}/resourceGroups/{groupName}/providers/Microsoft.Web/serverfarms/{appServicePlanName}". </param>
+        /// <param name="isReserved"> &lt;code&gt;true&lt;/code&gt; if reserved; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="isXenon"> Obsolete: Hyper-V sandbox. </param>
+        /// <param name="isHyperV"> Hyper-V sandbox. </param>
+        /// <param name="lastModifiedTimeUtc"> Last time the app was modified, in UTC. Read-only. </param>
+        /// <param name="dnsConfiguration"> Property to configure various DNS related settings for a site. </param>
+        /// <param name="outboundVnetRouting"> Property to configure various outbound traffic routing options over virtual network for a site. </param>
+        /// <param name="siteConfig"> Configuration of an App Service app. This property is not returned in response to normal create and read requests since it may contain sensitive information. </param>
+        /// <param name="functionAppConfig"> Configuration specific of the Azure Function app. </param>
+        /// <param name="daprConfig"> Dapr configuration of the app. </param>
+        /// <param name="workloadProfileName"> Workload profile name for function app to execute on. </param>
+        /// <param name="resourceConfig"> Function app resource requirements. </param>
+        /// <param name="trafficManagerHostNames"> Azure Traffic Manager hostnames associated with the app. Read-only. </param>
+        /// <param name="isScmSiteAlsoStopped"> &lt;code&gt;true&lt;/code&gt; to stop SCM (KUDU) site when the app is stopped; otherwise, &lt;code&gt;false&lt;/code&gt;. The default is &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="targetSwapSlot"> Specifies which deployment slot this app will swap into. Read-only. </param>
+        /// <param name="hostingEnvironmentProfile"> App Service Environment to use for the app. </param>
+        /// <param name="isClientAffinityEnabled"> &lt;code&gt;true&lt;/code&gt; to enable client affinity; &lt;code&gt;false&lt;/code&gt; to stop sending session affinity cookies, which route client requests in the same session to the same instance. Default is &lt;code&gt;true&lt;/code&gt;. </param>
+        /// <param name="isClientAffinityPartitioningEnabled"> &lt;code&gt;true&lt;/code&gt; to enable client affinity partitioning using CHIPS cookies, this will add the &lt;code&gt;partitioned&lt;/code&gt; property to the affinity cookies; &lt;code&gt;false&lt;/code&gt; to stop sending partitioned affinity cookies. Default is &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="isClientAffinityProxyEnabled"> &lt;code&gt;true&lt;/code&gt; to override client affinity cookie domain with X-Forwarded-Host request header. &lt;code&gt;false&lt;/code&gt; to use default domain. Default is &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="isClientCertEnabled"> &lt;code&gt;true&lt;/code&gt; to enable client certificate authentication (TLS mutual authentication); otherwise, &lt;code&gt;false&lt;/code&gt;. Default is &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="clientCertMode">
+        /// This composes with ClientCertEnabled setting.
+        /// - ClientCertEnabled: false means ClientCert is ignored.
+        /// - ClientCertEnabled: true and ClientCertMode: Required means ClientCert is required.
+        /// - ClientCertEnabled: true and ClientCertMode: Optional means ClientCert is optional or accepted.
+        /// </param>
+        /// <param name="clientCertExclusionPaths"> client certificate authentication comma-separated exclusion paths. </param>
+        /// <param name="ipMode"> Specifies the IP mode of the app. </param>
+        /// <param name="isEndToEndEncryptionEnabled"> Whether to use end to end encryption between the FrontEnd and the Worker. </param>
+        /// <param name="isSshEnabled"> Whether to enable ssh access. </param>
+        /// <param name="isHostNameDisabled">
+        /// &lt;code&gt;true&lt;/code&gt; to disable the public hostnames of the app; otherwise, &lt;code&gt;false&lt;/code&gt;.
+        ///  If &lt;code&gt;true&lt;/code&gt;, the app is only accessible via API management process.
+        /// </param>
+        /// <param name="customDomainVerificationId"> Unique identifier that verifies the custom domains assigned to the app. Customer will add this id to a txt record for verification. </param>
+        /// <param name="outboundIPAddresses"> List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from tenants that site can be hosted with current settings. Read-only. </param>
+        /// <param name="possibleOutboundIPAddresses"> List of IP addresses that the app uses for outbound connections (e.g. database access). Includes VIPs from all tenants except dataComponent. Read-only. </param>
+        /// <param name="containerSize"> Size of the function container. </param>
+        /// <param name="dailyMemoryTimeQuota"> Maximum allowed daily memory-time quota (applicable on dynamic apps only). </param>
+        /// <param name="suspendOn"> App suspended till in case memory-time quota is exceeded. </param>
+        /// <param name="maxNumberOfWorkers">
+        /// Maximum number of workers.
+        /// This only applies to Functions container.
+        /// </param>
+        /// <param name="cloningInfo"> If specified during app creation, the app is cloned from a source app. </param>
+        /// <param name="resourceGroup"> Name of the resource group the app belongs to. Read-only. </param>
+        /// <param name="isDefaultContainer"> &lt;code&gt;true&lt;/code&gt; if the app is a default container; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="defaultHostName"> Default hostname of the app. Read-only. </param>
+        /// <param name="slotSwapStatus"> Status of the last deployment slot swap operation. </param>
+        /// <param name="isHttpsOnly">
+        /// HttpsOnly: configures a web site to accept only https requests. Issues redirect for
+        /// http requests
+        /// </param>
+        /// <param name="redundancyMode"> Site redundancy mode. </param>
+        /// <param name="inProgressOperationId"> Specifies an operation id if this site has a pending operation. </param>
+        /// <param name="publicNetworkAccess"> Property to allow or block all public traffic. Allowed Values: 'Enabled', 'Disabled' or an empty string. </param>
+        /// <param name="isStorageAccountRequired"> Checks if Customer provided storage account is required. </param>
+        /// <param name="keyVaultReferenceIdentity"> Identity to use for Key Vault Reference authentication. </param>
+        /// <param name="autoGeneratedDomainNameLabelScope"> Specifies the scope of uniqueness for the default hostname during resource creation. </param>
+        /// <param name="virtualNetworkSubnetId">
+        /// Azure Resource Manager ID of the Virtual network and subnet to be joined by Regional VNET Integration.
+        /// This must be of the form /subscriptions/{subscriptionName}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}
+        /// </param>
+        /// <param name="managedEnvironmentId"> Azure Resource Manager ID of the customer's selected Managed Environment on which to host this app. This must be of the form /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.App/managedEnvironments/{managedEnvironmentName}. </param>
+        /// <param name="sku"> Current SKU of application based on associated App Service Plan. Some valid SKU values are Free, Shared, Basic, Dynamic, FlexConsumption, Standard, Premium, PremiumV2, PremiumV3, Isolated, IsolatedV2. </param>
+        /// <param name="kind"> Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind. </param>
+        /// <returns> A new <see cref="AppService.WebSiteData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static WebSiteData WebSiteData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, IDictionary<string, string> tags = null, AzureLocation location = default, ManagedServiceIdentity identity = null, ExtendedLocation extendedLocation = null, string state = null, IEnumerable<string> hostNames = null, string repositorySiteName = null, AppServiceUsageState? usageState = null, bool? isEnabled = null, IEnumerable<string> enabledHostNames = null, WebSiteAvailabilityState? availabilityState = null, IEnumerable<HostNameSslState> hostNameSslStates = null, ResourceIdentifier appServicePlanId = null, bool? isReserved = null, bool? isXenon = null, bool? isHyperV = null, DateTimeOffset? lastModifiedTimeUtc = null, SiteDnsConfig dnsConfiguration = null, OutboundVnetRouting outboundVnetRouting = null, SiteConfigProperties siteConfig = null, FunctionAppConfig functionAppConfig = null, AppDaprConfig daprConfig = null, string workloadProfileName = null, FunctionAppResourceConfig resourceConfig = null, IEnumerable<string> trafficManagerHostNames = null, bool? isScmSiteAlsoStopped = null, string targetSwapSlot = null, HostingEnvironmentProfile hostingEnvironmentProfile = null, bool? isClientAffinityEnabled = null, bool? isClientAffinityPartitioningEnabled = null, bool? isClientAffinityProxyEnabled = null, bool? isClientCertEnabled = null, ClientCertMode? clientCertMode = null, string clientCertExclusionPaths = null, AppServiceIPMode? ipMode = null, bool? isEndToEndEncryptionEnabled = null, bool? isSshEnabled = null, bool? isHostNameDisabled = null, string customDomainVerificationId = null, string outboundIPAddresses = null, string possibleOutboundIPAddresses = null, int? containerSize = null, int? dailyMemoryTimeQuota = null, DateTimeOffset? suspendOn = null, int? maxNumberOfWorkers = null, CloningInfo cloningInfo = null, string resourceGroup = null, bool? isDefaultContainer = null, string defaultHostName = null, SlotSwapStatus slotSwapStatus = null, bool? isHttpsOnly = null, RedundancyMode? redundancyMode = null, Guid? inProgressOperationId = null, string publicNetworkAccess = null, bool? isStorageAccountRequired = null, string keyVaultReferenceIdentity = null, AutoGeneratedDomainNameLabelScope? autoGeneratedDomainNameLabelScope = null, ResourceIdentifier virtualNetworkSubnetId = null, string managedEnvironmentId = null, string sku = null, string kind = null)
+        {
+            tags ??= new Dictionary<string, string>();
+            hostNames ??= new List<string>();
+            enabledHostNames ??= new List<string>();
+            hostNameSslStates ??= new List<HostNameSslState>();
+            trafficManagerHostNames ??= new List<string>();
+
+            return new WebSiteData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                tags,
+                location,
+                identity,
+                extendedLocation,
+                kind,
+                state,
+                hostNames?.ToList(),
+                repositorySiteName,
+                usageState,
+                isEnabled,
+                enabledHostNames?.ToList(),
+                availabilityState,
+                hostNameSslStates?.ToList(),
+                appServicePlanId,
+                isReserved,
+                isXenon,
+                isHyperV,
+                lastModifiedTimeUtc,
+                dnsConfiguration,
+                outboundVnetRouting,
+                siteConfig,
+                functionAppConfig,
+                daprConfig,
+                workloadProfileName,
+                resourceConfig,
+                trafficManagerHostNames?.ToList(),
+                isScmSiteAlsoStopped,
+                targetSwapSlot,
+                hostingEnvironmentProfile,
+                isClientAffinityEnabled,
+                isClientAffinityPartitioningEnabled,
+                isClientAffinityProxyEnabled,
+                isClientCertEnabled,
+                clientCertMode,
+                clientCertExclusionPaths,
+                ipMode,
+                isEndToEndEncryptionEnabled,
+                isSshEnabled,
+                isHostNameDisabled,
+                customDomainVerificationId,
+                outboundIPAddresses,
+                possibleOutboundIPAddresses,
+                containerSize,
+                dailyMemoryTimeQuota,
+                suspendOn,
+                maxNumberOfWorkers,
+                cloningInfo,
+                resourceGroup,
+                isDefaultContainer,
+                defaultHostName,
+                slotSwapStatus,
+                isHttpsOnly,
+                redundancyMode,
+                inProgressOperationId,
+                publicNetworkAccess,
+                isStorageAccountRequired,
+                keyVaultReferenceIdentity,
+                autoGeneratedDomainNameLabelScope,
+                virtualNetworkSubnetId,
+                managedEnvironmentId,
+                sku,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.WorkflowEnvelopeData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="kind"> The resource kind. </param>
+        /// <param name="location"> The resource location. </param>
+        /// <param name="properties"> Additional workflow properties. </param>
+        /// <returns> A new <see cref="AppService.WorkflowEnvelopeData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static WorkflowEnvelopeData WorkflowEnvelopeData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string kind = null, AzureLocation? location = null, WorkflowEnvelopeProperties properties = null)
+        {
+            return new WorkflowEnvelopeData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                properties,
+                kind,
+                location,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Models.WorkflowHealth"/>. </summary>
+        /// <param name="state"> Gets or sets the workflow health state. </param>
+        /// <param name="error"> Gets or sets the workflow error. </param>
+        /// <returns> A new <see cref="Models.WorkflowHealth"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static WorkflowHealth WorkflowHealth(WorkflowHealthState state = default, ResponseError error = null)
+        {
+            return new WorkflowHealth(state, error, serializedAdditionalRawData: null);
+        }
     }
 }

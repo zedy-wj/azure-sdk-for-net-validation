@@ -61,15 +61,15 @@ namespace Azure.ResourceManager.AppService.Models
                 writer.WritePropertyName("aggregationType"u8);
                 writer.WriteStringValue(AggregationType);
             }
-            if (Optional.IsDefined(SupportsInstanceLevelAggregation))
+            if (Optional.IsDefined(IsInstanceLevelAggregationSupported))
             {
                 writer.WritePropertyName("supportsInstanceLevelAggregation"u8);
-                writer.WriteBooleanValue(SupportsInstanceLevelAggregation.Value);
+                writer.WriteBooleanValue(IsInstanceLevelAggregationSupported.Value);
             }
-            if (Optional.IsDefined(EnableRegionalMdmAccount))
+            if (Optional.IsDefined(IsRegionalMdmAccountEnabled))
             {
                 writer.WritePropertyName("enableRegionalMdmAccount"u8);
-                writer.WriteBooleanValue(EnableRegionalMdmAccount.Value);
+                writer.WriteBooleanValue(IsRegionalMdmAccountEnabled.Value);
             }
             if (Optional.IsDefined(SourceMdmAccount))
             {
@@ -489,7 +489,7 @@ namespace Azure.ResourceManager.AppService.Models
                 }
             }
 
-            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(SupportsInstanceLevelAggregation), out propertyOverride);
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(IsInstanceLevelAggregationSupported), out propertyOverride);
             if (hasPropertyOverride)
             {
                 builder.Append("  supportsInstanceLevelAggregation: ");
@@ -497,15 +497,15 @@ namespace Azure.ResourceManager.AppService.Models
             }
             else
             {
-                if (Optional.IsDefined(SupportsInstanceLevelAggregation))
+                if (Optional.IsDefined(IsInstanceLevelAggregationSupported))
                 {
                     builder.Append("  supportsInstanceLevelAggregation: ");
-                    var boolValue = SupportsInstanceLevelAggregation.Value == true ? "true" : "false";
+                    var boolValue = IsInstanceLevelAggregationSupported.Value == true ? "true" : "false";
                     builder.AppendLine($"{boolValue}");
                 }
             }
 
-            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(EnableRegionalMdmAccount), out propertyOverride);
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(IsRegionalMdmAccountEnabled), out propertyOverride);
             if (hasPropertyOverride)
             {
                 builder.Append("  enableRegionalMdmAccount: ");
@@ -513,10 +513,10 @@ namespace Azure.ResourceManager.AppService.Models
             }
             else
             {
-                if (Optional.IsDefined(EnableRegionalMdmAccount))
+                if (Optional.IsDefined(IsRegionalMdmAccountEnabled))
                 {
                     builder.Append("  enableRegionalMdmAccount: ");
-                    var boolValue = EnableRegionalMdmAccount.Value == true ? "true" : "false";
+                    var boolValue = IsRegionalMdmAccountEnabled.Value == true ? "true" : "false";
                     builder.AppendLine($"{boolValue}");
                 }
             }

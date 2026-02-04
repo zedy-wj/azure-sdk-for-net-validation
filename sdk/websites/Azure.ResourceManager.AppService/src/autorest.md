@@ -368,8 +368,6 @@ rename-mapping:
   DiagnosticCategoryCollection: DiagnosticCategoryListResult
   DiagnosticData: DiagnosticDataset
   DiagnosticDetectorCollection: DiagnosticDetectorListResult
-  Dimension.toBeExportedForShoebox: IsToBeExportedForShoebox
-  Dimension: MetricDimension
   DnlResourceNameAvailability: DnlResourceNameAvailabilityResult
   Domain.properties.autoRenew: IsAutoRenew
   Domain.properties.expirationTime: ExpireOn
@@ -447,8 +445,6 @@ rename-mapping:
   LegacyMicrosoftAccount.enabled: IsEnabled
   Login: WebAppLoginInfo
   LogLevel: WebAppLogLevel
-  MetricSpecification.enableRegionalMdmAccount: IsRegionalMdmAccountEnabled
-  MetricSpecification.supportsInstanceLevelAggregation: IsInstanceLevelAggregationSupported
   MigrateMySqlStatus.properties.localMySqlEnabled: IsLocalMySqlEnabled
   MSDeploy.properties.appOffline: IsAppOffline
   MSDeploy: WebAppMSDeploy
@@ -866,25 +862,18 @@ directive:
 # Enum rename
   - from: swagger-document
     where: $.definitions.ResourceNotRenewableReason
-    transform: >
-      $["x-ms-enum"]={
-            "name": "AppServiceCertificateNotRenewableReason",
-            "modelAsString": true
-          }
-  - from: swagger-document
-    where: $.definitions.Domain.properties.properties.properties.domainNotRenewableReasons.items
-    transform: >
-      $["x-ms-enum"]={
-            "name": "DomainNotRenewableReasons",
-            "modelAsString": true
-          }
-  - from: swagger-document
-    where: $.definitions.DomainPatchResource.properties.properties.properties.domainNotRenewableReasons.items
-    transform: >
-      $["x-ms-enum"]={
-            "name": "DomainNotRenewableReasons",
-            "modelAsString": true
-          }
+    transform: |
+      if ($documentPath.toLowerCase().includes("certificateregistration")) {
+        $["x-ms-enum"] = {
+          "name": "AppServiceCertificateNotRenewableReason",
+          "modelAsString": true
+        };
+      } else if ($documentPath.toLowerCase().includes("domainregistration")) {
+        $["x-ms-enum"] = {
+          "name": "DomainNotRenewableReason",
+          "modelAsString": true
+        };
+      }
 # workaround incorrect definition in swagger before it's fixed. github issue 35146
   - from: openapi.json
     where: $.definitions.KeyInfo
@@ -908,6 +897,16 @@ directive:
     reason: workaround incorrect definition in swagger before it's fixed. github issue 35146
 # get array
   - remove-operation: AppServicePlans_GetRouteForVnet
+# Rename Dimension to MetricDimension and add descriptions across all swagger files
+  - from: swagger-document
+    where: $.definitions.Dimension
+    transform: >
+        $["x-ms-client-name"] = "MetricDimension";
+        $.properties.name["description"] = "Name of the dimension.";
+        $.properties.displayName["description"] = "Display name of the dimension.";
+        $.properties.internalName["description"] = "Dimension of the internal name.";
+        $.properties.toBeExportedForShoebox["x-ms-client-name"] = "IsToBeExportedForShoebox";
+        $.properties.toBeExportedForShoebox["description"] = "Dimension to be exported for shoebox.";
   - from: swagger-document
     where: $.definitions.AppServicePlanProperties.properties.hostingEnvironmentProfile
     transform: >
@@ -1162,4 +1161,13 @@ directive:
                 }
             }
         };
+  # Rename MetricSpecification properties across all swagger files
+  - from: openapi.json
+    where: $.definitions.MetricSpecification.properties.enableRegionalMdmAccount
+    transform: >
+        $["x-ms-client-name"] = "IsRegionalMdmAccountEnabled";
+  - from: openapi.json
+    where: $.definitions.MetricSpecification.properties.supportsInstanceLevelAggregation
+    transform: >
+        $["x-ms-client-name"] = "IsInstanceLevelAggregationSupported";
 ```
