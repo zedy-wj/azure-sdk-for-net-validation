@@ -363,23 +363,23 @@ namespace Azure.ResourceManager.AppService.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.MetricSpecification"/>. </summary>
-        /// <param name="name"></param>
-        /// <param name="displayName"></param>
-        /// <param name="displayDescription"></param>
-        /// <param name="unit"></param>
-        /// <param name="aggregationType"></param>
-        /// <param name="isInstanceLevelAggregationSupported"></param>
-        /// <param name="isRegionalMdmAccountEnabled"></param>
-        /// <param name="sourceMdmAccount"></param>
-        /// <param name="sourceMdmNamespace"></param>
-        /// <param name="metricFilterPattern"></param>
-        /// <param name="fillGapWithZero"></param>
-        /// <param name="isInternal"></param>
-        /// <param name="dimensions"></param>
-        /// <param name="category"></param>
-        /// <param name="availabilities"></param>
-        /// <param name="supportedTimeGrainTypes"></param>
-        /// <param name="supportedAggregationTypes"></param>
+        /// <param name="name"> Name of the resource metric. </param>
+        /// <param name="displayName"> Display name of the resource metric. </param>
+        /// <param name="displayDescription"> Description of the resource metric. </param>
+        /// <param name="unit"> Resource metric unit. </param>
+        /// <param name="aggregationType"> Resource metric aggregation type. </param>
+        /// <param name="isInstanceLevelAggregationSupported"> Resource metric supported aggregation types. </param>
+        /// <param name="isRegionalMdmAccountEnabled"> Resource metric supported time grain types. </param>
+        /// <param name="sourceMdmAccount"> Resource metric source MDM account. </param>
+        /// <param name="sourceMdmNamespace"> Resource metric source MDM namespace. </param>
+        /// <param name="metricFilterPattern"> Resource metric filter pattern. </param>
+        /// <param name="fillGapWithZero"> Resource metric fill gap with zero. </param>
+        /// <param name="isInternal"> Resource metric is internal. </param>
+        /// <param name="dimensions"> Resource metric dimensions. </param>
+        /// <param name="category"> Resource metric category. </param>
+        /// <param name="availabilities"> Resource metric availability. </param>
+        /// <param name="supportedTimeGrainTypes"> Resource metric supported time grain types. </param>
+        /// <param name="supportedAggregationTypes"> Resource metric supported aggregation types. </param>
         /// <returns> A new <see cref="Models.MetricSpecification"/> instance for mocking. </returns>
         public static MetricSpecification MetricSpecification(string name = null, string displayName = null, string displayDescription = null, string unit = null, string aggregationType = null, bool? isInstanceLevelAggregationSupported = null, bool? isRegionalMdmAccountEnabled = null, string sourceMdmAccount = null, string sourceMdmNamespace = null, string metricFilterPattern = null, bool? fillGapWithZero = null, bool? isInternal = null, IEnumerable<MetricDimension> dimensions = null, string category = null, IEnumerable<MetricAvailability> availabilities = null, IEnumerable<string> supportedTimeGrainTypes = null, IEnumerable<string> supportedAggregationTypes = null)
         {
@@ -410,10 +410,10 @@ namespace Azure.ResourceManager.AppService.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.MetricDimension"/>. </summary>
-        /// <param name="name"></param>
-        /// <param name="displayName"></param>
-        /// <param name="internalName"></param>
-        /// <param name="isToBeExportedForShoebox"></param>
+        /// <param name="name"> Name of the dimension. </param>
+        /// <param name="displayName"> Display name of the dimension. </param>
+        /// <param name="internalName"> Dimension of the internal name. </param>
+        /// <param name="isToBeExportedForShoebox"> Dimension to be exported for shoebox. </param>
         /// <returns> A new <see cref="Models.MetricDimension"/> instance for mocking. </returns>
         public static MetricDimension MetricDimension(string name = null, string displayName = null, string internalName = null, bool? isToBeExportedForShoebox = null)
         {
@@ -421,8 +421,8 @@ namespace Azure.ResourceManager.AppService.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.MetricAvailability"/>. </summary>
-        /// <param name="timeGrain"></param>
-        /// <param name="blobDuration"></param>
+        /// <param name="timeGrain"> Metric availability time grain. </param>
+        /// <param name="blobDuration"> Metric availability blob duration. </param>
         /// <returns> A new <see cref="Models.MetricAvailability"/> instance for mocking. </returns>
         public static MetricAvailability MetricAvailability(string timeGrain = null, TimeSpan? blobDuration = null)
         {
@@ -6535,59 +6535,12 @@ namespace Azure.ResourceManager.AppService.Models
         /// <param name="metricSpecifications"></param>
         /// <param name="logSpecifications"></param>
         /// <returns> A new <see cref="Models.ServiceSpecificationAutoGenerated"/> instance for mocking. </returns>
-        public static ServiceSpecificationAutoGenerated ServiceSpecificationAutoGenerated(IEnumerable<MetricSpecificationAutoGenerated> metricSpecifications = null, IEnumerable<LogSpecification> logSpecifications = null)
+        public static ServiceSpecificationAutoGenerated ServiceSpecificationAutoGenerated(IEnumerable<MetricSpecification> metricSpecifications = null, IEnumerable<LogSpecification> logSpecifications = null)
         {
-            metricSpecifications ??= new List<MetricSpecificationAutoGenerated>();
+            metricSpecifications ??= new List<MetricSpecification>();
             logSpecifications ??= new List<LogSpecification>();
 
             return new ServiceSpecificationAutoGenerated(metricSpecifications?.ToList(), logSpecifications?.ToList(), serializedAdditionalRawData: null);
-        }
-
-        /// <summary> Initializes a new instance of <see cref="Models.MetricSpecificationAutoGenerated"/>. </summary>
-        /// <param name="name"></param>
-        /// <param name="displayName"></param>
-        /// <param name="displayDescription"></param>
-        /// <param name="unit"></param>
-        /// <param name="aggregationType"></param>
-        /// <param name="isInstanceLevelAggregationSupported"></param>
-        /// <param name="isRegionalMdmAccountEnabled"></param>
-        /// <param name="sourceMdmAccount"></param>
-        /// <param name="sourceMdmNamespace"></param>
-        /// <param name="metricFilterPattern"></param>
-        /// <param name="fillGapWithZero"></param>
-        /// <param name="isInternal"></param>
-        /// <param name="dimensions"></param>
-        /// <param name="category"></param>
-        /// <param name="availabilities"></param>
-        /// <param name="supportedTimeGrainTypes"></param>
-        /// <param name="supportedAggregationTypes"></param>
-        /// <returns> A new <see cref="Models.MetricSpecificationAutoGenerated"/> instance for mocking. </returns>
-        public static MetricSpecificationAutoGenerated MetricSpecificationAutoGenerated(string name = null, string displayName = null, string displayDescription = null, string unit = null, string aggregationType = null, bool? isInstanceLevelAggregationSupported = null, bool? isRegionalMdmAccountEnabled = null, string sourceMdmAccount = null, string sourceMdmNamespace = null, string metricFilterPattern = null, bool? fillGapWithZero = null, bool? isInternal = null, IEnumerable<MetricDimension> dimensions = null, string category = null, IEnumerable<MetricAvailability> availabilities = null, IEnumerable<string> supportedTimeGrainTypes = null, IEnumerable<string> supportedAggregationTypes = null)
-        {
-            dimensions ??= new List<MetricDimension>();
-            availabilities ??= new List<MetricAvailability>();
-            supportedTimeGrainTypes ??= new List<string>();
-            supportedAggregationTypes ??= new List<string>();
-
-            return new MetricSpecificationAutoGenerated(
-                name,
-                displayName,
-                displayDescription,
-                unit,
-                aggregationType,
-                isInstanceLevelAggregationSupported,
-                isRegionalMdmAccountEnabled,
-                sourceMdmAccount,
-                sourceMdmNamespace,
-                metricFilterPattern,
-                fillGapWithZero,
-                isInternal,
-                dimensions?.ToList(),
-                category,
-                availabilities?.ToList(),
-                supportedTimeGrainTypes?.ToList(),
-                supportedAggregationTypes?.ToList(),
-                serializedAdditionalRawData: null);
         }
 
         /// <summary> Initializes a new instance of <see cref="AppService.AppServiceCertificateOrderData"/>. </summary>
@@ -7031,79 +6984,12 @@ namespace Azure.ResourceManager.AppService.Models
         /// <param name="metricSpecifications"> Resource metrics service name. </param>
         /// <param name="logSpecifications"> Resource logs service provided by Microsoft.Insights resource provider. </param>
         /// <returns> A new <see cref="Models.ServiceSpecificationAutoGenerated2"/> instance for mocking. </returns>
-        public static ServiceSpecificationAutoGenerated2 ServiceSpecificationAutoGenerated2(IEnumerable<MetricSpecificationAutoGenerated2> metricSpecifications = null, IEnumerable<LogSpecificationAutoGenerated> logSpecifications = null)
+        public static ServiceSpecificationAutoGenerated2 ServiceSpecificationAutoGenerated2(IEnumerable<MetricSpecification> metricSpecifications = null, IEnumerable<LogSpecificationAutoGenerated> logSpecifications = null)
         {
-            metricSpecifications ??= new List<MetricSpecificationAutoGenerated2>();
+            metricSpecifications ??= new List<MetricSpecification>();
             logSpecifications ??= new List<LogSpecificationAutoGenerated>();
 
             return new ServiceSpecificationAutoGenerated2(metricSpecifications?.ToList(), logSpecifications?.ToList(), serializedAdditionalRawData: null);
-        }
-
-        /// <summary> Initializes a new instance of <see cref="Models.MetricSpecificationAutoGenerated2"/>. </summary>
-        /// <param name="name"> Name of the resource metric. </param>
-        /// <param name="displayName"> Display name of the resource metric. </param>
-        /// <param name="displayDescription"> Description of the resource metric. </param>
-        /// <param name="unit"> Resource metric unit. </param>
-        /// <param name="aggregationType"> Resource metric aggregation type. </param>
-        /// <param name="isInstanceLevelAggregationSupported"> Resource metric supported aggregation types. </param>
-        /// <param name="isRegionalMdmAccountEnabled"> Resource metric supported time grain types. </param>
-        /// <param name="sourceMdmAccount"> Resource metric source MDM account. </param>
-        /// <param name="sourceMdmNamespace"> Resource metric source MDM namespace. </param>
-        /// <param name="metricFilterPattern"> Resource metric filter pattern. </param>
-        /// <param name="fillGapWithZero"> Resource metric fill gap with zero. </param>
-        /// <param name="isInternal"> Resource metric is internal. </param>
-        /// <param name="dimensions"> Resource metric dimensions. </param>
-        /// <param name="category"> Resource metric category. </param>
-        /// <param name="availabilities"> Resource metric availability. </param>
-        /// <param name="supportedTimeGrainTypes"> Resource metric supported time grain types. </param>
-        /// <param name="supportedAggregationTypes"> Resource metric supported aggregation types. </param>
-        /// <returns> A new <see cref="Models.MetricSpecificationAutoGenerated2"/> instance for mocking. </returns>
-        public static MetricSpecificationAutoGenerated2 MetricSpecificationAutoGenerated2(string name = null, string displayName = null, string displayDescription = null, string unit = null, string aggregationType = null, bool? isInstanceLevelAggregationSupported = null, bool? isRegionalMdmAccountEnabled = null, string sourceMdmAccount = null, string sourceMdmNamespace = null, string metricFilterPattern = null, bool? fillGapWithZero = null, bool? isInternal = null, IEnumerable<MetricDimensionAutoGenerated> dimensions = null, string category = null, IEnumerable<MetricAvailabilityAutoGenerated> availabilities = null, IEnumerable<string> supportedTimeGrainTypes = null, IEnumerable<string> supportedAggregationTypes = null)
-        {
-            dimensions ??= new List<MetricDimensionAutoGenerated>();
-            availabilities ??= new List<MetricAvailabilityAutoGenerated>();
-            supportedTimeGrainTypes ??= new List<string>();
-            supportedAggregationTypes ??= new List<string>();
-
-            return new MetricSpecificationAutoGenerated2(
-                name,
-                displayName,
-                displayDescription,
-                unit,
-                aggregationType,
-                isInstanceLevelAggregationSupported,
-                isRegionalMdmAccountEnabled,
-                sourceMdmAccount,
-                sourceMdmNamespace,
-                metricFilterPattern,
-                fillGapWithZero,
-                isInternal,
-                dimensions?.ToList(),
-                category,
-                availabilities?.ToList(),
-                supportedTimeGrainTypes?.ToList(),
-                supportedAggregationTypes?.ToList(),
-                serializedAdditionalRawData: null);
-        }
-
-        /// <summary> Initializes a new instance of <see cref="Models.MetricDimensionAutoGenerated"/>. </summary>
-        /// <param name="name"> Name of the dimension. </param>
-        /// <param name="displayName"> Display name of the dimension. </param>
-        /// <param name="internalName"> Dimension of the internal name. </param>
-        /// <param name="isToBeExportedForShoebox"> Dimension to be exported for shoebox. </param>
-        /// <returns> A new <see cref="Models.MetricDimensionAutoGenerated"/> instance for mocking. </returns>
-        public static MetricDimensionAutoGenerated MetricDimensionAutoGenerated(string name = null, string displayName = null, string internalName = null, bool? isToBeExportedForShoebox = null)
-        {
-            return new MetricDimensionAutoGenerated(name, displayName, internalName, isToBeExportedForShoebox, serializedAdditionalRawData: null);
-        }
-
-        /// <summary> Initializes a new instance of <see cref="Models.MetricAvailabilityAutoGenerated"/>. </summary>
-        /// <param name="timeGrain"> Metric availability time grain. </param>
-        /// <param name="blobDuration"> Metric availability blob duration. </param>
-        /// <returns> A new <see cref="Models.MetricAvailabilityAutoGenerated"/> instance for mocking. </returns>
-        public static MetricAvailabilityAutoGenerated MetricAvailabilityAutoGenerated(string timeGrain = null, TimeSpan? blobDuration = null)
-        {
-            return new MetricAvailabilityAutoGenerated(timeGrain, blobDuration, serializedAdditionalRawData: null);
         }
 
         /// <summary> Initializes a new instance of <see cref="Models.LogSpecificationAutoGenerated"/>. </summary>

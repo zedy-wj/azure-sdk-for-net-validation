@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.AppService.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="MetricAvailability"/>. </summary>
-        /// <param name="timeGrain"></param>
-        /// <param name="blobDuration"></param>
+        /// <param name="timeGrain"> Metric availability time grain. </param>
+        /// <param name="blobDuration"> Metric availability blob duration. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MetricAvailability(string timeGrain, TimeSpan? blobDuration, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,10 +61,10 @@ namespace Azure.ResourceManager.AppService.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the time grain. </summary>
+        /// <summary> Metric availability time grain. </summary>
         [WirePath("timeGrain")]
         public string TimeGrain { get; }
-        /// <summary> Gets the blob duration. </summary>
+        /// <summary> Metric availability blob duration. </summary>
         [WirePath("blobDuration")]
         public TimeSpan? BlobDuration { get; }
     }

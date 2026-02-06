@@ -907,6 +907,37 @@ directive:
         $.properties.internalName["description"] = "Dimension of the internal name.";
         $.properties.toBeExportedForShoebox["x-ms-client-name"] = "IsToBeExportedForShoebox";
         $.properties.toBeExportedForShoebox["description"] = "Dimension to be exported for shoebox.";
+# Add descriptions across all swagger files to MetricAvailability
+  - from: swagger-document
+    where: $.definitions.MetricAvailability
+    transform: >
+        $.properties.timeGrain["description"] = "Metric availability time grain.";
+        $.properties.blobDuration["description"] = "Metric availability blob duration.";
+# Add descriptions across all swagger files to MetricSpecification
+  - from: swagger-document
+    where: $.definitions.MetricSpecification
+    transform: >
+        $.properties.name["description"] = "Name of the resource metric.";
+        $.properties.displayName["description"] = "Display name of the resource metric.";
+        $.properties.displayDescription["description"] = "Description of the resource metric.";
+        $.properties.unit["description"] = "Resource metric unit.";
+        $.properties.aggregationType["description"] = "Resource metric aggregation type.";
+        $.properties.supportsInstanceLevelAggregation["description"] = "Resource metric supported aggregation types.";
+        $.properties.enableRegionalMdmAccount["description"] = "Resource metric supported time grain types.";
+        $.properties.sourceMdmAccount["description"] = "Resource metric source MDM account.";
+        $.properties.sourceMdmNamespace["description"] = "Resource metric source MDM namespace.";
+        $.properties.metricFilterPattern["description"] = "Resource metric filter pattern.";
+        $.properties.fillGapWithZero["description"] = "Resource metric fill gap with zero.";
+        $.properties.isInternal["description"] = "Resource metric is internal.";
+        $.properties.dimensions["description"] = "Resource metric dimensions.";
+        $.properties.dimensions["xml"] = { "wrapped": true };
+        $.properties.category["description"] = "Resource metric category.";
+        $.properties.availabilities["description"] = "Resource metric availability.";
+        $.properties.availabilities["xml"] = { "wrapped": true };
+        $.properties.supportedTimeGrainTypes["description"] = "Resource metric supported time grain types.";
+        $.properties.supportedTimeGrainTypes["xml"] = { "wrapped": true };
+        $.properties.supportedAggregationTypes["description"] = "Resource metric supported aggregation types.";
+        $.properties.supportedAggregationTypes["xml"] = { "wrapped": true };
   - from: swagger-document
     where: $.definitions.AppServicePlanProperties.properties.hostingEnvironmentProfile
     transform: >

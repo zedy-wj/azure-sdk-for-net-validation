@@ -55,23 +55,23 @@ namespace Azure.ResourceManager.AppService.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="MetricSpecification"/>. </summary>
-        /// <param name="name"></param>
-        /// <param name="displayName"></param>
-        /// <param name="displayDescription"></param>
-        /// <param name="unit"></param>
-        /// <param name="aggregationType"></param>
-        /// <param name="isInstanceLevelAggregationSupported"></param>
-        /// <param name="isRegionalMdmAccountEnabled"></param>
-        /// <param name="sourceMdmAccount"></param>
-        /// <param name="sourceMdmNamespace"></param>
-        /// <param name="metricFilterPattern"></param>
-        /// <param name="fillGapWithZero"></param>
-        /// <param name="isInternal"></param>
-        /// <param name="dimensions"></param>
-        /// <param name="category"></param>
-        /// <param name="availabilities"></param>
-        /// <param name="supportedTimeGrainTypes"></param>
-        /// <param name="supportedAggregationTypes"></param>
+        /// <param name="name"> Name of the resource metric. </param>
+        /// <param name="displayName"> Display name of the resource metric. </param>
+        /// <param name="displayDescription"> Description of the resource metric. </param>
+        /// <param name="unit"> Resource metric unit. </param>
+        /// <param name="aggregationType"> Resource metric aggregation type. </param>
+        /// <param name="isInstanceLevelAggregationSupported"> Resource metric supported aggregation types. </param>
+        /// <param name="isRegionalMdmAccountEnabled"> Resource metric supported time grain types. </param>
+        /// <param name="sourceMdmAccount"> Resource metric source MDM account. </param>
+        /// <param name="sourceMdmNamespace"> Resource metric source MDM namespace. </param>
+        /// <param name="metricFilterPattern"> Resource metric filter pattern. </param>
+        /// <param name="fillGapWithZero"> Resource metric fill gap with zero. </param>
+        /// <param name="isInternal"> Resource metric is internal. </param>
+        /// <param name="dimensions"> Resource metric dimensions. </param>
+        /// <param name="category"> Resource metric category. </param>
+        /// <param name="availabilities"> Resource metric availability. </param>
+        /// <param name="supportedTimeGrainTypes"> Resource metric supported time grain types. </param>
+        /// <param name="supportedAggregationTypes"> Resource metric supported aggregation types. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal MetricSpecification(string name, string displayName, string displayDescription, string unit, string aggregationType, bool? isInstanceLevelAggregationSupported, bool? isRegionalMdmAccountEnabled, string sourceMdmAccount, string sourceMdmNamespace, string metricFilterPattern, bool? fillGapWithZero, bool? isInternal, IReadOnlyList<MetricDimension> dimensions, string category, IReadOnlyList<MetricAvailability> availabilities, IReadOnlyList<string> supportedTimeGrainTypes, IReadOnlyList<string> supportedAggregationTypes, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -95,55 +95,55 @@ namespace Azure.ResourceManager.AppService.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the name. </summary>
+        /// <summary> Name of the resource metric. </summary>
         [WirePath("name")]
         public string Name { get; }
-        /// <summary> Gets the display name. </summary>
+        /// <summary> Display name of the resource metric. </summary>
         [WirePath("displayName")]
         public string DisplayName { get; }
-        /// <summary> Gets the display description. </summary>
+        /// <summary> Description of the resource metric. </summary>
         [WirePath("displayDescription")]
         public string DisplayDescription { get; }
-        /// <summary> Gets the unit. </summary>
+        /// <summary> Resource metric unit. </summary>
         [WirePath("unit")]
         public string Unit { get; }
-        /// <summary> Gets the aggregation type. </summary>
+        /// <summary> Resource metric aggregation type. </summary>
         [WirePath("aggregationType")]
         public string AggregationType { get; }
-        /// <summary> Gets the is instance level aggregation supported. </summary>
+        /// <summary> Resource metric supported aggregation types. </summary>
         [WirePath("supportsInstanceLevelAggregation")]
         public bool? IsInstanceLevelAggregationSupported { get; }
-        /// <summary> Gets the is regional mdm account enabled. </summary>
+        /// <summary> Resource metric supported time grain types. </summary>
         [WirePath("enableRegionalMdmAccount")]
         public bool? IsRegionalMdmAccountEnabled { get; }
-        /// <summary> Gets the source mdm account. </summary>
+        /// <summary> Resource metric source MDM account. </summary>
         [WirePath("sourceMdmAccount")]
         public string SourceMdmAccount { get; }
-        /// <summary> Gets the source mdm namespace. </summary>
+        /// <summary> Resource metric source MDM namespace. </summary>
         [WirePath("sourceMdmNamespace")]
         public string SourceMdmNamespace { get; }
-        /// <summary> Gets the metric filter pattern. </summary>
+        /// <summary> Resource metric filter pattern. </summary>
         [WirePath("metricFilterPattern")]
         public string MetricFilterPattern { get; }
-        /// <summary> Gets the fill gap with zero. </summary>
+        /// <summary> Resource metric fill gap with zero. </summary>
         [WirePath("fillGapWithZero")]
         public bool? FillGapWithZero { get; }
-        /// <summary> Gets the is internal. </summary>
+        /// <summary> Resource metric is internal. </summary>
         [WirePath("isInternal")]
         public bool? IsInternal { get; }
-        /// <summary> Gets the dimensions. </summary>
+        /// <summary> Resource metric dimensions. </summary>
         [WirePath("dimensions")]
         public IReadOnlyList<MetricDimension> Dimensions { get; }
-        /// <summary> Gets the category. </summary>
+        /// <summary> Resource metric category. </summary>
         [WirePath("category")]
         public string Category { get; }
-        /// <summary> Gets the availabilities. </summary>
+        /// <summary> Resource metric availability. </summary>
         [WirePath("availabilities")]
         public IReadOnlyList<MetricAvailability> Availabilities { get; }
-        /// <summary> Gets the supported time grain types. </summary>
+        /// <summary> Resource metric supported time grain types. </summary>
         [WirePath("supportedTimeGrainTypes")]
         public IReadOnlyList<string> SupportedTimeGrainTypes { get; }
-        /// <summary> Gets the supported aggregation types. </summary>
+        /// <summary> Resource metric supported aggregation types. </summary>
         [WirePath("supportedAggregationTypes")]
         public IReadOnlyList<string> SupportedAggregationTypes { get; }
     }
