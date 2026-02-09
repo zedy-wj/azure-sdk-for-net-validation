@@ -56,7 +56,7 @@ namespace Azure.ResourceManager.AppService.Models
         /// <param name="flowState"> Gets or sets the state of the workflow. </param>
         /// <param name="health"> Gets or sets workflow health. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal WorkflowEnvelopeProperties(IDictionary<string, BinaryData> files, WorkflowState? flowState, WorkflowHealth health, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal WorkflowEnvelopeProperties(IReadOnlyDictionary<string, BinaryData> files, WorkflowState? flowState, WorkflowHealth health, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             Files = files;
             FlowState = flowState;
@@ -95,7 +95,7 @@ namespace Azure.ResourceManager.AppService.Models
         /// </para>
         /// </summary>
         [WirePath("files")]
-        public IDictionary<string, BinaryData> Files { get; }
+        public IReadOnlyDictionary<string, BinaryData> Files { get; }
         /// <summary> Gets or sets the state of the workflow. </summary>
         [WirePath("flowState")]
         public WorkflowState? FlowState { get; set; }

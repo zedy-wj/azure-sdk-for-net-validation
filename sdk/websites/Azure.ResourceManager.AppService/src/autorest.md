@@ -784,12 +784,16 @@ directive:
   - remove-operation: Move
 # this operation is a LRO operation
   - remove-operation: Global_GetSubscriptionOperationWithAsyncResponse
-# Make retryHistory property readonly
+# Make RetryHistory property readonly
   - from: openapi.json
     where: $.definitions.WorkflowRunActionProperties.properties.retryHistory
     transform: $["readOnly"] = true
   - from: openapi.json
     where: $.definitions.WorkflowRunActionRepetitionProperties.properties.retryHistory
+    transform: $["readOnly"] = true
+# Make WorkflowEnvelopeProperties property readonly
+  - from: openapi.json
+    where: $.definitions.WorkflowEnvelopeProperties.properties.files
     transform: $["readOnly"] = true
 # ResourceId
   - from: openapi.json
@@ -1080,6 +1084,13 @@ directive:
                 "modelAsString": false
               };
   - from: openapi.json
+    where: $.definitions.OpenIdConnectClientCredential.properties.method
+    transform: >
+        $["x-ms-enum"] = {
+                "name": "ClientCredentialMethod",
+                "modelAsString": false
+              };
+  - from: openapi.json
     where: $.paths['/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/sites/{name}/syncfunctiontriggers'].post
     transform: >
         $['responses'] = {
@@ -1122,7 +1133,7 @@ directive:
         $['responses']['200']['schema']['$ref'] = "#/definitions/WebAppCollection";
   # The Enum name "StorageType" is shared by artifactsStorageType, cause the apicompat error
   - from: openapi.json
-    where: $.definitions.FunctionsDeployment.properties.storage.properties.type
+    where: $.definitions.FunctionsDeploymentStorageType
     transform: >
         $["x-ms-enum"] = {
                 "name": "functionStorageType",

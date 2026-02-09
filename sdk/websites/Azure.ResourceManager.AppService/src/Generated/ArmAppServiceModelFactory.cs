@@ -5379,6 +5379,18 @@ namespace Azure.ResourceManager.AppService.Models
                 serializedAdditionalRawData: null);
         }
 
+        /// <summary> Initializes a new instance of <see cref="Models.WorkflowEnvelopeProperties"/>. </summary>
+        /// <param name="files"> Gets or sets the files. </param>
+        /// <param name="flowState"> Gets or sets the state of the workflow. </param>
+        /// <param name="health"> Gets or sets workflow health. </param>
+        /// <returns> A new <see cref="Models.WorkflowEnvelopeProperties"/> instance for mocking. </returns>
+        public static WorkflowEnvelopeProperties WorkflowEnvelopeProperties(IReadOnlyDictionary<string, BinaryData> files = null, WorkflowState? flowState = null, WorkflowHealth health = null)
+        {
+            files ??= new Dictionary<string, BinaryData>();
+
+            return new WorkflowEnvelopeProperties(files, flowState, health, serializedAdditionalRawData: null);
+        }
+
         /// <summary> Initializes a new instance of <see cref="Models.StorageMigrationContent"/>. </summary>
         /// <param name="id"> The id. </param>
         /// <param name="name"> The name. </param>

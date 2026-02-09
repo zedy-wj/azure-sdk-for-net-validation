@@ -36,7 +36,7 @@ namespace Azure.ResourceManager.AppService.Models
                 throw new FormatException($"The model {nameof(WorkflowEnvelopeProperties)} does not support writing '{format}' format.");
             }
 
-            if (Optional.IsCollectionDefined(Files))
+            if (options.Format != "W" && Optional.IsCollectionDefined(Files))
             {
                 writer.WritePropertyName("files"u8);
                 writer.WriteStartObject();
@@ -106,7 +106,7 @@ namespace Azure.ResourceManager.AppService.Models
             {
                 return null;
             }
-            IDictionary<string, BinaryData> files = default;
+            IReadOnlyDictionary<string, BinaryData> files = default;
             WorkflowState? flowState = default;
             WorkflowHealth health = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;

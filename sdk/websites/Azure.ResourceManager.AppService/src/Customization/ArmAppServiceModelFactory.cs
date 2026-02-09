@@ -2338,5 +2338,179 @@ namespace Azure.ResourceManager.AppService.Models
         {
             return new WorkflowHealth(state, error, serializedAdditionalRawData: null);
         }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.AppServiceDomainData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="tags"> The tags. </param>
+        /// <param name="location"> The location. </param>
+        /// <param name="contactAdmin"> Administrative contact. </param>
+        /// <param name="contactBilling"> Billing contact. </param>
+        /// <param name="contactRegistrant"> Registrant contact. </param>
+        /// <param name="contactTech"> Technical contact. </param>
+        /// <param name="registrationStatus"> Domain registration status. </param>
+        /// <param name="provisioningState"> Domain provisioning state. </param>
+        /// <param name="nameServers"> Name servers. </param>
+        /// <param name="isDomainPrivacyEnabled"> &lt;code&gt;true&lt;/code&gt; if domain privacy is enabled for this domain; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="createdOn"> Domain creation timestamp. </param>
+        /// <param name="expireOn"> Domain expiration timestamp. </param>
+        /// <param name="lastRenewedOn"> Timestamp when the domain was renewed last time. </param>
+        /// <param name="isAutoRenew"> &lt;code&gt;true&lt;/code&gt; if the domain should be automatically renewed; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="isDnsRecordManagementReady">
+        /// &lt;code&gt;true&lt;/code&gt; if Azure can assign this domain to App Service apps; otherwise, &lt;code&gt;false&lt;/code&gt;. This value will be &lt;code&gt;true&lt;/code&gt; if domain registration status is active and
+        ///  it is hosted on name servers Azure has programmatic access to.
+        /// </param>
+        /// <param name="managedHostNames"> All hostnames derived from the domain and assigned to Azure resources. </param>
+        /// <param name="consent"> Legal agreement consent. </param>
+        /// <param name="domainNotRenewableReasons"> Reasons why domain is not renewable. </param>
+        /// <param name="dnsType"> Current DNS type. </param>
+        /// <param name="dnsZoneId"> Azure DNS Zone to use. </param>
+        /// <param name="targetDnsType"> Target DNS type (would be used for migration). </param>
+        /// <param name="authCode"></param>
+        /// <param name="kind"> Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind. </param>
+        /// <returns> A new <see cref="AppService.AppServiceDomainData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static AppServiceDomainData AppServiceDomainData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, IDictionary<string, string> tags = null, AzureLocation location = default, RegistrationContactInfo contactAdmin = null, RegistrationContactInfo contactBilling = null, RegistrationContactInfo contactRegistrant = null, RegistrationContactInfo contactTech = null, AppServiceDomainStatus? registrationStatus = null, ProvisioningState? provisioningState = null, IEnumerable<string> nameServers = null, bool? isDomainPrivacyEnabled = null, DateTimeOffset? createdOn = null, DateTimeOffset? expireOn = null, DateTimeOffset? lastRenewedOn = null, bool? isAutoRenew = null, bool? isDnsRecordManagementReady = null, IEnumerable<AppServiceHostName> managedHostNames = null, DomainPurchaseConsent consent = null, IEnumerable<DomainNotRenewableReason> domainNotRenewableReasons = null, AppServiceDnsType? dnsType = null, string dnsZoneId = null, AppServiceDnsType? targetDnsType = null, string authCode = null, string kind = null)
+        {
+            tags ??= new Dictionary<string, string>();
+            nameServers ??= new List<string>();
+            managedHostNames ??= new List<AppServiceHostName>();
+            domainNotRenewableReasons ??= new List<DomainNotRenewableReason>();
+
+            return new AppServiceDomainData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                tags,
+                location,
+                kind,
+                contactAdmin,
+                contactBilling,
+                contactRegistrant,
+                contactTech,
+                registrationStatus,
+                provisioningState,
+                nameServers?.ToList(),
+                isDomainPrivacyEnabled,
+                createdOn,
+                expireOn,
+                lastRenewedOn,
+                isAutoRenew,
+                isDnsRecordManagementReady,
+                managedHostNames?.ToList(),
+                consent,
+                domainNotRenewableReasons?.ToList(),
+                dnsType,
+                dnsZoneId,
+                targetDnsType,
+                authCode,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.AppServiceEnvironmentData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="tags"> The tags. </param>
+        /// <param name="location"> The location. </param>
+        /// <param name="provisioningState"> Provisioning state of the App Service Environment. </param>
+        /// <param name="status"> Current status of the App Service Environment. </param>
+        /// <param name="virtualNetwork"> Description of the Virtual Network. </param>
+        /// <param name="internalLoadBalancingMode"> Specifies which endpoints to serve internally in the Virtual Network for the App Service Environment. </param>
+        /// <param name="multiSize"> Front-end VM size, e.g. "Medium", "Large". </param>
+        /// <param name="multiRoleCount"> Number of front-end instances. </param>
+        /// <param name="ipSslAddressCount"> Number of IP SSL addresses reserved for the App Service Environment. </param>
+        /// <param name="dnsSuffix"> DNS suffix of the App Service Environment. </param>
+        /// <param name="maximumNumberOfMachines"> Maximum number of VMs in the App Service Environment. </param>
+        /// <param name="frontEndScaleFactor"> Scale factor for front-ends. </param>
+        /// <param name="isSuspended">
+        /// &lt;code&gt;true&lt;/code&gt; if the App Service Environment is suspended; otherwise, &lt;code&gt;false&lt;/code&gt;. The environment can be suspended, e.g. when the management endpoint is no longer available
+        ///  (most likely because NSG blocked the incoming traffic).
+        /// </param>
+        /// <param name="clusterSettings"> Custom settings for changing the behavior of the App Service Environment. </param>
+        /// <param name="userWhitelistedIPRanges"> User added ip ranges to whitelist on ASE db. </param>
+        /// <param name="hasLinuxWorkers"> Flag that displays whether an ASE has linux workers or not. </param>
+        /// <param name="upgradePreference"> Upgrade Preference. </param>
+        /// <param name="dedicatedHostCount"> Dedicated Host Count. </param>
+        /// <param name="isZoneRedundant"> Whether or not this App Service Environment is zone-redundant. </param>
+        /// <param name="customDnsSuffixConfiguration"> Full view of the custom domain suffix configuration for ASEv3. </param>
+        /// <param name="networkingConfiguration"> Full view of networking configuration for an ASE. </param>
+        /// <param name="upgradeAvailability"> Whether an upgrade is available for this App Service Environment. </param>
+        /// <param name="kind"> Kind of resource. If the resource is an app, you can refer to https://github.com/Azure/app-service-linux-docs/blob/master/Things_You_Should_Know/kind_property.md#app-service-resource-kind-reference for details supported values for kind. </param>
+        /// <returns> A new <see cref="AppService.AppServiceEnvironmentData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static AppServiceEnvironmentData AppServiceEnvironmentData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, IDictionary<string, string> tags = null, AzureLocation location = default, ProvisioningState? provisioningState = null, HostingEnvironmentStatus? status = null, AppServiceVirtualNetworkProfile virtualNetwork = null, LoadBalancingMode? internalLoadBalancingMode = null, string multiSize = null, int? multiRoleCount = null, int? ipSslAddressCount = null, string dnsSuffix = null, int? maximumNumberOfMachines = null, int? frontEndScaleFactor = null, bool? isSuspended = null, IEnumerable<AppServiceNameValuePair> clusterSettings = null, IEnumerable<string> userWhitelistedIPRanges = null, bool? hasLinuxWorkers = null, AppServiceEnvironmentUpgradePreference? upgradePreference = null, int? dedicatedHostCount = null, bool? isZoneRedundant = null, CustomDnsSuffixConfigurationData customDnsSuffixConfiguration = null, AseV3NetworkingConfigurationData networkingConfiguration = null, AppServiceEnvironmentUpgradeAvailability? upgradeAvailability = null, string kind = null)
+        {
+            tags ??= new Dictionary<string, string>();
+            clusterSettings ??= new List<AppServiceNameValuePair>();
+            userWhitelistedIPRanges ??= new List<string>();
+
+            return new AppServiceEnvironmentData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                tags,
+                location,
+                kind,
+                provisioningState,
+                status,
+                virtualNetwork,
+                internalLoadBalancingMode,
+                multiSize,
+                multiRoleCount,
+                ipSslAddressCount,
+                dnsSuffix,
+                maximumNumberOfMachines,
+                frontEndScaleFactor,
+                isSuspended,
+                clusterSettings?.ToList(),
+                userWhitelistedIPRanges?.ToList(),
+                hasLinuxWorkers,
+                upgradePreference,
+                dedicatedHostCount,
+                isZoneRedundant,
+                customDnsSuffixConfiguration,
+                networkingConfiguration,
+                upgradeAvailability,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.AppServiceWorkerPoolData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="sku"> Description of a SKU for a scalable resource. </param>
+        /// <param name="workerSizeId"> Worker size ID for referencing this worker pool. </param>
+        /// <param name="computeMode"> Shared or dedicated app hosting. </param>
+        /// <param name="workerSize"> VM size of the worker pool instances. </param>
+        /// <param name="workerCount"> Number of instances in the worker pool. </param>
+        /// <param name="instanceNames"> Names of all instances in the worker pool (read only). </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.AppServiceWorkerPoolData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static AppServiceWorkerPoolData AppServiceWorkerPoolData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, AppServiceSkuDescription sku = null, int? workerSizeId = null, ComputeModeOption? computeMode = null, string workerSize = null, int? workerCount = null, IEnumerable<string> instanceNames = null, string kind = null)
+        {
+            instanceNames ??= new List<string>();
+
+            return new AppServiceWorkerPoolData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                sku,
+                kind,
+                workerSizeId,
+                computeMode,
+                workerSize,
+                workerCount,
+                instanceNames?.ToList(),
+                serializedAdditionalRawData: null);
+        }
     }
 }
