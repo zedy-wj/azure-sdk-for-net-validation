@@ -51,10 +51,10 @@ namespace Azure.ResourceManager.AppService.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="LogSpecification"/>. </summary>
-        /// <param name="name"></param>
-        /// <param name="displayName"></param>
-        /// <param name="blobDuration"></param>
-        /// <param name="logFilterPattern"></param>
+        /// <param name="name"> Name of the log. </param>
+        /// <param name="displayName"> Display name of the log. </param>
+        /// <param name="blobDuration"> Blob duration of the log. </param>
+        /// <param name="logFilterPattern"> Log filtered pattern of the log. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal LogSpecification(string name, string displayName, TimeSpan? blobDuration, string logFilterPattern, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,16 +65,16 @@ namespace Azure.ResourceManager.AppService.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the name. </summary>
+        /// <summary> Name of the log. </summary>
         [WirePath("name")]
         public string Name { get; }
-        /// <summary> Gets the display name. </summary>
+        /// <summary> Display name of the log. </summary>
         [WirePath("displayName")]
         public string DisplayName { get; }
-        /// <summary> Gets the blob duration. </summary>
+        /// <summary> Blob duration of the log. </summary>
         [WirePath("blobDuration")]
         public TimeSpan? BlobDuration { get; }
-        /// <summary> Gets the log filter pattern. </summary>
+        /// <summary> Log filtered pattern of the log. </summary>
         [WirePath("logFilterPattern")]
         public string LogFilterPattern { get; }
     }

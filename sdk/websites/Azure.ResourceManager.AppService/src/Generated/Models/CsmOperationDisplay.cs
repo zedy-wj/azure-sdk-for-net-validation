@@ -51,10 +51,10 @@ namespace Azure.ResourceManager.AppService.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="CsmOperationDisplay"/>. </summary>
-        /// <param name="provider"></param>
-        /// <param name="resource"></param>
-        /// <param name="operation"></param>
-        /// <param name="description"></param>
+        /// <param name="provider"> Provider name. </param>
+        /// <param name="resource"> Resource type. </param>
+        /// <param name="operation"> Operation name. </param>
+        /// <param name="description"> Operation description. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CsmOperationDisplay(string provider, string resource, string operation, string description, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -65,16 +65,16 @@ namespace Azure.ResourceManager.AppService.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the provider. </summary>
+        /// <summary> Provider name. </summary>
         [WirePath("provider")]
         public string Provider { get; }
-        /// <summary> Gets the resource. </summary>
+        /// <summary> Resource type. </summary>
         [WirePath("resource")]
         public string Resource { get; }
-        /// <summary> Gets the operation. </summary>
+        /// <summary> Operation name. </summary>
         [WirePath("operation")]
         public string Operation { get; }
-        /// <summary> Gets the description. </summary>
+        /// <summary> Operation description. </summary>
         [WirePath("description")]
         public string Description { get; }
     }

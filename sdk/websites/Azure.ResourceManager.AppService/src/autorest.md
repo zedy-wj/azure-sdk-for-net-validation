@@ -938,6 +938,39 @@ directive:
         $.properties.supportedTimeGrainTypes["xml"] = { "wrapped": true };
         $.properties.supportedAggregationTypes["description"] = "Resource metric supported aggregation types.";
         $.properties.supportedAggregationTypes["xml"] = { "wrapped": true };
+# Add descriptions across all swagger files to LogSpecification
+  - from: swagger-document
+    where: $.definitions.LogSpecification
+    transform: >
+        $.properties.name["description"] = "Name of the log.";
+        $.properties.displayName["description"] = "Display name of the log.";
+        $.properties.blobDuration["description"] = "Blob duration of the log.";
+        $.properties.logFilterPattern["description"] = "Log filtered pattern of the log.";
+# Add descriptions across all swagger files to ServiceSpecification
+  - from: swagger-document
+    where: $.definitions.ServiceSpecification
+    transform: >
+        $.properties.metricSpecifications["description"] = "Resource metrics service name.";
+        $.properties.metricSpecifications["xml"] = { "wrapped": true };
+        $.properties.logSpecifications["description"] = "Resource logs service provided by Microsoft.Insights resource provider.";
+        $.properties.logSpecifications["xml"] = { "wrapped": true };
+# Add descriptions across all swagger files to CsmOperationDisplay
+  - from: swagger-document
+    where: $.definitions.CsmOperationDisplay
+    transform: >
+        $.properties.provider["description"] = "Provider name.";
+        $.properties.resource["description"] = "Resource type.";
+        $.properties.operation["description"] = "Operation name.";
+        $.properties.description["description"] = "Operation description.";
+# Add descriptions across all swagger files to CsmOperationDescription
+  - from: swagger-document
+    where: $.definitions.CsmOperationDescription
+    transform: >
+        $.properties.name["description"] = "Operation name, e.g. Microsoft.Web/sites/write.";
+        $.properties.isDataAction["description"] = "Operation display name.";
+        $.properties.display["description"] = "Meta data about operation used for display in portal.";
+        $.properties.origin["description"] = "Origin of the operation, e.g. \"system\" or \"user\".";
+        $.properties.properties["description"] = "Properties available for a Microsoft.Web resource provider operation.";
   - from: swagger-document
     where: $.definitions.AppServicePlanProperties.properties.hostingEnvironmentProfile
     transform: >

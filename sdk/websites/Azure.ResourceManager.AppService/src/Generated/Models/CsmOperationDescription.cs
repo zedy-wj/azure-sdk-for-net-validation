@@ -51,10 +51,10 @@ namespace Azure.ResourceManager.AppService.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="CsmOperationDescription"/>. </summary>
-        /// <param name="name"></param>
-        /// <param name="isDataAction"></param>
+        /// <param name="name"> Operation name, e.g. Microsoft.Web/sites/write. </param>
+        /// <param name="isDataAction"> Operation display name. </param>
         /// <param name="display"> Meta data about operation used for display in portal. </param>
-        /// <param name="origin"></param>
+        /// <param name="origin"> Origin of the operation, e.g. "system" or "user". </param>
         /// <param name="properties"> Properties available for a Microsoft.Web resource provider operation. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CsmOperationDescription(string name, bool? isDataAction, CsmOperationDisplay display, string origin, CsmOperationDescriptionProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData)
@@ -67,16 +67,16 @@ namespace Azure.ResourceManager.AppService.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the name. </summary>
+        /// <summary> Operation name, e.g. Microsoft.Web/sites/write. </summary>
         [WirePath("name")]
         public string Name { get; }
-        /// <summary> Gets the is data action. </summary>
+        /// <summary> Operation display name. </summary>
         [WirePath("isDataAction")]
         public bool? IsDataAction { get; }
         /// <summary> Meta data about operation used for display in portal. </summary>
         [WirePath("display")]
         public CsmOperationDisplay Display { get; }
-        /// <summary> Gets the origin. </summary>
+        /// <summary> Origin of the operation, e.g. "system" or "user". </summary>
         [WirePath("origin")]
         public string Origin { get; }
         /// <summary> Properties available for a Microsoft.Web resource provider operation. </summary>
