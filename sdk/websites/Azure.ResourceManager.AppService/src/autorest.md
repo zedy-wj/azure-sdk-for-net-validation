@@ -911,6 +911,28 @@ directive:
         $.properties.internalName["description"] = "Dimension of the internal name.";
         $.properties.toBeExportedForShoebox["x-ms-client-name"] = "IsToBeExportedForShoebox";
         $.properties.toBeExportedForShoebox["description"] = "Dimension to be exported for shoebox.";
+# Fix duplicate error for KeyValuePairStringObject
+  - from: swagger-document
+    where: $.definitions.KeyValuePairStringObject
+    transform: >
+        $.properties.value = {
+            "type": "object",
+            "readOnly": true
+        }
+# Fix duplicate error for DetectorResponse
+  - from: swagger-document
+    where: $.definitions.DetectorResponse
+    transform: >
+        $.properties.kind["description"] = "Kind of resource.";
+  - from: swagger-document
+    where: $.definitions.DetectorResponse.allOf[0].$ref
+    transform: >
+      $ = "#/definitions/ProxyOnlyResource"
+  - from: swagger-document
+    where: $.definitions.DetectorResponseProperties
+    transform: >
+        $.properties.dataset["xml"] = { "wrapped": true };
+        $.properties.dataProvidersMetadata["xml"] = { "wrapped": true };
 # Add descriptions across all swagger files to MetricAvailability
   - from: swagger-document
     where: $.definitions.MetricAvailability
@@ -975,6 +997,33 @@ directive:
         $.properties.display["description"] = "Meta data about operation used for display in portal.";
         $.properties.origin["description"] = "Origin of the operation, e.g. \"system\" or \"user\".";
         $.properties.properties["description"] = "Properties available for a Microsoft.Web resource provider operation.";
+# Add descriptions across all swagger files to DetectorInfo
+  - from: swagger-document
+    where: $.definitions.DetectorInfo
+    transform: >
+        $.properties.supportTopicList["xml"] = { "wrapped": true };
+        $.properties.analysisType["xml"] = { "wrapped": true };
+# Add descriptions across all swagger files to DataTableResponseObject
+  - from: swagger-document
+    where: $.definitions.DataTableResponseObject
+    transform: >
+        $.properties.columns["xml"] = { "wrapped": true };
+        $.properties.rows["xml"] = { "wrapped": true };
+# Add descriptions across all swagger files to DataProviderMetadata
+  - from: swagger-document
+    where: $.definitions.DataProviderMetadata
+    transform: >
+        $.properties.propertyBag["xml"] = { "wrapped": true };
+# Add descriptions across all swagger files to QueryUtterancesResults
+  - from: swagger-document
+    where: $.definitions.QueryUtterancesResults
+    transform: >
+        $.properties.results["xml"] = { "wrapped": true };
+# Add descriptions across all swagger files to SampleUtterance
+  - from: swagger-document
+    where: $.definitions.SampleUtterance
+    transform: >
+        $.properties.links["xml"] = { "wrapped": true };
   - from: swagger-document
     where: $.definitions.AppServicePlanProperties.properties.hostingEnvironmentProfile
     transform: >
