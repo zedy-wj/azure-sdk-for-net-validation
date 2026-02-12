@@ -933,6 +933,14 @@ directive:
     transform: >
         $.properties.dataset["xml"] = { "wrapped": true };
         $.properties.dataProvidersMetadata["xml"] = { "wrapped": true };
+  - from: swagger-document
+    where: $.definitions.DetectorResponseCollection
+    transform: >
+        $.properties.value["xml"] = { "wrapped": true };
+  - from: swagger-document
+    where: $.definitions.CsmOperationCollection
+    transform: >
+        $.properties.value["xml"] = { "wrapped": true };
 # Add descriptions across all swagger files to MetricAvailability
   - from: swagger-document
     where: $.definitions.MetricAvailability

@@ -1343,6 +1343,18 @@ namespace Azure.ResourceManager.AppService.Mocking
         }
 
         /// <summary>
+        /// Gets an object representing a <see cref="CertificateOrderDetectorResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CertificateOrderDetectorResource.CreateResourceIdentifier" /> to create a <see cref="CertificateOrderDetectorResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="CertificateOrderDetectorResource"/> object. </returns>
+        public virtual CertificateOrderDetectorResource GetCertificateOrderDetectorResource(ResourceIdentifier id)
+        {
+            CertificateOrderDetectorResource.ValidateResourceId(id);
+            return new CertificateOrderDetectorResource(Client, id);
+        }
+
+        /// <summary>
         /// Gets an object representing a <see cref="SiteDiagnosticResource"/> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="SiteDiagnosticResource.CreateResourceIdentifier" /> to create a <see cref="SiteDiagnosticResource"/> <see cref="ResourceIdentifier"/> from its components.
         /// </summary>
@@ -1532,18 +1544,6 @@ namespace Azure.ResourceManager.AppService.Mocking
         {
             AppServiceCertificateResource.ValidateResourceId(id);
             return new AppServiceCertificateResource(Client, id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="CertificateOrderDetectorResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CertificateOrderDetectorResource.CreateResourceIdentifier" /> to create a <see cref="CertificateOrderDetectorResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CertificateOrderDetectorResource"/> object. </returns>
-        public virtual CertificateOrderDetectorResource GetCertificateOrderDetectorResource(ResourceIdentifier id)
-        {
-            CertificateOrderDetectorResource.ValidateResourceId(id);
-            return new CertificateOrderDetectorResource(Client, id);
         }
 
         /// <summary>
