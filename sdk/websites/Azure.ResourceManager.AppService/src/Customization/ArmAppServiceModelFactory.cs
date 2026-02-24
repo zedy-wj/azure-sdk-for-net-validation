@@ -2334,5 +2334,394 @@ namespace Azure.ResourceManager.AppService.Models
                 workerCount,
                 instanceNames?.ToList());
         }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.WebSiteInstanceStatusData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="state"></param>
+        /// <param name="statusUri"> Link to the GetStatusApi in Kudu. </param>
+        /// <param name="detectorUri"> Link to the Diagnose and Solve Portal. </param>
+        /// <param name="consoleUri"> Link to the console to web app instance. </param>
+        /// <param name="healthCheckUrlString"> Link to the console to web app instance. </param>
+        /// <param name="containers"> Dictionary of &lt;ContainerInfo&gt;. </param>
+        /// <param name="physicalZone"> The physical zone that the instance is in. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.WebSiteInstanceStatusData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static WebSiteInstanceStatusData WebSiteInstanceStatusData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, SiteRuntimeState? state, Uri statusUri = null, Uri detectorUri = null, Uri consoleUri = null, string healthCheckUrlString = null, IDictionary<string, ContainerInfo> containers = null, string physicalZone = null, string kind = null)
+        {
+            return WebSiteInstanceStatusData(id, name, resourceType, systemData, kind, state, statusUri, detectorUri, consoleUri, healthCheckUrlString, containers, physicalZone);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="T:Azure.ResourceManager.AppService.WebSiteInstanceStatusData" />. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="state"></param>
+        /// <param name="statusUri"> Link to the GetStatusApi in Kudu. </param>
+        /// <param name="detectorUri"> Link to the Diagnose and Solve Portal. </param>
+        /// <param name="consoleUri"> Link to the console to web app instance. </param>
+        /// <param name="healthCheckUrlString"> Link to the console to web app instance. </param>
+        /// <param name="containers"> Dictionary of &lt;ContainerInfo&gt;. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="T:Azure.ResourceManager.AppService.WebSiteInstanceStatusData" /> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static WebSiteInstanceStatusData WebSiteInstanceStatusData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, SiteRuntimeState? state, Uri statusUri, Uri detectorUri, Uri consoleUri, string healthCheckUrlString, IDictionary<string, ContainerInfo> containers, string kind)
+        {
+            return WebSiteInstanceStatusData(id, name, resourceType, systemData, kind, state, statusUri, detectorUri, consoleUri, healthCheckUrlString, containers, physicalZone: default);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.SiteConfigData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="numberOfWorkers"> Number of workers. </param>
+        /// <param name="defaultDocuments"> Default documents. </param>
+        /// <param name="netFrameworkVersion"> .NET Framework version. </param>
+        /// <param name="phpVersion"> Version of PHP. </param>
+        /// <param name="pythonVersion"> Version of Python. </param>
+        /// <param name="nodeVersion"> Version of Node.js. </param>
+        /// <param name="powerShellVersion"> Version of PowerShell. </param>
+        /// <param name="linuxFxVersion"> Linux App Framework and version. </param>
+        /// <param name="windowsFxVersion"> Xenon App Framework and version. </param>
+        /// <param name="isRequestTracingEnabled"> &lt;code&gt;true&lt;/code&gt; if request tracing is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="requestTracingExpirationOn"> Request tracing expiration time. </param>
+        /// <param name="isRemoteDebuggingEnabled"> &lt;code&gt;true&lt;/code&gt; if remote debugging is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="remoteDebuggingVersion"> Remote debugging version. </param>
+        /// <param name="isHttpLoggingEnabled"> &lt;code&gt;true&lt;/code&gt; if HTTP logging is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="useManagedIdentityCreds"> Flag to use Managed Identity Creds for ACR pull. </param>
+        /// <param name="acrUserManagedIdentityId"> If using user managed identity, the user managed identity ClientId. </param>
+        /// <param name="logsDirectorySizeLimit"> HTTP logs directory size limit. </param>
+        /// <param name="isDetailedErrorLoggingEnabled"> &lt;code&gt;true&lt;/code&gt; if detailed error logging is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="publishingUsername"> Publishing user name. </param>
+        /// <param name="appSettings"> Application settings. This property is not returned in response to normal create and read requests since it may contain sensitive information. </param>
+        /// <param name="metadata"> Application metadata. This property cannot be retrieved, since it may contain secrets. </param>
+        /// <param name="connectionStrings"> Connection strings. This property is not returned in response to normal create and read requests since it may contain sensitive information. </param>
+        /// <param name="machineKey"> Site MachineKey. </param>
+        /// <param name="handlerMappings"> Handler mappings. </param>
+        /// <param name="documentRoot"> Document root. </param>
+        /// <param name="scmType"> SCM type. </param>
+        /// <param name="use32BitWorkerProcess"> &lt;code&gt;true&lt;/code&gt; to use 32-bit worker process; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="isWebSocketsEnabled"> &lt;code&gt;true&lt;/code&gt; if WebSocket is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="isAlwaysOn"> &lt;code&gt;true&lt;/code&gt; if Always On is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="javaVersion"> Java version. </param>
+        /// <param name="javaContainer"> Java container. </param>
+        /// <param name="javaContainerVersion"> Java container version. </param>
+        /// <param name="appCommandLine"> App command line to launch. </param>
+        /// <param name="managedPipelineMode"> Managed pipeline mode. </param>
+        /// <param name="virtualApplications"> Virtual applications. </param>
+        /// <param name="loadBalancing"> Site load balancing. </param>
+        /// <param name="experimentsRampUpRules"> This is work around for polymorphic types. </param>
+        /// <param name="limits"> Site limits. </param>
+        /// <param name="isAutoHealEnabled"> &lt;code&gt;true&lt;/code&gt; if Auto Heal is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="autoHealRules"> Auto Heal rules. </param>
+        /// <param name="tracingOptions"> Tracing options. </param>
+        /// <param name="vnetName"> Virtual Network name. </param>
+        /// <param name="isVnetRouteAllEnabled"> Virtual Network Route All enabled. This causes all outbound traffic to have Virtual Network Security Groups and User Defined Routes applied. </param>
+        /// <param name="vnetPrivatePortsCount"> The number of private ports assigned to this app. These will be assigned dynamically on runtime. </param>
+        /// <param name="cors"> Cross-Origin Resource Sharing (CORS) settings. </param>
+        /// <param name="push"> Push endpoint settings. </param>
+        /// <param name="apiDefinitionUri"> Information about the formal API definition for the app. </param>
+        /// <param name="apiManagementConfigId"> Azure API management settings linked to the app. </param>
+        /// <param name="autoSwapSlotName"> Auto-swap slot name. </param>
+        /// <param name="isLocalMySqlEnabled"> &lt;code&gt;true&lt;/code&gt; to enable local MySQL; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="managedServiceIdentityId"> Managed Service Identity Id. </param>
+        /// <param name="xManagedServiceIdentityId"> Explicit Managed Service Identity Id. </param>
+        /// <param name="keyVaultReferenceIdentity"> Identity to use for Key Vault Reference authentication. </param>
+        /// <param name="ipSecurityRestrictions"> IP security restrictions for main. </param>
+        /// <param name="ipSecurityRestrictionsDefaultAction"> Default action for main access restriction if no rules are matched. </param>
+        /// <param name="scmIPSecurityRestrictions"> IP security restrictions for scm. </param>
+        /// <param name="scmIPSecurityRestrictionsDefaultAction"> Default action for scm access restriction if no rules are matched. </param>
+        /// <param name="allowIPSecurityRestrictionsForScmToUseMain"> IP security restrictions for scm to use main. </param>
+        /// <param name="isHttp20Enabled"> Http20Enabled: configures a web site to allow clients to connect over http2.0. </param>
+        /// <param name="http20ProxyFlag"> Http20ProxyFlag: Configures a website to allow http2.0 to pass be proxied all the way to the app. 0 = disabled, 1 = pass through all http2 traffic, 2 = pass through gRPC only. </param>
+        /// <param name="minTlsVersion"> MinTlsVersion: configures the minimum version of TLS required for SSL requests. </param>
+        /// <param name="minTlsCipherSuite"> The minimum strength TLS cipher suite allowed for an application. </param>
+        /// <param name="scmMinTlsVersion"> ScmMinTlsVersion: configures the minimum version of TLS required for SSL requests for SCM site. </param>
+        /// <param name="ftpsState"> State of FTP / FTPS service. </param>
+        /// <param name="preWarmedInstanceCount">
+        /// Number of preWarmed instances.
+        /// This setting only applies to the Consumption and Elastic Plans
+        /// </param>
+        /// <param name="functionAppScaleLimit">
+        /// Maximum number of workers that a site can scale out to.
+        /// This setting only applies to the Consumption and Elastic Premium Plans
+        /// </param>
+        /// <param name="elasticWebAppScaleLimit">
+        /// Maximum number of workers that a site can scale out to.
+        /// This setting only applies to apps in plans where ElasticScaleEnabled is &lt;code&gt;true&lt;/code&gt;
+        /// </param>
+        /// <param name="healthCheckPath"> Health check path. </param>
+        /// <param name="isFunctionsRuntimeScaleMonitoringEnabled">
+        /// Gets or sets a value indicating whether functions runtime scale monitoring is enabled. When enabled,
+        /// the ScaleController will not monitor event sources directly, but will instead call to the
+        /// runtime to get scale status.
+        /// </param>
+        /// <param name="websiteTimeZone"> Sets the time zone a site uses for generating timestamps. Compatible with Linux and Windows App Service. Setting the WEBSITE_TIME_ZONE app setting takes precedence over this config. For Linux, expects tz database values https://www.iana.org/time-zones (for a quick reference see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For Windows, expects one of the time zones listed under HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones. </param>
+        /// <param name="minimumElasticInstanceCount">
+        /// Number of minimum instance count for a site
+        /// This setting only applies to the Elastic Plans
+        /// </param>
+        /// <param name="azureStorageAccounts"> List of Azure Storage Accounts. </param>
+        /// <param name="publicNetworkAccess"> Property to allow or block all public traffic. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.SiteConfigData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SiteConfigData SiteConfigData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, int? numberOfWorkers = null, IEnumerable<string> defaultDocuments = null, string netFrameworkVersion = null, string phpVersion = null, string pythonVersion = null, string nodeVersion = null, string powerShellVersion = null, string linuxFxVersion = null, string windowsFxVersion = null, bool? isRequestTracingEnabled = null, DateTimeOffset? requestTracingExpirationOn = null, bool? isRemoteDebuggingEnabled = null, string remoteDebuggingVersion = null, bool? isHttpLoggingEnabled = null, bool? useManagedIdentityCreds = null, string acrUserManagedIdentityId = null, int? logsDirectorySizeLimit = null, bool? isDetailedErrorLoggingEnabled = null, string publishingUsername = null, IEnumerable<AppServiceNameValuePair> appSettings = null, IEnumerable<AppServiceNameValuePair> metadata = null, IEnumerable<ConnStringInfo> connectionStrings = null, SiteMachineKey machineKey = null, IEnumerable<HttpRequestHandlerMapping> handlerMappings = null, string documentRoot = null, ScmType? scmType = null, bool? use32BitWorkerProcess = null, bool? isWebSocketsEnabled = null, bool? isAlwaysOn = null, string javaVersion = null, string javaContainer = null, string javaContainerVersion = null, string appCommandLine = null, ManagedPipelineMode? managedPipelineMode = null, IEnumerable<VirtualApplication> virtualApplications = null, SiteLoadBalancing? loadBalancing = null, IEnumerable<RampUpRule> experimentsRampUpRules = null, SiteLimits limits = null, bool? isAutoHealEnabled = null, AutoHealRules autoHealRules = null, string tracingOptions = null, string vnetName = null, bool? isVnetRouteAllEnabled = null, int? vnetPrivatePortsCount = null, AppServiceCorsSettings cors = null, WebAppPushSettings push = null, Uri apiDefinitionUri = null, string apiManagementConfigId = null, string autoSwapSlotName = null, bool? isLocalMySqlEnabled = null, int? managedServiceIdentityId = null, int? xManagedServiceIdentityId = null, string keyVaultReferenceIdentity = null, IEnumerable<AppServiceIPSecurityRestriction> ipSecurityRestrictions = null, SiteDefaultAction? ipSecurityRestrictionsDefaultAction = null, IEnumerable<AppServiceIPSecurityRestriction> scmIPSecurityRestrictions = null, SiteDefaultAction? scmIPSecurityRestrictionsDefaultAction = null, bool? allowIPSecurityRestrictionsForScmToUseMain = null, bool? isHttp20Enabled = null, int? http20ProxyFlag = null, AppServiceSupportedTlsVersion? minTlsVersion = null, AppServiceTlsCipherSuite? minTlsCipherSuite = null, AppServiceSupportedTlsVersion? scmMinTlsVersion = null, AppServiceFtpsState? ftpsState = null, int? preWarmedInstanceCount = null, int? functionAppScaleLimit = null, int? elasticWebAppScaleLimit = null, string healthCheckPath = null, bool? isFunctionsRuntimeScaleMonitoringEnabled = null, string websiteTimeZone = null, int? minimumElasticInstanceCount = null, IDictionary<string, AppServiceStorageAccessInfo> azureStorageAccounts = null, string publicNetworkAccess = null, string kind = null)
+        {
+            return SiteConfigData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                numberOfWorkers,
+                defaultDocuments?.ToList(),
+                netFrameworkVersion,
+                phpVersion,
+                pythonVersion,
+                nodeVersion,
+                powerShellVersion,
+                linuxFxVersion,
+                windowsFxVersion,
+                isRequestTracingEnabled,
+                requestTracingExpirationOn,
+                isRemoteDebuggingEnabled,
+                remoteDebuggingVersion,
+                isHttpLoggingEnabled,
+                useManagedIdentityCreds,
+                acrUserManagedIdentityId,
+                logsDirectorySizeLimit,
+                isDetailedErrorLoggingEnabled,
+                publishingUsername,
+                appSettings?.ToList(),
+                metadata?.ToList(),
+                connectionStrings?.ToList(),
+                machineKey,
+                handlerMappings?.ToList(),
+                documentRoot,
+                scmType,
+                use32BitWorkerProcess,
+                isWebSocketsEnabled,
+                isAlwaysOn,
+                javaVersion,
+                javaContainer,
+                javaContainerVersion,
+                appCommandLine,
+                managedPipelineMode,
+                virtualApplications?.ToList(),
+                loadBalancing,
+                experimentsRampUpRules,
+                limits,
+                isAutoHealEnabled,
+                autoHealRules,
+                tracingOptions,
+                vnetName,
+                isVnetRouteAllEnabled,
+                vnetPrivatePortsCount,
+                cors,
+                push,
+                apiDefinitionUri,
+                apiManagementConfigId,
+                autoSwapSlotName,
+                isLocalMySqlEnabled,
+                managedServiceIdentityId,
+                xManagedServiceIdentityId,
+                keyVaultReferenceIdentity,
+                ipSecurityRestrictions?.ToList(),
+                ipSecurityRestrictionsDefaultAction,
+                scmIPSecurityRestrictions?.ToList(),
+                scmIPSecurityRestrictionsDefaultAction,
+                allowIPSecurityRestrictionsForScmToUseMain,
+                isHttp20Enabled,
+                http20ProxyFlag,
+                minTlsVersion,
+                minTlsCipherSuite,
+                scmMinTlsVersion,
+                ftpsState,
+                preWarmedInstanceCount,
+                functionAppScaleLimit,
+                elasticWebAppScaleLimit,
+                healthCheckPath,
+                isFunctionsRuntimeScaleMonitoringEnabled,
+                websiteTimeZone,
+                minimumElasticInstanceCount,
+                azureStorageAccounts,
+                publicNetworkAccess);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="T:Azure.ResourceManager.AppService.SiteConfigData" />. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="numberOfWorkers"> Number of workers. </param>
+        /// <param name="defaultDocuments"> Default documents. </param>
+        /// <param name="netFrameworkVersion"> .NET Framework version. </param>
+        /// <param name="phpVersion"> Version of PHP. </param>
+        /// <param name="pythonVersion"> Version of Python. </param>
+        /// <param name="nodeVersion"> Version of Node.js. </param>
+        /// <param name="powerShellVersion"> Version of PowerShell. </param>
+        /// <param name="linuxFxVersion"> Linux App Framework and version. </param>
+        /// <param name="windowsFxVersion"> Xenon App Framework and version. </param>
+        /// <param name="isRequestTracingEnabled"> &lt;code&gt;true&lt;/code&gt; if request tracing is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="requestTracingExpirationOn"> Request tracing expiration time. </param>
+        /// <param name="isRemoteDebuggingEnabled"> &lt;code&gt;true&lt;/code&gt; if remote debugging is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="remoteDebuggingVersion"> Remote debugging version. </param>
+        /// <param name="isHttpLoggingEnabled"> &lt;code&gt;true&lt;/code&gt; if HTTP logging is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="useManagedIdentityCreds"> Flag to use Managed Identity Creds for ACR pull. </param>
+        /// <param name="acrUserManagedIdentityId"> If using user managed identity, the user managed identity ClientId. </param>
+        /// <param name="logsDirectorySizeLimit"> HTTP logs directory size limit. </param>
+        /// <param name="isDetailedErrorLoggingEnabled"> &lt;code&gt;true&lt;/code&gt; if detailed error logging is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="publishingUsername"> Publishing user name. </param>
+        /// <param name="appSettings"> Application settings. </param>
+        /// <param name="metadata"> Application metadata. This property cannot be retrieved, since it may contain secrets. </param>
+        /// <param name="connectionStrings"> Connection strings. </param>
+        /// <param name="machineKey"> Site MachineKey. </param>
+        /// <param name="handlerMappings"> Handler mappings. </param>
+        /// <param name="documentRoot"> Document root. </param>
+        /// <param name="scmType"> SCM type. </param>
+        /// <param name="use32BitWorkerProcess"> &lt;code&gt;true&lt;/code&gt; to use 32-bit worker process; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="isWebSocketsEnabled"> &lt;code&gt;true&lt;/code&gt; if WebSocket is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="isAlwaysOn"> &lt;code&gt;true&lt;/code&gt; if Always On is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="javaVersion"> Java version. </param>
+        /// <param name="javaContainer"> Java container. </param>
+        /// <param name="javaContainerVersion"> Java container version. </param>
+        /// <param name="appCommandLine"> App command line to launch. </param>
+        /// <param name="managedPipelineMode"> Managed pipeline mode. </param>
+        /// <param name="virtualApplications"> Virtual applications. </param>
+        /// <param name="loadBalancing"> Site load balancing. </param>
+        /// <param name="experimentsRampUpRules"> This is work around for polymorphic types. </param>
+        /// <param name="limits"> Site limits. </param>
+        /// <param name="isAutoHealEnabled"> &lt;code&gt;true&lt;/code&gt; if Auto Heal is enabled; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="autoHealRules"> Auto Heal rules. </param>
+        /// <param name="tracingOptions"> Tracing options. </param>
+        /// <param name="vnetName"> Virtual Network name. </param>
+        /// <param name="isVnetRouteAllEnabled"> Virtual Network Route All enabled. This causes all outbound traffic to have Virtual Network Security Groups and User Defined Routes applied. </param>
+        /// <param name="vnetPrivatePortsCount"> The number of private ports assigned to this app. These will be assigned dynamically on runtime. </param>
+        /// <param name="cors"> Cross-Origin Resource Sharing (CORS) settings. </param>
+        /// <param name="push"> Push endpoint settings. </param>
+        /// <param name="apiDefinitionUri"> Information about the formal API definition for the app. </param>
+        /// <param name="apiManagementConfigId"> Azure API management settings linked to the app. </param>
+        /// <param name="autoSwapSlotName"> Auto-swap slot name. </param>
+        /// <param name="isLocalMySqlEnabled"> &lt;code&gt;true&lt;/code&gt; to enable local MySQL; otherwise, &lt;code&gt;false&lt;/code&gt;. </param>
+        /// <param name="managedServiceIdentityId"> Managed Service Identity Id. </param>
+        /// <param name="xManagedServiceIdentityId"> Explicit Managed Service Identity Id. </param>
+        /// <param name="keyVaultReferenceIdentity"> Identity to use for Key Vault Reference authentication. </param>
+        /// <param name="ipSecurityRestrictions"> IP security restrictions for main. </param>
+        /// <param name="ipSecurityRestrictionsDefaultAction"> Default action for main access restriction if no rules are matched. </param>
+        /// <param name="scmIPSecurityRestrictions"> IP security restrictions for scm. </param>
+        /// <param name="scmIPSecurityRestrictionsDefaultAction"> Default action for scm access restriction if no rules are matched. </param>
+        /// <param name="allowIPSecurityRestrictionsForScmToUseMain"> IP security restrictions for scm to use main. </param>
+        /// <param name="isHttp20Enabled"> Http20Enabled: configures a web site to allow clients to connect over http2.0. </param>
+        /// <param name="minTlsVersion"> MinTlsVersion: configures the minimum version of TLS required for SSL requests. </param>
+        /// <param name="minTlsCipherSuite"> The minimum strength TLS cipher suite allowed for an application. </param>
+        /// <param name="scmMinTlsVersion"> ScmMinTlsVersion: configures the minimum version of TLS required for SSL requests for SCM site. </param>
+        /// <param name="ftpsState"> State of FTP / FTPS service. </param>
+        /// <param name="preWarmedInstanceCount">
+        /// Number of preWarmed instances.
+        /// This setting only applies to the Consumption and Elastic Plans
+        /// </param>
+        /// <param name="functionAppScaleLimit">
+        /// Maximum number of workers that a site can scale out to.
+        /// This setting only applies to the Consumption and Elastic Premium Plans
+        /// </param>
+        /// <param name="elasticWebAppScaleLimit">
+        /// Maximum number of workers that a site can scale out to.
+        /// This setting only applies to apps in plans where ElasticScaleEnabled is &lt;code&gt;true&lt;/code&gt;
+        /// </param>
+        /// <param name="healthCheckPath"> Health check path. </param>
+        /// <param name="isFunctionsRuntimeScaleMonitoringEnabled">
+        /// Gets or sets a value indicating whether functions runtime scale monitoring is enabled. When enabled,
+        /// the ScaleController will not monitor event sources directly, but will instead call to the
+        /// runtime to get scale status.
+        /// </param>
+        /// <param name="websiteTimeZone"> Sets the time zone a site uses for generating timestamps. Compatible with Linux and Windows App Service. Setting the WEBSITE_TIME_ZONE app setting takes precedence over this config. For Linux, expects tz database values https://www.iana.org/time-zones (for a quick reference see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For Windows, expects one of the time zones listed under HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones. </param>
+        /// <param name="minimumElasticInstanceCount">
+        /// Number of minimum instance count for a site
+        /// This setting only applies to the Elastic Plans
+        /// </param>
+        /// <param name="azureStorageAccounts"> List of Azure Storage Accounts. </param>
+        /// <param name="publicNetworkAccess"> Property to allow or block all public traffic. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="T:Azure.ResourceManager.AppService.SiteConfigData" /> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SiteConfigData SiteConfigData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, int? numberOfWorkers, IEnumerable<string> defaultDocuments, string netFrameworkVersion, string phpVersion, string pythonVersion, string nodeVersion, string powerShellVersion, string linuxFxVersion, string windowsFxVersion, bool? isRequestTracingEnabled, DateTimeOffset? requestTracingExpirationOn, bool? isRemoteDebuggingEnabled, string remoteDebuggingVersion, bool? isHttpLoggingEnabled, bool? useManagedIdentityCreds, string acrUserManagedIdentityId, int? logsDirectorySizeLimit, bool? isDetailedErrorLoggingEnabled, string publishingUsername, IEnumerable<AppServiceNameValuePair> appSettings, IEnumerable<AppServiceNameValuePair> metadata, IEnumerable<ConnStringInfo> connectionStrings, SiteMachineKey machineKey, IEnumerable<HttpRequestHandlerMapping> handlerMappings, string documentRoot, ScmType? scmType, bool? use32BitWorkerProcess, bool? isWebSocketsEnabled, bool? isAlwaysOn, string javaVersion, string javaContainer, string javaContainerVersion, string appCommandLine, ManagedPipelineMode? managedPipelineMode, IEnumerable<VirtualApplication> virtualApplications, SiteLoadBalancing? loadBalancing, IEnumerable<RampUpRule> experimentsRampUpRules, SiteLimits limits, bool? isAutoHealEnabled, AutoHealRules autoHealRules, string tracingOptions, string vnetName, bool? isVnetRouteAllEnabled, int? vnetPrivatePortsCount, AppServiceCorsSettings cors, WebAppPushSettings push, Uri apiDefinitionUri, string apiManagementConfigId, string autoSwapSlotName, bool? isLocalMySqlEnabled, int? managedServiceIdentityId, int? xManagedServiceIdentityId, string keyVaultReferenceIdentity, IEnumerable<AppServiceIPSecurityRestriction> ipSecurityRestrictions, SiteDefaultAction? ipSecurityRestrictionsDefaultAction, IEnumerable<AppServiceIPSecurityRestriction> scmIPSecurityRestrictions, SiteDefaultAction? scmIPSecurityRestrictionsDefaultAction, bool? allowIPSecurityRestrictionsForScmToUseMain, bool? isHttp20Enabled, AppServiceSupportedTlsVersion? minTlsVersion, AppServiceTlsCipherSuite? minTlsCipherSuite, AppServiceSupportedTlsVersion? scmMinTlsVersion, AppServiceFtpsState? ftpsState, int? preWarmedInstanceCount, int? functionAppScaleLimit, int? elasticWebAppScaleLimit, string healthCheckPath, bool? isFunctionsRuntimeScaleMonitoringEnabled, string websiteTimeZone, int? minimumElasticInstanceCount, IDictionary<string, AppServiceStorageAccessInfo> azureStorageAccounts, string publicNetworkAccess, string kind)
+        {
+            return SiteConfigData(id, name, resourceType, systemData, kind, numberOfWorkers, defaultDocuments, netFrameworkVersion, phpVersion, pythonVersion, nodeVersion, powerShellVersion, linuxFxVersion, windowsFxVersion, isRequestTracingEnabled, requestTracingExpirationOn, isRemoteDebuggingEnabled, remoteDebuggingVersion, isHttpLoggingEnabled, useManagedIdentityCreds, acrUserManagedIdentityId, logsDirectorySizeLimit, isDetailedErrorLoggingEnabled, publishingUsername, appSettings, metadata, connectionStrings, machineKey, handlerMappings, documentRoot, scmType, use32BitWorkerProcess, isWebSocketsEnabled, isAlwaysOn, javaVersion, javaContainer, javaContainerVersion, appCommandLine, managedPipelineMode, virtualApplications, loadBalancing, experimentsRampUpRules, limits, isAutoHealEnabled, autoHealRules, tracingOptions, vnetName, isVnetRouteAllEnabled, vnetPrivatePortsCount, cors, push, apiDefinitionUri, apiManagementConfigId, autoSwapSlotName, isLocalMySqlEnabled, managedServiceIdentityId, xManagedServiceIdentityId, keyVaultReferenceIdentity, ipSecurityRestrictions, ipSecurityRestrictionsDefaultAction, scmIPSecurityRestrictions, scmIPSecurityRestrictionsDefaultAction, allowIPSecurityRestrictionsForScmToUseMain, isHttp20Enabled, http20ProxyFlag: default, minTlsVersion, minTlsCipherSuite, scmMinTlsVersion, ftpsState, preWarmedInstanceCount, functionAppScaleLimit, elasticWebAppScaleLimit, healthCheckPath, isFunctionsRuntimeScaleMonitoringEnabled, websiteTimeZone, minimumElasticInstanceCount, azureStorageAccounts, publicNetworkAccess);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="AppService.SiteContainerData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="image"> Image Name. </param>
+        /// <param name="targetPort"> Target Port. </param>
+        /// <param name="isMain"> &lt;code&gt;true&lt;/code&gt; if the container is the main site container; &lt;code&gt;false&lt;/code&gt; otherwise. </param>
+        /// <param name="startUpCommand"> StartUp Command. </param>
+        /// <param name="authType"> Auth Type. </param>
+        /// <param name="userName"> User Name. </param>
+        /// <param name="passwordSecret"> Password Secret. </param>
+        /// <param name="userManagedIdentityClientId"> UserManagedIdentity ClientId. </param>
+        /// <param name="createdOn"> Created Time. </param>
+        /// <param name="lastModifiedOn"> Last Modified Time. </param>
+        /// <param name="volumeMounts"> List of volume mounts. </param>
+        /// <param name="inheritAppSettingsAndConnectionStrings"> &lt;code&gt;true&lt;/code&gt; if all AppSettings and ConnectionStrings have to be passed to the container as environment variables; &lt;code&gt;false&lt;/code&gt; otherwise. </param>
+        /// <param name="environmentVariables"> List of environment variables. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="AppService.SiteContainerData"/> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SiteContainerData SiteContainerData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string image = null, string targetPort = null, bool? isMain = null, string startUpCommand = null, SiteContainerAuthType? authType = null, string userName = null, string passwordSecret = null, string userManagedIdentityClientId = null, DateTimeOffset? createdOn = null, DateTimeOffset? lastModifiedOn = null, IEnumerable<SiteContainerVolumeMount> volumeMounts = null, bool? inheritAppSettingsAndConnectionStrings = null, IEnumerable<WebAppEnvironmentVariable> environmentVariables = null, string kind = null)
+        {
+            return SiteContainerData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                kind,
+                image,
+                targetPort,
+                isMain,
+                startUpCommand,
+                authType,
+                userName,
+                passwordSecret,
+                userManagedIdentityClientId,
+                createdOn,
+                lastModifiedOn,
+                volumeMounts?.ToList(),
+                inheritAppSettingsAndConnectionStrings,
+                environmentVariables?.ToList());
+        }
+
+        /// <summary> Initializes a new instance of <see cref="T:Azure.ResourceManager.AppService.SiteContainerData" />. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="image"> Image Name. </param>
+        /// <param name="targetPort"> Target Port. </param>
+        /// <param name="isMain"> &lt;code&gt;true&lt;/code&gt; if the container is the main site container; &lt;code&gt;false&lt;/code&gt; otherwise. </param>
+        /// <param name="startUpCommand"> StartUp Command. </param>
+        /// <param name="authType"> Auth Type. </param>
+        /// <param name="userName"> User Name. </param>
+        /// <param name="passwordSecret"> Password Secret. </param>
+        /// <param name="userManagedIdentityClientId"> UserManagedIdentity ClientId. </param>
+        /// <param name="createdOn"> Created Time. </param>
+        /// <param name="lastModifiedOn"> Last Modified Time. </param>
+        /// <param name="volumeMounts"> List of volume mounts. </param>
+        /// <param name="environmentVariables"> List of environment variables. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="T:Azure.ResourceManager.AppService.SiteContainerData" /> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SiteContainerData SiteContainerData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string image, string targetPort, bool? isMain, string startUpCommand, SiteContainerAuthType? authType, string userName, string passwordSecret, string userManagedIdentityClientId, DateTimeOffset? createdOn, DateTimeOffset? lastModifiedOn, IEnumerable<SiteContainerVolumeMount> volumeMounts, IEnumerable<WebAppEnvironmentVariable> environmentVariables, string kind)
+        {
+            return SiteContainerData(id, name, resourceType, systemData, kind, image, targetPort, isMain, startUpCommand, authType, userName, passwordSecret, userManagedIdentityClientId, createdOn, lastModifiedOn, volumeMounts, inheritAppSettingsAndConnectionStrings: default, environmentVariables);
+        }
     }
 }
