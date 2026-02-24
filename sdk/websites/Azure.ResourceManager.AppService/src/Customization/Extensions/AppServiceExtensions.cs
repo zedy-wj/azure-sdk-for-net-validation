@@ -243,7 +243,9 @@ namespace Azure.ResourceManager.AppService
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Pageable<AppServiceGeoRegion> GetGeoRegions(this SubscriptionResource subscriptionResource, AppServiceSkuName? sku, bool? linuxWorkersEnabled, bool? xenonWorkersEnabled, bool? linuxDynamicWorkersEnabled, CancellationToken cancellationToken)
         {
-            return GetGeoRegions(subscriptionResource, sku, linuxWorkersEnabled, xenonWorkersEnabled, linuxDynamicWorkersEnabled, default, cancellationToken);
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableAppServiceSubscriptionResource(subscriptionResource).GetGeoRegions(sku, linuxWorkersEnabled, xenonWorkersEnabled, linuxDynamicWorkersEnabled, cancellationToken);
         }
 
         /// <summary>
@@ -278,7 +280,9 @@ namespace Azure.ResourceManager.AppService
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static AsyncPageable<AppServiceGeoRegion> GetGeoRegionsAsync(this SubscriptionResource subscriptionResource, AppServiceSkuName? sku, bool? linuxWorkersEnabled, bool? xenonWorkersEnabled, bool? linuxDynamicWorkersEnabled, CancellationToken cancellationToken)
         {
-            return GetGeoRegionsAsync(subscriptionResource, sku, linuxWorkersEnabled, xenonWorkersEnabled, linuxDynamicWorkersEnabled, default, cancellationToken);
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableAppServiceSubscriptionResource(subscriptionResource).GetGeoRegionsAsync(sku, linuxWorkersEnabled, xenonWorkersEnabled, linuxDynamicWorkersEnabled, cancellationToken);
         }
     }
 }
