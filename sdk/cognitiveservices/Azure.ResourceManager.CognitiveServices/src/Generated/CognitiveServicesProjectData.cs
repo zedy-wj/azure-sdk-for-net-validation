@@ -64,15 +64,15 @@ namespace Azure.ResourceManager.CognitiveServices
         /// <param name="systemData"> The systemData. </param>
         /// <param name="tags"> The tags. </param>
         /// <param name="location"> The location. </param>
-        /// <param name="identity"> Identity for the resource. </param>
         /// <param name="properties"> Properties of Cognitive Services project. </param>
         /// <param name="etag"> Resource Etag. </param>
+        /// <param name="identity"> Identity for the resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal CognitiveServicesProjectData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, IDictionary<string, string> tags, AzureLocation location, ManagedServiceIdentity identity, CognitiveServicesProjectProperties properties, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData, tags, location)
+        internal CognitiveServicesProjectData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, IDictionary<string, string> tags, AzureLocation location, CognitiveServicesProjectProperties properties, ETag? etag, ManagedServiceIdentity identity, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData, tags, location)
         {
-            Identity = identity;
             Properties = properties;
             ETag = etag;
+            Identity = identity;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -81,14 +81,14 @@ namespace Azure.ResourceManager.CognitiveServices
         {
         }
 
-        /// <summary> Identity for the resource. </summary>
-        [WirePath("identity")]
-        public ManagedServiceIdentity Identity { get; set; }
         /// <summary> Properties of Cognitive Services project. </summary>
         [WirePath("properties")]
         public CognitiveServicesProjectProperties Properties { get; set; }
         /// <summary> Resource Etag. </summary>
         [WirePath("etag")]
         public ETag? ETag { get; }
+        /// <summary> Identity for the resource. </summary>
+        [WirePath("identity")]
+        public ManagedServiceIdentity Identity { get; set; }
     }
 }

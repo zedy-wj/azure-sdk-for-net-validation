@@ -127,6 +127,11 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                     writer.WriteNull("vectorStoreConnections");
                 }
             }
+            if (Optional.IsDefined(EnablePublicHostingEnvironment))
+            {
+                writer.WritePropertyName("enablePublicHostingEnvironment"u8);
+                writer.WriteBooleanValue(EnablePublicHostingEnvironment.Value);
+            }
         }
 
         CognitiveServicesCapabilityHostProperties IJsonModel<CognitiveServicesCapabilityHostProperties>.Create(ref Utf8JsonReader reader, ModelReaderWriterOptions options)
@@ -156,6 +161,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             IList<string> storageConnections = default;
             IList<string> threadStorageConnections = default;
             IList<string> vectorStoreConnections = default;
+            bool? enablePublicHostingEnvironment = default;
             string description = default;
             IDictionary<string, string> tags = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
@@ -246,6 +252,15 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                     vectorStoreConnections = array;
                     continue;
                 }
+                if (property.NameEquals("enablePublicHostingEnvironment"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    enablePublicHostingEnvironment = property.Value.GetBoolean();
+                    continue;
+                }
                 if (property.NameEquals("description"u8))
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
@@ -286,7 +301,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 provisioningState,
                 storageConnections ?? new ChangeTrackingList<string>(),
                 threadStorageConnections ?? new ChangeTrackingList<string>(),
-                vectorStoreConnections ?? new ChangeTrackingList<string>());
+                vectorStoreConnections ?? new ChangeTrackingList<string>(),
+                enablePublicHostingEnvironment);
         }
 
         private BinaryData SerializeBicep(ModelReaderWriterOptions options)
@@ -494,6 +510,22 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                         }
                         builder.AppendLine("  ]");
                     }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(EnablePublicHostingEnvironment), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  enablePublicHostingEnvironment: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(EnablePublicHostingEnvironment))
+                {
+                    builder.Append("  enablePublicHostingEnvironment: ");
+                    var boolValue = EnablePublicHostingEnvironment.Value == true ? "true" : "false";
+                    builder.AppendLine($"{boolValue}");
                 }
             }
 

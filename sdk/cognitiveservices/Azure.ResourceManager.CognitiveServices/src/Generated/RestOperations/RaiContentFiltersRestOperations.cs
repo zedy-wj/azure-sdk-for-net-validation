@@ -32,7 +32,7 @@ namespace Azure.ResourceManager.CognitiveServices
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2025-06-01";
+            _apiVersion = apiVersion ?? "2025-10-01-preview";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
@@ -70,7 +70,7 @@ namespace Azure.ResourceManager.CognitiveServices
 
         /// <summary> List Content Filters types. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -96,7 +96,7 @@ namespace Azure.ResourceManager.CognitiveServices
 
         /// <summary> List Content Filters types. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -156,7 +156,7 @@ namespace Azure.ResourceManager.CognitiveServices
 
         /// <summary> Get Content Filters by Name. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="filterName"> The name of the RAI Content Filter. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> or <paramref name="filterName"/> is null. </exception>
@@ -186,7 +186,7 @@ namespace Azure.ResourceManager.CognitiveServices
 
         /// <summary> Get Content Filters by Name. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="filterName"> The name of the RAI Content Filter. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/> or <paramref name="filterName"/> is null. </exception>
@@ -239,7 +239,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// <summary> List Content Filters types. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> or <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>
@@ -267,7 +267,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// <summary> List Content Filters types. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/> or <paramref name="subscriptionId"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/> is an empty string, and was expected to be non-empty. </exception>

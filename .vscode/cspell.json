@@ -294,6 +294,12 @@
       ]
     },
     {
+      "filename": "**/sdk/cognitiveservices/**/*.cs",
+      "words": [
+        "hitl"
+      ]
+    },
+    {
       "filename": "**/sdk/computefleet/**/*.cs",
       "words": [
         "rdma"

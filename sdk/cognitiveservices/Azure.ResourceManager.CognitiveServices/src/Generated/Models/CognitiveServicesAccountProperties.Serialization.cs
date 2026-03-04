@@ -136,6 +136,11 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 writer.WritePropertyName("dynamicThrottlingEnabled"u8);
                 writer.WriteBooleanValue(EnableDynamicThrottling.Value);
             }
+            if (Optional.IsDefined(StoredCompletionsDisabled))
+            {
+                writer.WritePropertyName("storedCompletionsDisabled"u8);
+                writer.WriteBooleanValue(StoredCompletionsDisabled.Value);
+            }
             if (options.Format != "W" && Optional.IsDefined(QuotaLimit))
             {
                 writer.WritePropertyName("quotaLimit"u8);
@@ -296,6 +301,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             DateTimeOffset? dateCreated = default;
             ServiceAccountCallRateLimit callRateLimit = default;
             bool? dynamicThrottlingEnabled = default;
+            bool? storedCompletionsDisabled = default;
             ServiceAccountQuotaLimit quotaLimit = default;
             bool? restrictOutboundNetworkAccess = default;
             IList<string> allowedFqdnList = default;
@@ -470,6 +476,15 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                         continue;
                     }
                     dynamicThrottlingEnabled = property.Value.GetBoolean();
+                    continue;
+                }
+                if (property.NameEquals("storedCompletionsDisabled"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    storedCompletionsDisabled = property.Value.GetBoolean();
                     continue;
                 }
                 if (property.NameEquals("quotaLimit"u8))
@@ -657,6 +672,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 dateCreated,
                 callRateLimit,
                 dynamicThrottlingEnabled,
+                storedCompletionsDisabled,
                 quotaLimit,
                 restrictOutboundNetworkAccess,
                 allowedFqdnList ?? new ChangeTrackingList<string>(),
@@ -989,6 +1005,22 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 {
                     builder.Append("  dynamicThrottlingEnabled: ");
                     var boolValue = EnableDynamicThrottling.Value == true ? "true" : "false";
+                    builder.AppendLine($"{boolValue}");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(StoredCompletionsDisabled), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  storedCompletionsDisabled: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(StoredCompletionsDisabled))
+                {
+                    builder.Append("  storedCompletionsDisabled: ");
+                    var boolValue = StoredCompletionsDisabled.Value == true ? "true" : "false";
                     builder.AppendLine($"{boolValue}");
                 }
             }

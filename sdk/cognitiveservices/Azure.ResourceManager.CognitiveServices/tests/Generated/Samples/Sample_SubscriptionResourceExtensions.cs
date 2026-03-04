@@ -21,7 +21,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task GetCognitiveServicesAccounts_ListAccountsBySubscription()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListAccountsBySubscription.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListAccountsBySubscription.json
             // this example is just showing the usage of "Accounts_List" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -50,149 +50,9 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task GetDeletedAccounts_ListDeletedAccountsBySubscription()
-        {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListDeletedAccountsBySubscription.json
-            // this example is just showing the usage of "DeletedAccounts_List" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this SubscriptionResource created on azure
-            // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
-            string subscriptionId = "00000000-1111-2222-3333-444444444444";
-            ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
-            SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
-
-            // invoke the operation and iterate over the result
-            await foreach (CognitiveServicesDeletedAccountResource item in subscriptionResource.GetDeletedAccountsAsync())
-            {
-                // the variable item is a resource, you could call other operations on this instance as well
-                // but just for demo, we get its data from this resource instance
-                CognitiveServicesAccountData resourceData = item.Data;
-                // for demo we just print out the id
-                Console.WriteLine($"Succeeded on id: {resourceData.Id}");
-            }
-
-            Console.WriteLine("Succeeded");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task GetResourceSkus_RegenerateKeys()
-        {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/GetSkus.json
-            // this example is just showing the usage of "ResourceSkus_List" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this SubscriptionResource created on azure
-            // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
-            string subscriptionId = "f1c637e4-72ec-4f89-8d2b-0f933c036002";
-            ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
-            SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
-
-            // invoke the operation and iterate over the result
-            await foreach (AvailableCognitiveServicesSku item in subscriptionResource.GetResourceSkusAsync())
-            {
-                Console.WriteLine($"Succeeded: {item}");
-            }
-
-            Console.WriteLine("Succeeded");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task GetUsages_GetUsages()
-        {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListUsages.json
-            // this example is just showing the usage of "Usages_List" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this SubscriptionResource created on azure
-            // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
-            string subscriptionId = "00000000-0000-0000-0000-000000000000";
-            ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
-            SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
-
-            // invoke the operation and iterate over the result
-            AzureLocation location = new AzureLocation("WestUS");
-            await foreach (ServiceAccountUsage item in subscriptionResource.GetUsagesAsync(location))
-            {
-                Console.WriteLine($"Succeeded: {item}");
-            }
-
-            Console.WriteLine("Succeeded");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task CheckSkuAvailability_CheckSKUAvailability()
-        {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/CheckSkuAvailability.json
-            // this example is just showing the usage of "CheckSkuAvailability" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this SubscriptionResource created on azure
-            // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
-            string subscriptionId = "00000000-1111-2222-3333-444444444444";
-            ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
-            SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
-
-            // invoke the operation and iterate over the result
-            AzureLocation location = new AzureLocation("westus");
-            CognitiveServicesSkuAvailabilityContent content = new CognitiveServicesSkuAvailabilityContent(new string[] { "S0" }, "Face", new ResourceType("Microsoft.CognitiveServices/accounts"));
-            await foreach (CognitiveServicesSkuAvailabilityList item in subscriptionResource.CheckSkuAvailabilityAsync(location, content))
-            {
-                Console.WriteLine($"Succeeded: {item}");
-            }
-
-            Console.WriteLine("Succeeded");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task CheckDomainAvailability_CheckSKUAvailability()
-        {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/CheckDomainAvailability.json
-            // this example is just showing the usage of "CheckDomainAvailability" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this SubscriptionResource created on azure
-            // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
-            string subscriptionId = "00000000-1111-2222-3333-444444444444";
-            ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
-            SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
-
-            // invoke the operation
-            CognitiveServicesDomainAvailabilityContent content = new CognitiveServicesDomainAvailabilityContent("contosodemoapp1", new ResourceType("Microsoft.CognitiveServices/accounts"));
-            CognitiveServicesDomainAvailabilityList result = await subscriptionResource.CheckDomainAvailabilityAsync(content);
-
-            Console.WriteLine($"Succeeded: {result}");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
         public async Task CalculateModelCapacity_CalculateModelCapacity()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/CalculateModelCapacity.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/CalculateModelCapacity.json
             // this example is just showing the usage of "CalculateModelCapacity" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -241,9 +101,125 @@ AvgGeneratedTokens = 20L,
 
         [Test]
         [Ignore("Only validating compilation of examples")]
+        public async Task CheckDomainAvailability_CheckSKUAvailability()
+        {
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/CheckDomainAvailability.json
+            // this example is just showing the usage of "CheckDomainAvailability" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this SubscriptionResource created on azure
+            // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
+            string subscriptionId = "00000000-1111-2222-3333-444444444444";
+            ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
+            SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
+
+            // invoke the operation
+            CognitiveServicesDomainAvailabilityContent content = new CognitiveServicesDomainAvailabilityContent("contosodemoapp1", new ResourceType("Microsoft.CognitiveServices/accounts"));
+            CognitiveServicesDomainAvailabilityList result = await subscriptionResource.CheckDomainAvailabilityAsync(content);
+
+            Console.WriteLine($"Succeeded: {result}");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task CheckSkuAvailability_CheckSKUAvailability()
+        {
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/CheckSkuAvailability.json
+            // this example is just showing the usage of "CheckSkuAvailability" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this SubscriptionResource created on azure
+            // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
+            string subscriptionId = "00000000-1111-2222-3333-444444444444";
+            ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
+            SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
+
+            // invoke the operation and iterate over the result
+            AzureLocation location = new AzureLocation("westus");
+            CognitiveServicesSkuAvailabilityContent content = new CognitiveServicesSkuAvailabilityContent(new string[] { "S0" }, "Face", new ResourceType("Microsoft.CognitiveServices/accounts"));
+            await foreach (CognitiveServicesSkuAvailabilityList item in subscriptionResource.CheckSkuAvailabilityAsync(location, content))
+            {
+                Console.WriteLine($"Succeeded: {item}");
+            }
+
+            Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task GetCognitiveServicesCommitmentPlans_ListAccountsBySubscription()
+        {
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListSharedCommitmentPlansBySubscription.json
+            // this example is just showing the usage of "CommitmentPlans_ListPlansBySubscription" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this SubscriptionResource created on azure
+            // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
+            string subscriptionId = "00000000-1111-2222-3333-444444444444";
+            ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
+            SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
+
+            // invoke the operation and iterate over the result
+            await foreach (CognitiveServicesCommitmentPlanResource item in subscriptionResource.GetCognitiveServicesCommitmentPlansAsync())
+            {
+                // the variable item is a resource, you could call other operations on this instance as well
+                // but just for demo, we get its data from this resource instance
+                CommitmentPlanData resourceData = item.Data;
+                // for demo we just print out the id
+                Console.WriteLine($"Succeeded on id: {resourceData.Id}");
+            }
+
+            Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task GetDeletedAccounts_ListDeletedAccountsBySubscription()
+        {
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListDeletedAccountsBySubscription.json
+            // this example is just showing the usage of "DeletedAccounts_List" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this SubscriptionResource created on azure
+            // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
+            string subscriptionId = "00000000-1111-2222-3333-444444444444";
+            ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
+            SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
+
+            // invoke the operation and iterate over the result
+            await foreach (CognitiveServicesDeletedAccountResource item in subscriptionResource.GetDeletedAccountsAsync())
+            {
+                // the variable item is a resource, you could call other operations on this instance as well
+                // but just for demo, we get its data from this resource instance
+                CognitiveServicesAccountData resourceData = item.Data;
+                // for demo we just print out the id
+                Console.WriteLine($"Succeeded on id: {resourceData.Id}");
+            }
+
+            Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
         public async Task GetCommitmentTiers_ListCommitmentTiers()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListCommitmentTiers.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListCommitmentTiers.json
             // this example is just showing the usage of "CommitmentTiers_List" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -269,37 +245,9 @@ AvgGeneratedTokens = 20L,
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task GetModels_ListLocationModels()
-        {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListLocationModels.json
-            // this example is just showing the usage of "Models_List" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this SubscriptionResource created on azure
-            // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
-            string subscriptionId = "00000000-0000-0000-0000-000000000000";
-            ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
-            SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
-
-            // invoke the operation and iterate over the result
-            AzureLocation location = new AzureLocation("WestUS");
-            await foreach (CognitiveServicesModel item in subscriptionResource.GetModelsAsync(location))
-            {
-                Console.WriteLine($"Succeeded: {item}");
-            }
-
-            Console.WriteLine("Succeeded");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
         public async Task GetLocationBasedModelCapacities_ListLocationBasedModelCapacities()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListLocationBasedModelCapacities.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListLocationBasedModelCapacities.json
             // this example is just showing the usage of "LocationBasedModelCapacities_List" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -328,9 +276,65 @@ AvgGeneratedTokens = 20L,
 
         [Test]
         [Ignore("Only validating compilation of examples")]
+        public async Task GetModels_ListLocationModels()
+        {
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListLocationModels.json
+            // this example is just showing the usage of "Models_List" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this SubscriptionResource created on azure
+            // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
+            string subscriptionId = "00000000-0000-0000-0000-000000000000";
+            ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
+            SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
+
+            // invoke the operation and iterate over the result
+            AzureLocation location = new AzureLocation("WestUS");
+            await foreach (CognitiveServicesModel item in subscriptionResource.GetModelsAsync(location))
+            {
+                Console.WriteLine($"Succeeded: {item}");
+            }
+
+            Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task GetUsages_GetUsages()
+        {
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListUsages.json
+            // this example is just showing the usage of "Usages_List" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this SubscriptionResource created on azure
+            // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
+            string subscriptionId = "00000000-0000-0000-0000-000000000000";
+            ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
+            SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
+
+            // invoke the operation and iterate over the result
+            AzureLocation location = new AzureLocation("WestUS");
+            await foreach (ServiceAccountUsage item in subscriptionResource.GetUsagesAsync(location))
+            {
+                Console.WriteLine($"Succeeded: {item}");
+            }
+
+            Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
         public async Task GetModelCapacities_ListModelCapacities()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListModelCapacities.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListModelCapacities.json
             // this example is just showing the usage of "ModelCapacities_List" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -358,10 +362,10 @@ AvgGeneratedTokens = 20L,
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task GetCognitiveServicesCommitmentPlans_ListAccountsBySubscription()
+        public async Task GetResourceSkus_RegenerateKeys()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListSharedCommitmentPlansBySubscription.json
-            // this example is just showing the usage of "CommitmentPlans_ListPlansBySubscription" operation, for the dependent resources, they will have to be created separately.
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/GetSkus.json
+            // this example is just showing the usage of "ResourceSkus_List" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
             TokenCredential cred = new DefaultAzureCredential();
@@ -370,18 +374,14 @@ AvgGeneratedTokens = 20L,
 
             // this example assumes you already have this SubscriptionResource created on azure
             // for more information of creating SubscriptionResource, please refer to the document of SubscriptionResource
-            string subscriptionId = "00000000-1111-2222-3333-444444444444";
+            string subscriptionId = "f1c637e4-72ec-4f89-8d2b-0f933c036002";
             ResourceIdentifier subscriptionResourceId = SubscriptionResource.CreateResourceIdentifier(subscriptionId);
             SubscriptionResource subscriptionResource = client.GetSubscriptionResource(subscriptionResourceId);
 
             // invoke the operation and iterate over the result
-            await foreach (CognitiveServicesCommitmentPlanResource item in subscriptionResource.GetCognitiveServicesCommitmentPlansAsync())
+            await foreach (AvailableCognitiveServicesSku item in subscriptionResource.GetResourceSkusAsync())
             {
-                // the variable item is a resource, you could call other operations on this instance as well
-                // but just for demo, we get its data from this resource instance
-                CommitmentPlanData resourceData = item.Data;
-                // for demo we just print out the id
-                Console.WriteLine($"Succeeded on id: {resourceData.Id}");
+                Console.WriteLine($"Succeeded: {item}");
             }
 
             Console.WriteLine("Succeeded");

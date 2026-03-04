@@ -60,7 +60,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <summary> Initializes a new instance of <see cref="CognitiveServicesConnectionProperties"/>. </summary>
         /// <param name="authType"> Authentication type of the connection target. </param>
         /// <param name="category"> Category of the connection. </param>
-        /// <param name="createdByWorkspaceArmId"></param>
+        /// <param name="createdByWorkspaceArmId"> A type definition that refers the id to an Azure Resource Manager resource. </param>
         /// <param name="error"> Provides the error message if the connection fails. </param>
         /// <param name="expiryOn"></param>
         /// <param name="group"> Group based on connection category. </param>
@@ -95,7 +95,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <summary> Category of the connection. </summary>
         [WirePath("category")]
         public CognitiveServicesConnectionCategory? Category { get; set; }
-        /// <summary> Gets the created by workspace arm id. </summary>
+        /// <summary> A type definition that refers the id to an Azure Resource Manager resource. </summary>
         [WirePath("createdByWorkspaceArmId")]
         public ResourceIdentifier CreatedByWorkspaceArmId { get; }
         /// <summary> Provides the error message if the connection fails. </summary>

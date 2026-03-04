@@ -62,20 +62,23 @@ namespace Azure.ResourceManager.CognitiveServices
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="properties"> Properties of Cognitive Services account deployment. </param>
         /// <param name="sku"> The resource model definition representing SKU. </param>
         /// <param name="etag"> Resource Etag. </param>
         /// <param name="tags"> Resource tags. </param>
-        /// <param name="properties"> Properties of Cognitive Services account deployment. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal CognitiveServicesAccountDeploymentData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, CognitiveServicesSku sku, ETag? etag, IDictionary<string, string> tags, CognitiveServicesAccountDeploymentProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal CognitiveServicesAccountDeploymentData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, CognitiveServicesAccountDeploymentProperties properties, CognitiveServicesSku sku, ETag? etag, IDictionary<string, string> tags, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            Properties = properties;
             Sku = sku;
             ETag = etag;
             Tags = tags;
-            Properties = properties;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Properties of Cognitive Services account deployment. </summary>
+        [WirePath("properties")]
+        public CognitiveServicesAccountDeploymentProperties Properties { get; set; }
         /// <summary> The resource model definition representing SKU. </summary>
         [WirePath("sku")]
         public CognitiveServicesSku Sku { get; set; }
@@ -85,8 +88,5 @@ namespace Azure.ResourceManager.CognitiveServices
         /// <summary> Resource tags. </summary>
         [WirePath("tags")]
         public IDictionary<string, string> Tags { get; }
-        /// <summary> Properties of Cognitive Services account deployment. </summary>
-        [WirePath("properties")]
-        public CognitiveServicesAccountDeploymentProperties Properties { get; set; }
     }
 }

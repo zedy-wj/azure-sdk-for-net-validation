@@ -33,7 +33,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <param name="storageConnections"> List of connection names from those available in the account or project to be used as a storage resource. </param>
         /// <param name="threadStorageConnections"> List of connection names from those available in the account or project to be used for Thread storage. </param>
         /// <param name="vectorStoreConnections"> List of connection names from those available in the account or project to be used for vector database (e.g. CosmosDB). </param>
-        internal CognitiveServicesCapabilityHostProperties(string description, IDictionary<string, string> tags, IDictionary<string, BinaryData> serializedAdditionalRawData, IList<string> aiServicesConnections, CapabilityHostKind? capabilityHostKind, string customerSubnet, CapabilityHostProvisioningState? provisioningState, IList<string> storageConnections, IList<string> threadStorageConnections, IList<string> vectorStoreConnections) : base(description, tags, serializedAdditionalRawData)
+        /// <param name="enablePublicHostingEnvironment"> Whether public hosting environment is enabled for the capability host. </param>
+        internal CognitiveServicesCapabilityHostProperties(string description, IDictionary<string, string> tags, IDictionary<string, BinaryData> serializedAdditionalRawData, IList<string> aiServicesConnections, CapabilityHostKind? capabilityHostKind, string customerSubnet, CapabilityHostProvisioningState? provisioningState, IList<string> storageConnections, IList<string> threadStorageConnections, IList<string> vectorStoreConnections, bool? enablePublicHostingEnvironment) : base(description, tags, serializedAdditionalRawData)
         {
             AiServicesConnections = aiServicesConnections;
             CapabilityHostKind = capabilityHostKind;
@@ -42,6 +43,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             StorageConnections = storageConnections;
             ThreadStorageConnections = threadStorageConnections;
             VectorStoreConnections = vectorStoreConnections;
+            EnablePublicHostingEnvironment = enablePublicHostingEnvironment;
         }
 
         /// <summary> List of AI services connections. </summary>
@@ -65,5 +67,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <summary> List of connection names from those available in the account or project to be used for vector database (e.g. CosmosDB). </summary>
         [WirePath("vectorStoreConnections")]
         public IList<string> VectorStoreConnections { get; set; }
+        /// <summary> Whether public hosting environment is enabled for the capability host. </summary>
+        [WirePath("enablePublicHostingEnvironment")]
+        public bool? EnablePublicHostingEnvironment { get; set; }
     }
 }

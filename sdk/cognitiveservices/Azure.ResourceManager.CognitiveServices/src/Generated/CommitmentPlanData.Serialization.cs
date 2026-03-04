@@ -39,20 +39,10 @@ namespace Azure.ResourceManager.CognitiveServices
             }
 
             base.JsonModelWriteCore(writer, options);
-            if (options.Format != "W" && Optional.IsDefined(ETag))
+            if (Optional.IsDefined(Properties))
             {
-                writer.WritePropertyName("etag"u8);
-                writer.WriteStringValue(ETag.Value.ToString());
-            }
-            if (Optional.IsDefined(Kind))
-            {
-                writer.WritePropertyName("kind"u8);
-                writer.WriteStringValue(Kind);
-            }
-            if (Optional.IsDefined(Sku))
-            {
-                writer.WritePropertyName("sku"u8);
-                writer.WriteObjectValue(Sku, options);
+                writer.WritePropertyName("properties"u8);
+                writer.WriteObjectValue(Properties, options);
             }
             if (Optional.IsCollectionDefined(Tags))
             {
@@ -70,10 +60,20 @@ namespace Azure.ResourceManager.CognitiveServices
                 writer.WritePropertyName("location"u8);
                 writer.WriteStringValue(Location.Value);
             }
-            if (Optional.IsDefined(Properties))
+            if (options.Format != "W" && Optional.IsDefined(ETag))
             {
-                writer.WritePropertyName("properties"u8);
-                writer.WriteObjectValue(Properties, options);
+                writer.WritePropertyName("etag"u8);
+                writer.WriteStringValue(ETag.Value.ToString());
+            }
+            if (Optional.IsDefined(Kind))
+            {
+                writer.WritePropertyName("kind"u8);
+                writer.WriteStringValue(Kind);
+            }
+            if (Optional.IsDefined(Sku))
+            {
+                writer.WritePropertyName("sku"u8);
+                writer.WriteObjectValue(Sku, options);
             }
         }
 
@@ -97,12 +97,12 @@ namespace Azure.ResourceManager.CognitiveServices
             {
                 return null;
             }
+            CommitmentPlanProperties properties = default;
+            IDictionary<string, string> tags = default;
+            AzureLocation? location = default;
             ETag? etag = default;
             string kind = default;
             CognitiveServicesSku sku = default;
-            IDictionary<string, string> tags = default;
-            AzureLocation? location = default;
-            CommitmentPlanProperties properties = default;
             ResourceIdentifier id = default;
             string name = default;
             ResourceType type = default;
@@ -111,27 +111,13 @@ namespace Azure.ResourceManager.CognitiveServices
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
-                if (property.NameEquals("etag"u8))
+                if (property.NameEquals("properties"u8))
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
                         continue;
                     }
-                    etag = new ETag(property.Value.GetString());
-                    continue;
-                }
-                if (property.NameEquals("kind"u8))
-                {
-                    kind = property.Value.GetString();
-                    continue;
-                }
-                if (property.NameEquals("sku"u8))
-                {
-                    if (property.Value.ValueKind == JsonValueKind.Null)
-                    {
-                        continue;
-                    }
-                    sku = CognitiveServicesSku.DeserializeCognitiveServicesSku(property.Value, options);
+                    properties = CommitmentPlanProperties.DeserializeCommitmentPlanProperties(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("tags"u8))
@@ -157,13 +143,27 @@ namespace Azure.ResourceManager.CognitiveServices
                     location = new AzureLocation(property.Value.GetString());
                     continue;
                 }
-                if (property.NameEquals("properties"u8))
+                if (property.NameEquals("etag"u8))
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
                         continue;
                     }
-                    properties = CommitmentPlanProperties.DeserializeCommitmentPlanProperties(property.Value, options);
+                    etag = new ETag(property.Value.GetString());
+                    continue;
+                }
+                if (property.NameEquals("kind"u8))
+                {
+                    kind = property.Value.GetString();
+                    continue;
+                }
+                if (property.NameEquals("sku"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    sku = CognitiveServicesSku.DeserializeCognitiveServicesSku(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("id"u8))
@@ -201,12 +201,12 @@ namespace Azure.ResourceManager.CognitiveServices
                 name,
                 type,
                 systemData,
+                properties,
+                tags ?? new ChangeTrackingDictionary<string, string>(),
+                location,
                 etag,
                 kind,
                 sku,
-                tags ?? new ChangeTrackingDictionary<string, string>(),
-                location,
-                properties,
                 serializedAdditionalRawData);
         }
 
@@ -296,6 +296,21 @@ namespace Azure.ResourceManager.CognitiveServices
                 }
             }
 
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Properties), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  properties: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Properties))
+                {
+                    builder.Append("  properties: ");
+                    BicepSerializationHelpers.AppendChildObject(builder, Properties, options, 2, false, "  properties: ");
+                }
+            }
+
             hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ETag), out propertyOverride);
             if (hasPropertyOverride)
             {
@@ -346,21 +361,6 @@ namespace Azure.ResourceManager.CognitiveServices
                 {
                     builder.Append("  sku: ");
                     BicepSerializationHelpers.AppendChildObject(builder, Sku, options, 2, false, "  sku: ");
-                }
-            }
-
-            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Properties), out propertyOverride);
-            if (hasPropertyOverride)
-            {
-                builder.Append("  properties: ");
-                builder.AppendLine(propertyOverride);
-            }
-            else
-            {
-                if (Optional.IsDefined(Properties))
-                {
-                    builder.Append("  properties: ");
-                    BicepSerializationHelpers.AppendChildObject(builder, Properties, options, 2, false, "  properties: ");
                 }
             }
 

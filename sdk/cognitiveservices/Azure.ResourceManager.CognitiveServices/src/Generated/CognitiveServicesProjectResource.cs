@@ -10,8 +10,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure.Core;
 using Azure.Core.Pipeline;
+using Azure.ResourceManager.CognitiveServices.Models;
 
 namespace Azure.ResourceManager.CognitiveServices
 {
@@ -36,6 +38,8 @@ namespace Azure.ResourceManager.CognitiveServices
 
         private readonly ClientDiagnostics _cognitiveServicesProjectProjectsClientDiagnostics;
         private readonly ProjectsRestOperations _cognitiveServicesProjectProjectsRestClient;
+        private readonly ClientDiagnostics _cognitiveServicesProjectCapabilityHostProjectCapabilityHostsClientDiagnostics;
+        private readonly ProjectCapabilityHostsRestOperations _cognitiveServicesProjectCapabilityHostProjectCapabilityHostsRestClient;
         private readonly CognitiveServicesProjectData _data;
 
         /// <summary> Gets the resource type for the operations. </summary>
@@ -63,6 +67,9 @@ namespace Azure.ResourceManager.CognitiveServices
             _cognitiveServicesProjectProjectsClientDiagnostics = new ClientDiagnostics("Azure.ResourceManager.CognitiveServices", ResourceType.Namespace, Diagnostics);
             TryGetApiVersion(ResourceType, out string cognitiveServicesProjectProjectsApiVersion);
             _cognitiveServicesProjectProjectsRestClient = new ProjectsRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint, cognitiveServicesProjectProjectsApiVersion);
+            _cognitiveServicesProjectCapabilityHostProjectCapabilityHostsClientDiagnostics = new ClientDiagnostics("Azure.ResourceManager.CognitiveServices", CognitiveServicesProjectCapabilityHostResource.ResourceType.Namespace, Diagnostics);
+            TryGetApiVersion(CognitiveServicesProjectCapabilityHostResource.ResourceType, out string cognitiveServicesProjectCapabilityHostProjectCapabilityHostsApiVersion);
+            _cognitiveServicesProjectCapabilityHostProjectCapabilityHostsRestClient = new ProjectCapabilityHostsRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint, cognitiveServicesProjectCapabilityHostProjectCapabilityHostsApiVersion);
 #if DEBUG
 			ValidateResourceId(Id);
 #endif
@@ -89,75 +96,6 @@ namespace Azure.ResourceManager.CognitiveServices
                 throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "Invalid resource type {0} expected {1}", id.ResourceType, ResourceType), nameof(id));
         }
 
-        /// <summary> Gets a collection of CognitiveServicesProjectConnectionResources in the CognitiveServicesProject. </summary>
-        /// <returns> An object representing collection of CognitiveServicesProjectConnectionResources and their operations over a CognitiveServicesProjectConnectionResource. </returns>
-        public virtual CognitiveServicesProjectConnectionCollection GetCognitiveServicesProjectConnections()
-        {
-            return GetCachedClient(client => new CognitiveServicesProjectConnectionCollection(client, Id));
-        }
-
-        /// <summary>
-        /// Lists Cognitive Services project connection by name.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>ProjectConnections_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="CognitiveServicesProjectConnectionResource"/></description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="connectionName"> Friendly name of the connection. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="connectionName"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="connectionName"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public virtual async Task<Response<CognitiveServicesProjectConnectionResource>> GetCognitiveServicesProjectConnectionAsync(string connectionName, CancellationToken cancellationToken = default)
-        {
-            return await GetCognitiveServicesProjectConnections().GetAsync(connectionName, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Lists Cognitive Services project connection by name.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>ProjectConnections_Get</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="CognitiveServicesProjectConnectionResource"/></description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="connectionName"> Friendly name of the connection. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="connectionName"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="connectionName"/> is an empty string, and was expected to be non-empty. </exception>
-        [ForwardsClientCalls]
-        public virtual Response<CognitiveServicesProjectConnectionResource> GetCognitiveServicesProjectConnection(string connectionName, CancellationToken cancellationToken = default)
-        {
-            return GetCognitiveServicesProjectConnections().Get(connectionName, cancellationToken);
-        }
-
         /// <summary> Gets a collection of CognitiveServicesProjectCapabilityHostResources in the CognitiveServicesProject. </summary>
         /// <returns> An object representing collection of CognitiveServicesProjectCapabilityHostResources and their operations over a CognitiveServicesProjectCapabilityHostResource. </returns>
         public virtual CognitiveServicesProjectCapabilityHostCollection GetCognitiveServicesProjectCapabilityHosts()
@@ -178,7 +116,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -209,7 +147,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -227,6 +165,144 @@ namespace Azure.ResourceManager.CognitiveServices
             return GetCognitiveServicesProjectCapabilityHosts().Get(capabilityHostName, cancellationToken);
         }
 
+        /// <summary> Gets a collection of CognitiveServicesProjectConnectionResources in the CognitiveServicesProject. </summary>
+        /// <returns> An object representing collection of CognitiveServicesProjectConnectionResources and their operations over a CognitiveServicesProjectConnectionResource. </returns>
+        public virtual CognitiveServicesProjectConnectionCollection GetCognitiveServicesProjectConnections()
+        {
+            return GetCachedClient(client => new CognitiveServicesProjectConnectionCollection(client, Id));
+        }
+
+        /// <summary>
+        /// Lists Cognitive Services project connection by name.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ProjectConnections_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CognitiveServicesProjectConnectionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="connectionName"> Friendly name of the connection. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="connectionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="connectionName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public virtual async Task<Response<CognitiveServicesProjectConnectionResource>> GetCognitiveServicesProjectConnectionAsync(string connectionName, CancellationToken cancellationToken = default)
+        {
+            return await GetCognitiveServicesProjectConnections().GetAsync(connectionName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Lists Cognitive Services project connection by name.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ProjectConnections_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CognitiveServicesProjectConnectionResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="connectionName"> Friendly name of the connection. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="connectionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="connectionName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public virtual Response<CognitiveServicesProjectConnectionResource> GetCognitiveServicesProjectConnection(string connectionName, CancellationToken cancellationToken = default)
+        {
+            return GetCognitiveServicesProjectConnections().Get(connectionName, cancellationToken);
+        }
+
+        /// <summary> Gets a collection of AgentApplicationResources in the CognitiveServicesProject. </summary>
+        /// <returns> An object representing collection of AgentApplicationResources and their operations over a AgentApplicationResource. </returns>
+        public virtual AgentApplicationCollection GetAgentApplications()
+        {
+            return GetCachedClient(client => new AgentApplicationCollection(client, Id));
+        }
+
+        /// <summary>
+        /// Gets an Agent Application by name.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentApplications_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AgentApplicationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="name"> Name for the Agent Application. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public virtual async Task<Response<AgentApplicationResource>> GetAgentApplicationAsync(string name, CancellationToken cancellationToken = default)
+        {
+            return await GetAgentApplications().GetAsync(name, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Gets an Agent Application by name.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AgentApplications_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="AgentApplicationResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="name"> Name for the Agent Application. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="name"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="name"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public virtual Response<AgentApplicationResource> GetAgentApplication(string name, CancellationToken cancellationToken = default)
+        {
+            return GetAgentApplications().Get(name, cancellationToken);
+        }
+
         /// <summary>
         /// Returns a Cognitive Services project specified by the parameters.
         /// <list type="bullet">
@@ -240,7 +316,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -280,7 +356,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -320,7 +396,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -362,7 +438,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -404,7 +480,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -450,7 +526,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -484,6 +560,66 @@ namespace Azure.ResourceManager.CognitiveServices
         }
 
         /// <summary>
+        /// List capabilityHost.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ProjectCapabilityHosts_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CognitiveServicesProjectCapabilityHostResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="ProjectCapabilityHost"/> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<ProjectCapabilityHost> GetProjectCapabilityHostsAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => _cognitiveServicesProjectCapabilityHostProjectCapabilityHostsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _cognitiveServicesProjectCapabilityHostProjectCapabilityHostsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => ProjectCapabilityHost.DeserializeProjectCapabilityHost(e), _cognitiveServicesProjectCapabilityHostProjectCapabilityHostsClientDiagnostics, Pipeline, "CognitiveServicesProjectResource.GetProjectCapabilityHosts", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// List capabilityHost.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ProjectCapabilityHosts_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CognitiveServicesProjectCapabilityHostResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="ProjectCapabilityHost"/> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<ProjectCapabilityHost> GetProjectCapabilityHosts(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => _cognitiveServicesProjectCapabilityHostProjectCapabilityHostsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _cognitiveServicesProjectCapabilityHostProjectCapabilityHostsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => ProjectCapabilityHost.DeserializeProjectCapabilityHost(e), _cognitiveServicesProjectCapabilityHostProjectCapabilityHostsClientDiagnostics, Pipeline, "CognitiveServicesProjectResource.GetProjectCapabilityHosts", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
         /// Add a tag to the current resource.
         /// <list type="bullet">
         /// <item>
@@ -496,7 +632,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -558,7 +694,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -620,7 +756,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -677,7 +813,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -734,7 +870,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -794,7 +930,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>

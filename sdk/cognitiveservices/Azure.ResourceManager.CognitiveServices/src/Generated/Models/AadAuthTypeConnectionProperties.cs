@@ -23,7 +23,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <summary> Initializes a new instance of <see cref="AadAuthTypeConnectionProperties"/>. </summary>
         /// <param name="authType"> Authentication type of the connection target. </param>
         /// <param name="category"> Category of the connection. </param>
-        /// <param name="createdByWorkspaceArmId"></param>
+        /// <param name="createdByWorkspaceArmId"> A type definition that refers the id to an Azure Resource Manager resource. </param>
         /// <param name="error"> Provides the error message if the connection fails. </param>
         /// <param name="expiryOn"></param>
         /// <param name="group"> Group based on connection category. </param>

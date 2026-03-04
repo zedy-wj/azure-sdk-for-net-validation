@@ -40,15 +40,15 @@ namespace Azure.ResourceManager.CognitiveServices
             }
 
             base.JsonModelWriteCore(writer, options);
-            if (Optional.IsDefined(Location))
-            {
-                writer.WritePropertyName("location"u8);
-                writer.WriteStringValue(Location.Value);
-            }
             if (options.Format != "W" && Optional.IsDefined(ETag))
             {
                 writer.WritePropertyName("etag"u8);
                 writer.WriteStringValue(ETag.Value.ToString());
+            }
+            if (Optional.IsDefined(Location))
+            {
+                writer.WritePropertyName("location"u8);
+                writer.WriteStringValue(Location.Value);
             }
             writer.WritePropertyName("properties"u8);
             writer.WriteStartObject();
@@ -100,8 +100,8 @@ namespace Azure.ResourceManager.CognitiveServices
             {
                 return null;
             }
-            AzureLocation? location = default;
             ETag? etag = default;
+            AzureLocation? location = default;
             ResourceIdentifier id = default;
             string name = default;
             ResourceType type = default;
@@ -114,15 +114,6 @@ namespace Azure.ResourceManager.CognitiveServices
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
-                if (property.NameEquals("location"u8))
-                {
-                    if (property.Value.ValueKind == JsonValueKind.Null)
-                    {
-                        continue;
-                    }
-                    location = new AzureLocation(property.Value.GetString());
-                    continue;
-                }
                 if (property.NameEquals("etag"u8))
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
@@ -130,6 +121,15 @@ namespace Azure.ResourceManager.CognitiveServices
                         continue;
                     }
                     etag = new ETag(property.Value.GetString());
+                    continue;
+                }
+                if (property.NameEquals("location"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    location = new AzureLocation(property.Value.GetString());
                     continue;
                 }
                 if (property.NameEquals("id"u8))
@@ -220,12 +220,12 @@ namespace Azure.ResourceManager.CognitiveServices
                 name,
                 type,
                 systemData,
+                etag,
                 location,
                 privateEndpoint,
                 privateLinkServiceConnectionState,
                 provisioningState,
                 groupIds ?? new ChangeTrackingList<string>(),
-                etag,
                 serializedAdditionalRawData);
         }
 

@@ -50,6 +50,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         {
             ContentFilters = new ChangeTrackingList<RaiPolicyContentFilter>();
             CustomBlocklists = new ChangeTrackingList<CustomBlocklistConfig>();
+            CustomTopics = new ChangeTrackingList<CustomTopicConfig>();
+            SafetyProviders = new ChangeTrackingList<SafetyProviderConfig>();
         }
 
         /// <summary> Initializes a new instance of <see cref="RaiPolicyProperties"/>. </summary>
@@ -58,14 +60,18 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <param name="basePolicyName"> Name of Rai policy. </param>
         /// <param name="contentFilters"> The list of Content Filters. </param>
         /// <param name="customBlocklists"> The list of custom Blocklist. </param>
+        /// <param name="customTopics"> The list of custom rai topics. </param>
+        /// <param name="safetyProviders"> The list of Safety Providers. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal RaiPolicyProperties(RaiPolicyType? policyType, RaiPolicyMode? mode, string basePolicyName, IList<RaiPolicyContentFilter> contentFilters, IList<CustomBlocklistConfig> customBlocklists, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal RaiPolicyProperties(RaiPolicyType? policyType, RaiPolicyMode? mode, string basePolicyName, IList<RaiPolicyContentFilter> contentFilters, IList<CustomBlocklistConfig> customBlocklists, IList<CustomTopicConfig> customTopics, IList<SafetyProviderConfig> safetyProviders, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             PolicyType = policyType;
             Mode = mode;
             BasePolicyName = basePolicyName;
             ContentFilters = contentFilters;
             CustomBlocklists = customBlocklists;
+            CustomTopics = customTopics;
+            SafetyProviders = safetyProviders;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -84,5 +90,11 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <summary> The list of custom Blocklist. </summary>
         [WirePath("customBlocklists")]
         public IList<CustomBlocklistConfig> CustomBlocklists { get; }
+        /// <summary> The list of custom rai topics. </summary>
+        [WirePath("customTopics")]
+        public IList<CustomTopicConfig> CustomTopics { get; }
+        /// <summary> The list of Safety Providers. </summary>
+        [WirePath("safetyProviders")]
+        public IList<SafetyProviderConfig> SafetyProviders { get; }
     }
 }

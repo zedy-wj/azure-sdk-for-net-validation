@@ -62,41 +62,41 @@ namespace Azure.ResourceManager.CognitiveServices
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="etag"> Resource Etag. </param>
-        /// <param name="kind"> The Kind of the resource. </param>
-        /// <param name="sku"> The resource model definition representing SKU. </param>
+        /// <param name="properties"> Properties of Cognitive Services account commitment plan. </param>
         /// <param name="tags"> Resource tags. </param>
         /// <param name="location"> The geo-location where the resource lives. </param>
-        /// <param name="properties"> Properties of Cognitive Services account commitment plan. </param>
+        /// <param name="etag"> Resource Etag. </param>
+        /// <param name="kind"> The kind (type) of cognitive service account. </param>
+        /// <param name="sku"> The resource model definition representing SKU. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal CommitmentPlanData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string kind, CognitiveServicesSku sku, IDictionary<string, string> tags, AzureLocation? location, CommitmentPlanProperties properties, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal CommitmentPlanData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, CommitmentPlanProperties properties, IDictionary<string, string> tags, AzureLocation? location, ETag? etag, string kind, CognitiveServicesSku sku, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            Properties = properties;
+            Tags = tags;
+            Location = location;
             ETag = etag;
             Kind = kind;
             Sku = sku;
-            Tags = tags;
-            Location = location;
-            Properties = properties;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Resource Etag. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; }
-        /// <summary> The Kind of the resource. </summary>
-        [WirePath("kind")]
-        public string Kind { get; set; }
-        /// <summary> The resource model definition representing SKU. </summary>
-        [WirePath("sku")]
-        public CognitiveServicesSku Sku { get; set; }
+        /// <summary> Properties of Cognitive Services account commitment plan. </summary>
+        [WirePath("properties")]
+        public CommitmentPlanProperties Properties { get; set; }
         /// <summary> Resource tags. </summary>
         [WirePath("tags")]
         public IDictionary<string, string> Tags { get; }
         /// <summary> The geo-location where the resource lives. </summary>
         [WirePath("location")]
         public AzureLocation? Location { get; set; }
-        /// <summary> Properties of Cognitive Services account commitment plan. </summary>
-        [WirePath("properties")]
-        public CommitmentPlanProperties Properties { get; set; }
+        /// <summary> Resource Etag. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; }
+        /// <summary> The kind (type) of cognitive service account. </summary>
+        [WirePath("kind")]
+        public string Kind { get; set; }
+        /// <summary> The resource model definition representing SKU. </summary>
+        [WirePath("sku")]
+        public CognitiveServicesSku Sku { get; set; }
     }
 }

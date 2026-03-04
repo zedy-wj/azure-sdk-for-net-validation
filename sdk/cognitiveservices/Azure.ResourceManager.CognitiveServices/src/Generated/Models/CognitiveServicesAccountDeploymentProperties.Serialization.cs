@@ -112,6 +112,30 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 writer.WritePropertyName("spilloverDeploymentName"u8);
                 writer.WriteStringValue(SpilloverDeploymentName);
             }
+            if (Optional.IsDefined(ServiceTier))
+            {
+                if (ServiceTier != null)
+                {
+                    writer.WritePropertyName("serviceTier"u8);
+                    writer.WriteStringValue(ServiceTier.Value.ToString());
+                }
+                else
+                {
+                    writer.WriteNull("serviceTier");
+                }
+            }
+            if (Optional.IsDefined(DeploymentState))
+            {
+                if (DeploymentState != null)
+                {
+                    writer.WritePropertyName("deploymentState"u8);
+                    writer.WriteStringValue(DeploymentState.Value.ToString());
+                }
+                else
+                {
+                    writer.WriteNull("deploymentState");
+                }
+            }
             if (options.Format != "W" && _serializedAdditionalRawData != null)
             {
                 foreach (var item in _serializedAdditionalRawData)
@@ -162,6 +186,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             DeploymentCapacitySettings capacitySettings = default;
             string parentDeploymentName = default;
             string spilloverDeploymentName = default;
+            ServiceTier? serviceTier = default;
+            DeploymentState? deploymentState = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
@@ -281,6 +307,26 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                     spilloverDeploymentName = property.Value.GetString();
                     continue;
                 }
+                if (property.NameEquals("serviceTier"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        serviceTier = null;
+                        continue;
+                    }
+                    serviceTier = new ServiceTier(property.Value.GetString());
+                    continue;
+                }
+                if (property.NameEquals("deploymentState"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        deploymentState = null;
+                        continue;
+                    }
+                    deploymentState = new DeploymentState(property.Value.GetString());
+                    continue;
+                }
                 if (options.Format != "W")
                 {
                     rawDataDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
@@ -301,6 +347,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 capacitySettings,
                 parentDeploymentName,
                 spilloverDeploymentName,
+                serviceTier,
+                deploymentState,
                 serializedAdditionalRawData);
         }
 
@@ -562,6 +610,36 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                     {
                         builder.AppendLine($"'{SpilloverDeploymentName}'");
                     }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ServiceTier), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  serviceTier: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ServiceTier))
+                {
+                    builder.Append("  serviceTier: ");
+                    builder.AppendLine($"'{ServiceTier.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(DeploymentState), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  deploymentState: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(DeploymentState))
+                {
+                    builder.Append("  deploymentState: ");
+                    builder.AppendLine($"'{DeploymentState.Value.ToString()}'");
                 }
             }
 

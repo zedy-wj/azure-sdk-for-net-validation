@@ -14,22 +14,22 @@ namespace Azure.ResourceManager.CognitiveServices.Models
     /// <summary>
     /// This connection type covers the generic ApiKey auth connection categories, for examples:
     /// AzureOpenAI:
-    ///     Category:= AzureOpenAI
-    ///     AuthType:= ApiKey (as type discriminator)
-    ///     Credentials:= {ApiKey} as .ApiKey
-    ///     Target:= {ApiBase}
+    /// Category:= AzureOpenAI
+    /// AuthType:= ApiKey (as type discriminator)
+    /// Credentials:= {ApiKey} as .ApiKey
+    /// Target:= {ApiBase}
     ///
     /// CognitiveService:
-    ///     Category:= CognitiveService
-    ///     AuthType:= ApiKey (as type discriminator)
-    ///     Credentials:= {SubscriptionKey} as ApiKey
-    ///     Target:= ServiceRegion={serviceRegion}
+    /// Category:= CognitiveService
+    /// AuthType:= ApiKey (as type discriminator)
+    /// Credentials:= {SubscriptionKey} as ApiKey
+    /// Target:= ServiceRegion={serviceRegion}
     ///
     /// CognitiveSearch:
-    ///     Category:= CognitiveSearch
-    ///     AuthType:= ApiKey (as type discriminator)
-    ///     Credentials:= {Key} as ApiKey
-    ///     Target:= {Endpoint}
+    /// Category:= CognitiveSearch
+    /// AuthType:= ApiKey (as type discriminator)
+    /// Credentials:= {Key} as ApiKey
+    /// Target:= {Endpoint}
     ///
     /// Use Metadata property bag for ApiType, ApiVersion, Kind and other metadata fields
     /// </summary>
@@ -44,7 +44,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <summary> Initializes a new instance of <see cref="ApiKeyAuthConnectionProperties"/>. </summary>
         /// <param name="authType"> Authentication type of the connection target. </param>
         /// <param name="category"> Category of the connection. </param>
-        /// <param name="createdByWorkspaceArmId"></param>
+        /// <param name="createdByWorkspaceArmId"> A type definition that refers the id to an Azure Resource Manager resource. </param>
         /// <param name="error"> Provides the error message if the connection fails. </param>
         /// <param name="expiryOn"></param>
         /// <param name="group"> Group based on connection category. </param>

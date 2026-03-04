@@ -21,7 +21,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task CreateOrUpdate_CreateProject()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/CreateProject.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/CreateProject.json
             // this example is just showing the usage of "Projects_Create" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -44,12 +44,12 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
             string projectName = "testProject1";
             CognitiveServicesProjectData data = new CognitiveServicesProjectData(new AzureLocation("West US"))
             {
-                Identity = new ManagedServiceIdentity("SystemAssigned"),
                 Properties = new CognitiveServicesProjectProperties
                 {
                     DisplayName = "p1",
                     Description = "Description of this project",
                 },
+                Identity = new ManagedServiceIdentity("SystemAssigned"),
             };
             ArmOperation<CognitiveServicesProjectResource> lro = await collection.CreateOrUpdateAsync(WaitUntil.Completed, projectName, data);
             CognitiveServicesProjectResource result = lro.Value;
@@ -65,7 +65,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task CreateOrUpdate_CreateProjectMin()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/CreateProjectMin.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/CreateProjectMin.json
             // this example is just showing the usage of "Projects_Create" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -88,8 +88,8 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
             string projectName = "testProject1";
             CognitiveServicesProjectData data = new CognitiveServicesProjectData(new AzureLocation("West US"))
             {
-                Identity = new ManagedServiceIdentity("SystemAssigned"),
                 Properties = new CognitiveServicesProjectProperties(),
+                Identity = new ManagedServiceIdentity("SystemAssigned"),
             };
             ArmOperation<CognitiveServicesProjectResource> lro = await collection.CreateOrUpdateAsync(WaitUntil.Completed, projectName, data);
             CognitiveServicesProjectResource result = lro.Value;
@@ -105,7 +105,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Get_GetProject()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/GetProject.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/GetProject.json
             // this example is just showing the usage of "Projects_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -139,7 +139,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task GetAll_ListProject()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListProjects.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListProjects.json
             // this example is just showing the usage of "Projects_List" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -175,7 +175,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Exists_GetProject()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/GetProject.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/GetProject.json
             // this example is just showing the usage of "Projects_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -205,7 +205,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task GetIfExists_GetProject()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/GetProject.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/GetProject.json
             // this example is just showing the usage of "Projects_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line

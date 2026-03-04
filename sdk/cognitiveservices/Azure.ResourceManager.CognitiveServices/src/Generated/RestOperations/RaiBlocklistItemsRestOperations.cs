@@ -33,8 +33,230 @@ namespace Azure.ResourceManager.CognitiveServices
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2025-06-01";
+            _apiVersion = apiVersion ?? "2025-10-01-preview";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
+        }
+
+        internal RequestUriBuilder CreateBatchAddRequestUri(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, IEnumerable<RaiBlocklistItemBulkContent> content)
+        {
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/subscriptions/", false);
+            uri.AppendPath(subscriptionId, true);
+            uri.AppendPath("/resourceGroups/", false);
+            uri.AppendPath(resourceGroupName, true);
+            uri.AppendPath("/providers/Microsoft.CognitiveServices/accounts/", false);
+            uri.AppendPath(accountName, true);
+            uri.AppendPath("/raiBlocklists/", false);
+            uri.AppendPath(raiBlocklistName, true);
+            uri.AppendPath("/addRaiBlocklistItems", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            return uri;
+        }
+
+        internal HttpMessage CreateBatchAddRequest(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, IEnumerable<RaiBlocklistItemBulkContent> content)
+        {
+            var message = _pipeline.CreateMessage();
+            var request = message.Request;
+            request.Method = RequestMethod.Post;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/subscriptions/", false);
+            uri.AppendPath(subscriptionId, true);
+            uri.AppendPath("/resourceGroups/", false);
+            uri.AppendPath(resourceGroupName, true);
+            uri.AppendPath("/providers/Microsoft.CognitiveServices/accounts/", false);
+            uri.AppendPath(accountName, true);
+            uri.AppendPath("/raiBlocklists/", false);
+            uri.AppendPath(raiBlocklistName, true);
+            uri.AppendPath("/addRaiBlocklistItems", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("Content-Type", "application/json");
+            var content0 = new Utf8JsonRequestContent();
+            content0.JsonWriter.WriteStartArray();
+            foreach (var item in content)
+            {
+                content0.JsonWriter.WriteObjectValue(item, ModelSerializationExtensions.WireOptions);
+            }
+            content0.JsonWriter.WriteEndArray();
+            request.Content = content0;
+            _userAgent.Apply(message);
+            return message;
+        }
+
+        /// <summary> Batch operation to add blocklist items. </summary>
+        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
+        /// <param name="accountName"> The name of Cognitive Services account. </param>
+        /// <param name="raiBlocklistName"> The name of the RaiBlocklist associated with the Cognitive Services Account. </param>
+        /// <param name="content"> Properties describing the custom blocklist items. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="raiBlocklistName"/> or <paramref name="content"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="raiBlocklistName"/> is an empty string, and was expected to be non-empty. </exception>
+        public async Task<Response<RaiBlocklistData>> BatchAddAsync(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, IEnumerable<RaiBlocklistItemBulkContent> content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            Argument.AssertNotNullOrEmpty(raiBlocklistName, nameof(raiBlocklistName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            using var message = CreateBatchAddRequest(subscriptionId, resourceGroupName, accountName, raiBlocklistName, content);
+            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
+            switch (message.Response.Status)
+            {
+                case 200:
+                    {
+                        RaiBlocklistData value = default;
+                        using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, ModelSerializationExtensions.JsonDocumentOptions, cancellationToken).ConfigureAwait(false);
+                        value = RaiBlocklistData.DeserializeRaiBlocklistData(document.RootElement);
+                        return Response.FromValue(value, message.Response);
+                    }
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
+        /// <summary> Batch operation to add blocklist items. </summary>
+        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
+        /// <param name="accountName"> The name of Cognitive Services account. </param>
+        /// <param name="raiBlocklistName"> The name of the RaiBlocklist associated with the Cognitive Services Account. </param>
+        /// <param name="content"> Properties describing the custom blocklist items. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="raiBlocklistName"/> or <paramref name="content"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="raiBlocklistName"/> is an empty string, and was expected to be non-empty. </exception>
+        public Response<RaiBlocklistData> BatchAdd(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, IEnumerable<RaiBlocklistItemBulkContent> content, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            Argument.AssertNotNullOrEmpty(raiBlocklistName, nameof(raiBlocklistName));
+            Argument.AssertNotNull(content, nameof(content));
+
+            using var message = CreateBatchAddRequest(subscriptionId, resourceGroupName, accountName, raiBlocklistName, content);
+            _pipeline.Send(message, cancellationToken);
+            switch (message.Response.Status)
+            {
+                case 200:
+                    {
+                        RaiBlocklistData value = default;
+                        using var document = JsonDocument.Parse(message.Response.ContentStream, ModelSerializationExtensions.JsonDocumentOptions);
+                        value = RaiBlocklistData.DeserializeRaiBlocklistData(document.RootElement);
+                        return Response.FromValue(value, message.Response);
+                    }
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
+        internal RequestUriBuilder CreateBatchDeleteRequestUri(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, BinaryData raiBlocklistItemsNames)
+        {
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/subscriptions/", false);
+            uri.AppendPath(subscriptionId, true);
+            uri.AppendPath("/resourceGroups/", false);
+            uri.AppendPath(resourceGroupName, true);
+            uri.AppendPath("/providers/Microsoft.CognitiveServices/accounts/", false);
+            uri.AppendPath(accountName, true);
+            uri.AppendPath("/raiBlocklists/", false);
+            uri.AppendPath(raiBlocklistName, true);
+            uri.AppendPath("/deleteRaiBlocklistItems", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            return uri;
+        }
+
+        internal HttpMessage CreateBatchDeleteRequest(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, BinaryData raiBlocklistItemsNames)
+        {
+            var message = _pipeline.CreateMessage();
+            var request = message.Request;
+            request.Method = RequestMethod.Post;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/subscriptions/", false);
+            uri.AppendPath(subscriptionId, true);
+            uri.AppendPath("/resourceGroups/", false);
+            uri.AppendPath(resourceGroupName, true);
+            uri.AppendPath("/providers/Microsoft.CognitiveServices/accounts/", false);
+            uri.AppendPath(accountName, true);
+            uri.AppendPath("/raiBlocklists/", false);
+            uri.AppendPath(raiBlocklistName, true);
+            uri.AppendPath("/deleteRaiBlocklistItems", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("Content-Type", "application/json");
+            var content = new Utf8JsonRequestContent();
+#if NET6_0_OR_GREATER
+				content.JsonWriter.WriteRawValue(raiBlocklistItemsNames);
+#else
+            using (JsonDocument document = JsonDocument.Parse(raiBlocklistItemsNames, ModelSerializationExtensions.JsonDocumentOptions))
+            {
+                JsonSerializer.Serialize(content.JsonWriter, document.RootElement);
+            }
+#endif
+            request.Content = content;
+            _userAgent.Apply(message);
+            return message;
+        }
+
+        /// <summary> Batch operation to delete blocklist items. </summary>
+        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
+        /// <param name="accountName"> The name of Cognitive Services account. </param>
+        /// <param name="raiBlocklistName"> The name of the RaiBlocklist associated with the Cognitive Services Account. </param>
+        /// <param name="raiBlocklistItemsNames"> List of RAI Blocklist Items Names. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="raiBlocklistName"/> or <paramref name="raiBlocklistItemsNames"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="raiBlocklistName"/> is an empty string, and was expected to be non-empty. </exception>
+        public async Task<Response> BatchDeleteAsync(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, BinaryData raiBlocklistItemsNames, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            Argument.AssertNotNullOrEmpty(raiBlocklistName, nameof(raiBlocklistName));
+            Argument.AssertNotNull(raiBlocklistItemsNames, nameof(raiBlocklistItemsNames));
+
+            using var message = CreateBatchDeleteRequest(subscriptionId, resourceGroupName, accountName, raiBlocklistName, raiBlocklistItemsNames);
+            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
+            switch (message.Response.Status)
+            {
+                case 204:
+                    return message.Response;
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
+        /// <summary> Batch operation to delete blocklist items. </summary>
+        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
+        /// <param name="accountName"> The name of Cognitive Services account. </param>
+        /// <param name="raiBlocklistName"> The name of the RaiBlocklist associated with the Cognitive Services Account. </param>
+        /// <param name="raiBlocklistItemsNames"> List of RAI Blocklist Items Names. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="raiBlocklistName"/> or <paramref name="raiBlocklistItemsNames"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="raiBlocklistName"/> is an empty string, and was expected to be non-empty. </exception>
+        public Response BatchDelete(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, BinaryData raiBlocklistItemsNames, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            Argument.AssertNotNullOrEmpty(raiBlocklistName, nameof(raiBlocklistName));
+            Argument.AssertNotNull(raiBlocklistItemsNames, nameof(raiBlocklistItemsNames));
+
+            using var message = CreateBatchDeleteRequest(subscriptionId, resourceGroupName, accountName, raiBlocklistName, raiBlocklistItemsNames);
+            _pipeline.Send(message, cancellationToken);
+            switch (message.Response.Status)
+            {
+                case 204:
+                    return message.Response;
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
         }
 
         internal RequestUriBuilder CreateListRequestUri(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName)
@@ -462,228 +684,6 @@ namespace Azure.ResourceManager.CognitiveServices
             switch (message.Response.Status)
             {
                 case 202:
-                case 204:
-                    return message.Response;
-                default:
-                    throw new RequestFailedException(message.Response);
-            }
-        }
-
-        internal RequestUriBuilder CreateBatchAddRequestUri(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, IEnumerable<RaiBlocklistItemBulkContent> content)
-        {
-            var uri = new RawRequestUriBuilder();
-            uri.Reset(_endpoint);
-            uri.AppendPath("/subscriptions/", false);
-            uri.AppendPath(subscriptionId, true);
-            uri.AppendPath("/resourceGroups/", false);
-            uri.AppendPath(resourceGroupName, true);
-            uri.AppendPath("/providers/Microsoft.CognitiveServices/accounts/", false);
-            uri.AppendPath(accountName, true);
-            uri.AppendPath("/raiBlocklists/", false);
-            uri.AppendPath(raiBlocklistName, true);
-            uri.AppendPath("/addRaiBlocklistItems", false);
-            uri.AppendQuery("api-version", _apiVersion, true);
-            return uri;
-        }
-
-        internal HttpMessage CreateBatchAddRequest(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, IEnumerable<RaiBlocklistItemBulkContent> content)
-        {
-            var message = _pipeline.CreateMessage();
-            var request = message.Request;
-            request.Method = RequestMethod.Post;
-            var uri = new RawRequestUriBuilder();
-            uri.Reset(_endpoint);
-            uri.AppendPath("/subscriptions/", false);
-            uri.AppendPath(subscriptionId, true);
-            uri.AppendPath("/resourceGroups/", false);
-            uri.AppendPath(resourceGroupName, true);
-            uri.AppendPath("/providers/Microsoft.CognitiveServices/accounts/", false);
-            uri.AppendPath(accountName, true);
-            uri.AppendPath("/raiBlocklists/", false);
-            uri.AppendPath(raiBlocklistName, true);
-            uri.AppendPath("/addRaiBlocklistItems", false);
-            uri.AppendQuery("api-version", _apiVersion, true);
-            request.Uri = uri;
-            request.Headers.Add("Accept", "application/json");
-            request.Headers.Add("Content-Type", "application/json");
-            var content0 = new Utf8JsonRequestContent();
-            content0.JsonWriter.WriteStartArray();
-            foreach (var item in content)
-            {
-                content0.JsonWriter.WriteObjectValue(item, ModelSerializationExtensions.WireOptions);
-            }
-            content0.JsonWriter.WriteEndArray();
-            request.Content = content0;
-            _userAgent.Apply(message);
-            return message;
-        }
-
-        /// <summary> Batch operation to add blocklist items. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="accountName"> The name of Cognitive Services account. </param>
-        /// <param name="raiBlocklistName"> The name of the RaiBlocklist associated with the Cognitive Services Account. </param>
-        /// <param name="content"> Properties describing the custom blocklist items. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="raiBlocklistName"/> or <paramref name="content"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="raiBlocklistName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<RaiBlocklistData>> BatchAddAsync(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, IEnumerable<RaiBlocklistItemBulkContent> content, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(raiBlocklistName, nameof(raiBlocklistName));
-            Argument.AssertNotNull(content, nameof(content));
-
-            using var message = CreateBatchAddRequest(subscriptionId, resourceGroupName, accountName, raiBlocklistName, content);
-            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
-            switch (message.Response.Status)
-            {
-                case 200:
-                    {
-                        RaiBlocklistData value = default;
-                        using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, ModelSerializationExtensions.JsonDocumentOptions, cancellationToken).ConfigureAwait(false);
-                        value = RaiBlocklistData.DeserializeRaiBlocklistData(document.RootElement);
-                        return Response.FromValue(value, message.Response);
-                    }
-                default:
-                    throw new RequestFailedException(message.Response);
-            }
-        }
-
-        /// <summary> Batch operation to add blocklist items. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="accountName"> The name of Cognitive Services account. </param>
-        /// <param name="raiBlocklistName"> The name of the RaiBlocklist associated with the Cognitive Services Account. </param>
-        /// <param name="content"> Properties describing the custom blocklist items. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="raiBlocklistName"/> or <paramref name="content"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="raiBlocklistName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<RaiBlocklistData> BatchAdd(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, IEnumerable<RaiBlocklistItemBulkContent> content, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(raiBlocklistName, nameof(raiBlocklistName));
-            Argument.AssertNotNull(content, nameof(content));
-
-            using var message = CreateBatchAddRequest(subscriptionId, resourceGroupName, accountName, raiBlocklistName, content);
-            _pipeline.Send(message, cancellationToken);
-            switch (message.Response.Status)
-            {
-                case 200:
-                    {
-                        RaiBlocklistData value = default;
-                        using var document = JsonDocument.Parse(message.Response.ContentStream, ModelSerializationExtensions.JsonDocumentOptions);
-                        value = RaiBlocklistData.DeserializeRaiBlocklistData(document.RootElement);
-                        return Response.FromValue(value, message.Response);
-                    }
-                default:
-                    throw new RequestFailedException(message.Response);
-            }
-        }
-
-        internal RequestUriBuilder CreateBatchDeleteRequestUri(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, BinaryData raiBlocklistItemsNames)
-        {
-            var uri = new RawRequestUriBuilder();
-            uri.Reset(_endpoint);
-            uri.AppendPath("/subscriptions/", false);
-            uri.AppendPath(subscriptionId, true);
-            uri.AppendPath("/resourceGroups/", false);
-            uri.AppendPath(resourceGroupName, true);
-            uri.AppendPath("/providers/Microsoft.CognitiveServices/accounts/", false);
-            uri.AppendPath(accountName, true);
-            uri.AppendPath("/raiBlocklists/", false);
-            uri.AppendPath(raiBlocklistName, true);
-            uri.AppendPath("/deleteRaiBlocklistItems", false);
-            uri.AppendQuery("api-version", _apiVersion, true);
-            return uri;
-        }
-
-        internal HttpMessage CreateBatchDeleteRequest(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, BinaryData raiBlocklistItemsNames)
-        {
-            var message = _pipeline.CreateMessage();
-            var request = message.Request;
-            request.Method = RequestMethod.Post;
-            var uri = new RawRequestUriBuilder();
-            uri.Reset(_endpoint);
-            uri.AppendPath("/subscriptions/", false);
-            uri.AppendPath(subscriptionId, true);
-            uri.AppendPath("/resourceGroups/", false);
-            uri.AppendPath(resourceGroupName, true);
-            uri.AppendPath("/providers/Microsoft.CognitiveServices/accounts/", false);
-            uri.AppendPath(accountName, true);
-            uri.AppendPath("/raiBlocklists/", false);
-            uri.AppendPath(raiBlocklistName, true);
-            uri.AppendPath("/deleteRaiBlocklistItems", false);
-            uri.AppendQuery("api-version", _apiVersion, true);
-            request.Uri = uri;
-            request.Headers.Add("Accept", "application/json");
-            request.Headers.Add("Content-Type", "application/json");
-            var content = new Utf8JsonRequestContent();
-#if NET6_0_OR_GREATER
-				content.JsonWriter.WriteRawValue(raiBlocklistItemsNames);
-#else
-            using (JsonDocument document = JsonDocument.Parse(raiBlocklistItemsNames, ModelSerializationExtensions.JsonDocumentOptions))
-            {
-                JsonSerializer.Serialize(content.JsonWriter, document.RootElement);
-            }
-#endif
-            request.Content = content;
-            _userAgent.Apply(message);
-            return message;
-        }
-
-        /// <summary> Batch operation to delete blocklist items. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="accountName"> The name of Cognitive Services account. </param>
-        /// <param name="raiBlocklistName"> The name of the RaiBlocklist associated with the Cognitive Services Account. </param>
-        /// <param name="raiBlocklistItemsNames"> List of RAI Blocklist Items Names. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="raiBlocklistName"/> or <paramref name="raiBlocklistItemsNames"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="raiBlocklistName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response> BatchDeleteAsync(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, BinaryData raiBlocklistItemsNames, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(raiBlocklistName, nameof(raiBlocklistName));
-            Argument.AssertNotNull(raiBlocklistItemsNames, nameof(raiBlocklistItemsNames));
-
-            using var message = CreateBatchDeleteRequest(subscriptionId, resourceGroupName, accountName, raiBlocklistName, raiBlocklistItemsNames);
-            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
-            switch (message.Response.Status)
-            {
-                case 204:
-                    return message.Response;
-                default:
-                    throw new RequestFailedException(message.Response);
-            }
-        }
-
-        /// <summary> Batch operation to delete blocklist items. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="accountName"> The name of Cognitive Services account. </param>
-        /// <param name="raiBlocklistName"> The name of the RaiBlocklist associated with the Cognitive Services Account. </param>
-        /// <param name="raiBlocklistItemsNames"> List of RAI Blocklist Items Names. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="raiBlocklistName"/> or <paramref name="raiBlocklistItemsNames"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="raiBlocklistName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response BatchDelete(string subscriptionId, string resourceGroupName, string accountName, string raiBlocklistName, BinaryData raiBlocklistItemsNames, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(raiBlocklistName, nameof(raiBlocklistName));
-            Argument.AssertNotNull(raiBlocklistItemsNames, nameof(raiBlocklistItemsNames));
-
-            using var message = CreateBatchDeleteRequest(subscriptionId, resourceGroupName, accountName, raiBlocklistName, raiBlocklistItemsNames);
-            _pipeline.Send(message, cancellationToken);
-            switch (message.Response.Status)
-            {
                 case 204:
                     return message.Response;
                 default:

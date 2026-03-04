@@ -63,24 +63,27 @@ namespace Azure.ResourceManager.CognitiveServices
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Resource Etag. </param>
         /// <param name="location"> The location of the private endpoint connection. </param>
         /// <param name="privateEndpoint"> The resource of private end point. </param>
         /// <param name="connectionState"> A collection of information about the state of the connection between service consumer and provider. </param>
         /// <param name="provisioningState"> The provisioning state of the private endpoint connection resource. </param>
         /// <param name="groupIds"> The private link resource group ids. </param>
-        /// <param name="etag"> Resource Etag. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal CognitiveServicesPrivateEndpointConnectionData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, AzureLocation? location, SubResource privateEndpoint, CognitiveServicesPrivateLinkServiceConnectionState connectionState, CognitiveServicesPrivateEndpointConnectionProvisioningState? provisioningState, IList<string> groupIds, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal CognitiveServicesPrivateEndpointConnectionData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, AzureLocation? location, SubResource privateEndpoint, CognitiveServicesPrivateLinkServiceConnectionState connectionState, CognitiveServicesPrivateEndpointConnectionProvisioningState? provisioningState, IList<string> groupIds, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             Location = location;
             PrivateEndpoint = privateEndpoint;
             ConnectionState = connectionState;
             ProvisioningState = provisioningState;
             GroupIds = groupIds;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Resource Etag. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; }
         /// <summary> The location of the private endpoint connection. </summary>
         [WirePath("location")]
         public AzureLocation? Location { get; set; }
@@ -102,8 +105,5 @@ namespace Azure.ResourceManager.CognitiveServices
         /// <summary> The private link resource group ids. </summary>
         [WirePath("properties.groupIds")]
         public IList<string> GroupIds { get; }
-        /// <summary> Resource Etag. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; }
     }
 }

@@ -20,7 +20,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Get_GetAccount()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/GetAccount.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/GetAccount.json
             // this example is just showing the usage of "Accounts_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -50,7 +50,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Delete_DeleteAccount()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/DeleteAccount.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/DeleteAccount.json
             // this example is just showing the usage of "Accounts_Delete" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -76,7 +76,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Update_UpdateAccount()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/UpdateAccount.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/UpdateAccount.json
             // this example is just showing the usage of "Accounts_Update" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -111,7 +111,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task GetKeys_ListKeys()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListKeys.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListKeys.json
             // this example is just showing the usage of "Accounts_ListKeys" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -135,9 +135,38 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
+        public async Task GetModels_ListAccountModels()
+        {
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListAccountModels.json
+            // this example is just showing the usage of "Accounts_ListModels" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this CognitiveServicesAccountResource created on azure
+            // for more information of creating CognitiveServicesAccountResource, please refer to the document of CognitiveServicesAccountResource
+            string subscriptionId = "00000000-1111-2222-3333-444444444444";
+            string resourceGroupName = "resourceGroupName";
+            string accountName = "accountName";
+            ResourceIdentifier cognitiveServicesAccountResourceId = CognitiveServicesAccountResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, accountName);
+            CognitiveServicesAccountResource cognitiveServicesAccount = client.GetCognitiveServicesAccountResource(cognitiveServicesAccountResourceId);
+
+            // invoke the operation and iterate over the result
+            await foreach (CognitiveServicesAccountModel item in cognitiveServicesAccount.GetModelsAsync())
+            {
+                Console.WriteLine($"Succeeded: {item}");
+            }
+
+            Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
         public async Task RegenerateKey_RegenerateKeys()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/RegenerateKey.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/RegenerateKey.json
             // this example is just showing the usage of "Accounts_RegenerateKey" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -164,7 +193,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task GetSkus_ListSKUs()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListSkus.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListSkus.json
             // this example is just showing the usage of "Accounts_ListSkus" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -193,7 +222,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task GetUsages_GetUsages()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/GetUsages.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/GetUsages.json
             // this example is just showing the usage of "Accounts_ListUsages" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -220,38 +249,9 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
-        public async Task GetModels_ListAccountModels()
-        {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListAccountModels.json
-            // this example is just showing the usage of "Accounts_ListModels" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this CognitiveServicesAccountResource created on azure
-            // for more information of creating CognitiveServicesAccountResource, please refer to the document of CognitiveServicesAccountResource
-            string subscriptionId = "00000000-1111-2222-3333-444444444444";
-            string resourceGroupName = "resourceGroupName";
-            string accountName = "accountName";
-            ResourceIdentifier cognitiveServicesAccountResourceId = CognitiveServicesAccountResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, accountName);
-            CognitiveServicesAccountResource cognitiveServicesAccount = client.GetCognitiveServicesAccountResource(cognitiveServicesAccountResourceId);
-
-            // invoke the operation and iterate over the result
-            await foreach (CognitiveServicesAccountModel item in cognitiveServicesAccount.GetModelsAsync())
-            {
-                Console.WriteLine($"Succeeded: {item}");
-            }
-
-            Console.WriteLine("Succeeded");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
         public async Task GetPrivateLinkResources_ListPrivateLinkResources()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListPrivateLinkResources.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListPrivateLinkResources.json
             // this example is just showing the usage of "PrivateLinkResources_List" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -274,6 +274,78 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
             }
 
             Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task ProvisionManagedNetworkManagedNetworkProvision_ProvisionManagedNetwork()
+        {
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ManagedNetwork/provisionManagedNetwork.json
+            // this example is just showing the usage of "ManagedNetworkProvisions_ProvisionManagedNetwork" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this CognitiveServicesAccountResource created on azure
+            // for more information of creating CognitiveServicesAccountResource, please refer to the document of CognitiveServicesAccountResource
+            string subscriptionId = "00000000-1111-2222-3333-444444444444";
+            string resourceGroupName = "test-rg";
+            string accountName = "cognitive-account-name";
+            ResourceIdentifier cognitiveServicesAccountResourceId = CognitiveServicesAccountResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, accountName);
+            CognitiveServicesAccountResource cognitiveServicesAccount = client.GetCognitiveServicesAccountResource(cognitiveServicesAccountResourceId);
+
+            // invoke the operation
+            BinaryData body = BinaryData.FromObjectAsJson(new object());
+            ArmOperation<ManagedNetworkProvisionStatus> lro = await cognitiveServicesAccount.ProvisionManagedNetworkManagedNetworkProvisionAsync(WaitUntil.Completed, body: body);
+            ManagedNetworkProvisionStatus result = lro.Value;
+
+            Console.WriteLine($"Succeeded: {result}");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task CreateOrUpdateTestRaiExternalSafetyProvider_TestRaiExternalSafetyProvider()
+        {
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/TestRaiExternalSafetyProvider.json
+            // this example is just showing the usage of "TestRaiExternalSafetyProvider_CreateOrUpdate" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this CognitiveServicesAccountResource created on azure
+            // for more information of creating CognitiveServicesAccountResource, please refer to the document of CognitiveServicesAccountResource
+            string subscriptionId = "00000000-0000-0000-0000-000000000000";
+            string resourceGroupName = "myResourceGroup";
+            string accountName = "myCognitiveAccount";
+            ResourceIdentifier cognitiveServicesAccountResourceId = CognitiveServicesAccountResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, accountName);
+            CognitiveServicesAccountResource cognitiveServicesAccount = client.GetCognitiveServicesAccountResource(cognitiveServicesAccountResourceId);
+
+            // invoke the operation
+            string safetyProviderName = "mySafetyProvider";
+            RaiExternalSafetyProviderSchemaData data = new RaiExternalSafetyProviderSchemaData
+            {
+                Properties = new RaiExternalSafetyProviderSchemaProperties
+                {
+                    ProviderId = "00000000-0000-0000-0000-000000000000",
+                    ProviderName = "safetyProviderName",
+                    Mode = "sync",
+                    Uri = new Uri("https://example-safety-provider.contoso.com/webhook"),
+                    SecretName = "safety-provider-secret",
+                    ManagedIdentity = "f3b9c2e7-4aad-4b1f-9d9c-9e9b1e9b1f9b",
+                    KeyVaultUri = new Uri("https://contoso-vault.vault.azure.net/"),
+                },
+            };
+            RaiExternalSafetyProviderSchemaResource result = await cognitiveServicesAccount.CreateOrUpdateTestRaiExternalSafetyProviderAsync(safetyProviderName, data);
+
+            // the variable result is a resource, you could call other operations on this instance as well
+            // but just for demo, we get its data from this resource instance
+            RaiExternalSafetyProviderSchemaData resourceData = result.Data;
+            // for demo we just print out the id
+            Console.WriteLine($"Succeeded on id: {resourceData.Id}");
         }
     }
 }

@@ -60,6 +60,11 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 writer.WritePropertyName("source"u8);
                 writer.WriteStringValue(Source.Value.ToString());
             }
+            if (Optional.IsDefined(Action))
+            {
+                writer.WritePropertyName("action"u8);
+                writer.WriteStringValue(Action.Value.ToString());
+            }
             if (options.Format != "W" && _serializedAdditionalRawData != null)
             {
                 foreach (var item in _serializedAdditionalRawData)
@@ -102,6 +107,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             RaiPolicyContentLevel? severityThreshold = default;
             bool? blocking = default;
             RaiPolicyContentSource? source = default;
+            RaiActionType? action = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
@@ -147,6 +153,15 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                     source = new RaiPolicyContentSource(property.Value.GetString());
                     continue;
                 }
+                if (property.NameEquals("action"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    action = new RaiActionType(property.Value.GetString());
+                    continue;
+                }
                 if (options.Format != "W")
                 {
                     rawDataDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
@@ -159,6 +174,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 severityThreshold,
                 blocking,
                 source,
+                action,
                 serializedAdditionalRawData);
         }
 
@@ -255,6 +271,21 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 {
                     builder.Append("  source: ");
                     builder.AppendLine($"'{Source.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Action), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  action: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(Action))
+                {
+                    builder.Append("  action: ");
+                    builder.AppendLine($"'{Action.Value.ToString()}'");
                 }
             }
 

@@ -56,14 +56,16 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <param name="severityThreshold"> Level at which content is filtered. </param>
         /// <param name="blocking"> If blocking would occur. </param>
         /// <param name="source"> Content source to apply the Content Filters. </param>
+        /// <param name="action"> The action types to apply to the content filters. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal RaiPolicyContentFilter(string name, bool? enabled, RaiPolicyContentLevel? severityThreshold, bool? blocking, RaiPolicyContentSource? source, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal RaiPolicyContentFilter(string name, bool? enabled, RaiPolicyContentLevel? severityThreshold, bool? blocking, RaiPolicyContentSource? source, RaiActionType? action, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             Name = name;
             Enabled = enabled;
             SeverityThreshold = severityThreshold;
             Blocking = blocking;
             Source = source;
+            Action = action;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -82,5 +84,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <summary> Content source to apply the Content Filters. </summary>
         [WirePath("source")]
         public RaiPolicyContentSource? Source { get; set; }
+        /// <summary> The action types to apply to the content filters. </summary>
+        [WirePath("action")]
+        public RaiActionType? Action { get; set; }
     }
 }

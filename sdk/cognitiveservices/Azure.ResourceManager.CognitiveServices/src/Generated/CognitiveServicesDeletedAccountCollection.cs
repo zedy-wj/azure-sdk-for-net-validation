@@ -62,7 +62,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -70,7 +70,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="accountName"> The name of Cognitive Services account. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -110,7 +110,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -118,7 +118,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="accountName"> The name of Cognitive Services account. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -158,7 +158,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -166,7 +166,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="accountName"> The name of Cognitive Services account. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -204,7 +204,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -212,7 +212,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="accountName"> The name of Cognitive Services account. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -250,7 +250,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -258,7 +258,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="accountName"> The name of Cognitive Services account. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -298,7 +298,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -306,7 +306,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </list>
         /// </summary>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="accountName"> The name of Cognitive Services account. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>

@@ -51,7 +51,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="CommitmentTier"/>. </summary>
-        /// <param name="kind"> The Kind of the resource. </param>
+        /// <param name="kind"> The kind (type) of cognitive service account. </param>
         /// <param name="skuName"> The name of the SKU. Ex - P3. It is typically a letter+number code. </param>
         /// <param name="hostingModel"> Account hosting model. </param>
         /// <param name="planType"> Commitment plan type. </param>
@@ -73,7 +73,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The Kind of the resource. </summary>
+        /// <summary> The kind (type) of cognitive service account. </summary>
         [WirePath("kind")]
         public string Kind { get; }
         /// <summary> The name of the SKU. Ex - P3. It is typically a letter+number code. </summary>

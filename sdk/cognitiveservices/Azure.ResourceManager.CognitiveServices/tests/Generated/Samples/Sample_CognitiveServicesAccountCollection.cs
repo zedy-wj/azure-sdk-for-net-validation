@@ -22,7 +22,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task CreateOrUpdate_CreateAccount()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/CreateAccount.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/CreateAccount.json
             // this example is just showing the usage of "Accounts_Create" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -44,9 +44,6 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
             string accountName = "testCreate1";
             CognitiveServicesAccountData data = new CognitiveServicesAccountData(new AzureLocation("West US"))
             {
-                Kind = "Emotion",
-                Sku = new CognitiveServicesSku("S0"),
-                Identity = new ManagedServiceIdentity("SystemAssigned"),
                 Properties = new CognitiveServicesAccountProperties
                 {
                     Encryption = new ServiceAccountEncryptionProperties
@@ -64,6 +61,9 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
 ResourceId = new ResourceIdentifier("/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/myResourceGroup/providers/Microsoft.Storage/storageAccounts/myStorageAccount"),
 }},
                 },
+                Kind = "Emotion",
+                Sku = new CognitiveServicesSku("S0"),
+                Identity = new ManagedServiceIdentity("SystemAssigned"),
             };
             ArmOperation<CognitiveServicesAccountResource> lro = await collection.CreateOrUpdateAsync(WaitUntil.Completed, accountName, data);
             CognitiveServicesAccountResource result = lro.Value;
@@ -79,7 +79,7 @@ ResourceId = new ResourceIdentifier("/subscriptions/00000000-1111-2222-3333-4444
         [Ignore("Only validating compilation of examples")]
         public async Task CreateOrUpdate_CreateAccountMin()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/CreateAccountMin.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/CreateAccountMin.json
             // this example is just showing the usage of "Accounts_Create" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -101,10 +101,10 @@ ResourceId = new ResourceIdentifier("/subscriptions/00000000-1111-2222-3333-4444
             string accountName = "testCreate1";
             CognitiveServicesAccountData data = new CognitiveServicesAccountData(new AzureLocation("West US"))
             {
+                Properties = new CognitiveServicesAccountProperties(),
                 Kind = "CognitiveServices",
                 Sku = new CognitiveServicesSku("S0"),
                 Identity = new ManagedServiceIdentity("SystemAssigned"),
-                Properties = new CognitiveServicesAccountProperties(),
             };
             ArmOperation<CognitiveServicesAccountResource> lro = await collection.CreateOrUpdateAsync(WaitUntil.Completed, accountName, data);
             CognitiveServicesAccountResource result = lro.Value;
@@ -120,7 +120,7 @@ ResourceId = new ResourceIdentifier("/subscriptions/00000000-1111-2222-3333-4444
         [Ignore("Only validating compilation of examples")]
         public async Task Get_GetAccount()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/GetAccount.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/GetAccount.json
             // this example is just showing the usage of "Accounts_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -153,7 +153,7 @@ ResourceId = new ResourceIdentifier("/subscriptions/00000000-1111-2222-3333-4444
         [Ignore("Only validating compilation of examples")]
         public async Task GetAll_ListAccountsByResourceGroup()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ListAccountsByResourceGroup.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ListAccountsByResourceGroup.json
             // this example is just showing the usage of "Accounts_ListByResourceGroup" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -188,7 +188,7 @@ ResourceId = new ResourceIdentifier("/subscriptions/00000000-1111-2222-3333-4444
         [Ignore("Only validating compilation of examples")]
         public async Task Exists_GetAccount()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/GetAccount.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/GetAccount.json
             // this example is just showing the usage of "Accounts_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -217,7 +217,7 @@ ResourceId = new ResourceIdentifier("/subscriptions/00000000-1111-2222-3333-4444
         [Ignore("Only validating compilation of examples")]
         public async Task GetIfExists_GetAccount()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/GetAccount.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/GetAccount.json
             // this example is just showing the usage of "Accounts_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line

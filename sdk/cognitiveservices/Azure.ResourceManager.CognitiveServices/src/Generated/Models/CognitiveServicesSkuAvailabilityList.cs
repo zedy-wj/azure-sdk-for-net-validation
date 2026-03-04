@@ -51,9 +51,9 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="CognitiveServicesSkuAvailabilityList"/>. </summary>
-        /// <param name="kind"> The Kind of the resource. </param>
+        /// <param name="kind"> The kind (type) of cognitive service account. </param>
         /// <param name="skuAvailabilityType"> The Type of the resource. </param>
-        /// <param name="skuName"> The SKU of Cognitive Services account. </param>
+        /// <param name="skuName"> The name of SKU. </param>
         /// <param name="isSkuAvailable"> Indicates the given SKU is available or not. </param>
         /// <param name="reason"> Reason why the SKU is not available. </param>
         /// <param name="message"> Additional error message. </param>
@@ -69,13 +69,13 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The Kind of the resource. </summary>
+        /// <summary> The kind (type) of cognitive service account. </summary>
         [WirePath("kind")]
         public string Kind { get; }
         /// <summary> The Type of the resource. </summary>
         [WirePath("type")]
         public string SkuAvailabilityType { get; }
-        /// <summary> The SKU of Cognitive Services account. </summary>
+        /// <summary> The name of SKU. </summary>
         [WirePath("skuName")]
         public string SkuName { get; }
         /// <summary> Indicates the given SKU is available or not. </summary>

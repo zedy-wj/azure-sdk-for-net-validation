@@ -59,30 +59,6 @@ namespace Azure.ResourceManager.CognitiveServices.Mocking
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="CognitiveServicesPrivateEndpointConnectionResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CognitiveServicesPrivateEndpointConnectionResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesPrivateEndpointConnectionResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CognitiveServicesPrivateEndpointConnectionResource"/> object. </returns>
-        public virtual CognitiveServicesPrivateEndpointConnectionResource GetCognitiveServicesPrivateEndpointConnectionResource(ResourceIdentifier id)
-        {
-            CognitiveServicesPrivateEndpointConnectionResource.ValidateResourceId(id);
-            return new CognitiveServicesPrivateEndpointConnectionResource(Client, id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="CognitiveServicesAccountDeploymentResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CognitiveServicesAccountDeploymentResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesAccountDeploymentResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CognitiveServicesAccountDeploymentResource"/> object. </returns>
-        public virtual CognitiveServicesAccountDeploymentResource GetCognitiveServicesAccountDeploymentResource(ResourceIdentifier id)
-        {
-            CognitiveServicesAccountDeploymentResource.ValidateResourceId(id);
-            return new CognitiveServicesAccountDeploymentResource(Client, id);
-        }
-
-        /// <summary>
         /// Gets an object representing a <see cref="CommitmentPlanResource"/> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="CommitmentPlanResource.CreateResourceIdentifier" /> to create a <see cref="CommitmentPlanResource"/> <see cref="ResourceIdentifier"/> from its components.
         /// </summary>
@@ -119,15 +95,51 @@ namespace Azure.ResourceManager.CognitiveServices.Mocking
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="CognitiveServicesEncryptionScopeResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CognitiveServicesEncryptionScopeResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesEncryptionScopeResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// Gets an object representing a <see cref="RaiContentFilterResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="RaiContentFilterResource.CreateResourceIdentifier" /> to create a <see cref="RaiContentFilterResource"/> <see cref="ResourceIdentifier"/> from its components.
         /// </summary>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CognitiveServicesEncryptionScopeResource"/> object. </returns>
-        public virtual CognitiveServicesEncryptionScopeResource GetCognitiveServicesEncryptionScopeResource(ResourceIdentifier id)
+        /// <returns> Returns a <see cref="RaiContentFilterResource"/> object. </returns>
+        public virtual RaiContentFilterResource GetRaiContentFilterResource(ResourceIdentifier id)
         {
-            CognitiveServicesEncryptionScopeResource.ValidateResourceId(id);
-            return new CognitiveServicesEncryptionScopeResource(Client, id);
+            RaiContentFilterResource.ValidateResourceId(id);
+            return new RaiContentFilterResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="QuotaTierResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="QuotaTierResource.CreateResourceIdentifier" /> to create a <see cref="QuotaTierResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="QuotaTierResource"/> object. </returns>
+        public virtual QuotaTierResource GetQuotaTierResource(ResourceIdentifier id)
+        {
+            QuotaTierResource.ValidateResourceId(id);
+            return new QuotaTierResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="RaiExternalSafetyProviderSchemaResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="RaiExternalSafetyProviderSchemaResource.CreateResourceIdentifier" /> to create a <see cref="RaiExternalSafetyProviderSchemaResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="RaiExternalSafetyProviderSchemaResource"/> object. </returns>
+        public virtual RaiExternalSafetyProviderSchemaResource GetRaiExternalSafetyProviderSchemaResource(ResourceIdentifier id)
+        {
+            RaiExternalSafetyProviderSchemaResource.ValidateResourceId(id);
+            return new RaiExternalSafetyProviderSchemaResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="SubscriptionRaiPolicyResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="SubscriptionRaiPolicyResource.CreateResourceIdentifier" /> to create a <see cref="SubscriptionRaiPolicyResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="SubscriptionRaiPolicyResource"/> object. </returns>
+        public virtual SubscriptionRaiPolicyResource GetSubscriptionRaiPolicyResource(ResourceIdentifier id)
+        {
+            SubscriptionRaiPolicyResource.ValidateResourceId(id);
+            return new SubscriptionRaiPolicyResource(Client, id);
         }
 
         /// <summary>
@@ -143,75 +155,27 @@ namespace Azure.ResourceManager.CognitiveServices.Mocking
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="RaiBlocklistResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="RaiBlocklistResource.CreateResourceIdentifier" /> to create a <see cref="RaiBlocklistResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// Gets an object representing a <see cref="CognitiveServicesCapabilityHostResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CognitiveServicesCapabilityHostResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesCapabilityHostResource"/> <see cref="ResourceIdentifier"/> from its components.
         /// </summary>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="RaiBlocklistResource"/> object. </returns>
-        public virtual RaiBlocklistResource GetRaiBlocklistResource(ResourceIdentifier id)
+        /// <returns> Returns a <see cref="CognitiveServicesCapabilityHostResource"/> object. </returns>
+        public virtual CognitiveServicesCapabilityHostResource GetCognitiveServicesCapabilityHostResource(ResourceIdentifier id)
         {
-            RaiBlocklistResource.ValidateResourceId(id);
-            return new RaiBlocklistResource(Client, id);
+            CognitiveServicesCapabilityHostResource.ValidateResourceId(id);
+            return new CognitiveServicesCapabilityHostResource(Client, id);
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="RaiBlocklistItemResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="RaiBlocklistItemResource.CreateResourceIdentifier" /> to create a <see cref="RaiBlocklistItemResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// Gets an object representing a <see cref="CognitiveServicesProjectCapabilityHostResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CognitiveServicesProjectCapabilityHostResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesProjectCapabilityHostResource"/> <see cref="ResourceIdentifier"/> from its components.
         /// </summary>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="RaiBlocklistItemResource"/> object. </returns>
-        public virtual RaiBlocklistItemResource GetRaiBlocklistItemResource(ResourceIdentifier id)
+        /// <returns> Returns a <see cref="CognitiveServicesProjectCapabilityHostResource"/> object. </returns>
+        public virtual CognitiveServicesProjectCapabilityHostResource GetCognitiveServicesProjectCapabilityHostResource(ResourceIdentifier id)
         {
-            RaiBlocklistItemResource.ValidateResourceId(id);
-            return new RaiBlocklistItemResource(Client, id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="RaiContentFilterResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="RaiContentFilterResource.CreateResourceIdentifier" /> to create a <see cref="RaiContentFilterResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="RaiContentFilterResource"/> object. </returns>
-        public virtual RaiContentFilterResource GetRaiContentFilterResource(ResourceIdentifier id)
-        {
-            RaiContentFilterResource.ValidateResourceId(id);
-            return new RaiContentFilterResource(Client, id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="NetworkSecurityPerimeterConfigurationResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="NetworkSecurityPerimeterConfigurationResource.CreateResourceIdentifier" /> to create a <see cref="NetworkSecurityPerimeterConfigurationResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="NetworkSecurityPerimeterConfigurationResource"/> object. </returns>
-        public virtual NetworkSecurityPerimeterConfigurationResource GetNetworkSecurityPerimeterConfigurationResource(ResourceIdentifier id)
-        {
-            NetworkSecurityPerimeterConfigurationResource.ValidateResourceId(id);
-            return new NetworkSecurityPerimeterConfigurationResource(Client, id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="DefenderForAISettingResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="DefenderForAISettingResource.CreateResourceIdentifier" /> to create a <see cref="DefenderForAISettingResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="DefenderForAISettingResource"/> object. </returns>
-        public virtual DefenderForAISettingResource GetDefenderForAISettingResource(ResourceIdentifier id)
-        {
-            DefenderForAISettingResource.ValidateResourceId(id);
-            return new DefenderForAISettingResource(Client, id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="CognitiveServicesProjectResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CognitiveServicesProjectResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesProjectResource"/> <see cref="ResourceIdentifier"/> from its components.
-        /// </summary>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CognitiveServicesProjectResource"/> object. </returns>
-        public virtual CognitiveServicesProjectResource GetCognitiveServicesProjectResource(ResourceIdentifier id)
-        {
-            CognitiveServicesProjectResource.ValidateResourceId(id);
-            return new CognitiveServicesProjectResource(Client, id);
+            CognitiveServicesProjectCapabilityHostResource.ValidateResourceId(id);
+            return new CognitiveServicesProjectCapabilityHostResource(Client, id);
         }
 
         /// <summary>
@@ -239,27 +203,171 @@ namespace Azure.ResourceManager.CognitiveServices.Mocking
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="CognitiveServicesCapabilityHostResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CognitiveServicesCapabilityHostResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesCapabilityHostResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// Gets an object representing a <see cref="DefenderForAISettingResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="DefenderForAISettingResource.CreateResourceIdentifier" /> to create a <see cref="DefenderForAISettingResource"/> <see cref="ResourceIdentifier"/> from its components.
         /// </summary>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CognitiveServicesCapabilityHostResource"/> object. </returns>
-        public virtual CognitiveServicesCapabilityHostResource GetCognitiveServicesCapabilityHostResource(ResourceIdentifier id)
+        /// <returns> Returns a <see cref="DefenderForAISettingResource"/> object. </returns>
+        public virtual DefenderForAISettingResource GetDefenderForAISettingResource(ResourceIdentifier id)
         {
-            CognitiveServicesCapabilityHostResource.ValidateResourceId(id);
-            return new CognitiveServicesCapabilityHostResource(Client, id);
+            DefenderForAISettingResource.ValidateResourceId(id);
+            return new DefenderForAISettingResource(Client, id);
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="CognitiveServicesProjectCapabilityHostResource"/> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CognitiveServicesProjectCapabilityHostResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesProjectCapabilityHostResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// Gets an object representing a <see cref="CognitiveServicesAccountDeploymentResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CognitiveServicesAccountDeploymentResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesAccountDeploymentResource"/> <see cref="ResourceIdentifier"/> from its components.
         /// </summary>
         /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <returns> Returns a <see cref="CognitiveServicesProjectCapabilityHostResource"/> object. </returns>
-        public virtual CognitiveServicesProjectCapabilityHostResource GetCognitiveServicesProjectCapabilityHostResource(ResourceIdentifier id)
+        /// <returns> Returns a <see cref="CognitiveServicesAccountDeploymentResource"/> object. </returns>
+        public virtual CognitiveServicesAccountDeploymentResource GetCognitiveServicesAccountDeploymentResource(ResourceIdentifier id)
         {
-            CognitiveServicesProjectCapabilityHostResource.ValidateResourceId(id);
-            return new CognitiveServicesProjectCapabilityHostResource(Client, id);
+            CognitiveServicesAccountDeploymentResource.ValidateResourceId(id);
+            return new CognitiveServicesAccountDeploymentResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="CognitiveServicesEncryptionScopeResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CognitiveServicesEncryptionScopeResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesEncryptionScopeResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="CognitiveServicesEncryptionScopeResource"/> object. </returns>
+        public virtual CognitiveServicesEncryptionScopeResource GetCognitiveServicesEncryptionScopeResource(ResourceIdentifier id)
+        {
+            CognitiveServicesEncryptionScopeResource.ValidateResourceId(id);
+            return new CognitiveServicesEncryptionScopeResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="ManagedNetworkSettingsPropertiesBasicResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="ManagedNetworkSettingsPropertiesBasicResource.CreateResourceIdentifier" /> to create a <see cref="ManagedNetworkSettingsPropertiesBasicResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="ManagedNetworkSettingsPropertiesBasicResource"/> object. </returns>
+        public virtual ManagedNetworkSettingsPropertiesBasicResource GetManagedNetworkSettingsPropertiesBasicResource(ResourceIdentifier id)
+        {
+            ManagedNetworkSettingsPropertiesBasicResource.ValidateResourceId(id);
+            return new ManagedNetworkSettingsPropertiesBasicResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing an <see cref="OutboundRuleBasicResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="OutboundRuleBasicResource.CreateResourceIdentifier" /> to create an <see cref="OutboundRuleBasicResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="OutboundRuleBasicResource"/> object. </returns>
+        public virtual OutboundRuleBasicResource GetOutboundRuleBasicResource(ResourceIdentifier id)
+        {
+            OutboundRuleBasicResource.ValidateResourceId(id);
+            return new OutboundRuleBasicResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="NetworkSecurityPerimeterConfigurationResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="NetworkSecurityPerimeterConfigurationResource.CreateResourceIdentifier" /> to create a <see cref="NetworkSecurityPerimeterConfigurationResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="NetworkSecurityPerimeterConfigurationResource"/> object. </returns>
+        public virtual NetworkSecurityPerimeterConfigurationResource GetNetworkSecurityPerimeterConfigurationResource(ResourceIdentifier id)
+        {
+            NetworkSecurityPerimeterConfigurationResource.ValidateResourceId(id);
+            return new NetworkSecurityPerimeterConfigurationResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="CognitiveServicesPrivateEndpointConnectionResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CognitiveServicesPrivateEndpointConnectionResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesPrivateEndpointConnectionResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="CognitiveServicesPrivateEndpointConnectionResource"/> object. </returns>
+        public virtual CognitiveServicesPrivateEndpointConnectionResource GetCognitiveServicesPrivateEndpointConnectionResource(ResourceIdentifier id)
+        {
+            CognitiveServicesPrivateEndpointConnectionResource.ValidateResourceId(id);
+            return new CognitiveServicesPrivateEndpointConnectionResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="CognitiveServicesProjectResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CognitiveServicesProjectResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesProjectResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="CognitiveServicesProjectResource"/> object. </returns>
+        public virtual CognitiveServicesProjectResource GetCognitiveServicesProjectResource(ResourceIdentifier id)
+        {
+            CognitiveServicesProjectResource.ValidateResourceId(id);
+            return new CognitiveServicesProjectResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing an <see cref="AgentApplicationResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="AgentApplicationResource.CreateResourceIdentifier" /> to create an <see cref="AgentApplicationResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="AgentApplicationResource"/> object. </returns>
+        public virtual AgentApplicationResource GetAgentApplicationResource(ResourceIdentifier id)
+        {
+            AgentApplicationResource.ValidateResourceId(id);
+            return new AgentApplicationResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing an <see cref="AgentDeploymentResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="AgentDeploymentResource.CreateResourceIdentifier" /> to create an <see cref="AgentDeploymentResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="AgentDeploymentResource"/> object. </returns>
+        public virtual AgentDeploymentResource GetAgentDeploymentResource(ResourceIdentifier id)
+        {
+            AgentDeploymentResource.ValidateResourceId(id);
+            return new AgentDeploymentResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="RaiBlocklistResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="RaiBlocklistResource.CreateResourceIdentifier" /> to create a <see cref="RaiBlocklistResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="RaiBlocklistResource"/> object. </returns>
+        public virtual RaiBlocklistResource GetRaiBlocklistResource(ResourceIdentifier id)
+        {
+            RaiBlocklistResource.ValidateResourceId(id);
+            return new RaiBlocklistResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="RaiBlocklistItemResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="RaiBlocklistItemResource.CreateResourceIdentifier" /> to create a <see cref="RaiBlocklistItemResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="RaiBlocklistItemResource"/> object. </returns>
+        public virtual RaiBlocklistItemResource GetRaiBlocklistItemResource(ResourceIdentifier id)
+        {
+            RaiBlocklistItemResource.ValidateResourceId(id);
+            return new RaiBlocklistItemResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="RaiToolLabelResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="RaiToolLabelResource.CreateResourceIdentifier" /> to create a <see cref="RaiToolLabelResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="RaiToolLabelResource"/> object. </returns>
+        public virtual RaiToolLabelResource GetRaiToolLabelResource(ResourceIdentifier id)
+        {
+            RaiToolLabelResource.ValidateResourceId(id);
+            return new RaiToolLabelResource(Client, id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="RaiTopicResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="RaiTopicResource.CreateResourceIdentifier" /> to create a <see cref="RaiTopicResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="RaiTopicResource"/> object. </returns>
+        public virtual RaiTopicResource GetRaiTopicResource(ResourceIdentifier id)
+        {
+            RaiTopicResource.ValidateResourceId(id);
+            return new RaiTopicResource(Client, id);
         }
     }
 }

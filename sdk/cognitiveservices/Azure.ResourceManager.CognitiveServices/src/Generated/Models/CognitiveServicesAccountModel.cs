@@ -39,9 +39,11 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <param name="capabilities"> The capabilities. </param>
         /// <param name="finetuneCapabilities"> The capabilities for finetune models. </param>
         /// <param name="deprecation"> Cognitive Services account ModelDeprecationInfo. </param>
+        /// <param name="replacementConfig"> Configuration for model replacement. </param>
+        /// <param name="modelCatalogAssetId"> Asset identifier for the model in the model catalog. </param>
         /// <param name="lifecycleStatus"> Model lifecycle status. </param>
         /// <param name="systemData"> Metadata pertaining to creation and last modification of the resource. </param>
-        internal CognitiveServicesAccountModel(string publisher, string format, string name, string version, string source, ResourceIdentifier sourceAccount, ServiceAccountCallRateLimit callRateLimit, IDictionary<string, BinaryData> serializedAdditionalRawData, CognitiveServicesAccountDeploymentModel baseModel, bool? isDefaultVersion, IList<CognitiveServicesModelSku> skus, int? maxCapacity, IDictionary<string, string> capabilities, IDictionary<string, string> finetuneCapabilities, ServiceAccountModelDeprecationInfo deprecation, ModelLifecycleStatus? lifecycleStatus, SystemData systemData) : base(publisher, format, name, version, source, sourceAccount, callRateLimit, serializedAdditionalRawData)
+        internal CognitiveServicesAccountModel(string publisher, string format, string name, string version, string source, ResourceIdentifier sourceAccount, ServiceAccountCallRateLimit callRateLimit, IDictionary<string, BinaryData> serializedAdditionalRawData, CognitiveServicesAccountDeploymentModel baseModel, bool? isDefaultVersion, IList<CognitiveServicesModelSku> skus, int? maxCapacity, IDictionary<string, string> capabilities, IDictionary<string, string> finetuneCapabilities, ServiceAccountModelDeprecationInfo deprecation, ReplacementConfig replacementConfig, string modelCatalogAssetId, ModelLifecycleStatus? lifecycleStatus, SystemData systemData) : base(publisher, format, name, version, source, sourceAccount, callRateLimit, serializedAdditionalRawData)
         {
             BaseModel = baseModel;
             IsDefaultVersion = isDefaultVersion;
@@ -50,6 +52,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             Capabilities = capabilities;
             FinetuneCapabilities = finetuneCapabilities;
             Deprecation = deprecation;
+            ReplacementConfig = replacementConfig;
+            ModelCatalogAssetId = modelCatalogAssetId;
             LifecycleStatus = lifecycleStatus;
             SystemData = systemData;
         }
@@ -75,6 +79,12 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <summary> Cognitive Services account ModelDeprecationInfo. </summary>
         [WirePath("deprecation")]
         public ServiceAccountModelDeprecationInfo Deprecation { get; set; }
+        /// <summary> Configuration for model replacement. </summary>
+        [WirePath("replacementConfig")]
+        public ReplacementConfig ReplacementConfig { get; set; }
+        /// <summary> Asset identifier for the model in the model catalog. </summary>
+        [WirePath("modelCatalogAssetId")]
+        public string ModelCatalogAssetId { get; set; }
         /// <summary> Model lifecycle status. </summary>
         [WirePath("lifecycleStatus")]
         public ModelLifecycleStatus? LifecycleStatus { get; set; }

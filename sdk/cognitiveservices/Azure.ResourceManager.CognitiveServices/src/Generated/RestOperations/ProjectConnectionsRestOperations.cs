@@ -32,11 +32,11 @@ namespace Azure.ResourceManager.CognitiveServices
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2025-06-01";
+            _apiVersion = apiVersion ?? "2025-10-01-preview";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
-        internal RequestUriBuilder CreateDeleteRequestUri(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName)
+        internal RequestUriBuilder CreateListRequestUri(string subscriptionId, string resourceGroupName, string accountName, string projectName, string target, string category, bool? includeAll)
         {
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -48,17 +48,28 @@ namespace Azure.ResourceManager.CognitiveServices
             uri.AppendPath(accountName, true);
             uri.AppendPath("/projects/", false);
             uri.AppendPath(projectName, true);
-            uri.AppendPath("/connections/", false);
-            uri.AppendPath(connectionName, true);
+            uri.AppendPath("/connections", false);
             uri.AppendQuery("api-version", _apiVersion, true);
+            if (target != null)
+            {
+                uri.AppendQuery("target", target, true);
+            }
+            if (category != null)
+            {
+                uri.AppendQuery("category", category, true);
+            }
+            if (includeAll != null)
+            {
+                uri.AppendQuery("includeAll", includeAll.Value, true);
+            }
             return uri;
         }
 
-        internal HttpMessage CreateDeleteRequest(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName)
+        internal HttpMessage CreateListRequest(string subscriptionId, string resourceGroupName, string accountName, string projectName, string target, string category, bool? includeAll)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
-            request.Method = RequestMethod.Delete;
+            request.Method = RequestMethod.Get;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/subscriptions/", false);
@@ -69,68 +80,89 @@ namespace Azure.ResourceManager.CognitiveServices
             uri.AppendPath(accountName, true);
             uri.AppendPath("/projects/", false);
             uri.AppendPath(projectName, true);
-            uri.AppendPath("/connections/", false);
-            uri.AppendPath(connectionName, true);
+            uri.AppendPath("/connections", false);
             uri.AppendQuery("api-version", _apiVersion, true);
+            if (target != null)
+            {
+                uri.AppendQuery("target", target, true);
+            }
+            if (category != null)
+            {
+                uri.AppendQuery("category", category, true);
+            }
+            if (includeAll != null)
+            {
+                uri.AppendQuery("includeAll", includeAll.Value, true);
+            }
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
             _userAgent.Apply(message);
             return message;
         }
 
-        /// <summary> Delete Cognitive Services project connection by name. </summary>
+        /// <summary> Lists all the available Cognitive Services project connections under the specified project. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="accountName"> The name of Cognitive Services account. </param>
         /// <param name="projectName"> The name of Cognitive Services account's project. </param>
-        /// <param name="connectionName"> Friendly name of the connection. </param>
+        /// <param name="target"> Target of the connection. </param>
+        /// <param name="category"> Category of the connection. </param>
+        /// <param name="includeAll"> query parameter that indicates if get connection call should return both connections and datastores. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/> or <paramref name="connectionName"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/> or <paramref name="connectionName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response> DeleteAsync(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName, CancellationToken cancellationToken = default)
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="projectName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
+        public async Task<Response<ConnectionPropertiesV2BasicResourceArmPaginatedResult>> ListAsync(string subscriptionId, string resourceGroupName, string accountName, string projectName, string target = null, string category = null, bool? includeAll = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
             Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
             Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(connectionName, nameof(connectionName));
 
-            using var message = CreateDeleteRequest(subscriptionId, resourceGroupName, accountName, projectName, connectionName);
+            using var message = CreateListRequest(subscriptionId, resourceGroupName, accountName, projectName, target, category, includeAll);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
                 case 200:
-                case 204:
-                    return message.Response;
+                    {
+                        ConnectionPropertiesV2BasicResourceArmPaginatedResult value = default;
+                        using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, ModelSerializationExtensions.JsonDocumentOptions, cancellationToken).ConfigureAwait(false);
+                        value = ConnectionPropertiesV2BasicResourceArmPaginatedResult.DeserializeConnectionPropertiesV2BasicResourceArmPaginatedResult(document.RootElement);
+                        return Response.FromValue(value, message.Response);
+                    }
                 default:
                     throw new RequestFailedException(message.Response);
             }
         }
 
-        /// <summary> Delete Cognitive Services project connection by name. </summary>
+        /// <summary> Lists all the available Cognitive Services project connections under the specified project. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="accountName"> The name of Cognitive Services account. </param>
         /// <param name="projectName"> The name of Cognitive Services account's project. </param>
-        /// <param name="connectionName"> Friendly name of the connection. </param>
+        /// <param name="target"> Target of the connection. </param>
+        /// <param name="category"> Category of the connection. </param>
+        /// <param name="includeAll"> query parameter that indicates if get connection call should return both connections and datastores. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/> or <paramref name="connectionName"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/> or <paramref name="connectionName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response Delete(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName, CancellationToken cancellationToken = default)
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="projectName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
+        public Response<ConnectionPropertiesV2BasicResourceArmPaginatedResult> List(string subscriptionId, string resourceGroupName, string accountName, string projectName, string target = null, string category = null, bool? includeAll = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
             Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
             Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(connectionName, nameof(connectionName));
 
-            using var message = CreateDeleteRequest(subscriptionId, resourceGroupName, accountName, projectName, connectionName);
+            using var message = CreateListRequest(subscriptionId, resourceGroupName, accountName, projectName, target, category, includeAll);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
                 case 200:
-                case 204:
-                    return message.Response;
+                    {
+                        ConnectionPropertiesV2BasicResourceArmPaginatedResult value = default;
+                        using var document = JsonDocument.Parse(message.Response.ContentStream, ModelSerializationExtensions.JsonDocumentOptions);
+                        value = ConnectionPropertiesV2BasicResourceArmPaginatedResult.DeserializeConnectionPropertiesV2BasicResourceArmPaginatedResult(document.RootElement);
+                        return Response.FromValue(value, message.Response);
+                    }
                 default:
                     throw new RequestFailedException(message.Response);
             }
@@ -243,122 +275,6 @@ namespace Azure.ResourceManager.CognitiveServices
                     }
                 case 404:
                     return Response.FromValue((CognitiveServicesConnectionData)null, message.Response);
-                default:
-                    throw new RequestFailedException(message.Response);
-            }
-        }
-
-        internal RequestUriBuilder CreateUpdateRequestUri(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName, CognitiveServicesConnectionPatch patch)
-        {
-            var uri = new RawRequestUriBuilder();
-            uri.Reset(_endpoint);
-            uri.AppendPath("/subscriptions/", false);
-            uri.AppendPath(subscriptionId, true);
-            uri.AppendPath("/resourceGroups/", false);
-            uri.AppendPath(resourceGroupName, true);
-            uri.AppendPath("/providers/Microsoft.CognitiveServices/accounts/", false);
-            uri.AppendPath(accountName, true);
-            uri.AppendPath("/projects/", false);
-            uri.AppendPath(projectName, true);
-            uri.AppendPath("/connections/", false);
-            uri.AppendPath(connectionName, true);
-            uri.AppendQuery("api-version", _apiVersion, true);
-            return uri;
-        }
-
-        internal HttpMessage CreateUpdateRequest(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName, CognitiveServicesConnectionPatch patch)
-        {
-            var message = _pipeline.CreateMessage();
-            var request = message.Request;
-            request.Method = RequestMethod.Patch;
-            var uri = new RawRequestUriBuilder();
-            uri.Reset(_endpoint);
-            uri.AppendPath("/subscriptions/", false);
-            uri.AppendPath(subscriptionId, true);
-            uri.AppendPath("/resourceGroups/", false);
-            uri.AppendPath(resourceGroupName, true);
-            uri.AppendPath("/providers/Microsoft.CognitiveServices/accounts/", false);
-            uri.AppendPath(accountName, true);
-            uri.AppendPath("/projects/", false);
-            uri.AppendPath(projectName, true);
-            uri.AppendPath("/connections/", false);
-            uri.AppendPath(connectionName, true);
-            uri.AppendQuery("api-version", _apiVersion, true);
-            request.Uri = uri;
-            request.Headers.Add("Accept", "application/json");
-            request.Headers.Add("Content-Type", "application/json");
-            var content = new Utf8JsonRequestContent();
-            content.JsonWriter.WriteObjectValue(patch, ModelSerializationExtensions.WireOptions);
-            request.Content = content;
-            _userAgent.Apply(message);
-            return message;
-        }
-
-        /// <summary> Update Cognitive Services project connection under the specified project. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="accountName"> The name of Cognitive Services account. </param>
-        /// <param name="projectName"> The name of Cognitive Services account's project. </param>
-        /// <param name="connectionName"> Friendly name of the connection. </param>
-        /// <param name="patch"> Parameters for account connection update. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/>, <paramref name="connectionName"/> or <paramref name="patch"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/> or <paramref name="connectionName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<CognitiveServicesConnectionData>> UpdateAsync(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName, CognitiveServicesConnectionPatch patch, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(connectionName, nameof(connectionName));
-            Argument.AssertNotNull(patch, nameof(patch));
-
-            using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, accountName, projectName, connectionName, patch);
-            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
-            switch (message.Response.Status)
-            {
-                case 200:
-                    {
-                        CognitiveServicesConnectionData value = default;
-                        using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, ModelSerializationExtensions.JsonDocumentOptions, cancellationToken).ConfigureAwait(false);
-                        value = CognitiveServicesConnectionData.DeserializeCognitiveServicesConnectionData(document.RootElement);
-                        return Response.FromValue(value, message.Response);
-                    }
-                default:
-                    throw new RequestFailedException(message.Response);
-            }
-        }
-
-        /// <summary> Update Cognitive Services project connection under the specified project. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="accountName"> The name of Cognitive Services account. </param>
-        /// <param name="projectName"> The name of Cognitive Services account's project. </param>
-        /// <param name="connectionName"> Friendly name of the connection. </param>
-        /// <param name="patch"> Parameters for account connection update. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/>, <paramref name="connectionName"/> or <paramref name="patch"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/> or <paramref name="connectionName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<CognitiveServicesConnectionData> Update(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName, CognitiveServicesConnectionPatch patch, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
-            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
-            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
-            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
-            Argument.AssertNotNullOrEmpty(connectionName, nameof(connectionName));
-            Argument.AssertNotNull(patch, nameof(patch));
-
-            using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, accountName, projectName, connectionName, patch);
-            _pipeline.Send(message, cancellationToken);
-            switch (message.Response.Status)
-            {
-                case 200:
-                    {
-                        CognitiveServicesConnectionData value = default;
-                        using var document = JsonDocument.Parse(message.Response.ContentStream, ModelSerializationExtensions.JsonDocumentOptions);
-                        value = CognitiveServicesConnectionData.DeserializeCognitiveServicesConnectionData(document.RootElement);
-                        return Response.FromValue(value, message.Response);
-                    }
                 default:
                     throw new RequestFailedException(message.Response);
             }
@@ -480,7 +396,7 @@ namespace Azure.ResourceManager.CognitiveServices
             }
         }
 
-        internal RequestUriBuilder CreateListRequestUri(string subscriptionId, string resourceGroupName, string accountName, string projectName, string target, string category, bool? includeAll)
+        internal RequestUriBuilder CreateUpdateRequestUri(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName, CognitiveServicesConnectionPatch patch)
         {
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -492,28 +408,17 @@ namespace Azure.ResourceManager.CognitiveServices
             uri.AppendPath(accountName, true);
             uri.AppendPath("/projects/", false);
             uri.AppendPath(projectName, true);
-            uri.AppendPath("/connections", false);
-            if (target != null)
-            {
-                uri.AppendQuery("target", target, true);
-            }
-            if (category != null)
-            {
-                uri.AppendQuery("category", category, true);
-            }
+            uri.AppendPath("/connections/", false);
+            uri.AppendPath(connectionName, true);
             uri.AppendQuery("api-version", _apiVersion, true);
-            if (includeAll != null)
-            {
-                uri.AppendQuery("includeAll", includeAll.Value, true);
-            }
             return uri;
         }
 
-        internal HttpMessage CreateListRequest(string subscriptionId, string resourceGroupName, string accountName, string projectName, string target, string category, bool? includeAll)
+        internal HttpMessage CreateUpdateRequest(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName, CognitiveServicesConnectionPatch patch)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
-            request.Method = RequestMethod.Get;
+            request.Method = RequestMethod.Patch;
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
             uri.AppendPath("/subscriptions/", false);
@@ -524,53 +429,47 @@ namespace Azure.ResourceManager.CognitiveServices
             uri.AppendPath(accountName, true);
             uri.AppendPath("/projects/", false);
             uri.AppendPath(projectName, true);
-            uri.AppendPath("/connections", false);
-            if (target != null)
-            {
-                uri.AppendQuery("target", target, true);
-            }
-            if (category != null)
-            {
-                uri.AppendQuery("category", category, true);
-            }
+            uri.AppendPath("/connections/", false);
+            uri.AppendPath(connectionName, true);
             uri.AppendQuery("api-version", _apiVersion, true);
-            if (includeAll != null)
-            {
-                uri.AppendQuery("includeAll", includeAll.Value, true);
-            }
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("Content-Type", "application/json");
+            var content = new Utf8JsonRequestContent();
+            content.JsonWriter.WriteObjectValue(patch, ModelSerializationExtensions.WireOptions);
+            request.Content = content;
             _userAgent.Apply(message);
             return message;
         }
 
-        /// <summary> Lists all the available Cognitive Services project connections under the specified project. </summary>
+        /// <summary> Update Cognitive Services project connection under the specified project. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="accountName"> The name of Cognitive Services account. </param>
         /// <param name="projectName"> The name of Cognitive Services account's project. </param>
-        /// <param name="target"> Target of the connection. </param>
-        /// <param name="category"> Category of the connection. </param>
-        /// <param name="includeAll"> query parameter that indicates if get connection call should return both connections and datastores. </param>
+        /// <param name="connectionName"> Friendly name of the connection. </param>
+        /// <param name="patch"> Parameters for account connection update. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="projectName"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<ConnectionPropertiesV2BasicResourceArmPaginatedResult>> ListAsync(string subscriptionId, string resourceGroupName, string accountName, string projectName, string target = null, string category = null, bool? includeAll = null, CancellationToken cancellationToken = default)
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/>, <paramref name="connectionName"/> or <paramref name="patch"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/> or <paramref name="connectionName"/> is an empty string, and was expected to be non-empty. </exception>
+        public async Task<Response<CognitiveServicesConnectionData>> UpdateAsync(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName, CognitiveServicesConnectionPatch patch, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
             Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
             Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(connectionName, nameof(connectionName));
+            Argument.AssertNotNull(patch, nameof(patch));
 
-            using var message = CreateListRequest(subscriptionId, resourceGroupName, accountName, projectName, target, category, includeAll);
+            using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, accountName, projectName, connectionName, patch);
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
                 case 200:
                     {
-                        ConnectionPropertiesV2BasicResourceArmPaginatedResult value = default;
+                        CognitiveServicesConnectionData value = default;
                         using var document = await JsonDocument.ParseAsync(message.Response.ContentStream, ModelSerializationExtensions.JsonDocumentOptions, cancellationToken).ConfigureAwait(false);
-                        value = ConnectionPropertiesV2BasicResourceArmPaginatedResult.DeserializeConnectionPropertiesV2BasicResourceArmPaginatedResult(document.RootElement);
+                        value = CognitiveServicesConnectionData.DeserializeCognitiveServicesConnectionData(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
                 default:
@@ -578,35 +477,136 @@ namespace Azure.ResourceManager.CognitiveServices
             }
         }
 
-        /// <summary> Lists all the available Cognitive Services project connections under the specified project. </summary>
+        /// <summary> Update Cognitive Services project connection under the specified project. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="accountName"> The name of Cognitive Services account. </param>
         /// <param name="projectName"> The name of Cognitive Services account's project. </param>
-        /// <param name="target"> Target of the connection. </param>
-        /// <param name="category"> Category of the connection. </param>
-        /// <param name="includeAll"> query parameter that indicates if get connection call should return both connections and datastores. </param>
+        /// <param name="connectionName"> Friendly name of the connection. </param>
+        /// <param name="patch"> Parameters for account connection update. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="projectName"/> is null. </exception>
-        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/> or <paramref name="projectName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<ConnectionPropertiesV2BasicResourceArmPaginatedResult> List(string subscriptionId, string resourceGroupName, string accountName, string projectName, string target = null, string category = null, bool? includeAll = null, CancellationToken cancellationToken = default)
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/>, <paramref name="connectionName"/> or <paramref name="patch"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/> or <paramref name="connectionName"/> is an empty string, and was expected to be non-empty. </exception>
+        public Response<CognitiveServicesConnectionData> Update(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName, CognitiveServicesConnectionPatch patch, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
             Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
             Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(connectionName, nameof(connectionName));
+            Argument.AssertNotNull(patch, nameof(patch));
 
-            using var message = CreateListRequest(subscriptionId, resourceGroupName, accountName, projectName, target, category, includeAll);
+            using var message = CreateUpdateRequest(subscriptionId, resourceGroupName, accountName, projectName, connectionName, patch);
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
                 case 200:
                     {
-                        ConnectionPropertiesV2BasicResourceArmPaginatedResult value = default;
+                        CognitiveServicesConnectionData value = default;
                         using var document = JsonDocument.Parse(message.Response.ContentStream, ModelSerializationExtensions.JsonDocumentOptions);
-                        value = ConnectionPropertiesV2BasicResourceArmPaginatedResult.DeserializeConnectionPropertiesV2BasicResourceArmPaginatedResult(document.RootElement);
+                        value = CognitiveServicesConnectionData.DeserializeCognitiveServicesConnectionData(document.RootElement);
                         return Response.FromValue(value, message.Response);
                     }
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
+        internal RequestUriBuilder CreateDeleteRequestUri(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName)
+        {
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/subscriptions/", false);
+            uri.AppendPath(subscriptionId, true);
+            uri.AppendPath("/resourceGroups/", false);
+            uri.AppendPath(resourceGroupName, true);
+            uri.AppendPath("/providers/Microsoft.CognitiveServices/accounts/", false);
+            uri.AppendPath(accountName, true);
+            uri.AppendPath("/projects/", false);
+            uri.AppendPath(projectName, true);
+            uri.AppendPath("/connections/", false);
+            uri.AppendPath(connectionName, true);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            return uri;
+        }
+
+        internal HttpMessage CreateDeleteRequest(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName)
+        {
+            var message = _pipeline.CreateMessage();
+            var request = message.Request;
+            request.Method = RequestMethod.Delete;
+            var uri = new RawRequestUriBuilder();
+            uri.Reset(_endpoint);
+            uri.AppendPath("/subscriptions/", false);
+            uri.AppendPath(subscriptionId, true);
+            uri.AppendPath("/resourceGroups/", false);
+            uri.AppendPath(resourceGroupName, true);
+            uri.AppendPath("/providers/Microsoft.CognitiveServices/accounts/", false);
+            uri.AppendPath(accountName, true);
+            uri.AppendPath("/projects/", false);
+            uri.AppendPath(projectName, true);
+            uri.AppendPath("/connections/", false);
+            uri.AppendPath(connectionName, true);
+            uri.AppendQuery("api-version", _apiVersion, true);
+            request.Uri = uri;
+            request.Headers.Add("Accept", "application/json");
+            _userAgent.Apply(message);
+            return message;
+        }
+
+        /// <summary> Delete Cognitive Services project connection by name. </summary>
+        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
+        /// <param name="accountName"> The name of Cognitive Services account. </param>
+        /// <param name="projectName"> The name of Cognitive Services account's project. </param>
+        /// <param name="connectionName"> Friendly name of the connection. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/> or <paramref name="connectionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/> or <paramref name="connectionName"/> is an empty string, and was expected to be non-empty. </exception>
+        public async Task<Response> DeleteAsync(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(connectionName, nameof(connectionName));
+
+            using var message = CreateDeleteRequest(subscriptionId, resourceGroupName, accountName, projectName, connectionName);
+            await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
+            switch (message.Response.Status)
+            {
+                case 200:
+                case 204:
+                    return message.Response;
+                default:
+                    throw new RequestFailedException(message.Response);
+            }
+        }
+
+        /// <summary> Delete Cognitive Services project connection by name. </summary>
+        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
+        /// <param name="accountName"> The name of Cognitive Services account. </param>
+        /// <param name="projectName"> The name of Cognitive Services account's project. </param>
+        /// <param name="connectionName"> Friendly name of the connection. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/> or <paramref name="connectionName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="accountName"/>, <paramref name="projectName"/> or <paramref name="connectionName"/> is an empty string, and was expected to be non-empty. </exception>
+        public Response Delete(string subscriptionId, string resourceGroupName, string accountName, string projectName, string connectionName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
+            Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
+            Argument.AssertNotNullOrEmpty(accountName, nameof(accountName));
+            Argument.AssertNotNullOrEmpty(projectName, nameof(projectName));
+            Argument.AssertNotNullOrEmpty(connectionName, nameof(connectionName));
+
+            using var message = CreateDeleteRequest(subscriptionId, resourceGroupName, accountName, projectName, connectionName);
+            _pipeline.Send(message, cancellationToken);
+            switch (message.Response.Status)
+            {
+                case 200:
+                case 204:
+                    return message.Response;
                 default:
                     throw new RequestFailedException(message.Response);
             }

@@ -71,6 +71,26 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 }
                 writer.WriteEndArray();
             }
+            if (Optional.IsCollectionDefined(CustomTopics))
+            {
+                writer.WritePropertyName("customTopics"u8);
+                writer.WriteStartArray();
+                foreach (var item in CustomTopics)
+                {
+                    writer.WriteObjectValue(item, options);
+                }
+                writer.WriteEndArray();
+            }
+            if (Optional.IsCollectionDefined(SafetyProviders))
+            {
+                writer.WritePropertyName("safetyProviders"u8);
+                writer.WriteStartArray();
+                foreach (var item in SafetyProviders)
+                {
+                    writer.WriteObjectValue(item, options);
+                }
+                writer.WriteEndArray();
+            }
             if (options.Format != "W" && _serializedAdditionalRawData != null)
             {
                 foreach (var item in _serializedAdditionalRawData)
@@ -113,6 +133,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             string basePolicyName = default;
             IList<RaiPolicyContentFilter> contentFilters = default;
             IList<CustomBlocklistConfig> customBlocklists = default;
+            IList<CustomTopicConfig> customTopics = default;
+            IList<SafetyProviderConfig> safetyProviders = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
@@ -168,6 +190,34 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                     customBlocklists = array;
                     continue;
                 }
+                if (property.NameEquals("customTopics"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    List<CustomTopicConfig> array = new List<CustomTopicConfig>();
+                    foreach (var item in property.Value.EnumerateArray())
+                    {
+                        array.Add(CustomTopicConfig.DeserializeCustomTopicConfig(item, options));
+                    }
+                    customTopics = array;
+                    continue;
+                }
+                if (property.NameEquals("safetyProviders"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    List<SafetyProviderConfig> array = new List<SafetyProviderConfig>();
+                    foreach (var item in property.Value.EnumerateArray())
+                    {
+                        array.Add(SafetyProviderConfig.DeserializeSafetyProviderConfig(item, options));
+                    }
+                    safetyProviders = array;
+                    continue;
+                }
                 if (options.Format != "W")
                 {
                     rawDataDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
@@ -180,6 +230,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 basePolicyName,
                 contentFilters ?? new ChangeTrackingList<RaiPolicyContentFilter>(),
                 customBlocklists ?? new ChangeTrackingList<CustomBlocklistConfig>(),
+                customTopics ?? new ChangeTrackingList<CustomTopicConfig>(),
+                safetyProviders ?? new ChangeTrackingList<SafetyProviderConfig>(),
                 serializedAdditionalRawData);
         }
 
@@ -287,6 +339,52 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                         foreach (var item in CustomBlocklists)
                         {
                             BicepSerializationHelpers.AppendChildObject(builder, item, options, 4, true, "  customBlocklists: ");
+                        }
+                        builder.AppendLine("  ]");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(CustomTopics), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  customTopics: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(CustomTopics))
+                {
+                    if (CustomTopics.Any())
+                    {
+                        builder.Append("  customTopics: ");
+                        builder.AppendLine("[");
+                        foreach (var item in CustomTopics)
+                        {
+                            BicepSerializationHelpers.AppendChildObject(builder, item, options, 4, true, "  customTopics: ");
+                        }
+                        builder.AppendLine("  ]");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(SafetyProviders), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  safetyProviders: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(SafetyProviders))
+                {
+                    if (SafetyProviders.Any())
+                    {
+                        builder.Append("  safetyProviders: ");
+                        builder.AppendLine("[");
+                        foreach (var item in SafetyProviders)
+                        {
+                            BicepSerializationHelpers.AppendChildObject(builder, item, options, 4, true, "  safetyProviders: ");
                         }
                         builder.AppendLine("  ]");
                     }

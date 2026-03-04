@@ -32,7 +32,7 @@ namespace Azure.ResourceManager.CognitiveServices
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2025-06-01";
+            _apiVersion = apiVersion ?? "2025-10-01-preview";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
@@ -76,7 +76,7 @@ namespace Azure.ResourceManager.CognitiveServices
 
         /// <summary> List Location Based ModelCapacities. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="modelFormat"> The format of the Model. </param>
         /// <param name="modelName"> The name of the Model. </param>
         /// <param name="modelVersion"> The version of the Model. </param>
@@ -108,7 +108,7 @@ namespace Azure.ResourceManager.CognitiveServices
 
         /// <summary> List Location Based ModelCapacities. </summary>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="modelFormat"> The format of the Model. </param>
         /// <param name="modelName"> The name of the Model. </param>
         /// <param name="modelVersion"> The version of the Model. </param>
@@ -163,7 +163,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// <summary> List Location Based ModelCapacities. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="modelFormat"> The format of the Model. </param>
         /// <param name="modelName"> The name of the Model. </param>
         /// <param name="modelVersion"> The version of the Model. </param>
@@ -197,7 +197,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// <summary> List Location Based ModelCapacities. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
         /// <param name="subscriptionId"> The ID of the target subscription. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="modelFormat"> The format of the Model. </param>
         /// <param name="modelName"> The name of the Model. </param>
         /// <param name="modelVersion"> The version of the Model. </param>

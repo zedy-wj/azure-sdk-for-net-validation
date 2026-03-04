@@ -66,8 +66,10 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <param name="capacitySettings"> Internal use only. </param>
         /// <param name="parentDeploymentName"> The name of parent deployment. </param>
         /// <param name="spilloverDeploymentName"> Specifies the deployment name that should serve requests when the request would have otherwise been throttled due to reaching current deployment throughput limit. </param>
+        /// <param name="serviceTier"> The service tier for the deployment. Determines the pricing and performance level for request processing. Use 'Default' for standard pricing or 'Priority' for higher-priority processing with premium pricing. Note: Pause operations are only supported on Standard, DataZoneStandard, and GlobalStandard SKUs. </param>
+        /// <param name="deploymentState"> The state of the deployment. Controls whether the deployment is accepting inference requests. Use 'Running' for active deployments that process requests, or 'Paused' to temporarily stop inference while preserving the deployment configuration. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal CognitiveServicesAccountDeploymentProperties(CognitiveServicesAccountDeploymentProvisioningState? provisioningState, CognitiveServicesAccountDeploymentModel model, CognitiveServicesAccountDeploymentScaleSettings scaleSettings, IReadOnlyDictionary<string, string> capabilities, string raiPolicyName, ServiceAccountCallRateLimit callRateLimit, IReadOnlyList<ServiceAccountThrottlingRule> rateLimits, DeploymentModelVersionUpgradeOption? versionUpgradeOption, bool? isDynamicThrottlingEnabled, int? currentCapacity, DeploymentCapacitySettings capacitySettings, string parentDeploymentName, string spilloverDeploymentName, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal CognitiveServicesAccountDeploymentProperties(CognitiveServicesAccountDeploymentProvisioningState? provisioningState, CognitiveServicesAccountDeploymentModel model, CognitiveServicesAccountDeploymentScaleSettings scaleSettings, IReadOnlyDictionary<string, string> capabilities, string raiPolicyName, ServiceAccountCallRateLimit callRateLimit, IReadOnlyList<ServiceAccountThrottlingRule> rateLimits, DeploymentModelVersionUpgradeOption? versionUpgradeOption, bool? isDynamicThrottlingEnabled, int? currentCapacity, DeploymentCapacitySettings capacitySettings, string parentDeploymentName, string spilloverDeploymentName, ServiceTier? serviceTier, DeploymentState? deploymentState, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             ProvisioningState = provisioningState;
             Model = model;
@@ -82,6 +84,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             CapacitySettings = capacitySettings;
             ParentDeploymentName = parentDeploymentName;
             SpilloverDeploymentName = spilloverDeploymentName;
+            ServiceTier = serviceTier;
+            DeploymentState = deploymentState;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -124,5 +128,11 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <summary> Specifies the deployment name that should serve requests when the request would have otherwise been throttled due to reaching current deployment throughput limit. </summary>
         [WirePath("spilloverDeploymentName")]
         public string SpilloverDeploymentName { get; set; }
+        /// <summary> The service tier for the deployment. Determines the pricing and performance level for request processing. Use 'Default' for standard pricing or 'Priority' for higher-priority processing with premium pricing. Note: Pause operations are only supported on Standard, DataZoneStandard, and GlobalStandard SKUs. </summary>
+        [WirePath("serviceTier")]
+        public ServiceTier? ServiceTier { get; set; }
+        /// <summary> The state of the deployment. Controls whether the deployment is accepting inference requests. Use 'Running' for active deployments that process requests, or 'Paused' to temporarily stop inference while preserving the deployment configuration. </summary>
+        [WirePath("deploymentState")]
+        public DeploymentState? DeploymentState { get; set; }
     }
 }

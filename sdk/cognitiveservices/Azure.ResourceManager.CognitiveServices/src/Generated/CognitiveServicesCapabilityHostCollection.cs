@@ -6,9 +6,12 @@
 #nullable disable
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Autorest.CSharp.Core;
 using Azure.Core;
 using Azure.Core.Pipeline;
 
@@ -19,7 +22,7 @@ namespace Azure.ResourceManager.CognitiveServices
     /// Each <see cref="CognitiveServicesCapabilityHostResource"/> in the collection will belong to the same instance of <see cref="CognitiveServicesAccountResource"/>.
     /// To get a <see cref="CognitiveServicesCapabilityHostCollection"/> instance call the GetCognitiveServicesCapabilityHosts method from an instance of <see cref="CognitiveServicesAccountResource"/>.
     /// </summary>
-    public partial class CognitiveServicesCapabilityHostCollection : ArmCollection
+    public partial class CognitiveServicesCapabilityHostCollection : ArmCollection, IEnumerable<CognitiveServicesCapabilityHostResource>, IAsyncEnumerable<CognitiveServicesCapabilityHostResource>
     {
         private readonly ClientDiagnostics _cognitiveServicesCapabilityHostAccountCapabilityHostsClientDiagnostics;
         private readonly AccountCapabilityHostsRestOperations _cognitiveServicesCapabilityHostAccountCapabilityHostsRestClient;
@@ -61,7 +64,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -110,7 +113,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -159,7 +162,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -204,7 +207,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -237,6 +240,66 @@ namespace Azure.ResourceManager.CognitiveServices
         }
 
         /// <summary>
+        /// List capabilityHost.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AccountCapabilityHosts_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CognitiveServicesCapabilityHostResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="CognitiveServicesCapabilityHostResource"/> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<CognitiveServicesCapabilityHostResource> GetAllAsync(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => _cognitiveServicesCapabilityHostAccountCapabilityHostsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _cognitiveServicesCapabilityHostAccountCapabilityHostsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => new CognitiveServicesCapabilityHostResource(Client, CognitiveServicesCapabilityHostData.DeserializeCognitiveServicesCapabilityHostData(e)), _cognitiveServicesCapabilityHostAccountCapabilityHostsClientDiagnostics, Pipeline, "CognitiveServicesCapabilityHostCollection.GetAll", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// List capabilityHost.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>AccountCapabilityHosts_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CognitiveServicesCapabilityHostResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="CognitiveServicesCapabilityHostResource"/> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<CognitiveServicesCapabilityHostResource> GetAll(CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => _cognitiveServicesCapabilityHostAccountCapabilityHostsRestClient.CreateListRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _cognitiveServicesCapabilityHostAccountCapabilityHostsRestClient.CreateListNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Name);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => new CognitiveServicesCapabilityHostResource(Client, CognitiveServicesCapabilityHostData.DeserializeCognitiveServicesCapabilityHostData(e)), _cognitiveServicesCapabilityHostAccountCapabilityHostsClientDiagnostics, Pipeline, "CognitiveServicesCapabilityHostCollection.GetAll", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
         /// Checks to see if the resource exists in azure.
         /// <list type="bullet">
         /// <item>
@@ -249,7 +312,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -292,7 +355,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -335,7 +398,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -380,7 +443,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -410,6 +473,21 @@ namespace Azure.ResourceManager.CognitiveServices
                 scope.Failed(e);
                 throw;
             }
+        }
+
+        IEnumerator<CognitiveServicesCapabilityHostResource> IEnumerable<CognitiveServicesCapabilityHostResource>.GetEnumerator()
+        {
+            return GetAll().GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetAll().GetEnumerator();
+        }
+
+        IAsyncEnumerator<CognitiveServicesCapabilityHostResource> IAsyncEnumerable<CognitiveServicesCapabilityHostResource>.GetAsyncEnumerator(CancellationToken cancellationToken)
+        {
+            return GetAllAsync(cancellationToken: cancellationToken).GetAsyncEnumerator(cancellationToken);
         }
     }
 }

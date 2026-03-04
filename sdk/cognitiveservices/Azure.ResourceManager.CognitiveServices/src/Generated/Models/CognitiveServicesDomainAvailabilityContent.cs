@@ -61,7 +61,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <summary> Initializes a new instance of <see cref="CognitiveServicesDomainAvailabilityContent"/>. </summary>
         /// <param name="subdomainName"> The subdomain name to use. </param>
         /// <param name="resourceType"> The Type of the resource. </param>
-        /// <param name="kind"> The Kind of the resource. </param>
+        /// <param name="kind"> The kind (type) of cognitive service account. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal CognitiveServicesDomainAvailabilityContent(string subdomainName, ResourceType resourceType, string kind, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -82,7 +82,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <summary> The Type of the resource. </summary>
         [WirePath("type")]
         public ResourceType ResourceType { get; }
-        /// <summary> The Kind of the resource. </summary>
+        /// <summary> The kind (type) of cognitive service account. </summary>
         [WirePath("kind")]
         public string Kind { get; set; }
     }

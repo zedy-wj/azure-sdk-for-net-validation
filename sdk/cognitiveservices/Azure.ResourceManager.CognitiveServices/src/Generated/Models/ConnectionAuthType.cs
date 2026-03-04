@@ -34,6 +34,13 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         private const string CustomKeysValue = "CustomKeys";
         private const string OAuth2Value = "OAuth2";
         private const string AADValue = "AAD";
+        private const string DelegatedSASValue = "DelegatedSAS";
+        private const string ProjectManagedIdentityValue = "ProjectManagedIdentity";
+        private const string AccountManagedIdentityValue = "AccountManagedIdentity";
+        private const string UserEntraTokenValue = "UserEntraToken";
+        private const string AgentUserImpersonationValue = "AgentUserImpersonation";
+        private const string AgenticIdentityTokenValue = "AgenticIdentityToken";
+        private const string AgenticUserValue = "AgenticUser";
 
         /// <summary> PAT. </summary>
         public static ConnectionAuthType PAT { get; } = new ConnectionAuthType(PATValue);
@@ -59,6 +66,20 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         public static ConnectionAuthType OAuth2 { get; } = new ConnectionAuthType(OAuth2Value);
         /// <summary> AAD. </summary>
         public static ConnectionAuthType AAD { get; } = new ConnectionAuthType(AADValue);
+        /// <summary> DelegatedSAS. </summary>
+        public static ConnectionAuthType DelegatedSAS { get; } = new ConnectionAuthType(DelegatedSASValue);
+        /// <summary> ProjectManagedIdentity. </summary>
+        public static ConnectionAuthType ProjectManagedIdentity { get; } = new ConnectionAuthType(ProjectManagedIdentityValue);
+        /// <summary> AccountManagedIdentity. </summary>
+        public static ConnectionAuthType AccountManagedIdentity { get; } = new ConnectionAuthType(AccountManagedIdentityValue);
+        /// <summary> UserEntraToken. </summary>
+        public static ConnectionAuthType UserEntraToken { get; } = new ConnectionAuthType(UserEntraTokenValue);
+        /// <summary> AgentUserImpersonation. </summary>
+        public static ConnectionAuthType AgentUserImpersonation { get; } = new ConnectionAuthType(AgentUserImpersonationValue);
+        /// <summary> AgenticIdentityToken. </summary>
+        public static ConnectionAuthType AgenticIdentityToken { get; } = new ConnectionAuthType(AgenticIdentityTokenValue);
+        /// <summary> AgenticUser. </summary>
+        public static ConnectionAuthType AgenticUser { get; } = new ConnectionAuthType(AgenticUserValue);
         /// <summary> Determines if two <see cref="ConnectionAuthType"/> values are the same. </summary>
         public static bool operator ==(ConnectionAuthType left, ConnectionAuthType right) => left.Equals(right);
         /// <summary> Determines if two <see cref="ConnectionAuthType"/> values are not the same. </summary>

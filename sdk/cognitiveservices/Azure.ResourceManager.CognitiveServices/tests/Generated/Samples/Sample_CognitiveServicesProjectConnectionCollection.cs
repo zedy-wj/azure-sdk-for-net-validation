@@ -20,7 +20,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task CreateOrUpdate_CreateProjectConnection()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ProjectConnection/create.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ProjectConnection/create.json
             // this example is just showing the usage of "ProjectConnections_Create" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -62,7 +62,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Get_GetProjectConnection()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ProjectConnection/get.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ProjectConnection/get.json
             // this example is just showing the usage of "ProjectConnections_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -97,7 +97,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task GetAll_ListProjectConnection()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ProjectConnection/list.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ProjectConnection/list.json
             // this example is just showing the usage of "ProjectConnections_List" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -136,7 +136,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task Exists_GetProjectConnection()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ProjectConnection/get.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ProjectConnection/get.json
             // this example is just showing the usage of "ProjectConnections_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
@@ -167,7 +167,7 @@ namespace Azure.ResourceManager.CognitiveServices.Samples
         [Ignore("Only validating compilation of examples")]
         public async Task GetIfExists_GetProjectConnection()
         {
-            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/stable/2025-06-01/examples/ProjectConnection/get.json
+            // Generated from example definition: specification/cognitiveservices/resource-manager/Microsoft.CognitiveServices/preview/2025-10-01-preview/examples/ProjectConnection/get.json
             // this example is just showing the usage of "ProjectConnections_Get" operation, for the dependent resources, they will have to be created separately.
 
             // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line

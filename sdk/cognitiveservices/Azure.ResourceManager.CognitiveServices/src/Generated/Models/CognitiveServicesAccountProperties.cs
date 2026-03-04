@@ -76,6 +76,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <param name="createdOn"> Gets the date of cognitive services account creation. </param>
         /// <param name="callRateLimit"> The call rate limit Cognitive Services account. </param>
         /// <param name="enableDynamicThrottling"> The flag to enable dynamic throttling. </param>
+        /// <param name="storedCompletionsDisabled"> The flag to disable stored completions. </param>
         /// <param name="quotaLimit"></param>
         /// <param name="restrictOutboundNetworkAccess"></param>
         /// <param name="allowedFqdnList"></param>
@@ -93,7 +94,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <param name="defaultProject"> Specifies the project, by project name, that is targeted when data plane endpoints are called without a project parameter. </param>
         /// <param name="associatedProjects"> Specifies the projects, by project name, that are associated with this resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal CognitiveServicesAccountProperties(ServiceAccountProvisioningState? provisioningState, string endpoint, IReadOnlyList<CognitiveServicesSkuCapability> capabilities, bool? isMigrated, string migrationToken, CognitiveServicesSkuChangeInfo skuChangeInfo, string customSubDomainName, CognitiveServicesNetworkRuleSet networkAcls, ServiceAccountEncryptionProperties encryption, IList<ServiceAccountUserOwnedStorage> userOwnedStorage, UserOwnedAmlWorkspace amlWorkspace, IReadOnlyList<CognitiveServicesPrivateEndpointConnectionData> privateEndpointConnections, ServiceAccountPublicNetworkAccess? publicNetworkAccess, ServiceAccountApiProperties apiProperties, DateTimeOffset? createdOn, ServiceAccountCallRateLimit callRateLimit, bool? enableDynamicThrottling, ServiceAccountQuotaLimit quotaLimit, bool? restrictOutboundNetworkAccess, IList<string> allowedFqdnList, bool? disableLocalAuth, IReadOnlyDictionary<string, string> endpoints, bool? restore, DateTimeOffset? deletedOn, string scheduledPurgeDate, CognitiveServicesMultiRegionSettings locations, IReadOnlyList<CommitmentPlanAssociation> commitmentPlanAssociations, AbusePenalty abusePenalty, RaiMonitorConfig raiMonitorConfig, IList<AIFoundryNetworkInjection> aiFoundryNetworkInjections, bool? allowProjectManagement, string defaultProject, IList<string> associatedProjects, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal CognitiveServicesAccountProperties(ServiceAccountProvisioningState? provisioningState, string endpoint, IReadOnlyList<CognitiveServicesSkuCapability> capabilities, bool? isMigrated, string migrationToken, CognitiveServicesSkuChangeInfo skuChangeInfo, string customSubDomainName, CognitiveServicesNetworkRuleSet networkAcls, ServiceAccountEncryptionProperties encryption, IList<ServiceAccountUserOwnedStorage> userOwnedStorage, UserOwnedAmlWorkspace amlWorkspace, IReadOnlyList<CognitiveServicesPrivateEndpointConnectionData> privateEndpointConnections, ServiceAccountPublicNetworkAccess? publicNetworkAccess, ServiceAccountApiProperties apiProperties, DateTimeOffset? createdOn, ServiceAccountCallRateLimit callRateLimit, bool? enableDynamicThrottling, bool? storedCompletionsDisabled, ServiceAccountQuotaLimit quotaLimit, bool? restrictOutboundNetworkAccess, IList<string> allowedFqdnList, bool? disableLocalAuth, IReadOnlyDictionary<string, string> endpoints, bool? restore, DateTimeOffset? deletedOn, string scheduledPurgeDate, CognitiveServicesMultiRegionSettings locations, IReadOnlyList<CommitmentPlanAssociation> commitmentPlanAssociations, AbusePenalty abusePenalty, RaiMonitorConfig raiMonitorConfig, IList<AIFoundryNetworkInjection> aiFoundryNetworkInjections, bool? allowProjectManagement, string defaultProject, IList<string> associatedProjects, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             ProvisioningState = provisioningState;
             Endpoint = endpoint;
@@ -112,6 +113,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             CreatedOn = createdOn;
             CallRateLimit = callRateLimit;
             EnableDynamicThrottling = enableDynamicThrottling;
+            StoredCompletionsDisabled = storedCompletionsDisabled;
             QuotaLimit = quotaLimit;
             RestrictOutboundNetworkAccess = restrictOutboundNetworkAccess;
             AllowedFqdnList = allowedFqdnList;
@@ -182,6 +184,9 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         /// <summary> The flag to enable dynamic throttling. </summary>
         [WirePath("dynamicThrottlingEnabled")]
         public bool? EnableDynamicThrottling { get; set; }
+        /// <summary> The flag to disable stored completions. </summary>
+        [WirePath("storedCompletionsDisabled")]
+        public bool? StoredCompletionsDisabled { get; set; }
         /// <summary> Gets the quota limit. </summary>
         [WirePath("quotaLimit")]
         public ServiceAccountQuotaLimit QuotaLimit { get; }

@@ -72,44 +72,6 @@ namespace Azure.ResourceManager.CognitiveServices
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="CognitiveServicesPrivateEndpointConnectionResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CognitiveServicesPrivateEndpointConnectionResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesPrivateEndpointConnectionResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetCognitiveServicesPrivateEndpointConnectionResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="CognitiveServicesPrivateEndpointConnectionResource"/> object. </returns>
-        public static CognitiveServicesPrivateEndpointConnectionResource GetCognitiveServicesPrivateEndpointConnectionResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableCognitiveServicesArmClient(client).GetCognitiveServicesPrivateEndpointConnectionResource(id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="CognitiveServicesAccountDeploymentResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CognitiveServicesAccountDeploymentResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesAccountDeploymentResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetCognitiveServicesAccountDeploymentResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="CognitiveServicesAccountDeploymentResource"/> object. </returns>
-        public static CognitiveServicesAccountDeploymentResource GetCognitiveServicesAccountDeploymentResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableCognitiveServicesArmClient(client).GetCognitiveServicesAccountDeploymentResource(id);
-        }
-
-        /// <summary>
         /// Gets an object representing a <see cref="CommitmentPlanResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="CommitmentPlanResource.CreateResourceIdentifier" /> to create a <see cref="CommitmentPlanResource" /> <see cref="ResourceIdentifier" /> from its components.
         /// <item>
@@ -167,82 +129,6 @@ namespace Azure.ResourceManager.CognitiveServices
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="CognitiveServicesEncryptionScopeResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CognitiveServicesEncryptionScopeResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesEncryptionScopeResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetCognitiveServicesEncryptionScopeResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="CognitiveServicesEncryptionScopeResource"/> object. </returns>
-        public static CognitiveServicesEncryptionScopeResource GetCognitiveServicesEncryptionScopeResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableCognitiveServicesArmClient(client).GetCognitiveServicesEncryptionScopeResource(id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="RaiPolicyResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="RaiPolicyResource.CreateResourceIdentifier" /> to create a <see cref="RaiPolicyResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetRaiPolicyResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="RaiPolicyResource"/> object. </returns>
-        public static RaiPolicyResource GetRaiPolicyResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableCognitiveServicesArmClient(client).GetRaiPolicyResource(id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="RaiBlocklistResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="RaiBlocklistResource.CreateResourceIdentifier" /> to create a <see cref="RaiBlocklistResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetRaiBlocklistResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="RaiBlocklistResource"/> object. </returns>
-        public static RaiBlocklistResource GetRaiBlocklistResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableCognitiveServicesArmClient(client).GetRaiBlocklistResource(id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="RaiBlocklistItemResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="RaiBlocklistItemResource.CreateResourceIdentifier" /> to create a <see cref="RaiBlocklistItemResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetRaiBlocklistItemResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="RaiBlocklistItemResource"/> object. </returns>
-        public static RaiBlocklistItemResource GetRaiBlocklistItemResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableCognitiveServicesArmClient(client).GetRaiBlocklistItemResource(id);
-        }
-
-        /// <summary>
         /// Gets an object representing a <see cref="RaiContentFilterResource" /> along with the instance operations that can be performed on it but with no data.
         /// You can use <see cref="RaiContentFilterResource.CreateResourceIdentifier" /> to create a <see cref="RaiContentFilterResource" /> <see cref="ResourceIdentifier" /> from its components.
         /// <item>
@@ -262,98 +148,79 @@ namespace Azure.ResourceManager.CognitiveServices
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="NetworkSecurityPerimeterConfigurationResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="NetworkSecurityPerimeterConfigurationResource.CreateResourceIdentifier" /> to create a <see cref="NetworkSecurityPerimeterConfigurationResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// Gets an object representing a <see cref="QuotaTierResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="QuotaTierResource.CreateResourceIdentifier" /> to create a <see cref="QuotaTierResource" /> <see cref="ResourceIdentifier" /> from its components.
         /// <item>
         /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetNetworkSecurityPerimeterConfigurationResource(ResourceIdentifier)"/> instead.</description>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetQuotaTierResource(ResourceIdentifier)"/> instead.</description>
         /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="NetworkSecurityPerimeterConfigurationResource"/> object. </returns>
-        public static NetworkSecurityPerimeterConfigurationResource GetNetworkSecurityPerimeterConfigurationResource(this ArmClient client, ResourceIdentifier id)
+        /// <returns> Returns a <see cref="QuotaTierResource"/> object. </returns>
+        public static QuotaTierResource GetQuotaTierResource(this ArmClient client, ResourceIdentifier id)
         {
             Argument.AssertNotNull(client, nameof(client));
 
-            return GetMockableCognitiveServicesArmClient(client).GetNetworkSecurityPerimeterConfigurationResource(id);
+            return GetMockableCognitiveServicesArmClient(client).GetQuotaTierResource(id);
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="DefenderForAISettingResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="DefenderForAISettingResource.CreateResourceIdentifier" /> to create a <see cref="DefenderForAISettingResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// Gets an object representing a <see cref="RaiExternalSafetyProviderSchemaResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="RaiExternalSafetyProviderSchemaResource.CreateResourceIdentifier" /> to create a <see cref="RaiExternalSafetyProviderSchemaResource" /> <see cref="ResourceIdentifier" /> from its components.
         /// <item>
         /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetDefenderForAISettingResource(ResourceIdentifier)"/> instead.</description>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetRaiExternalSafetyProviderSchemaResource(ResourceIdentifier)"/> instead.</description>
         /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="DefenderForAISettingResource"/> object. </returns>
-        public static DefenderForAISettingResource GetDefenderForAISettingResource(this ArmClient client, ResourceIdentifier id)
+        /// <returns> Returns a <see cref="RaiExternalSafetyProviderSchemaResource"/> object. </returns>
+        public static RaiExternalSafetyProviderSchemaResource GetRaiExternalSafetyProviderSchemaResource(this ArmClient client, ResourceIdentifier id)
         {
             Argument.AssertNotNull(client, nameof(client));
 
-            return GetMockableCognitiveServicesArmClient(client).GetDefenderForAISettingResource(id);
+            return GetMockableCognitiveServicesArmClient(client).GetRaiExternalSafetyProviderSchemaResource(id);
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="CognitiveServicesProjectResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CognitiveServicesProjectResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesProjectResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// Gets an object representing a <see cref="SubscriptionRaiPolicyResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="SubscriptionRaiPolicyResource.CreateResourceIdentifier" /> to create a <see cref="SubscriptionRaiPolicyResource" /> <see cref="ResourceIdentifier" /> from its components.
         /// <item>
         /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetCognitiveServicesProjectResource(ResourceIdentifier)"/> instead.</description>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetSubscriptionRaiPolicyResource(ResourceIdentifier)"/> instead.</description>
         /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="CognitiveServicesProjectResource"/> object. </returns>
-        public static CognitiveServicesProjectResource GetCognitiveServicesProjectResource(this ArmClient client, ResourceIdentifier id)
+        /// <returns> Returns a <see cref="SubscriptionRaiPolicyResource"/> object. </returns>
+        public static SubscriptionRaiPolicyResource GetSubscriptionRaiPolicyResource(this ArmClient client, ResourceIdentifier id)
         {
             Argument.AssertNotNull(client, nameof(client));
 
-            return GetMockableCognitiveServicesArmClient(client).GetCognitiveServicesProjectResource(id);
+            return GetMockableCognitiveServicesArmClient(client).GetSubscriptionRaiPolicyResource(id);
         }
 
         /// <summary>
-        /// Gets an object representing a <see cref="CognitiveServicesConnectionResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CognitiveServicesConnectionResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesConnectionResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// Gets an object representing a <see cref="RaiPolicyResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="RaiPolicyResource.CreateResourceIdentifier" /> to create a <see cref="RaiPolicyResource" /> <see cref="ResourceIdentifier" /> from its components.
         /// <item>
         /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetCognitiveServicesConnectionResource(ResourceIdentifier)"/> instead.</description>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetRaiPolicyResource(ResourceIdentifier)"/> instead.</description>
         /// </item>
         /// </summary>
         /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
         /// <param name="id"> The resource ID of the resource to get. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="CognitiveServicesConnectionResource"/> object. </returns>
-        public static CognitiveServicesConnectionResource GetCognitiveServicesConnectionResource(this ArmClient client, ResourceIdentifier id)
+        /// <returns> Returns a <see cref="RaiPolicyResource"/> object. </returns>
+        public static RaiPolicyResource GetRaiPolicyResource(this ArmClient client, ResourceIdentifier id)
         {
             Argument.AssertNotNull(client, nameof(client));
 
-            return GetMockableCognitiveServicesArmClient(client).GetCognitiveServicesConnectionResource(id);
-        }
-
-        /// <summary>
-        /// Gets an object representing a <see cref="CognitiveServicesProjectConnectionResource" /> along with the instance operations that can be performed on it but with no data.
-        /// You can use <see cref="CognitiveServicesProjectConnectionResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesProjectConnectionResource" /> <see cref="ResourceIdentifier" /> from its components.
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetCognitiveServicesProjectConnectionResource(ResourceIdentifier)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
-        /// <param name="id"> The resource ID of the resource to get. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
-        /// <returns> Returns a <see cref="CognitiveServicesProjectConnectionResource"/> object. </returns>
-        public static CognitiveServicesProjectConnectionResource GetCognitiveServicesProjectConnectionResource(this ArmClient client, ResourceIdentifier id)
-        {
-            Argument.AssertNotNull(client, nameof(client));
-
-            return GetMockableCognitiveServicesArmClient(client).GetCognitiveServicesProjectConnectionResource(id);
+            return GetMockableCognitiveServicesArmClient(client).GetRaiPolicyResource(id);
         }
 
         /// <summary>
@@ -395,6 +262,310 @@ namespace Azure.ResourceManager.CognitiveServices
         }
 
         /// <summary>
+        /// Gets an object representing a <see cref="CognitiveServicesConnectionResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CognitiveServicesConnectionResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesConnectionResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetCognitiveServicesConnectionResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="CognitiveServicesConnectionResource"/> object. </returns>
+        public static CognitiveServicesConnectionResource GetCognitiveServicesConnectionResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetCognitiveServicesConnectionResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="CognitiveServicesProjectConnectionResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CognitiveServicesProjectConnectionResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesProjectConnectionResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetCognitiveServicesProjectConnectionResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="CognitiveServicesProjectConnectionResource"/> object. </returns>
+        public static CognitiveServicesProjectConnectionResource GetCognitiveServicesProjectConnectionResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetCognitiveServicesProjectConnectionResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="DefenderForAISettingResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="DefenderForAISettingResource.CreateResourceIdentifier" /> to create a <see cref="DefenderForAISettingResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetDefenderForAISettingResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="DefenderForAISettingResource"/> object. </returns>
+        public static DefenderForAISettingResource GetDefenderForAISettingResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetDefenderForAISettingResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="CognitiveServicesAccountDeploymentResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CognitiveServicesAccountDeploymentResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesAccountDeploymentResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetCognitiveServicesAccountDeploymentResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="CognitiveServicesAccountDeploymentResource"/> object. </returns>
+        public static CognitiveServicesAccountDeploymentResource GetCognitiveServicesAccountDeploymentResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetCognitiveServicesAccountDeploymentResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="CognitiveServicesEncryptionScopeResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CognitiveServicesEncryptionScopeResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesEncryptionScopeResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetCognitiveServicesEncryptionScopeResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="CognitiveServicesEncryptionScopeResource"/> object. </returns>
+        public static CognitiveServicesEncryptionScopeResource GetCognitiveServicesEncryptionScopeResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetCognitiveServicesEncryptionScopeResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="ManagedNetworkSettingsPropertiesBasicResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="ManagedNetworkSettingsPropertiesBasicResource.CreateResourceIdentifier" /> to create a <see cref="ManagedNetworkSettingsPropertiesBasicResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetManagedNetworkSettingsPropertiesBasicResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="ManagedNetworkSettingsPropertiesBasicResource"/> object. </returns>
+        public static ManagedNetworkSettingsPropertiesBasicResource GetManagedNetworkSettingsPropertiesBasicResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetManagedNetworkSettingsPropertiesBasicResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing an <see cref="OutboundRuleBasicResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="OutboundRuleBasicResource.CreateResourceIdentifier" /> to create an <see cref="OutboundRuleBasicResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetOutboundRuleBasicResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="OutboundRuleBasicResource"/> object. </returns>
+        public static OutboundRuleBasicResource GetOutboundRuleBasicResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetOutboundRuleBasicResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="NetworkSecurityPerimeterConfigurationResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="NetworkSecurityPerimeterConfigurationResource.CreateResourceIdentifier" /> to create a <see cref="NetworkSecurityPerimeterConfigurationResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetNetworkSecurityPerimeterConfigurationResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="NetworkSecurityPerimeterConfigurationResource"/> object. </returns>
+        public static NetworkSecurityPerimeterConfigurationResource GetNetworkSecurityPerimeterConfigurationResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetNetworkSecurityPerimeterConfigurationResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="CognitiveServicesPrivateEndpointConnectionResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CognitiveServicesPrivateEndpointConnectionResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesPrivateEndpointConnectionResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetCognitiveServicesPrivateEndpointConnectionResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="CognitiveServicesPrivateEndpointConnectionResource"/> object. </returns>
+        public static CognitiveServicesPrivateEndpointConnectionResource GetCognitiveServicesPrivateEndpointConnectionResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetCognitiveServicesPrivateEndpointConnectionResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="CognitiveServicesProjectResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="CognitiveServicesProjectResource.CreateResourceIdentifier" /> to create a <see cref="CognitiveServicesProjectResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetCognitiveServicesProjectResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="CognitiveServicesProjectResource"/> object. </returns>
+        public static CognitiveServicesProjectResource GetCognitiveServicesProjectResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetCognitiveServicesProjectResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing an <see cref="AgentApplicationResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="AgentApplicationResource.CreateResourceIdentifier" /> to create an <see cref="AgentApplicationResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetAgentApplicationResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="AgentApplicationResource"/> object. </returns>
+        public static AgentApplicationResource GetAgentApplicationResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetAgentApplicationResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing an <see cref="AgentDeploymentResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="AgentDeploymentResource.CreateResourceIdentifier" /> to create an <see cref="AgentDeploymentResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetAgentDeploymentResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="AgentDeploymentResource"/> object. </returns>
+        public static AgentDeploymentResource GetAgentDeploymentResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetAgentDeploymentResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="RaiBlocklistResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="RaiBlocklistResource.CreateResourceIdentifier" /> to create a <see cref="RaiBlocklistResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetRaiBlocklistResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="RaiBlocklistResource"/> object. </returns>
+        public static RaiBlocklistResource GetRaiBlocklistResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetRaiBlocklistResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="RaiBlocklistItemResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="RaiBlocklistItemResource.CreateResourceIdentifier" /> to create a <see cref="RaiBlocklistItemResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetRaiBlocklistItemResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="RaiBlocklistItemResource"/> object. </returns>
+        public static RaiBlocklistItemResource GetRaiBlocklistItemResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetRaiBlocklistItemResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="RaiToolLabelResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="RaiToolLabelResource.CreateResourceIdentifier" /> to create a <see cref="RaiToolLabelResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetRaiToolLabelResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="RaiToolLabelResource"/> object. </returns>
+        public static RaiToolLabelResource GetRaiToolLabelResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetRaiToolLabelResource(id);
+        }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="RaiTopicResource" /> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="RaiTopicResource.CreateResourceIdentifier" /> to create a <see cref="RaiTopicResource" /> <see cref="ResourceIdentifier" /> from its components.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesArmClient.GetRaiTopicResource(ResourceIdentifier)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="client"> The <see cref="ArmClient" /> instance the method will execute against. </param>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="client"/> is null. </exception>
+        /// <returns> Returns a <see cref="RaiTopicResource"/> object. </returns>
+        public static RaiTopicResource GetRaiTopicResource(this ArmClient client, ResourceIdentifier id)
+        {
+            Argument.AssertNotNull(client, nameof(client));
+
+            return GetMockableCognitiveServicesArmClient(client).GetRaiTopicResource(id);
+        }
+
+        /// <summary>
         /// Gets a collection of CognitiveServicesAccountResources in the ResourceGroupResource.
         /// <item>
         /// <term>Mocking</term>
@@ -424,7 +595,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -462,7 +633,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -517,7 +688,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -555,7 +726,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -610,7 +781,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -623,7 +794,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="accountName"> The name of Cognitive Services account. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -650,7 +821,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -663,7 +834,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="accountName"> The name of Cognitive Services account. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -685,7 +856,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
         /// <returns> An object representing collection of RaiContentFilterResources and their operations over a RaiContentFilterResource. </returns>
         public static RaiContentFilterCollection GetRaiContentFilters(this SubscriptionResource subscriptionResource, AzureLocation location)
@@ -708,7 +879,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -721,7 +892,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="filterName"> The name of the RAI Content Filter. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="filterName"/> is null. </exception>
@@ -747,7 +918,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -760,7 +931,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
+        /// <param name="location"> The name of Azure region. </param>
         /// <param name="filterName"> The name of the RAI Content Filter. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="filterName"/> is null. </exception>
@@ -771,6 +942,285 @@ namespace Azure.ResourceManager.CognitiveServices
             Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
 
             return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetRaiContentFilter(location, filterName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets a collection of QuotaTierResources in the SubscriptionResource.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetQuotaTiers()"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An object representing collection of QuotaTierResources and their operations over a QuotaTierResource. </returns>
+        public static QuotaTierCollection GetQuotaTiers(this SubscriptionResource subscriptionResource)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetQuotaTiers();
+        }
+
+        /// <summary>
+        /// Gets the Quota Tier information for the given subscription. QuotaTiers is a subscription wide resource type. It holds current tier information.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/quotaTiers/{default}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>QuotaTiers_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="QuotaTierResource"/></description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetQuotaTierAsync(string,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="default"> Default parameter. Leave the value as default. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="default"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="default"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public static async Task<Response<QuotaTierResource>> GetQuotaTierAsync(this SubscriptionResource subscriptionResource, string @default, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return await GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetQuotaTierAsync(@default, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Gets the Quota Tier information for the given subscription. QuotaTiers is a subscription wide resource type. It holds current tier information.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/quotaTiers/{default}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>QuotaTiers_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="QuotaTierResource"/></description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetQuotaTier(string,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="default"> Default parameter. Leave the value as default. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="default"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="default"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public static Response<QuotaTierResource> GetQuotaTier(this SubscriptionResource subscriptionResource, string @default, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetQuotaTier(@default, cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets a collection of RaiExternalSafetyProviderSchemaResources in the SubscriptionResource.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetRaiExternalSafetyProviderSchemas()"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An object representing collection of RaiExternalSafetyProviderSchemaResources and their operations over a RaiExternalSafetyProviderSchemaResource. </returns>
+        public static RaiExternalSafetyProviderSchemaCollection GetRaiExternalSafetyProviderSchemas(this SubscriptionResource subscriptionResource)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetRaiExternalSafetyProviderSchemas();
+        }
+
+        /// <summary>
+        /// Gets the specified external safety provider associated with the Subscription
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiExternalSafetyProviders/{safetyProviderName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>RaiExternalSafetyProvider_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RaiExternalSafetyProviderSchemaResource"/></description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetRaiExternalSafetyProviderSchemaAsync(string,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="safetyProviderName"> The name of the Rai External Safety Provider associated with the Cognitive Services Account. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="safetyProviderName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="safetyProviderName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public static async Task<Response<RaiExternalSafetyProviderSchemaResource>> GetRaiExternalSafetyProviderSchemaAsync(this SubscriptionResource subscriptionResource, string safetyProviderName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return await GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetRaiExternalSafetyProviderSchemaAsync(safetyProviderName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Gets the specified external safety provider associated with the Subscription
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiExternalSafetyProviders/{safetyProviderName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>RaiExternalSafetyProvider_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="RaiExternalSafetyProviderSchemaResource"/></description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetRaiExternalSafetyProviderSchema(string,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="safetyProviderName"> The name of the Rai External Safety Provider associated with the Cognitive Services Account. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="safetyProviderName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="safetyProviderName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public static Response<RaiExternalSafetyProviderSchemaResource> GetRaiExternalSafetyProviderSchema(this SubscriptionResource subscriptionResource, string safetyProviderName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetRaiExternalSafetyProviderSchema(safetyProviderName, cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets a collection of SubscriptionRaiPolicyResources in the SubscriptionResource.
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetSubscriptionRaiPolicies()"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An object representing collection of SubscriptionRaiPolicyResources and their operations over a SubscriptionRaiPolicyResource. </returns>
+        public static SubscriptionRaiPolicyCollection GetSubscriptionRaiPolicies(this SubscriptionResource subscriptionResource)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetSubscriptionRaiPolicies();
+        }
+
+        /// <summary>
+        /// Gets the specified Content Filters associated with the Subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiPolicy/{raiPolicyName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>SubscriptionRaiPolicy_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SubscriptionRaiPolicyResource"/></description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetSubscriptionRaiPolicyAsync(string,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="raiPolicyName"> The name of the RaiPolicy associated with the Cognitive Services Account. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="raiPolicyName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="raiPolicyName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public static async Task<Response<SubscriptionRaiPolicyResource>> GetSubscriptionRaiPolicyAsync(this SubscriptionResource subscriptionResource, string raiPolicyName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return await GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetSubscriptionRaiPolicyAsync(raiPolicyName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Gets the specified Content Filters associated with the Subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiPolicy/{raiPolicyName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>SubscriptionRaiPolicy_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SubscriptionRaiPolicyResource"/></description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetSubscriptionRaiPolicy(string,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="raiPolicyName"> The name of the RaiPolicy associated with the Cognitive Services Account. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="raiPolicyName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="raiPolicyName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public static Response<SubscriptionRaiPolicyResource> GetSubscriptionRaiPolicy(this SubscriptionResource subscriptionResource, string raiPolicyName, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetSubscriptionRaiPolicy(raiPolicyName, cancellationToken);
         }
 
         /// <summary>
@@ -786,7 +1236,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -822,7 +1272,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -846,207 +1296,131 @@ namespace Azure.ResourceManager.CognitiveServices
         }
 
         /// <summary>
-        /// Returns all the resources of a particular type belonging to a subscription.
+        /// Model capacity calculator.
         /// <list type="bullet">
         /// <item>
         /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/deletedAccounts</description>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/calculateModelCapacity</description>
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>DeletedAccounts_List</description>
+        /// <description>CalculateModelCapacity</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="CognitiveServicesDeletedAccountResource"/></description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// </list>
         /// <item>
         /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetDeletedAccounts(CancellationToken)"/> instead.</description>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.CalculateModelCapacity(CalculateModelCapacityContent,CancellationToken)"/> instead.</description>
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="content"> The request body. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> An async collection of <see cref="CognitiveServicesDeletedAccountResource"/> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<CognitiveServicesDeletedAccountResource> GetDeletedAccountsAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
+        public static async Task<Response<CalculateModelCapacityResult>> CalculateModelCapacityAsync(this SubscriptionResource subscriptionResource, CalculateModelCapacityContent content, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
 
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetDeletedAccountsAsync(cancellationToken);
+            return await GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).CalculateModelCapacityAsync(content, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
-        /// Returns all the resources of a particular type belonging to a subscription.
+        /// Model capacity calculator.
         /// <list type="bullet">
         /// <item>
         /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/deletedAccounts</description>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/calculateModelCapacity</description>
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>DeletedAccounts_List</description>
+        /// <description>CalculateModelCapacity</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="CognitiveServicesDeletedAccountResource"/></description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// </list>
         /// <item>
         /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetDeletedAccounts(CancellationToken)"/> instead.</description>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.CalculateModelCapacity(CalculateModelCapacityContent,CancellationToken)"/> instead.</description>
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="content"> The request body. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> A collection of <see cref="CognitiveServicesDeletedAccountResource"/> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<CognitiveServicesDeletedAccountResource> GetDeletedAccounts(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
+        public static Response<CalculateModelCapacityResult> CalculateModelCapacity(this SubscriptionResource subscriptionResource, CalculateModelCapacityContent content, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
 
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetDeletedAccounts(cancellationToken);
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).CalculateModelCapacity(content, cancellationToken);
         }
 
         /// <summary>
-        /// Gets the list of Microsoft.CognitiveServices SKUs available for your Subscription.
+        /// Check whether a domain is available.
         /// <list type="bullet">
         /// <item>
         /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/skus</description>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/checkDomainAvailability</description>
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>ResourceSkus_List</description>
+        /// <description>CheckDomainAvailability</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// </list>
         /// <item>
         /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetResourceSkus(CancellationToken)"/> instead.</description>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.CheckDomainAvailability(CognitiveServicesDomainAvailabilityContent,CancellationToken)"/> instead.</description>
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="content"> The request body. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> An async collection of <see cref="AvailableCognitiveServicesSku"/> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<AvailableCognitiveServicesSku> GetResourceSkusAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
+        public static async Task<Response<CognitiveServicesDomainAvailabilityList>> CheckDomainAvailabilityAsync(this SubscriptionResource subscriptionResource, CognitiveServicesDomainAvailabilityContent content, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
 
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetResourceSkusAsync(cancellationToken);
+            return await GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).CheckDomainAvailabilityAsync(content, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
-        /// Gets the list of Microsoft.CognitiveServices SKUs available for your Subscription.
+        /// Check whether a domain is available.
         /// <list type="bullet">
         /// <item>
         /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/skus</description>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/checkDomainAvailability</description>
         /// </item>
         /// <item>
         /// <term>Operation Id</term>
-        /// <description>ResourceSkus_List</description>
+        /// <description>CheckDomainAvailability</description>
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// </list>
         /// <item>
         /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetResourceSkus(CancellationToken)"/> instead.</description>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.CheckDomainAvailability(CognitiveServicesDomainAvailabilityContent,CancellationToken)"/> instead.</description>
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="content"> The request body. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> A collection of <see cref="AvailableCognitiveServicesSku"/> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<AvailableCognitiveServicesSku> GetResourceSkus(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
+        public static Response<CognitiveServicesDomainAvailabilityList> CheckDomainAvailability(this SubscriptionResource subscriptionResource, CognitiveServicesDomainAvailabilityContent content, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
 
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetResourceSkus(cancellationToken);
-        }
-
-        /// <summary>
-        /// Get usages for the requested subscription
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/usages</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Usages_List</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetUsages(AzureLocation,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
-        /// <param name="filter"> An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names). </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> An async collection of <see cref="ServiceAccountUsage"/> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<ServiceAccountUsage> GetUsagesAsync(this SubscriptionResource subscriptionResource, AzureLocation location, string filter = null, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetUsagesAsync(location, filter, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get usages for the requested subscription
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/usages</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Usages_List</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetUsages(AzureLocation,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
-        /// <param name="filter"> An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names). </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> A collection of <see cref="ServiceAccountUsage"/> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<ServiceAccountUsage> GetUsages(this SubscriptionResource subscriptionResource, AzureLocation location, string filter = null, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetUsages(location, filter, cancellationToken);
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).CheckDomainAvailability(content, cancellationToken);
         }
 
         /// <summary>
@@ -1062,7 +1436,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// </list>
         /// <item>
@@ -1071,8 +1445,8 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
-        /// <param name="content"> Check SKU Availability POST body. </param>
+        /// <param name="location"> The name of Azure region. </param>
+        /// <param name="content"> The request body. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
         /// <returns> An async collection of <see cref="CognitiveServicesSkuAvailabilityList"/> that may take multiple service requests to iterate over. </returns>
@@ -1096,7 +1470,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// </list>
         /// <item>
@@ -1105,8 +1479,8 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// </summary>
         /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
-        /// <param name="content"> Check SKU Availability POST body. </param>
+        /// <param name="location"> The name of Azure region. </param>
+        /// <param name="content"> The request body. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
         /// <returns> A collection of <see cref="CognitiveServicesSkuAvailabilityList"/> that may take multiple service requests to iterate over. </returns>
@@ -1115,408 +1489,6 @@ namespace Azure.ResourceManager.CognitiveServices
             Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
 
             return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).CheckSkuAvailability(location, content, cancellationToken);
-        }
-
-        /// <summary>
-        /// Check whether a domain is available.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/checkDomainAvailability</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>CheckDomainAvailability</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.CheckDomainAvailability(CognitiveServicesDomainAvailabilityContent,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="content"> Check Domain Availability parameter. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
-        public static async Task<Response<CognitiveServicesDomainAvailabilityList>> CheckDomainAvailabilityAsync(this SubscriptionResource subscriptionResource, CognitiveServicesDomainAvailabilityContent content, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return await GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).CheckDomainAvailabilityAsync(content, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Check whether a domain is available.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/checkDomainAvailability</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>CheckDomainAvailability</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.CheckDomainAvailability(CognitiveServicesDomainAvailabilityContent,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="content"> Check Domain Availability parameter. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
-        public static Response<CognitiveServicesDomainAvailabilityList> CheckDomainAvailability(this SubscriptionResource subscriptionResource, CognitiveServicesDomainAvailabilityContent content, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).CheckDomainAvailability(content, cancellationToken);
-        }
-
-        /// <summary>
-        /// Model capacity calculator.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/calculateModelCapacity</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>CalculateModelCapacity</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.CalculateModelCapacity(CalculateModelCapacityContent,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="content"> Check Domain Availability parameter. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
-        public static async Task<Response<CalculateModelCapacityResult>> CalculateModelCapacityAsync(this SubscriptionResource subscriptionResource, CalculateModelCapacityContent content, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return await GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).CalculateModelCapacityAsync(content, cancellationToken).ConfigureAwait(false);
-        }
-
-        /// <summary>
-        /// Model capacity calculator.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/calculateModelCapacity</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>CalculateModelCapacity</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.CalculateModelCapacity(CalculateModelCapacityContent,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="content"> Check Domain Availability parameter. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> or <paramref name="content"/> is null. </exception>
-        public static Response<CalculateModelCapacityResult> CalculateModelCapacity(this SubscriptionResource subscriptionResource, CalculateModelCapacityContent content, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).CalculateModelCapacity(content, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Commitment Tiers.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/commitmentTiers</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>CommitmentTiers_List</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetCommitmentTiers(AzureLocation,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> An async collection of <see cref="CommitmentTier"/> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<CommitmentTier> GetCommitmentTiersAsync(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetCommitmentTiersAsync(location, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Commitment Tiers.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/commitmentTiers</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>CommitmentTiers_List</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetCommitmentTiers(AzureLocation,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> A collection of <see cref="CommitmentTier"/> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<CommitmentTier> GetCommitmentTiers(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetCommitmentTiers(location, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Models.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/models</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Models_List</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetModels(AzureLocation,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> An async collection of <see cref="CognitiveServicesModel"/> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<CognitiveServicesModel> GetModelsAsync(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetModelsAsync(location, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Models.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/models</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Models_List</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetModels(AzureLocation,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
-        /// <returns> A collection of <see cref="CognitiveServicesModel"/> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<CognitiveServicesModel> GetModels(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetModels(location, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Location Based ModelCapacities.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/modelCapacities</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>LocationBasedModelCapacities_List</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetLocationBasedModelCapacities(AzureLocation,string,string,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
-        /// <param name="modelFormat"> The format of the Model. </param>
-        /// <param name="modelName"> The name of the Model. </param>
-        /// <param name="modelVersion"> The version of the Model. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/>, <paramref name="modelFormat"/>, <paramref name="modelName"/> or <paramref name="modelVersion"/> is null. </exception>
-        /// <returns> An async collection of <see cref="ModelCapacityListResultValueItem"/> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<ModelCapacityListResultValueItem> GetLocationBasedModelCapacitiesAsync(this SubscriptionResource subscriptionResource, AzureLocation location, string modelFormat, string modelName, string modelVersion, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetLocationBasedModelCapacitiesAsync(location, modelFormat, modelName, modelVersion, cancellationToken);
-        }
-
-        /// <summary>
-        /// List Location Based ModelCapacities.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/modelCapacities</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>LocationBasedModelCapacities_List</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetLocationBasedModelCapacities(AzureLocation,string,string,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="location"> Resource location. </param>
-        /// <param name="modelFormat"> The format of the Model. </param>
-        /// <param name="modelName"> The name of the Model. </param>
-        /// <param name="modelVersion"> The version of the Model. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/>, <paramref name="modelFormat"/>, <paramref name="modelName"/> or <paramref name="modelVersion"/> is null. </exception>
-        /// <returns> A collection of <see cref="ModelCapacityListResultValueItem"/> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<ModelCapacityListResultValueItem> GetLocationBasedModelCapacities(this SubscriptionResource subscriptionResource, AzureLocation location, string modelFormat, string modelName, string modelVersion, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetLocationBasedModelCapacities(location, modelFormat, modelName, modelVersion, cancellationToken);
-        }
-
-        /// <summary>
-        /// List ModelCapacities.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/modelCapacities</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>ModelCapacities_List</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetModelCapacities(string,string,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="modelFormat"> The format of the Model. </param>
-        /// <param name="modelName"> The name of the Model. </param>
-        /// <param name="modelVersion"> The version of the Model. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/>, <paramref name="modelFormat"/>, <paramref name="modelName"/> or <paramref name="modelVersion"/> is null. </exception>
-        /// <returns> An async collection of <see cref="ModelCapacityListResultValueItem"/> that may take multiple service requests to iterate over. </returns>
-        public static AsyncPageable<ModelCapacityListResultValueItem> GetModelCapacitiesAsync(this SubscriptionResource subscriptionResource, string modelFormat, string modelName, string modelVersion, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetModelCapacitiesAsync(modelFormat, modelName, modelVersion, cancellationToken);
-        }
-
-        /// <summary>
-        /// List ModelCapacities.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/modelCapacities</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>ModelCapacities_List</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
-        /// </item>
-        /// </list>
-        /// <item>
-        /// <term>Mocking</term>
-        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetModelCapacities(string,string,string,CancellationToken)"/> instead.</description>
-        /// </item>
-        /// </summary>
-        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
-        /// <param name="modelFormat"> The format of the Model. </param>
-        /// <param name="modelName"> The name of the Model. </param>
-        /// <param name="modelVersion"> The version of the Model. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/>, <paramref name="modelFormat"/>, <paramref name="modelName"/> or <paramref name="modelVersion"/> is null. </exception>
-        /// <returns> A collection of <see cref="ModelCapacityListResultValueItem"/> that may take multiple service requests to iterate over. </returns>
-        public static Pageable<ModelCapacityListResultValueItem> GetModelCapacities(this SubscriptionResource subscriptionResource, string modelFormat, string modelName, string modelVersion, CancellationToken cancellationToken = default)
-        {
-            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
-
-            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetModelCapacities(modelFormat, modelName, modelVersion, cancellationToken);
         }
 
         /// <summary>
@@ -1532,7 +1504,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -1568,7 +1540,7 @@ namespace Azure.ResourceManager.CognitiveServices
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2025-06-01</description>
+        /// <description>2025-10-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -1589,6 +1561,484 @@ namespace Azure.ResourceManager.CognitiveServices
             Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
 
             return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetCognitiveServicesCommitmentPlans(cancellationToken);
+        }
+
+        /// <summary>
+        /// Returns all the resources of a particular type belonging to a subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/deletedAccounts</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DeletedAccounts_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CognitiveServicesDeletedAccountResource"/></description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetDeletedAccounts(CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An async collection of <see cref="CognitiveServicesDeletedAccountResource"/> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<CognitiveServicesDeletedAccountResource> GetDeletedAccountsAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetDeletedAccountsAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Returns all the resources of a particular type belonging to a subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/deletedAccounts</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DeletedAccounts_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="CognitiveServicesDeletedAccountResource"/></description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetDeletedAccounts(CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> A collection of <see cref="CognitiveServicesDeletedAccountResource"/> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<CognitiveServicesDeletedAccountResource> GetDeletedAccounts(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetDeletedAccounts(cancellationToken);
+        }
+
+        /// <summary>
+        /// List Commitment Tiers.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/commitmentTiers</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CommitmentTiers_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetCommitmentTiers(AzureLocation,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> The name of Azure region. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An async collection of <see cref="CommitmentTier"/> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<CommitmentTier> GetCommitmentTiersAsync(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetCommitmentTiersAsync(location, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Commitment Tiers.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/commitmentTiers</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>CommitmentTiers_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetCommitmentTiers(AzureLocation,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> The name of Azure region. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> A collection of <see cref="CommitmentTier"/> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<CommitmentTier> GetCommitmentTiers(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetCommitmentTiers(location, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Location Based ModelCapacities.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/modelCapacities</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>LocationBasedModelCapacities_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetLocationBasedModelCapacities(AzureLocation,string,string,string,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> The name of Azure region. </param>
+        /// <param name="modelFormat"> The format of the Model. </param>
+        /// <param name="modelName"> The name of the Model. </param>
+        /// <param name="modelVersion"> The version of the Model. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/>, <paramref name="modelFormat"/>, <paramref name="modelName"/> or <paramref name="modelVersion"/> is null. </exception>
+        /// <returns> An async collection of <see cref="ModelCapacityListResultValueItem"/> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<ModelCapacityListResultValueItem> GetLocationBasedModelCapacitiesAsync(this SubscriptionResource subscriptionResource, AzureLocation location, string modelFormat, string modelName, string modelVersion, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetLocationBasedModelCapacitiesAsync(location, modelFormat, modelName, modelVersion, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Location Based ModelCapacities.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/modelCapacities</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>LocationBasedModelCapacities_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetLocationBasedModelCapacities(AzureLocation,string,string,string,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> The name of Azure region. </param>
+        /// <param name="modelFormat"> The format of the Model. </param>
+        /// <param name="modelName"> The name of the Model. </param>
+        /// <param name="modelVersion"> The version of the Model. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/>, <paramref name="modelFormat"/>, <paramref name="modelName"/> or <paramref name="modelVersion"/> is null. </exception>
+        /// <returns> A collection of <see cref="ModelCapacityListResultValueItem"/> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<ModelCapacityListResultValueItem> GetLocationBasedModelCapacities(this SubscriptionResource subscriptionResource, AzureLocation location, string modelFormat, string modelName, string modelVersion, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetLocationBasedModelCapacities(location, modelFormat, modelName, modelVersion, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Models.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/models</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Models_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetModels(AzureLocation,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> The name of Azure region. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An async collection of <see cref="CognitiveServicesModel"/> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<CognitiveServicesModel> GetModelsAsync(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetModelsAsync(location, cancellationToken);
+        }
+
+        /// <summary>
+        /// List Models.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/models</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Models_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetModels(AzureLocation,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> The name of Azure region. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> A collection of <see cref="CognitiveServicesModel"/> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<CognitiveServicesModel> GetModels(this SubscriptionResource subscriptionResource, AzureLocation location, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetModels(location, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get usages for the requested subscription
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/usages</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Usages_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetUsages(AzureLocation,string,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> The name of Azure region. </param>
+        /// <param name="filter"> An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names). </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An async collection of <see cref="ServiceAccountUsage"/> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<ServiceAccountUsage> GetUsagesAsync(this SubscriptionResource subscriptionResource, AzureLocation location, string filter = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetUsagesAsync(location, filter, cancellationToken);
+        }
+
+        /// <summary>
+        /// Get usages for the requested subscription
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/usages</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Usages_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetUsages(AzureLocation,string,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="location"> The name of Azure region. </param>
+        /// <param name="filter"> An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names). </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> A collection of <see cref="ServiceAccountUsage"/> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<ServiceAccountUsage> GetUsages(this SubscriptionResource subscriptionResource, AzureLocation location, string filter = null, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetUsages(location, filter, cancellationToken);
+        }
+
+        /// <summary>
+        /// List ModelCapacities.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/modelCapacities</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ModelCapacities_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetModelCapacities(string,string,string,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="modelFormat"> The format of the Model. </param>
+        /// <param name="modelName"> The name of the Model. </param>
+        /// <param name="modelVersion"> The version of the Model. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/>, <paramref name="modelFormat"/>, <paramref name="modelName"/> or <paramref name="modelVersion"/> is null. </exception>
+        /// <returns> An async collection of <see cref="ModelCapacityListResultValueItem"/> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<ModelCapacityListResultValueItem> GetModelCapacitiesAsync(this SubscriptionResource subscriptionResource, string modelFormat, string modelName, string modelVersion, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetModelCapacitiesAsync(modelFormat, modelName, modelVersion, cancellationToken);
+        }
+
+        /// <summary>
+        /// List ModelCapacities.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/modelCapacities</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ModelCapacities_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetModelCapacities(string,string,string,CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="modelFormat"> The format of the Model. </param>
+        /// <param name="modelName"> The name of the Model. </param>
+        /// <param name="modelVersion"> The version of the Model. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/>, <paramref name="modelFormat"/>, <paramref name="modelName"/> or <paramref name="modelVersion"/> is null. </exception>
+        /// <returns> A collection of <see cref="ModelCapacityListResultValueItem"/> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<ModelCapacityListResultValueItem> GetModelCapacities(this SubscriptionResource subscriptionResource, string modelFormat, string modelName, string modelVersion, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetModelCapacities(modelFormat, modelName, modelVersion, cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets the list of Microsoft.CognitiveServices SKUs available for your Subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/skus</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ResourceSkus_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetResourceSkus(CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> An async collection of <see cref="AvailableCognitiveServicesSku"/> that may take multiple service requests to iterate over. </returns>
+        public static AsyncPageable<AvailableCognitiveServicesSku> GetResourceSkusAsync(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetResourceSkusAsync(cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets the list of Microsoft.CognitiveServices SKUs available for your Subscription.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/skus</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>ResourceSkus_List</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-10-01-preview</description>
+        /// </item>
+        /// </list>
+        /// <item>
+        /// <term>Mocking</term>
+        /// <description>To mock this method, please mock <see cref="MockableCognitiveServicesSubscriptionResource.GetResourceSkus(CancellationToken)"/> instead.</description>
+        /// </item>
+        /// </summary>
+        /// <param name="subscriptionResource"> The <see cref="SubscriptionResource" /> instance the method will execute against. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="subscriptionResource"/> is null. </exception>
+        /// <returns> A collection of <see cref="AvailableCognitiveServicesSku"/> that may take multiple service requests to iterate over. </returns>
+        public static Pageable<AvailableCognitiveServicesSku> GetResourceSkus(this SubscriptionResource subscriptionResource, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNull(subscriptionResource, nameof(subscriptionResource));
+
+            return GetMockableCognitiveServicesSubscriptionResource(subscriptionResource).GetResourceSkus(cancellationToken);
         }
     }
 }

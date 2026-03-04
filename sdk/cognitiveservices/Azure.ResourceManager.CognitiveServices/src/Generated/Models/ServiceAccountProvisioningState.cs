@@ -28,8 +28,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         private const string MovingValue = "Moving";
         private const string FailedValue = "Failed";
         private const string SucceededValue = "Succeeded";
-        private const string ResolvingDnsValue = "ResolvingDNS";
         private const string CanceledValue = "Canceled";
+        private const string ResolvingDnsValue = "ResolvingDNS";
 
         /// <summary> Accepted. </summary>
         public static ServiceAccountProvisioningState Accepted { get; } = new ServiceAccountProvisioningState(AcceptedValue);
@@ -43,10 +43,10 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         public static ServiceAccountProvisioningState Failed { get; } = new ServiceAccountProvisioningState(FailedValue);
         /// <summary> Succeeded. </summary>
         public static ServiceAccountProvisioningState Succeeded { get; } = new ServiceAccountProvisioningState(SucceededValue);
-        /// <summary> ResolvingDNS. </summary>
-        public static ServiceAccountProvisioningState ResolvingDns { get; } = new ServiceAccountProvisioningState(ResolvingDnsValue);
         /// <summary> Canceled. </summary>
         public static ServiceAccountProvisioningState Canceled { get; } = new ServiceAccountProvisioningState(CanceledValue);
+        /// <summary> ResolvingDNS. </summary>
+        public static ServiceAccountProvisioningState ResolvingDns { get; } = new ServiceAccountProvisioningState(ResolvingDnsValue);
         /// <summary> Determines if two <see cref="ServiceAccountProvisioningState"/> values are the same. </summary>
         public static bool operator ==(ServiceAccountProvisioningState left, ServiceAccountProvisioningState right) => left.Equals(right);
         /// <summary> Determines if two <see cref="ServiceAccountProvisioningState"/> values are not the same. </summary>

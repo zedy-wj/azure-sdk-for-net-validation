@@ -27,11 +27,13 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         private const string GitValue = "Git";
         private const string S3Value = "S3";
         private const string SnowflakeValue = "Snowflake";
+        private const string AzureKeyVaultValue = "AzureKeyVault";
         private const string AzureSqlDBValue = "AzureSqlDb";
         private const string AzureSynapseAnalyticsValue = "AzureSynapseAnalytics";
         private const string AzureMySqlDBValue = "AzureMySqlDb";
         private const string AzurePostgresDBValue = "AzurePostgresDb";
         private const string AdlsGen2Value = "ADLSGen2";
+        private const string AzureContainerAppEnvironmentValue = "AzureContainerAppEnvironment";
         private const string RedisValue = "Redis";
         private const string ApiKeyValue = "ApiKey";
         private const string AzureOpenAIValue = "AzureOpenAI";
@@ -40,6 +42,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         private const string CognitiveServiceValue = "CognitiveService";
         private const string CustomKeysValue = "CustomKeys";
         private const string AzureBlobValue = "AzureBlob";
+        private const string AzureStorageAccountValue = "AzureStorageAccount";
         private const string AzureOneLakeValue = "AzureOneLake";
         private const string CosmosDBValue = "CosmosDb";
         private const string CosmosDBMongoDBApiValue = "CosmosDbMongoDbApi";
@@ -77,6 +80,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         private const string TeradataValue = "Teradata";
         private const string VerticaValue = "Vertica";
         private const string PineconeValue = "Pinecone";
+        private const string DatabricksValue = "Databricks";
         private const string CassandraValue = "Cassandra";
         private const string CouchbaseValue = "Couchbase";
         private const string MongoDBV2Value = "MongoDbV2";
@@ -92,6 +96,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         private const string ODataRestValue = "ODataRest";
         private const string OdbcValue = "Odbc";
         private const string GenericRestValue = "GenericRest";
+        private const string RemoteToolValue = "RemoteTool";
         private const string AmazonMwsValue = "AmazonMws";
         private const string ConcurValue = "Concur";
         private const string DynamicsValue = "Dynamics";
@@ -122,11 +127,21 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         private const string ZohoValue = "Zoho";
         private const string GenericContainerRegistryValue = "GenericContainerRegistry";
         private const string ElasticsearchValue = "Elasticsearch";
+        private const string AppInsightsValue = "AppInsights";
+        private const string AppConfigValue = "AppConfig";
         private const string OpenAIValue = "OpenAI";
         private const string SerpValue = "Serp";
         private const string BingLLMSearchValue = "BingLLMSearch";
         private const string ServerlessValue = "Serverless";
         private const string ManagedOnlineEndpointValue = "ManagedOnlineEndpoint";
+        private const string ApiManagementValue = "ApiManagement";
+        private const string ModelGatewayValue = "ModelGateway";
+        private const string GroundingWithBingSearchValue = "GroundingWithBingSearch";
+        private const string GroundingWithCustomSearchValue = "GroundingWithCustomSearch";
+        private const string SharepointValue = "Sharepoint";
+        private const string MicrosoftFabricValue = "MicrosoftFabric";
+        private const string PowerPlatformEnvironmentValue = "PowerPlatformEnvironment";
+        private const string RemoteA2AValue = "RemoteA2A";
 
         /// <summary> PythonFeed. </summary>
         public static CognitiveServicesConnectionCategory PythonFeed { get; } = new CognitiveServicesConnectionCategory(PythonFeedValue);
@@ -138,6 +153,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         public static CognitiveServicesConnectionCategory S3 { get; } = new CognitiveServicesConnectionCategory(S3Value);
         /// <summary> Snowflake. </summary>
         public static CognitiveServicesConnectionCategory Snowflake { get; } = new CognitiveServicesConnectionCategory(SnowflakeValue);
+        /// <summary> AzureKeyVault. </summary>
+        public static CognitiveServicesConnectionCategory AzureKeyVault { get; } = new CognitiveServicesConnectionCategory(AzureKeyVaultValue);
         /// <summary> AzureSqlDb. </summary>
         public static CognitiveServicesConnectionCategory AzureSqlDB { get; } = new CognitiveServicesConnectionCategory(AzureSqlDBValue);
         /// <summary> AzureSynapseAnalytics. </summary>
@@ -148,6 +165,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         public static CognitiveServicesConnectionCategory AzurePostgresDB { get; } = new CognitiveServicesConnectionCategory(AzurePostgresDBValue);
         /// <summary> ADLSGen2. </summary>
         public static CognitiveServicesConnectionCategory AdlsGen2 { get; } = new CognitiveServicesConnectionCategory(AdlsGen2Value);
+        /// <summary> AzureContainerAppEnvironment. </summary>
+        public static CognitiveServicesConnectionCategory AzureContainerAppEnvironment { get; } = new CognitiveServicesConnectionCategory(AzureContainerAppEnvironmentValue);
         /// <summary> Redis. </summary>
         public static CognitiveServicesConnectionCategory Redis { get; } = new CognitiveServicesConnectionCategory(RedisValue);
         /// <summary> ApiKey. </summary>
@@ -164,6 +183,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         public static CognitiveServicesConnectionCategory CustomKeys { get; } = new CognitiveServicesConnectionCategory(CustomKeysValue);
         /// <summary> AzureBlob. </summary>
         public static CognitiveServicesConnectionCategory AzureBlob { get; } = new CognitiveServicesConnectionCategory(AzureBlobValue);
+        /// <summary> AzureStorageAccount. </summary>
+        public static CognitiveServicesConnectionCategory AzureStorageAccount { get; } = new CognitiveServicesConnectionCategory(AzureStorageAccountValue);
         /// <summary> AzureOneLake. </summary>
         public static CognitiveServicesConnectionCategory AzureOneLake { get; } = new CognitiveServicesConnectionCategory(AzureOneLakeValue);
         /// <summary> CosmosDb. </summary>
@@ -238,6 +259,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         public static CognitiveServicesConnectionCategory Vertica { get; } = new CognitiveServicesConnectionCategory(VerticaValue);
         /// <summary> Pinecone. </summary>
         public static CognitiveServicesConnectionCategory Pinecone { get; } = new CognitiveServicesConnectionCategory(PineconeValue);
+        /// <summary> Databricks. </summary>
+        public static CognitiveServicesConnectionCategory Databricks { get; } = new CognitiveServicesConnectionCategory(DatabricksValue);
         /// <summary> Cassandra. </summary>
         public static CognitiveServicesConnectionCategory Cassandra { get; } = new CognitiveServicesConnectionCategory(CassandraValue);
         /// <summary> Couchbase. </summary>
@@ -268,6 +291,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         public static CognitiveServicesConnectionCategory Odbc { get; } = new CognitiveServicesConnectionCategory(OdbcValue);
         /// <summary> GenericRest. </summary>
         public static CognitiveServicesConnectionCategory GenericRest { get; } = new CognitiveServicesConnectionCategory(GenericRestValue);
+        /// <summary> RemoteTool. </summary>
+        public static CognitiveServicesConnectionCategory RemoteTool { get; } = new CognitiveServicesConnectionCategory(RemoteToolValue);
         /// <summary> AmazonMws. </summary>
         public static CognitiveServicesConnectionCategory AmazonMws { get; } = new CognitiveServicesConnectionCategory(AmazonMwsValue);
         /// <summary> Concur. </summary>
@@ -328,6 +353,10 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         public static CognitiveServicesConnectionCategory GenericContainerRegistry { get; } = new CognitiveServicesConnectionCategory(GenericContainerRegistryValue);
         /// <summary> Elasticsearch. </summary>
         public static CognitiveServicesConnectionCategory Elasticsearch { get; } = new CognitiveServicesConnectionCategory(ElasticsearchValue);
+        /// <summary> AppInsights. </summary>
+        public static CognitiveServicesConnectionCategory AppInsights { get; } = new CognitiveServicesConnectionCategory(AppInsightsValue);
+        /// <summary> AppConfig. </summary>
+        public static CognitiveServicesConnectionCategory AppConfig { get; } = new CognitiveServicesConnectionCategory(AppConfigValue);
         /// <summary> OpenAI. </summary>
         public static CognitiveServicesConnectionCategory OpenAI { get; } = new CognitiveServicesConnectionCategory(OpenAIValue);
         /// <summary> Serp. </summary>
@@ -338,6 +367,22 @@ namespace Azure.ResourceManager.CognitiveServices.Models
         public static CognitiveServicesConnectionCategory Serverless { get; } = new CognitiveServicesConnectionCategory(ServerlessValue);
         /// <summary> ManagedOnlineEndpoint. </summary>
         public static CognitiveServicesConnectionCategory ManagedOnlineEndpoint { get; } = new CognitiveServicesConnectionCategory(ManagedOnlineEndpointValue);
+        /// <summary> ApiManagement. </summary>
+        public static CognitiveServicesConnectionCategory ApiManagement { get; } = new CognitiveServicesConnectionCategory(ApiManagementValue);
+        /// <summary> ModelGateway. </summary>
+        public static CognitiveServicesConnectionCategory ModelGateway { get; } = new CognitiveServicesConnectionCategory(ModelGatewayValue);
+        /// <summary> GroundingWithBingSearch. </summary>
+        public static CognitiveServicesConnectionCategory GroundingWithBingSearch { get; } = new CognitiveServicesConnectionCategory(GroundingWithBingSearchValue);
+        /// <summary> GroundingWithCustomSearch. </summary>
+        public static CognitiveServicesConnectionCategory GroundingWithCustomSearch { get; } = new CognitiveServicesConnectionCategory(GroundingWithCustomSearchValue);
+        /// <summary> Sharepoint. </summary>
+        public static CognitiveServicesConnectionCategory Sharepoint { get; } = new CognitiveServicesConnectionCategory(SharepointValue);
+        /// <summary> MicrosoftFabric. </summary>
+        public static CognitiveServicesConnectionCategory MicrosoftFabric { get; } = new CognitiveServicesConnectionCategory(MicrosoftFabricValue);
+        /// <summary> PowerPlatformEnvironment. </summary>
+        public static CognitiveServicesConnectionCategory PowerPlatformEnvironment { get; } = new CognitiveServicesConnectionCategory(PowerPlatformEnvironmentValue);
+        /// <summary> RemoteA2A. </summary>
+        public static CognitiveServicesConnectionCategory RemoteA2A { get; } = new CognitiveServicesConnectionCategory(RemoteA2AValue);
         /// <summary> Determines if two <see cref="CognitiveServicesConnectionCategory"/> values are the same. </summary>
         public static bool operator ==(CognitiveServicesConnectionCategory left, CognitiveServicesConnectionCategory right) => left.Equals(right);
         /// <summary> Determines if two <see cref="CognitiveServicesConnectionCategory"/> values are not the same. </summary>

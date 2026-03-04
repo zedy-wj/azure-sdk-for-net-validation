@@ -24,11 +24,23 @@ namespace Azure.ResourceManager.CognitiveServices.Models
 
         private const string PromptValue = "Prompt";
         private const string CompletionValue = "Completion";
+        private const string PreToolCallValue = "PreToolCall";
+        private const string PostToolCallValue = "PostToolCall";
+        private const string PreRunValue = "PreRun";
+        private const string PostRunValue = "PostRun";
 
         /// <summary> Prompt. </summary>
         public static RaiPolicyContentSource Prompt { get; } = new RaiPolicyContentSource(PromptValue);
         /// <summary> Completion. </summary>
         public static RaiPolicyContentSource Completion { get; } = new RaiPolicyContentSource(CompletionValue);
+        /// <summary> PreToolCall. </summary>
+        public static RaiPolicyContentSource PreToolCall { get; } = new RaiPolicyContentSource(PreToolCallValue);
+        /// <summary> PostToolCall. </summary>
+        public static RaiPolicyContentSource PostToolCall { get; } = new RaiPolicyContentSource(PostToolCallValue);
+        /// <summary> PreRun. </summary>
+        public static RaiPolicyContentSource PreRun { get; } = new RaiPolicyContentSource(PreRunValue);
+        /// <summary> PostRun. </summary>
+        public static RaiPolicyContentSource PostRun { get; } = new RaiPolicyContentSource(PostRunValue);
         /// <summary> Determines if two <see cref="RaiPolicyContentSource"/> values are the same. </summary>
         public static bool operator ==(RaiPolicyContentSource left, RaiPolicyContentSource right) => left.Equals(right);
         /// <summary> Determines if two <see cref="RaiPolicyContentSource"/> values are not the same. </summary>

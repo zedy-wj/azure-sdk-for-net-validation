@@ -64,19 +64,19 @@ namespace Azure.ResourceManager.CognitiveServices
         /// <param name="systemData"> The systemData. </param>
         /// <param name="tags"> The tags. </param>
         /// <param name="location"> The location. </param>
-        /// <param name="kind"> The Kind of the resource. </param>
-        /// <param name="sku"> The resource model definition representing SKU. </param>
-        /// <param name="identity"> Identity for the resource. </param>
         /// <param name="properties"> Properties of Cognitive Services account. </param>
         /// <param name="etag"> Resource Etag. </param>
+        /// <param name="kind"> The kind (type) of cognitive service account. </param>
+        /// <param name="sku"> The resource model definition representing SKU. </param>
+        /// <param name="identity"> Identity for the resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal CognitiveServicesAccountData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, IDictionary<string, string> tags, AzureLocation location, string kind, CognitiveServicesSku sku, ManagedServiceIdentity identity, CognitiveServicesAccountProperties properties, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData, tags, location)
+        internal CognitiveServicesAccountData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, IDictionary<string, string> tags, AzureLocation location, CognitiveServicesAccountProperties properties, ETag? etag, string kind, CognitiveServicesSku sku, ManagedServiceIdentity identity, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData, tags, location)
         {
+            Properties = properties;
+            ETag = etag;
             Kind = kind;
             Sku = sku;
             Identity = identity;
-            Properties = properties;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -85,7 +85,13 @@ namespace Azure.ResourceManager.CognitiveServices
         {
         }
 
-        /// <summary> The Kind of the resource. </summary>
+        /// <summary> Properties of Cognitive Services account. </summary>
+        [WirePath("properties")]
+        public CognitiveServicesAccountProperties Properties { get; set; }
+        /// <summary> Resource Etag. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; }
+        /// <summary> The kind (type) of cognitive service account. </summary>
         [WirePath("kind")]
         public string Kind { get; set; }
         /// <summary> The resource model definition representing SKU. </summary>
@@ -94,11 +100,5 @@ namespace Azure.ResourceManager.CognitiveServices
         /// <summary> Identity for the resource. </summary>
         [WirePath("identity")]
         public ManagedServiceIdentity Identity { get; set; }
-        /// <summary> Properties of Cognitive Services account. </summary>
-        [WirePath("properties")]
-        public CognitiveServicesAccountProperties Properties { get; set; }
-        /// <summary> Resource Etag. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; }
     }
 }

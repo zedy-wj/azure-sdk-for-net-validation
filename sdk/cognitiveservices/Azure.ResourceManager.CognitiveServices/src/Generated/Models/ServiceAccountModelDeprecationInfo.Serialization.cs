@@ -45,6 +45,11 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 writer.WritePropertyName("inference"u8);
                 writer.WriteStringValue(InferenceOn.Value, "O");
             }
+            if (Optional.IsDefined(DeprecationStatus))
+            {
+                writer.WritePropertyName("deprecationStatus"u8);
+                writer.WriteStringValue(DeprecationStatus.Value.ToString());
+            }
             if (options.Format != "W" && _serializedAdditionalRawData != null)
             {
                 foreach (var item in _serializedAdditionalRawData)
@@ -84,6 +89,7 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             }
             DateTimeOffset? fineTune = default;
             DateTimeOffset? inference = default;
+            DeprecationStatus? deprecationStatus = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
@@ -106,13 +112,22 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                     inference = property.Value.GetDateTimeOffset("O");
                     continue;
                 }
+                if (property.NameEquals("deprecationStatus"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    deprecationStatus = new DeprecationStatus(property.Value.GetString());
+                    continue;
+                }
                 if (options.Format != "W")
                 {
                     rawDataDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
                 }
             }
             serializedAdditionalRawData = rawDataDictionary;
-            return new ServiceAccountModelDeprecationInfo(fineTune, inference, serializedAdditionalRawData);
+            return new ServiceAccountModelDeprecationInfo(fineTune, inference, deprecationStatus, serializedAdditionalRawData);
         }
 
         private BinaryData SerializeBicep(ModelReaderWriterOptions options)
@@ -155,6 +170,21 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                     builder.Append("  inference: ");
                     var formattedDateTimeString = TypeFormatters.ToString(InferenceOn.Value, "o");
                     builder.AppendLine($"'{formattedDateTimeString}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(DeprecationStatus), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  deprecationStatus: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(DeprecationStatus))
+                {
+                    builder.Append("  deprecationStatus: ");
+                    builder.AppendLine($"'{DeprecationStatus.Value.ToString()}'");
                 }
             }
 

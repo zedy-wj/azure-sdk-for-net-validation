@@ -8,13 +8,15 @@ azure-arm: true
 csharp: true
 library-name: CognitiveServices
 namespace: Azure.ResourceManager.CognitiveServices
-require: https://github.com/Azure/azure-rest-api-specs/blob/78c97002d557d9aca3f8220b4a4774ed5aae3a09/specification/cognitiveservices/resource-manager/readme.md
+require: https://github.com/Azure/azure-rest-api-specs/blob/6d130ff17bf2ca805a14d602dad0340515797fcd/specification/cognitiveservices/resource-manager/readme.md
 #tag: package-2025-06-01
 output-folder: $(this-folder)/Generated
 clear-output-folder: true
 sample-gen:
   output-folder: $(this-folder)/../tests/Generated
   clear-output-folder: true
+  skipped-operations:
+    - AgentApplications_List
 skip-csproj: true
 modelerfour:
   flatten-payloads: false
@@ -29,6 +31,8 @@ list-exception:
   - /subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/resourceGroups/{resourceGroupName}/deletedAccounts/{accountName}
 
 request-path-to-resource-name:
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiPolicies/{raiPolicyName}: RaiPolicy
+  /subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiPolicy/{raiPolicyName}: SubscriptionRaiPolicy
   /subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/resourceGroups/{resourceGroupName}/deletedAccounts/{accountName}: CognitiveServicesDeletedAccount
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}: CognitiveServicesAccount
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/commitmentPlans/{commitmentPlanName}: CommitmentPlan
@@ -39,6 +43,10 @@ request-path-to-resource-name:
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}: CognitiveServicesProjectConnection
 
 rename-mapping:
+  ApplicationAuthorizationPolicy.type: PolicyType
+  ManagedNetworkSettings.status: ManagedNetworkProvisionStatus
+  ManagedNetworkProvisionStatus.status: ManagedNetworkStatus
+  ManagedNetworkSettingsBasicResource: ManagedNetworkSettingsBasicResourceData
   CheckSkuAvailabilityParameter.type: ResourceType
   CheckDomainAvailabilityParameter.type: ResourceType
   AccountProperties.dynamicThrottlingEnabled: EnableDynamicThrottling
@@ -181,6 +189,10 @@ acronym-mapping:
 
 directive:
   - from: cognitiveservices.json
+    where: $.paths..['$ref']
+    transform: >
+      return $ === "#/definitions/ProjectCapabilityHost" ? "#/definitions/CapabilityHost" : $;
+  - from: cognitiveservices.json
     where: $.paths
     transform: >
       delete $["/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}"]["put"]
@@ -214,4 +226,8 @@ directive:
       $.SkuChangeInfo.properties.lastChangeDate['x-ms-client-name'] = 'lastChangedOn';
       $.VirtualNetworkRule.properties.id['x-ms-format'] = 'arm-id';
       $.ApiProperties.properties.qnaAzureSearchEndpointId['x-ms-format'] = 'arm-id';
+  - from: cognitiveservices.json
+    where: $.definitions.RaiBlocklistItemsBulkDeleteRequest
+    transform: >
+      $["type"] = "object";
 ```

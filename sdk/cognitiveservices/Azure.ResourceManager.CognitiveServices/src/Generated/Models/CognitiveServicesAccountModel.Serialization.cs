@@ -90,6 +90,16 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 writer.WritePropertyName("deprecation"u8);
                 writer.WriteObjectValue(Deprecation, options);
             }
+            if (Optional.IsDefined(ReplacementConfig))
+            {
+                writer.WritePropertyName("replacementConfig"u8);
+                writer.WriteObjectValue(ReplacementConfig, options);
+            }
+            if (Optional.IsDefined(ModelCatalogAssetId))
+            {
+                writer.WritePropertyName("modelCatalogAssetId"u8);
+                writer.WriteStringValue(ModelCatalogAssetId);
+            }
             if (Optional.IsDefined(LifecycleStatus))
             {
                 writer.WritePropertyName("lifecycleStatus"u8);
@@ -129,6 +139,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
             IDictionary<string, string> capabilities = default;
             IDictionary<string, string> finetuneCapabilities = default;
             ServiceAccountModelDeprecationInfo deprecation = default;
+            ReplacementConfig replacementConfig = default;
+            string modelCatalogAssetId = default;
             ModelLifecycleStatus? lifecycleStatus = default;
             SystemData systemData = default;
             string publisher = default;
@@ -220,6 +232,20 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                     deprecation = ServiceAccountModelDeprecationInfo.DeserializeServiceAccountModelDeprecationInfo(property.Value, options);
                     continue;
                 }
+                if (property.NameEquals("replacementConfig"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    replacementConfig = ReplacementConfig.DeserializeReplacementConfig(property.Value, options);
+                    continue;
+                }
+                if (property.NameEquals("modelCatalogAssetId"u8))
+                {
+                    modelCatalogAssetId = property.Value.GetString();
+                    continue;
+                }
                 if (property.NameEquals("lifecycleStatus"u8))
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
@@ -303,6 +329,8 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 capabilities ?? new ChangeTrackingDictionary<string, string>(),
                 finetuneCapabilities ?? new ChangeTrackingDictionary<string, string>(),
                 deprecation,
+                replacementConfig,
+                modelCatalogAssetId,
                 lifecycleStatus,
                 systemData);
         }
@@ -473,6 +501,44 @@ namespace Azure.ResourceManager.CognitiveServices.Models
                 {
                     builder.Append("  deprecation: ");
                     BicepSerializationHelpers.AppendChildObject(builder, Deprecation, options, 2, false, "  deprecation: ");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ReplacementConfig), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  replacementConfig: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ReplacementConfig))
+                {
+                    builder.Append("  replacementConfig: ");
+                    BicepSerializationHelpers.AppendChildObject(builder, ReplacementConfig, options, 2, false, "  replacementConfig: ");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ModelCatalogAssetId), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  modelCatalogAssetId: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ModelCatalogAssetId))
+                {
+                    builder.Append("  modelCatalogAssetId: ");
+                    if (ModelCatalogAssetId.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{ModelCatalogAssetId}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{ModelCatalogAssetId}'");
+                    }
                 }
             }
 
