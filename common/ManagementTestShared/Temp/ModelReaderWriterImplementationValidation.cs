@@ -20,13 +20,6 @@ namespace Azure.ResourceManager.TestFramework
         private const string ResourceManagerAssemblyName = "Azure.ResourceManager";
         private const string TestAssemblySuffix = ".Tests";
 
-        [OneTimeSetUp]
-        public void SetExceptionList()
-        {
-            // This model is an option bag.
-            ExceptionList = new string[] { "Azure.ResourceManager.CognitiveServices.Models.AgentApplicationCollectionGetAllOptions" };
-        }
-
         [Test]
         public void ValidateModelReaderWriterPattern()
         {
