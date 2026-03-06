@@ -7,13 +7,11 @@
 
 using System;
 using System.Collections.Generic;
-using Azure.Core;
-using Azure.ResourceManager.Models;
 
 namespace Azure.ResourceManager.AppService.Models
 {
-    /// <summary> MSDeploy ARM PUT information. </summary>
-    public partial class WebAppMSDeploy : ResourceData
+    /// <summary> MSDeploy ARM PUT core information. </summary>
+    public partial class MSDeployCore
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.
@@ -45,20 +43,15 @@ namespace Azure.ResourceManager.AppService.Models
         /// </list>
         /// </para>
         /// </summary>
-        private IDictionary<string, BinaryData> _serializedAdditionalRawData;
+        private protected IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
-        /// <summary> Initializes a new instance of <see cref="WebAppMSDeploy"/>. </summary>
-        public WebAppMSDeploy()
+        /// <summary> Initializes a new instance of <see cref="MSDeployCore"/>. </summary>
+        public MSDeployCore()
         {
             SetParameters = new ChangeTrackingDictionary<string, string>();
-            AddOnPackages = new ChangeTrackingList<MSDeployCore>();
         }
 
-        /// <summary> Initializes a new instance of <see cref="WebAppMSDeploy"/>. </summary>
-        /// <param name="id"> The id. </param>
-        /// <param name="name"> The name. </param>
-        /// <param name="resourceType"> The resourceType. </param>
-        /// <param name="systemData"> The systemData. </param>
+        /// <summary> Initializes a new instance of <see cref="MSDeployCore"/>. </summary>
         /// <param name="packageUri"> Package URI. </param>
         /// <param name="connectionString"> SQL Connection String. </param>
         /// <param name="dbType"> Database Type. </param>
@@ -70,14 +63,12 @@ namespace Azure.ResourceManager.AppService.Models
         /// will not be deleted, and any App_Data directory in the source will be ignored.
         /// Setting is &lt;code&gt;false&lt;/code&gt; by default.
         /// </param>
-        /// <param name="isAppOffline">
+        /// <param name="appOffline">
         /// Sets the AppOffline rule while the MSDeploy operation executes.
         /// Setting is &lt;code&gt;false&lt;/code&gt; by default.
         /// </param>
-        /// <param name="addOnPackages"> List of Add-On packages. Add-On packages implicitly enable the Do Not Delete MSDeploy rule. </param>
-        /// <param name="kind"> Kind of resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal WebAppMSDeploy(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, Uri packageUri, string connectionString, string dbType, Uri setParametersXmlFileUri, IDictionary<string, string> setParameters, bool? skipAppData, bool? isAppOffline, IList<MSDeployCore> addOnPackages, string kind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal MSDeployCore(Uri packageUri, string connectionString, string dbType, Uri setParametersXmlFileUri, IDictionary<string, string> setParameters, bool? skipAppData, bool? appOffline, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             PackageUri = packageUri;
             ConnectionString = connectionString;
@@ -85,26 +76,24 @@ namespace Azure.ResourceManager.AppService.Models
             SetParametersXmlFileUri = setParametersXmlFileUri;
             SetParameters = setParameters;
             SkipAppData = skipAppData;
-            IsAppOffline = isAppOffline;
-            AddOnPackages = addOnPackages;
-            Kind = kind;
+            AppOffline = appOffline;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
         /// <summary> Package URI. </summary>
-        [WirePath("properties.packageUri")]
+        [WirePath("packageUri")]
         public Uri PackageUri { get; set; }
         /// <summary> SQL Connection String. </summary>
-        [WirePath("properties.connectionString")]
+        [WirePath("connectionString")]
         public string ConnectionString { get; set; }
         /// <summary> Database Type. </summary>
-        [WirePath("properties.dbType")]
+        [WirePath("dbType")]
         public string DBType { get; set; }
         /// <summary> URI of MSDeploy Parameters file. Must not be set if SetParameters is used. </summary>
-        [WirePath("properties.setParametersXmlFileUri")]
+        [WirePath("setParametersXmlFileUri")]
         public Uri SetParametersXmlFileUri { get; set; }
         /// <summary> MSDeploy Parameters. Must not be set if SetParametersXmlFileUri is used. </summary>
-        [WirePath("properties.setParameters")]
+        [WirePath("setParameters")]
         public IDictionary<string, string> SetParameters { get; }
         /// <summary>
         /// Controls whether the MSDeploy operation skips the App_Data directory.
@@ -112,19 +101,13 @@ namespace Azure.ResourceManager.AppService.Models
         /// will not be deleted, and any App_Data directory in the source will be ignored.
         /// Setting is &lt;code&gt;false&lt;/code&gt; by default.
         /// </summary>
-        [WirePath("properties.skipAppData")]
+        [WirePath("skipAppData")]
         public bool? SkipAppData { get; set; }
         /// <summary>
         /// Sets the AppOffline rule while the MSDeploy operation executes.
         /// Setting is &lt;code&gt;false&lt;/code&gt; by default.
         /// </summary>
-        [WirePath("properties.appOffline")]
-        public bool? IsAppOffline { get; set; }
-        /// <summary> List of Add-On packages. Add-On packages implicitly enable the Do Not Delete MSDeploy rule. </summary>
-        [WirePath("properties.addOnPackages")]
-        public IList<MSDeployCore> AddOnPackages { get; }
-        /// <summary> Kind of resource. </summary>
-        [WirePath("kind")]
-        public string Kind { get; set; }
+        [WirePath("appOffline")]
+        public bool? AppOffline { get; set; }
     }
 }

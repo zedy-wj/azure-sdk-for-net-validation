@@ -3790,7 +3790,7 @@ namespace Azure.ResourceManager.AppService.Models
         /// <param name="microsoftAccountOAuthScopes">
         /// The OAuth 2.0 scopes that will be requested as part of Microsoft Account authentication.
         /// This setting is optional. If not specified, "wl.basic" is used as the default scope.
-        /// Microsoft Account Scopes and permissions documentation: https://msdn.microsoft.com/en-us/library/dn631845.aspx
+        /// Microsoft Account Scopes and permissions documentation: https://msdn.Microsoft.com/en-us/library/dn631845.aspx
         /// </param>
         /// <param name="isAuthFromFile">
         /// "true" if the auth config settings should be read from a file,
@@ -4353,11 +4353,13 @@ namespace Azure.ResourceManager.AppService.Models
         /// Sets the AppOffline rule while the MSDeploy operation executes.
         /// Setting is &lt;code&gt;false&lt;/code&gt; by default.
         /// </param>
+        /// <param name="addOnPackages"> List of Add-On packages. Add-On packages implicitly enable the Do Not Delete MSDeploy rule. </param>
         /// <param name="kind"> Kind of resource. </param>
         /// <returns> A new <see cref="Models.WebAppMSDeploy"/> instance for mocking. </returns>
-        public static WebAppMSDeploy WebAppMSDeploy(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, Uri packageUri = null, string connectionString = null, string dbType = null, Uri setParametersXmlFileUri = null, IDictionary<string, string> setParameters = null, bool? skipAppData = null, bool? isAppOffline = null, string kind = null)
+        public static WebAppMSDeploy WebAppMSDeploy(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, Uri packageUri = null, string connectionString = null, string dbType = null, Uri setParametersXmlFileUri = null, IDictionary<string, string> setParameters = null, bool? skipAppData = null, bool? isAppOffline = null, IEnumerable<MSDeployCore> addOnPackages = null, string kind = null)
         {
             setParameters ??= new Dictionary<string, string>();
+            addOnPackages ??= new List<MSDeployCore>();
 
             return new WebAppMSDeploy(
                 id,
@@ -4371,6 +4373,7 @@ namespace Azure.ResourceManager.AppService.Models
                 setParameters,
                 skipAppData,
                 isAppOffline,
+                addOnPackages?.ToList(),
                 kind,
                 serializedAdditionalRawData: null);
         }
@@ -6119,6 +6122,32 @@ namespace Azure.ResourceManager.AppService.Models
                 serializedAdditionalRawData: null);
         }
 
+        /// <summary> Initializes a new instance of <see cref="Models.StaticSiteUser"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="provider"> The identity provider for the static site user. </param>
+        /// <param name="userId"> The user id for the static site user. </param>
+        /// <param name="displayName"> The display name for the static site user. </param>
+        /// <param name="roles"> The roles for the static site user, in free-form string format. </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="Models.StaticSiteUser"/> instance for mocking. </returns>
+        public static StaticSiteUser StaticSiteUser(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string provider = null, string userId = null, string displayName = null, string roles = null, string kind = null)
+        {
+            return new StaticSiteUser(
+                id,
+                name,
+                resourceType,
+                systemData,
+                provider,
+                userId,
+                displayName,
+                roles,
+                kind,
+                serializedAdditionalRawData: null);
+        }
+
         /// <summary> Initializes a new instance of <see cref="AppService.StaticSiteBasicAuthPropertyData"/>. </summary>
         /// <param name="id"> The id. </param>
         /// <param name="name"> The name. </param>
@@ -6497,32 +6526,6 @@ namespace Azure.ResourceManager.AppService.Models
         public static ValidateResponseError ValidateResponseError(string code = null, string message = null)
         {
             return new ValidateResponseError(code, message, serializedAdditionalRawData: null);
-        }
-
-        /// <summary> Initializes a new instance of <see cref="Models.StaticSiteUser"/>. </summary>
-        /// <param name="id"> The id. </param>
-        /// <param name="name"> The name. </param>
-        /// <param name="resourceType"> The resourceType. </param>
-        /// <param name="systemData"> The systemData. </param>
-        /// <param name="provider"> The identity provider for the static site user. </param>
-        /// <param name="userId"> The user id for the static site user. </param>
-        /// <param name="displayName"> The display name for the static site user. </param>
-        /// <param name="roles"> The roles for the static site user, in free-form string format. </param>
-        /// <param name="kind"> Kind of resource. </param>
-        /// <returns> A new <see cref="Models.StaticSiteUser"/> instance for mocking. </returns>
-        public static StaticSiteUser StaticSiteUser(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string provider = null, string userId = null, string displayName = null, string roles = null, string kind = null)
-        {
-            return new StaticSiteUser(
-                id,
-                name,
-                resourceType,
-                systemData,
-                provider,
-                userId,
-                displayName,
-                roles,
-                kind,
-                serializedAdditionalRawData: null);
         }
 
         /// <summary> Initializes a new instance of <see cref="AppService.AppServiceCertificateOrderData"/>. </summary>
@@ -7260,6 +7263,34 @@ namespace Azure.ResourceManager.AppService.Models
         public static SitePatchInfo SitePatchInfo(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ManagedServiceIdentity identity, string state, IEnumerable<string> hostNames, string repositorySiteName, AppServiceUsageState? usageState, bool? isEnabled, IEnumerable<string> enabledHostNames, WebSiteAvailabilityState? availabilityState, IEnumerable<HostNameSslState> hostNameSslStates, ResourceIdentifier serverFarmId, bool? isReserved, bool? isXenon, bool? isHyperV, DateTimeOffset? lastModifiedOn, SiteDnsConfig dnsConfiguration, SiteConfigProperties siteConfig, IEnumerable<string> trafficManagerHostNames, bool? isScmSiteAlsoStopped, string targetSwapSlot, HostingEnvironmentProfile hostingEnvironmentProfile, bool? isClientAffinityEnabled, bool? isClientAffinityProxyEnabled, bool? isClientCertEnabled, ClientCertMode? clientCertMode, string clientCertExclusionPaths, bool? isHostNameDisabled, string customDomainVerificationId, string outboundIPAddresses, string possibleOutboundIPAddresses, int? containerSize, int? dailyMemoryTimeQuota, DateTimeOffset? suspendOn, int? maxNumberOfWorkers, CloningInfo cloningInfo, string resourceGroup, bool? isDefaultContainer, string defaultHostName, SlotSwapStatus slotSwapStatus, bool? isHttpsOnly, RedundancyMode? redundancyMode, Guid? inProgressOperationId, bool? isStorageAccountRequired, string keyVaultReferenceIdentity, ResourceIdentifier virtualNetworkSubnetId, string kind)
         {
             return SitePatchInfo(id: id, name: name, resourceType: resourceType, systemData: systemData, identity: identity, state: state, hostNames: hostNames, repositorySiteName: repositorySiteName, usageState: usageState, isEnabled: isEnabled, enabledHostNames: enabledHostNames, availabilityState: availabilityState, hostNameSslStates: hostNameSslStates, serverFarmId: serverFarmId, isReserved: isReserved, isXenon: isXenon, isHyperV: isHyperV, lastModifiedOn: lastModifiedOn, dnsConfiguration: dnsConfiguration, siteConfig: siteConfig, trafficManagerHostNames: trafficManagerHostNames, isScmSiteAlsoStopped: isScmSiteAlsoStopped, targetSwapSlot: targetSwapSlot, hostingEnvironmentProfile: hostingEnvironmentProfile, isClientAffinityEnabled: isClientAffinityEnabled, isClientAffinityProxyEnabled: isClientAffinityProxyEnabled, isClientCertEnabled: isClientCertEnabled, clientCertMode: clientCertMode, clientCertExclusionPaths: clientCertExclusionPaths, isHostNameDisabled: isHostNameDisabled, customDomainVerificationId: customDomainVerificationId, outboundIPAddresses: outboundIPAddresses, possibleOutboundIPAddresses: possibleOutboundIPAddresses, containerSize: containerSize, dailyMemoryTimeQuota: dailyMemoryTimeQuota, suspendOn: suspendOn, maxNumberOfWorkers: maxNumberOfWorkers, cloningInfo: cloningInfo, resourceGroup: resourceGroup, isDefaultContainer: isDefaultContainer, defaultHostName: defaultHostName, slotSwapStatus: slotSwapStatus, isHttpsOnly: isHttpsOnly, redundancyMode: redundancyMode, inProgressOperationId: inProgressOperationId, publicNetworkAccess: default, isStorageAccountRequired: isStorageAccountRequired, keyVaultReferenceIdentity: keyVaultReferenceIdentity, virtualNetworkSubnetId: virtualNetworkSubnetId, kind: kind);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="T:Azure.ResourceManager.AppService.Models.WebAppMSDeploy" />. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="packageUri"> Package URI. </param>
+        /// <param name="connectionString"> SQL Connection String. </param>
+        /// <param name="dbType"> Database Type. </param>
+        /// <param name="setParametersXmlFileUri"> URI of MSDeploy Parameters file. Must not be set if SetParameters is used. </param>
+        /// <param name="setParameters"> MSDeploy Parameters. Must not be set if SetParametersXmlFileUri is used. </param>
+        /// <param name="skipAppData">
+        /// Controls whether the MSDeploy operation skips the App_Data directory.
+        /// If set to &lt;code&gt;true&lt;/code&gt;, the existing App_Data directory on the destination
+        /// will not be deleted, and any App_Data directory in the source will be ignored.
+        /// Setting is &lt;code&gt;false&lt;/code&gt; by default.
+        /// </param>
+        /// <param name="isAppOffline">
+        /// Sets the AppOffline rule while the MSDeploy operation executes.
+        /// Setting is &lt;code&gt;false&lt;/code&gt; by default.
+        /// </param>
+        /// <param name="kind"> Kind of resource. </param>
+        /// <returns> A new <see cref="T:Azure.ResourceManager.AppService.Models.WebAppMSDeploy" /> instance for mocking. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static WebAppMSDeploy WebAppMSDeploy(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, Uri packageUri, string connectionString, string dbType, Uri setParametersXmlFileUri, IDictionary<string, string> setParameters, bool? skipAppData, bool? isAppOffline, string kind)
+        {
+            return WebAppMSDeploy(id: id, name: name, resourceType: resourceType, systemData: systemData, packageUri: packageUri, connectionString: connectionString, dbType: dbType, setParametersXmlFileUri: setParametersXmlFileUri, setParameters: setParameters, skipAppData: skipAppData, isAppOffline: isAppOffline, addOnPackages: default, kind: kind);
         }
 
         /// <summary> Initializes a new instance of <see cref="T:Azure.ResourceManager.AppService.AppServicePlanData" />. </summary>

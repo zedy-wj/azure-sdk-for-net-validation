@@ -302,6 +302,7 @@ namespace Azure.ResourceManager.AppService
     [ModelReaderWriterBuildable(typeof(MigrateMySqlContent))]
     [ModelReaderWriterBuildable(typeof(MigrateMySqlStatusData))]
     [ModelReaderWriterBuildable(typeof(MigrateMySqlStatusResource))]
+    [ModelReaderWriterBuildable(typeof(MSDeployCore))]
     [ModelReaderWriterBuildable(typeof(MSDeployStatusData))]
     [ModelReaderWriterBuildable(typeof(NetworkFeatureData))]
     [ModelReaderWriterBuildable(typeof(NetworkFeatureResource))]

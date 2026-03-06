@@ -2807,7 +2807,7 @@ namespace Azure.ResourceManager.AppService
             uri.AppendPath(subscriptionId, true);
             uri.AppendPath("/resourceGroups/", false);
             uri.AppendPath(resourceGroupName, true);
-            uri.AppendPath("/providers/microsoft.Web/serverfarms/", false);
+            uri.AppendPath("/providers/Microsoft.Web/serverfarms/", false);
             uri.AppendPath(name, true);
             uri.AppendPath("/workers/", false);
             uri.AppendPath(workerName, true);
@@ -2827,7 +2827,7 @@ namespace Azure.ResourceManager.AppService
             uri.AppendPath(subscriptionId, true);
             uri.AppendPath("/resourceGroups/", false);
             uri.AppendPath(resourceGroupName, true);
-            uri.AppendPath("/providers/microsoft.Web/serverfarms/", false);
+            uri.AppendPath("/providers/Microsoft.Web/serverfarms/", false);
             uri.AppendPath(name, true);
             uri.AppendPath("/workers/", false);
             uri.AppendPath(workerName, true);
@@ -2899,7 +2899,7 @@ namespace Azure.ResourceManager.AppService
             uri.AppendPath(subscriptionId, true);
             uri.AppendPath("/resourceGroups/", false);
             uri.AppendPath(resourceGroupName, true);
-            uri.AppendPath("/providers/microsoft.Web/serverfarms/", false);
+            uri.AppendPath("/providers/Microsoft.Web/serverfarms/", false);
             uri.AppendPath(name, true);
             uri.AppendPath("/workers/", false);
             uri.AppendPath(workerName, true);
@@ -2919,7 +2919,7 @@ namespace Azure.ResourceManager.AppService
             uri.AppendPath(subscriptionId, true);
             uri.AppendPath("/resourceGroups/", false);
             uri.AppendPath(resourceGroupName, true);
-            uri.AppendPath("/providers/microsoft.Web/serverfarms/", false);
+            uri.AppendPath("/providers/Microsoft.Web/serverfarms/", false);
             uri.AppendPath(name, true);
             uri.AppendPath("/workers/", false);
             uri.AppendPath(workerName, true);

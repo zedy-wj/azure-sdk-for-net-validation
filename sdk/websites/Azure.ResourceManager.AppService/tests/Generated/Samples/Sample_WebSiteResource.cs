@@ -773,6 +773,66 @@ kind = "Stateful",
 
         [Test]
         [Ignore("Only validating compilation of examples")]
+        public async Task GetNetworkTraces_GetNetworkTracesForASite()
+        {
+            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/GetWebSiteNetworkTraces.json
+            // this example is just showing the usage of "WebApps_GetNetworkTraces" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this WebSiteResource created on azure
+            // for more information of creating WebSiteResource, please refer to the document of WebSiteResource
+            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+            string resourceGroupName = "testrg123";
+            string name = "SampleApp";
+            ResourceIdentifier webSiteResourceId = WebSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
+            WebSiteResource webSite = client.GetWebSiteResource(webSiteResourceId);
+
+            // invoke the operation and iterate over the result
+            string operationId = "c291433b-53ad-4c49-8cae-0a293eae1c6d";
+            await foreach (WebAppNetworkTrace item in webSite.GetNetworkTracesAsync(operationId))
+            {
+                Console.WriteLine($"Succeeded: {item}");
+            }
+
+            Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task GetNetworkTraceOperation_GetTheCurrentStatusOfANetworkTraceOperationForASite()
+        {
+            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/GetWebSiteNetworkTraceOperation.json
+            // this example is just showing the usage of "WebApps_GetNetworkTraceOperation" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this WebSiteResource created on azure
+            // for more information of creating WebSiteResource, please refer to the document of WebSiteResource
+            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+            string resourceGroupName = "testrg123";
+            string name = "SampleApp";
+            ResourceIdentifier webSiteResourceId = WebSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
+            WebSiteResource webSite = client.GetWebSiteResource(webSiteResourceId);
+
+            // invoke the operation and iterate over the result
+            string operationId = "c291433b-53ad-4c49-8cae-0a293eae1c6d";
+            await foreach (WebAppNetworkTrace item in webSite.GetNetworkTraceOperationAsync(operationId))
+            {
+                Console.WriteLine($"Succeeded: {item}");
+            }
+
+            Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
         public async Task StartWebSiteNetworkTraceOperation_StartANewNetworkTraceOperationForASite()
         {
             // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/StartWebSiteNetworkTraceOperation.json
@@ -821,6 +881,66 @@ kind = "Stateful",
 
             // invoke the operation
             await webSite.StopWebSiteNetworkTraceAsync();
+
+            Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task GetNetworkTracesV2_GetNetworkTracesForASite()
+        {
+            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/GetWebSiteNetworkTraces_SlotV2.json
+            // this example is just showing the usage of "WebApps_GetNetworkTracesV2" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this WebSiteResource created on azure
+            // for more information of creating WebSiteResource, please refer to the document of WebSiteResource
+            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+            string resourceGroupName = "testrg123";
+            string name = "SampleApp";
+            ResourceIdentifier webSiteResourceId = WebSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
+            WebSiteResource webSite = client.GetWebSiteResource(webSiteResourceId);
+
+            // invoke the operation and iterate over the result
+            string operationId = "c291433b-53ad-4c49-8cae-0a293eae1c6d";
+            await foreach (WebAppNetworkTrace item in webSite.GetNetworkTracesV2Async(operationId))
+            {
+                Console.WriteLine($"Succeeded: {item}");
+            }
+
+            Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task GetNetworkTraceOperationV2_GetTheCurrentStatusOfANetworkTraceOperationForASite()
+        {
+            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/GetWebSiteNetworkTraceOperation_V2.json
+            // this example is just showing the usage of "WebApps_GetNetworkTraceOperationV2" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this WebSiteResource created on azure
+            // for more information of creating WebSiteResource, please refer to the document of WebSiteResource
+            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+            string resourceGroupName = "testrg123";
+            string name = "SampleApp";
+            ResourceIdentifier webSiteResourceId = WebSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
+            WebSiteResource webSite = client.GetWebSiteResource(webSiteResourceId);
+
+            // invoke the operation and iterate over the result
+            string operationId = "c291433b-53ad-4c49-8cae-0a293eae1c6d";
+            await foreach (WebAppNetworkTrace item in webSite.GetNetworkTraceOperationV2Async(operationId))
+            {
+                Console.WriteLine($"Succeeded: {item}");
+            }
 
             Console.WriteLine("Succeeded");
         }
@@ -932,126 +1052,6 @@ kind = "Stateful",
             BinaryData result = await webSite.UpdateMachineKeyAsync();
 
             Console.WriteLine($"Succeeded: {result}");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task GetNetworkTraces_GetNetworkTracesForASite()
-        {
-            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/GetWebSiteNetworkTraces.json
-            // this example is just showing the usage of "WebApps_GetNetworkTraces" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this WebSiteResource created on azure
-            // for more information of creating WebSiteResource, please refer to the document of WebSiteResource
-            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-            string resourceGroupName = "testrg123";
-            string name = "SampleApp";
-            ResourceIdentifier webSiteResourceId = WebSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
-            WebSiteResource webSite = client.GetWebSiteResource(webSiteResourceId);
-
-            // invoke the operation and iterate over the result
-            string operationId = "c291433b-53ad-4c49-8cae-0a293eae1c6d";
-            await foreach (WebAppNetworkTrace item in webSite.GetNetworkTracesAsync(operationId))
-            {
-                Console.WriteLine($"Succeeded: {item}");
-            }
-
-            Console.WriteLine("Succeeded");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task GetNetworkTraceOperation_GetTheCurrentStatusOfANetworkTraceOperationForASite()
-        {
-            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/GetWebSiteNetworkTraceOperation.json
-            // this example is just showing the usage of "WebApps_GetNetworkTraceOperation" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this WebSiteResource created on azure
-            // for more information of creating WebSiteResource, please refer to the document of WebSiteResource
-            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-            string resourceGroupName = "testrg123";
-            string name = "SampleApp";
-            ResourceIdentifier webSiteResourceId = WebSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
-            WebSiteResource webSite = client.GetWebSiteResource(webSiteResourceId);
-
-            // invoke the operation and iterate over the result
-            string operationId = "c291433b-53ad-4c49-8cae-0a293eae1c6d";
-            await foreach (WebAppNetworkTrace item in webSite.GetNetworkTraceOperationAsync(operationId))
-            {
-                Console.WriteLine($"Succeeded: {item}");
-            }
-
-            Console.WriteLine("Succeeded");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task GetNetworkTracesV2_GetNetworkTracesForASite()
-        {
-            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/GetWebSiteNetworkTraces_SlotV2.json
-            // this example is just showing the usage of "WebApps_GetNetworkTracesV2" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this WebSiteResource created on azure
-            // for more information of creating WebSiteResource, please refer to the document of WebSiteResource
-            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-            string resourceGroupName = "testrg123";
-            string name = "SampleApp";
-            ResourceIdentifier webSiteResourceId = WebSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
-            WebSiteResource webSite = client.GetWebSiteResource(webSiteResourceId);
-
-            // invoke the operation and iterate over the result
-            string operationId = "c291433b-53ad-4c49-8cae-0a293eae1c6d";
-            await foreach (WebAppNetworkTrace item in webSite.GetNetworkTracesV2Async(operationId))
-            {
-                Console.WriteLine($"Succeeded: {item}");
-            }
-
-            Console.WriteLine("Succeeded");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task GetNetworkTraceOperationV2_GetTheCurrentStatusOfANetworkTraceOperationForASite()
-        {
-            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/GetWebSiteNetworkTraceOperation_V2.json
-            // this example is just showing the usage of "WebApps_GetNetworkTraceOperationV2" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this WebSiteResource created on azure
-            // for more information of creating WebSiteResource, please refer to the document of WebSiteResource
-            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-            string resourceGroupName = "testrg123";
-            string name = "SampleApp";
-            ResourceIdentifier webSiteResourceId = WebSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
-            WebSiteResource webSite = client.GetWebSiteResource(webSiteResourceId);
-
-            // invoke the operation and iterate over the result
-            string operationId = "c291433b-53ad-4c49-8cae-0a293eae1c6d";
-            await foreach (WebAppNetworkTrace item in webSite.GetNetworkTraceOperationV2Async(operationId))
-            {
-                Console.WriteLine($"Succeeded: {item}");
-            }
-
-            Console.WriteLine("Succeeded");
         }
 
         [Test]

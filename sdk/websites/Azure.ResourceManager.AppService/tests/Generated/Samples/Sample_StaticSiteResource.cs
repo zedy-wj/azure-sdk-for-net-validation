@@ -105,6 +105,96 @@ namespace Azure.ResourceManager.AppService.Samples
 
         [Test]
         [Ignore("Only validating compilation of examples")]
+        public async Task GetUsers_ListUsersForAStaticSite()
+        {
+            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/ListStaticSiteUsers.json
+            // this example is just showing the usage of "StaticSites_ListStaticSiteUsers" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this StaticSiteResource created on azure
+            // for more information of creating StaticSiteResource, please refer to the document of StaticSiteResource
+            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+            string resourceGroupName = "rg";
+            string name = "testStaticSite0";
+            ResourceIdentifier staticSiteResourceId = StaticSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
+            StaticSiteResource staticSite = client.GetStaticSiteResource(staticSiteResourceId);
+
+            // invoke the operation and iterate over the result
+            string authprovider = "all";
+            await foreach (StaticSiteUser item in staticSite.GetUsersAsync(authprovider))
+            {
+                Console.WriteLine($"Succeeded: {item}");
+            }
+
+            Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task UpdateUser_CreateOrUpdateAUserForAStaticSite()
+        {
+            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/UpdateStaticSiteUser.json
+            // this example is just showing the usage of "StaticSites_UpdateStaticSiteUser" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this StaticSiteResource created on azure
+            // for more information of creating StaticSiteResource, please refer to the document of StaticSiteResource
+            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+            string resourceGroupName = "rg";
+            string name = "testStaticSite0";
+            ResourceIdentifier staticSiteResourceId = StaticSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
+            StaticSiteResource staticSite = client.GetStaticSiteResource(staticSiteResourceId);
+
+            // invoke the operation
+            string authprovider = "aad";
+            string userid = "1234";
+            StaticSiteUser staticSiteUserEnvelope = new StaticSiteUser
+            {
+                Roles = "contributor",
+            };
+            StaticSiteUser result = await staticSite.UpdateUserAsync(authprovider, userid, staticSiteUserEnvelope);
+
+            Console.WriteLine($"Succeeded: {result}");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
+        public async Task DeleteUser_DeleteAUserForAStaticSite()
+        {
+            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/DeleteStaticSiteUser.json
+            // this example is just showing the usage of "StaticSites_DeleteStaticSiteUser" operation, for the dependent resources, they will have to be created separately.
+
+            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
+            TokenCredential cred = new DefaultAzureCredential();
+            // authenticate your client
+            ArmClient client = new ArmClient(cred);
+
+            // this example assumes you already have this StaticSiteResource created on azure
+            // for more information of creating StaticSiteResource, please refer to the document of StaticSiteResource
+            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
+            string resourceGroupName = "rg";
+            string name = "testStaticSite0";
+            ResourceIdentifier staticSiteResourceId = StaticSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
+            StaticSiteResource staticSite = client.GetStaticSiteResource(staticSiteResourceId);
+
+            // invoke the operation
+            string authprovider = "aad";
+            string userid = "1234";
+            await staticSite.DeleteUserAsync(authprovider, userid);
+
+            Console.WriteLine("Succeeded");
+        }
+
+        [Test]
+        [Ignore("Only validating compilation of examples")]
         public async Task CreateOrUpdateAppSettings_CreatesOrUpdatesTheAppSettingsOfAStaticSite()
         {
             // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/CreateOrUpdateStaticSiteAppSettings.json
@@ -484,96 +574,6 @@ namespace Azure.ResourceManager.AppService.Samples
                 FunctionLanguage = "testFunctionLanguage",
             };
             await staticSite.CreateZipDeploymentForStaticSiteAsync(WaitUntil.Completed, staticSiteZipDeploymentEnvelope);
-
-            Console.WriteLine("Succeeded");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task GetUsers_ListUsersForAStaticSite()
-        {
-            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/ListStaticSiteUsers.json
-            // this example is just showing the usage of "StaticSites_ListStaticSiteUsers" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this StaticSiteResource created on azure
-            // for more information of creating StaticSiteResource, please refer to the document of StaticSiteResource
-            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-            string resourceGroupName = "rg";
-            string name = "testStaticSite0";
-            ResourceIdentifier staticSiteResourceId = StaticSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
-            StaticSiteResource staticSite = client.GetStaticSiteResource(staticSiteResourceId);
-
-            // invoke the operation and iterate over the result
-            string authprovider = "all";
-            await foreach (StaticSiteUser item in staticSite.GetUsersAsync(authprovider))
-            {
-                Console.WriteLine($"Succeeded: {item}");
-            }
-
-            Console.WriteLine("Succeeded");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task UpdateUser_CreateOrUpdateAUserForAStaticSite()
-        {
-            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/UpdateStaticSiteUser.json
-            // this example is just showing the usage of "StaticSites_UpdateStaticSiteUser" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this StaticSiteResource created on azure
-            // for more information of creating StaticSiteResource, please refer to the document of StaticSiteResource
-            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-            string resourceGroupName = "rg";
-            string name = "testStaticSite0";
-            ResourceIdentifier staticSiteResourceId = StaticSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
-            StaticSiteResource staticSite = client.GetStaticSiteResource(staticSiteResourceId);
-
-            // invoke the operation
-            string authprovider = "aad";
-            string userid = "1234";
-            StaticSiteUser staticSiteUserEnvelope = new StaticSiteUser
-            {
-                Roles = "contributor",
-            };
-            StaticSiteUser result = await staticSite.UpdateUserAsync(authprovider, userid, staticSiteUserEnvelope);
-
-            Console.WriteLine($"Succeeded: {result}");
-        }
-
-        [Test]
-        [Ignore("Only validating compilation of examples")]
-        public async Task DeleteUser_DeleteAUserForAStaticSite()
-        {
-            // Generated from example definition: specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/examples/DeleteStaticSiteUser.json
-            // this example is just showing the usage of "StaticSites_DeleteStaticSiteUser" operation, for the dependent resources, they will have to be created separately.
-
-            // get your azure access token, for more details of how Azure SDK get your access token, please refer to https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication?tabs=command-line
-            TokenCredential cred = new DefaultAzureCredential();
-            // authenticate your client
-            ArmClient client = new ArmClient(cred);
-
-            // this example assumes you already have this StaticSiteResource created on azure
-            // for more information of creating StaticSiteResource, please refer to the document of StaticSiteResource
-            string subscriptionId = "34adfa4f-cedf-4dc0-ba29-b6d1a69ab345";
-            string resourceGroupName = "rg";
-            string name = "testStaticSite0";
-            ResourceIdentifier staticSiteResourceId = StaticSiteResource.CreateResourceIdentifier(subscriptionId, resourceGroupName, name);
-            StaticSiteResource staticSite = client.GetStaticSiteResource(staticSiteResourceId);
-
-            // invoke the operation
-            string authprovider = "aad";
-            string userid = "1234";
-            await staticSite.DeleteUserAsync(authprovider, userid);
 
             Console.WriteLine("Succeeded");
         }
