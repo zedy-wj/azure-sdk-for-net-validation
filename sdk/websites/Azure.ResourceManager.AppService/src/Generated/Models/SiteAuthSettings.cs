@@ -204,7 +204,7 @@ namespace Azure.ResourceManager.AppService.Models
         /// <param name="microsoftAccountOAuthScopes">
         /// The OAuth 2.0 scopes that will be requested as part of Microsoft Account authentication.
         /// This setting is optional. If not specified, "wl.basic" is used as the default scope.
-        /// Microsoft Account Scopes and permissions documentation: https://msdn.Microsoft.com/en-us/library/dn631845.aspx
+        /// Microsoft Account Scopes and permissions documentation: https://msdn.microsoft.com/en-us/library/dn631845.aspx
         /// </param>
         /// <param name="isAuthFromFile">
         /// "true" if the auth config settings should be read from a file,
@@ -472,7 +472,7 @@ namespace Azure.ResourceManager.AppService.Models
         /// <summary>
         /// The OAuth 2.0 scopes that will be requested as part of Microsoft Account authentication.
         /// This setting is optional. If not specified, "wl.basic" is used as the default scope.
-        /// Microsoft Account Scopes and permissions documentation: https://msdn.Microsoft.com/en-us/library/dn631845.aspx
+        /// Microsoft Account Scopes and permissions documentation: https://msdn.microsoft.com/en-us/library/dn631845.aspx
         /// </summary>
         [WirePath("properties.microsoftAccountOAuthScopes")]
         public IList<string> MicrosoftAccountOAuthScopes { get; }

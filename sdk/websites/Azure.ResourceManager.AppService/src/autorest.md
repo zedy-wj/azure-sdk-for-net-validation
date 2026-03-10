@@ -38,7 +38,7 @@ description: AppServiceManagement Client
 openapi-type: arm
 
 input-file:
-  - https://github.com/Azure/azure-rest-api-specs/blob/8e5ac0261375660dbef2a92b8e00a2cb3f670b6f/specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/openapi.json
+  - https://github.com/Azure/azure-rest-api-specs/blob/d1795145db187afa07780245e53de365e020b585/specification/web/resource-manager/Microsoft.Web/AppService/stable/2025-03-01/openapi.json
   - https://github.com/Azure/azure-rest-api-specs/blob/98343fcd9505ead4cbf8112abff06f635ec73275/specification/certificateregistration/resource-manager/Microsoft.CertificateRegistration/CertificateRegistration/stable/2024-11-01/openapi.json
   - https://github.com/Azure/azure-rest-api-specs/blob/3cf6b9699f1bf4d959447250d691a544a665ca4a/specification/domainregistration/resource-manager/Microsoft.DomainRegistration/DomainRegistration/stable/2024-11-01/openapi.json
 
