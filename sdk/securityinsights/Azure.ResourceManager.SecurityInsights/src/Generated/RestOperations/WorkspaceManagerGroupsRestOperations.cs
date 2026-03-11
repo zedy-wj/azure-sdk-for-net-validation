@@ -32,7 +32,7 @@ namespace Azure.ResourceManager.SecurityInsights
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2024-01-01-preview";
+            _apiVersion = apiVersion ?? "2025-07-01-preview";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
@@ -97,7 +97,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets all workspace manager groups in the Sentinel workspace manager. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="orderBy"> Sorts the results. Optional. </param>
@@ -129,7 +129,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets all workspace manager groups in the Sentinel workspace manager. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="orderBy"> Sorts the results. Optional. </param>
@@ -199,7 +199,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets a workspace manager group. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="workspaceManagerGroupName"> The name of the workspace manager group. </param>
@@ -232,7 +232,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets a workspace manager group. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="workspaceManagerGroupName"> The name of the workspace manager group. </param>
@@ -307,7 +307,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Creates or updates a workspace manager group. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="workspaceManagerGroupName"> The name of the workspace manager group. </param>
@@ -341,7 +341,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Creates or updates a workspace manager group. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="workspaceManagerGroupName"> The name of the workspace manager group. </param>
@@ -413,7 +413,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Deletes a workspace manager group. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="workspaceManagerGroupName"> The name of the workspace manager group. </param>
@@ -440,7 +440,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Deletes a workspace manager group. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="workspaceManagerGroupName"> The name of the workspace manager group. </param>
@@ -490,7 +490,7 @@ namespace Azure.ResourceManager.SecurityInsights
 
         /// <summary> Gets all workspace manager groups in the Sentinel workspace manager. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="orderBy"> Sorts the results. Optional. </param>
@@ -524,7 +524,7 @@ namespace Azure.ResourceManager.SecurityInsights
 
         /// <summary> Gets all workspace manager groups in the Sentinel workspace manager. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="orderBy"> Sorts the results. Optional. </param>

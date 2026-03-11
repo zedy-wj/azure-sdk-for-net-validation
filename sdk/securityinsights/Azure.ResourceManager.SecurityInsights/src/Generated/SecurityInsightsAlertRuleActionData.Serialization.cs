@@ -158,9 +158,9 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 logicAppResourceId,
                 workflowId,
-                etag,
                 serializedAdditionalRawData);
         }
 

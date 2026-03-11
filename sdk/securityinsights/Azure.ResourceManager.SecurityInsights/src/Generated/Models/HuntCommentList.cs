@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="HuntCommentList"/>. </summary>
-        /// <param name="value"> Array of hunt comments. </param>
+        /// <param name="value"> The HuntComment items on this page. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal HuntCommentList(IEnumerable<SecurityInsightsHuntCommentData> value)
         {
@@ -57,13 +57,13 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="HuntCommentList"/>. </summary>
-        /// <param name="nextLink"> URL to fetch the next set of hunt comments. </param>
-        /// <param name="value"> Array of hunt comments. </param>
+        /// <param name="value"> The HuntComment items on this page. </param>
+        /// <param name="nextLink"> The link to the next page of items. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal HuntCommentList(string nextLink, IReadOnlyList<SecurityInsightsHuntCommentData> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal HuntCommentList(IReadOnlyList<SecurityInsightsHuntCommentData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
-            NextLink = nextLink;
             Value = value;
+            NextLink = nextLink;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -72,9 +72,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         {
         }
 
-        /// <summary> URL to fetch the next set of hunt comments. </summary>
-        public string NextLink { get; }
-        /// <summary> Array of hunt comments. </summary>
+        /// <summary> The HuntComment items on this page. </summary>
         public IReadOnlyList<SecurityInsightsHuntCommentData> Value { get; }
+        /// <summary> The link to the next page of items. </summary>
+        public Uri NextLink { get; }
     }
 }

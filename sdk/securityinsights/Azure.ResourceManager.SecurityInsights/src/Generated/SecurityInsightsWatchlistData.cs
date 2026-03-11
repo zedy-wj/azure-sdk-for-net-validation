@@ -62,6 +62,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="watchlistId"> The id (a Guid) of the watchlist. </param>
         /// <param name="displayName"> The display name of the watchlist. </param>
         /// <param name="provider"> The provider of the watchlist. </param>
@@ -82,11 +83,12 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="rawContent"> The raw content that represents to watchlist items to create. In case of csv/tsv content type, it's the content of the file that will parsed by the endpoint. </param>
         /// <param name="itemsSearchKey"> The search key is used to optimize query performance when using watchlists for joins with other data. For example, enable a column with IP addresses to be the designated SearchKey field, then use this field as the key field when joining to other event data by IP address. </param>
         /// <param name="contentType"> The content type of the raw content. Example : text/csv or text/tsv. </param>
-        /// <param name="uploadStatus"> The status of the Watchlist upload : New, InProgress or Complete. Pls note : When a Watchlist upload status is equal to InProgress, the Watchlist cannot be deleted. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
+        /// <param name="uploadStatus"> The status of the Watchlist upload : New, InProgress or Complete. **Note** : When a Watchlist upload status is InProgress, the Watchlist cannot be deleted. </param>
+        /// <param name="provisioningState"> Describes provisioning state. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsWatchlistData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, Guid? watchlistId, string displayName, string provider, string sourceString, WatchlistSourceType? sourceType, DateTimeOffset? createdOn, DateTimeOffset? updatedOn, SecurityInsightsUserInfo createdBy, SecurityInsightsUserInfo updatedBy, string description, string watchlistType, string watchlistAlias, bool? isDeleted, IList<string> labels, TimeSpan? defaultDuration, Guid? tenantId, int? numberOfLinesToSkip, string rawContent, string itemsSearchKey, string contentType, string uploadStatus, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsWatchlistData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, Guid? watchlistId, string displayName, string provider, string sourceString, WatchlistSourceType? sourceType, DateTimeOffset? createdOn, DateTimeOffset? updatedOn, SecurityInsightsUserInfo createdBy, SecurityInsightsUserInfo updatedBy, string description, string watchlistType, string watchlistAlias, bool? isDeleted, IList<string> labels, TimeSpan? defaultDuration, Guid? tenantId, int? numberOfLinesToSkip, string rawContent, string itemsSearchKey, string contentType, string uploadStatus, TriggeredAnalyticsRuleRunProvisioningState? provisioningState, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             WatchlistId = watchlistId;
             DisplayName = displayName;
             Provider = provider;
@@ -108,10 +110,13 @@ namespace Azure.ResourceManager.SecurityInsights
             ItemsSearchKey = itemsSearchKey;
             ContentType = contentType;
             UploadStatus = uploadStatus;
-            ETag = etag;
+            ProvisioningState = provisioningState;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> The id (a Guid) of the watchlist. </summary>
         [WirePath("properties.watchlistId")]
         public Guid? WatchlistId { get; set; }
@@ -172,11 +177,11 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> The content type of the raw content. Example : text/csv or text/tsv. </summary>
         [WirePath("properties.contentType")]
         public string ContentType { get; set; }
-        /// <summary> The status of the Watchlist upload : New, InProgress or Complete. Pls note : When a Watchlist upload status is equal to InProgress, the Watchlist cannot be deleted. </summary>
+        /// <summary> The status of the Watchlist upload : New, InProgress or Complete. **Note** : When a Watchlist upload status is InProgress, the Watchlist cannot be deleted. </summary>
         [WirePath("properties.uploadStatus")]
         public string UploadStatus { get; set; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
+        /// <summary> Describes provisioning state. </summary>
+        [WirePath("properties.provisioningState")]
+        public TriggeredAnalyticsRuleRunProvisioningState? ProvisioningState { get; }
     }
 }

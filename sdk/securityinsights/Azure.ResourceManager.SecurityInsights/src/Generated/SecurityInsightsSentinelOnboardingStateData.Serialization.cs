@@ -147,8 +147,8 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
-                customerManagedKey,
                 etag,
+                customerManagedKey,
                 serializedAdditionalRawData);
         }
 

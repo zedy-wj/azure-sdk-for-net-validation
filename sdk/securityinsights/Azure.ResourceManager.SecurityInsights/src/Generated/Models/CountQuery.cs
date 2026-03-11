@@ -11,7 +11,7 @@ using System.Collections.Generic;
 namespace Azure.ResourceManager.SecurityInsights.Models
 {
     /// <summary> Represents a query to run on the TI objects in the workspace. </summary>
-    public partial class ThreatIntelligenceQuery
+    public partial class CountQuery
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.
@@ -45,37 +45,22 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// </summary>
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
-        /// <summary> Initializes a new instance of <see cref="ThreatIntelligenceQuery"/>. </summary>
-        public ThreatIntelligenceQuery()
+        /// <summary> Initializes a new instance of <see cref="CountQuery"/>. </summary>
+        public CountQuery()
         {
         }
 
-        /// <summary> Initializes a new instance of <see cref="ThreatIntelligenceQuery"/>. </summary>
+        /// <summary> Initializes a new instance of <see cref="CountQuery"/>. </summary>
         /// <param name="condition"> Represents a condition used to query for TI objects. </param>
-        /// <param name="sortBy"> Specifies how to sort the query results. </param>
-        /// <param name="maxPageSize"> Represents the maximum size of the page that will be returned from the query API. </param>
-        /// <param name="minPageSize"> Represents the minimum size of the page that will be returned from the query API. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal ThreatIntelligenceQuery(ThreatIntelligenceQueryCondition condition, ThreatIntelligenceQuerySortBy sortBy, int? maxPageSize, int? minPageSize, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal CountQuery(ThreatIntelligenceQueryConditionProperties condition, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             Condition = condition;
-            SortBy = sortBy;
-            MaxPageSize = maxPageSize;
-            MinPageSize = minPageSize;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
         /// <summary> Represents a condition used to query for TI objects. </summary>
-        [WirePath("condition")]
-        public ThreatIntelligenceQueryCondition Condition { get; set; }
-        /// <summary> Specifies how to sort the query results. </summary>
-        [WirePath("sortBy")]
-        public ThreatIntelligenceQuerySortBy SortBy { get; set; }
-        /// <summary> Represents the maximum size of the page that will be returned from the query API. </summary>
-        [WirePath("maxPageSize")]
-        public int? MaxPageSize { get; set; }
-        /// <summary> Represents the minimum size of the page that will be returned from the query API. </summary>
-        [WirePath("minPageSize")]
-        public int? MinPageSize { get; set; }
+        [WirePath("properties.condition")]
+        public ThreatIntelligenceQueryConditionProperties Condition { get; set; }
     }
 }

@@ -62,22 +62,25 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Resource Etag. </param>
         /// <param name="targetResourceName"> The resource name of the workspace manager group targeted by the workspace manager assignment. </param>
         /// <param name="lastJobEndOn"> The time the last job associated to this assignment ended at. </param>
         /// <param name="lastJobProvisioningState"> State of the last job associated to this assignment. </param>
         /// <param name="items"> List of resources included in this workspace manager assignment. </param>
-        /// <param name="etag"> Resource Etag. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal WorkspaceManagerAssignmentData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string targetResourceName, DateTimeOffset? lastJobEndOn, TriggeredAnalyticsRuleRunProvisioningState? lastJobProvisioningState, IList<WorkspaceManagerAssignmentItem> items, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal WorkspaceManagerAssignmentData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string targetResourceName, DateTimeOffset? lastJobEndOn, TriggeredAnalyticsRuleRunProvisioningState? lastJobProvisioningState, IList<WorkspaceManagerAssignmentItem> items, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             TargetResourceName = targetResourceName;
             LastJobEndOn = lastJobEndOn;
             LastJobProvisioningState = lastJobProvisioningState;
             Items = items;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Resource Etag. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; }
         /// <summary> The resource name of the workspace manager group targeted by the workspace manager assignment. </summary>
         [WirePath("properties.targetResourceName")]
         public string TargetResourceName { get; set; }
@@ -90,8 +93,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> List of resources included in this workspace manager assignment. </summary>
         [WirePath("properties.items")]
         public IList<WorkspaceManagerAssignmentItem> Items { get; }
-        /// <summary> Resource Etag. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; }
     }
 }

@@ -93,6 +93,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                     case "OfficeATP": return OfficeAtpCheckRequirements.DeserializeOfficeAtpCheckRequirements(element, options);
                     case "OfficeIRM": return OfficeIrmCheckRequirements.DeserializeOfficeIrmCheckRequirements(element, options);
                     case "OfficePowerBI": return OfficePowerBICheckRequirements.DeserializeOfficePowerBICheckRequirements(element, options);
+                    case "PurviewAudit": return PurviewAuditCheckRequirements.DeserializePurviewAuditCheckRequirements(element, options);
                     case "ThreatIntelligence": return ThreatIntelligenceCheckRequirements.DeserializeThreatIntelligenceCheckRequirements(element, options);
                     case "ThreatIntelligenceTaxii": return ThreatIntelligenceTaxiiCheckRequirements.DeserializeThreatIntelligenceTaxiiCheckRequirements(element, options);
                 }

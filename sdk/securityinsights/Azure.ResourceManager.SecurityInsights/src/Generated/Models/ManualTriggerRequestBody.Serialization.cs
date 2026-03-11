@@ -79,7 +79,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 return null;
             }
             Guid? tenantId = default;
-            string logicAppsResourceId = default;
+            ResourceIdentifier logicAppsResourceId = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
@@ -95,7 +95,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 }
                 if (property.NameEquals("logicAppsResourceId"u8))
                 {
-                    logicAppsResourceId = property.Value.GetString();
+                    logicAppsResourceId = new ResourceIdentifier(property.Value.GetString());
                     continue;
                 }
                 if (options.Format != "W")

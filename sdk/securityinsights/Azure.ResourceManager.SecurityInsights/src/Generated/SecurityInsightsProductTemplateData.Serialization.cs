@@ -541,6 +541,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 contentId,
                 contentProductId,
                 packageVersion,
@@ -567,7 +568,6 @@ namespace Azure.ResourceManager.SecurityInsights
                 packageName,
                 isDeprecated,
                 packagedContent,
-                etag,
                 serializedAdditionalRawData);
         }
 

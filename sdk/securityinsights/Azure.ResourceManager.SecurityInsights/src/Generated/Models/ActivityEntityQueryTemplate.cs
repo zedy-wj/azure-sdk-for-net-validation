@@ -29,7 +29,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="kind"> the entity query template kind. </param>
+        /// <param name="kind"> The kind of the entity query template. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="title"> The entity query title. </param>
         /// <param name="content"> The entity query content to display in timeline. </param>

@@ -8,8 +8,8 @@ azure-arm: true
 csharp: true
 library-name: SecurityInsights
 namespace: Azure.ResourceManager.SecurityInsights
-require: https://github.com/Azure/azure-rest-api-specs/blob/2d973fccf9f28681a481e9760fa12b2334216e21/specification/securityinsights/resource-manager/readme.md
-tag: package-preview-2024-01
+require: https://github.com/Azure/azure-rest-api-specs/blob/655c3496e5039d370056027f1e28a8491257fe14/specification/securityinsights/resource-manager/Microsoft.SecurityInsights/SecurityInsights/readme.md
+tag: package-preview-2025-07-01
 output-folder: $(this-folder)/Generated
 clear-output-folder: true
 sample-gen:
@@ -394,12 +394,13 @@ rename-mapping:
   TiTaxiiCheckRequirements: ThreatIntelligenceTaxiiCheckRequirements
   TiTaxiiDataConnector: ThreatIntelligenceTaxiiDataConnector
   TiType: ThreatIntelligenceType
+  EnrichmentType: WorkspaceEnrichmentType
+  EntityItemQueryKind: SecurityInsightsEntityItemQueryKind
   TriggeredAnalyticsRuleRun.properties.executionTimeUtc: ExecuteOn
   TriggerOperator: SecurityInsightsAlertRuleTriggerOperator
   Ueba: UebaSettings
   UrlEntity: SecurityInsightsUriEntity
   UrlEntity.properties.url: UriString
-  UserInfo: SecurityInsightsUserInfo
   ValidationError: SecurityInsightsFileValidationError
   Version: SourceControlVersion
   Warning: SourceControlOperationWarning
@@ -484,7 +485,11 @@ directive:
   - rename-operation:
       from: Bookmark_Expand
       to: Bookmarks_Expand
-  - from: dataConnectors.json
+  - from: openapi.json
+    where: $.definitions.UserInfo
+    transform: >
+      $["x-ms-client-name"] = "SecurityInsightsUserInfo";
+  - from: openapi.json
     where: $.definitions
     transform: >
       $.DataConnectorWithAlertsProperties.properties.dataTypes["x-ms-client-flatten"] = true;
@@ -499,56 +504,29 @@ directive:
       $.TiTaxiiDataConnectorProperties.properties.dataTypes["x-ms-client-flatten"] = true;
       $.CodelessUiConnectorConfigProperties.properties.dataTypes["x-ms-client-flatten"] = true;
       $.MicrosoftPurviewInformationProtectionDataConnectorProperties.properties.dataTypes["x-ms-client-flatten"] = true;
-  - from: AlertRules.json
+  - from: openapi.json
     where: $.definitions
     transform: >
       $.ActionPropertiesBase.properties.logicAppResourceId['x-ms-format'] = 'arm-id';
   # Reslove `Duplicate Schema` issue for 2024-01-01-preview version
-  - from: EnrichmentWithWorkspace.json
+  - from: openapi.json
     where: $.definitions
     transform: >
       $.EnrichmentIpGeodata['x-ms-client-name'] = 'WorkspaceEnrichmentIpGeodata';
-  - from: ThreatIntelligenceQuery.json
+  - from: openapi.json
     where: $.definitions
     transform: >
       $.Query['x-ms-client-name'] = 'ThreatIntelligenceQuery';
-      $.UserInfo['x-ms-client-name'] = 'ThreatIntelligenceUserInfo';
-  - from: ThreatIntelligenceCount.json
+  - from: openapi.json
     where: $.definitions
     transform: >
       $.Query['x-ms-client-name'] = 'ThreatIntelligenceCountQuery';
-  # Add this because the parameter order is mismatch in 2024-01-01-preview version
-  - from: ThreatIntelligence.json
-    where: $.paths["/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators"].get
-    transform: >
-      $["parameters"] = [
-          {
-            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter"
-          },
-          {
-            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter"
-          },
-          {
-            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
-          },
-          {
-            "$ref": "../../../common/2.0/types.json#/parameters/WorkspaceName"
-          },
-          {
-            "$ref": "../../../common/2.0/types.json#/parameters/ODataFilter"
-          },
-          {
-            "$ref": "../../../common/2.0/types.json#/parameters/ODataTop"
-          },
-          {
-            "$ref": "../../../common/2.0/types.json#/parameters/ODataSkipToken"
-          },
-          {
-            "$ref": "../../../common/2.0/types.json#/parameters/ODataOrderBy"
-          }
-        ];
+  # Fix duplicate schema issues by removing duplicate definitions
+  - remove-model: EnrichmentType
+  - remove-model: EntityItemQueryKind  
+  - remove-model: TiType
   # Add this because lack of x-ms-enum value
-  - from: EntityQueries.json
+  - from: openapi.json
     where: $.parameters
     transform: >
       $.EntityQueryKind["x-ms-enum"] = {
@@ -563,16 +541,16 @@ directive:
           }
         ]};
   # Add this due to the naming requirement and actually there are two status in this service
-  - from: Hunts.json
+  - from: openapi.json
     where: $.definitions.HuntProperties.properties.status
     transform: >
       $['x-ms-enum'].name = 'HuntStatus';
-  - from: WorkspaceManagerAssignments.json
+  - from: openapi.json
     where: $.definitions.jobItem.properties.status
     transform: >
       $['x-ms-enum'].name = 'PublicationStatus';
   # Remove all incorrect usage of `allOf`
-  - from: dataConnectors.json
+  - from: openapi.json
     where: $.definitions
     transform: >
       delete $.CodelessUiConnectorConfigProperties.properties.graphQueries.items.allOf;

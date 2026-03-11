@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="TemplateList"/>. </summary>
-        /// <param name="value"> Array of templates. </param>
+        /// <param name="value"> The TemplateModel items on this page. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal TemplateList(IEnumerable<SecurityInsightsTemplateData> value)
         {
@@ -57,10 +57,10 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="TemplateList"/>. </summary>
-        /// <param name="value"> Array of templates. </param>
-        /// <param name="nextLink"> URL to fetch the next page of template. </param>
+        /// <param name="value"> The TemplateModel items on this page. </param>
+        /// <param name="nextLink"> The link to the next page of items. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal TemplateList(IReadOnlyList<SecurityInsightsTemplateData> value, string nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal TemplateList(IReadOnlyList<SecurityInsightsTemplateData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             Value = value;
             NextLink = nextLink;
@@ -72,9 +72,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         {
         }
 
-        /// <summary> Array of templates. </summary>
+        /// <summary> The TemplateModel items on this page. </summary>
         public IReadOnlyList<SecurityInsightsTemplateData> Value { get; }
-        /// <summary> URL to fetch the next page of template. </summary>
-        public string NextLink { get; }
+        /// <summary> The link to the next page of items. </summary>
+        public Uri NextLink { get; }
     }
 }

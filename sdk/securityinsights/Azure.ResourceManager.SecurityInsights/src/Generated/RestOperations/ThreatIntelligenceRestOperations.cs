@@ -32,11 +32,11 @@ namespace Azure.ResourceManager.SecurityInsights
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2024-01-01-preview";
+            _apiVersion = apiVersion ?? "2025-07-01-preview";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
-        internal RequestUriBuilder CreateCountRequestUri(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceCountQuery query)
+        internal RequestUriBuilder CreateCountRequestUri(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, CountQuery query)
         {
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -53,7 +53,7 @@ namespace Azure.ResourceManager.SecurityInsights
             return uri;
         }
 
-        internal HttpMessage CreateCountRequest(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceCountQuery query)
+        internal HttpMessage CreateCountRequest(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, CountQuery query)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -84,7 +84,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets the count of all TI objects for the workspace. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="tiType"> TI type. </param>
@@ -92,7 +92,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<ThreatIntelligenceCount>> CountAsync(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceCountQuery query = null, CancellationToken cancellationToken = default)
+        public async Task<Response<ThreatIntelligenceCount>> CountAsync(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, CountQuery query = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
@@ -115,7 +115,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets the count of all TI objects for the workspace. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="tiType"> TI type. </param>
@@ -123,7 +123,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<ThreatIntelligenceCount> Count(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceCountQuery query = null, CancellationToken cancellationToken = default)
+        public Response<ThreatIntelligenceCount> Count(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, CountQuery query = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
@@ -145,7 +145,7 @@ namespace Azure.ResourceManager.SecurityInsights
             }
         }
 
-        internal RequestUriBuilder CreateQueryRequestUri(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceQuery query)
+        internal RequestUriBuilder CreateQueryRequestUri(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceCountQuery query)
         {
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -162,7 +162,7 @@ namespace Azure.ResourceManager.SecurityInsights
             return uri;
         }
 
-        internal HttpMessage CreateQueryRequest(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceQuery query)
+        internal HttpMessage CreateQueryRequest(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceCountQuery query)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -193,7 +193,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets all TI objects for the workspace. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="tiType"> TI type. </param>
@@ -201,7 +201,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<ThreatIntelligenceList>> QueryAsync(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceQuery query = null, CancellationToken cancellationToken = default)
+        public async Task<Response<ThreatIntelligenceList>> QueryAsync(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceCountQuery query = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
@@ -224,7 +224,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets all TI objects for the workspace. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="tiType"> TI type. </param>
@@ -232,7 +232,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<ThreatIntelligenceList> Query(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceQuery query = null, CancellationToken cancellationToken = default)
+        public Response<ThreatIntelligenceList> Query(string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceCountQuery query = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
@@ -254,7 +254,7 @@ namespace Azure.ResourceManager.SecurityInsights
             }
         }
 
-        internal RequestUriBuilder CreateQueryNextPageRequestUri(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceQuery query)
+        internal RequestUriBuilder CreateQueryNextPageRequestUri(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceCountQuery query)
         {
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -262,7 +262,7 @@ namespace Azure.ResourceManager.SecurityInsights
             return uri;
         }
 
-        internal HttpMessage CreateQueryNextPageRequest(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceQuery query)
+        internal HttpMessage CreateQueryNextPageRequest(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceCountQuery query)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -278,7 +278,7 @@ namespace Azure.ResourceManager.SecurityInsights
 
         /// <summary> Gets all TI objects for the workspace. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="tiType"> TI type. </param>
@@ -286,7 +286,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<ThreatIntelligenceList>> QueryNextPageAsync(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceQuery query = null, CancellationToken cancellationToken = default)
+        public async Task<Response<ThreatIntelligenceList>> QueryNextPageAsync(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceCountQuery query = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(nextLink, nameof(nextLink));
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
@@ -311,7 +311,7 @@ namespace Azure.ResourceManager.SecurityInsights
 
         /// <summary> Gets all TI objects for the workspace. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="tiType"> TI type. </param>
@@ -319,7 +319,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<ThreatIntelligenceList> QueryNextPage(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceQuery query = null, CancellationToken cancellationToken = default)
+        public Response<ThreatIntelligenceList> QueryNextPage(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, ThreatIntelligenceType tiType, ThreatIntelligenceCountQuery query = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(nextLink, nameof(nextLink));
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));

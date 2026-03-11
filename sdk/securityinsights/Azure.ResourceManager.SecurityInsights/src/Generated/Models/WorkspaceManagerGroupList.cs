@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="WorkspaceManagerGroupList"/>. </summary>
-        /// <param name="value"> Array of workspace manager groups. </param>
+        /// <param name="value"> The WorkspaceManagerGroup items on this page. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal WorkspaceManagerGroupList(IEnumerable<WorkspaceManagerGroupData> value)
         {
@@ -57,13 +57,13 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="WorkspaceManagerGroupList"/>. </summary>
-        /// <param name="nextLink"> URL to fetch the next set of workspace manager groups. </param>
-        /// <param name="value"> Array of workspace manager groups. </param>
+        /// <param name="value"> The WorkspaceManagerGroup items on this page. </param>
+        /// <param name="nextLink"> The link to the next page of items. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal WorkspaceManagerGroupList(string nextLink, IReadOnlyList<WorkspaceManagerGroupData> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal WorkspaceManagerGroupList(IReadOnlyList<WorkspaceManagerGroupData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
-            NextLink = nextLink;
             Value = value;
+            NextLink = nextLink;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -72,9 +72,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         {
         }
 
-        /// <summary> URL to fetch the next set of workspace manager groups. </summary>
-        public string NextLink { get; }
-        /// <summary> Array of workspace manager groups. </summary>
+        /// <summary> The WorkspaceManagerGroup items on this page. </summary>
         public IReadOnlyList<WorkspaceManagerGroupData> Value { get; }
+        /// <summary> The link to the next page of items. </summary>
+        public Uri NextLink { get; }
     }
 }

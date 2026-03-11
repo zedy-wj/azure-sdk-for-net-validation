@@ -24,11 +24,14 @@ namespace Azure.ResourceManager.SecurityInsights.Models
 
         private const string CustomDetailsValue = "CustomDetails";
         private const string CustomDetailValuesValue = "CustomDetailValues";
+        private const string IncidentLabelsValue = "IncidentLabels";
 
         /// <summary> Evaluate the condition on the custom detail keys. </summary>
         public static AutomationRulePropertyArrayConditionSupportedArrayType CustomDetails { get; } = new AutomationRulePropertyArrayConditionSupportedArrayType(CustomDetailsValue);
         /// <summary> Evaluate the condition on a custom detail's values. </summary>
         public static AutomationRulePropertyArrayConditionSupportedArrayType CustomDetailValues { get; } = new AutomationRulePropertyArrayConditionSupportedArrayType(CustomDetailValuesValue);
+        /// <summary> Evaluate the condition on the incident labels. </summary>
+        public static AutomationRulePropertyArrayConditionSupportedArrayType IncidentLabels { get; } = new AutomationRulePropertyArrayConditionSupportedArrayType(IncidentLabelsValue);
         /// <summary> Determines if two <see cref="AutomationRulePropertyArrayConditionSupportedArrayType"/> values are the same. </summary>
         public static bool operator ==(AutomationRulePropertyArrayConditionSupportedArrayType left, AutomationRulePropertyArrayConditionSupportedArrayType right) => left.Equals(right);
         /// <summary> Determines if two <see cref="AutomationRulePropertyArrayConditionSupportedArrayType"/> values are not the same. </summary>

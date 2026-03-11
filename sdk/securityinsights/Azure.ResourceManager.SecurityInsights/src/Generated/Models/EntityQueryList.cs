@@ -48,7 +48,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
 
         /// <summary> Initializes a new instance of <see cref="EntityQueryList"/>. </summary>
         /// <param name="value">
-        /// Array of entity queries.
+        /// The EntityQuery items on this page
         /// Please note <see cref="SecurityInsightsEntityQueryData"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ActivityEntityQuery"/> and <see cref="ExpansionEntityQuery"/>.
         /// </param>
@@ -61,17 +61,17 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="EntityQueryList"/>. </summary>
-        /// <param name="nextLink"> URL to fetch the next set of entity queries. </param>
         /// <param name="value">
-        /// Array of entity queries.
+        /// The EntityQuery items on this page
         /// Please note <see cref="SecurityInsightsEntityQueryData"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ActivityEntityQuery"/> and <see cref="ExpansionEntityQuery"/>.
         /// </param>
+        /// <param name="nextLink"> The link to the next page of items. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal EntityQueryList(string nextLink, IReadOnlyList<SecurityInsightsEntityQueryData> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal EntityQueryList(IReadOnlyList<SecurityInsightsEntityQueryData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
-            NextLink = nextLink;
             Value = value;
+            NextLink = nextLink;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -80,13 +80,13 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         {
         }
 
-        /// <summary> URL to fetch the next set of entity queries. </summary>
-        public string NextLink { get; }
         /// <summary>
-        /// Array of entity queries.
+        /// The EntityQuery items on this page
         /// Please note <see cref="SecurityInsightsEntityQueryData"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="ActivityEntityQuery"/> and <see cref="ExpansionEntityQuery"/>.
         /// </summary>
         public IReadOnlyList<SecurityInsightsEntityQueryData> Value { get; }
+        /// <summary> The link to the next page of items. </summary>
+        public Uri NextLink { get; }
     }
 }

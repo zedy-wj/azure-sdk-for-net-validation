@@ -18,9 +18,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <summary> Initializes a new instance of <see cref="NrtAlertRuleTemplate"/>. </summary>
         public NrtAlertRuleTemplate()
         {
-            RequiredDataConnectors = new ChangeTrackingList<AlertRuleTemplateDataSource>();
             Tactics = new ChangeTrackingList<SecurityInsightsAttackTactic>();
             Techniques = new ChangeTrackingList<string>();
+            RequiredDataConnectors = new ChangeTrackingList<AlertRuleTemplateDataSource>();
             CustomDetails = new ChangeTrackingDictionary<string, string>();
             EntityMappings = new ChangeTrackingList<SecurityInsightsAlertRuleEntityMapping>();
             SentinelEntitiesMappings = new ChangeTrackingList<SentinelEntityMapping>();
@@ -32,17 +32,17 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="kind"> The kind of the alert rule. </param>
+        /// <param name="kind"> Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist this value. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="alertRulesCreatedByTemplateCount"> the number of alert rules that were created by this template. </param>
+        /// <param name="tactics"> The tactics of the alert rule. </param>
+        /// <param name="techniques"> The techniques of the alert rule. </param>
+        /// <param name="alertRulesCreatedByTemplateCount"> The number of alert rules that were created by this template. </param>
         /// <param name="lastUpdatedOn"> The last time that this alert rule template has been updated. </param>
         /// <param name="createdOn"> The time that this alert rule template has been added. </param>
         /// <param name="description"> The description of the alert rule template. </param>
         /// <param name="displayName"> The display name for alert rule template. </param>
         /// <param name="requiredDataConnectors"> The required data sources for this template. </param>
         /// <param name="status"> The alert rule template status. </param>
-        /// <param name="tactics"> The tactics of the alert rule. </param>
-        /// <param name="techniques"> The techniques of the alert rule. </param>
         /// <param name="query"> The query that creates alerts for this rule. </param>
         /// <param name="severity"> The severity for alerts created by this alert rule. </param>
         /// <param name="version"> The version of this template - in format &lt;a.b.c&gt;, where all are numbers. For example &lt;1.0.2&gt;. </param>
@@ -51,8 +51,10 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="alertDetailsOverride"> The alert details override settings. </param>
         /// <param name="eventGroupingSettings"> The event grouping settings. </param>
         /// <param name="sentinelEntitiesMappings"> Array of the sentinel entity mappings of the alert rule. </param>
-        internal NrtAlertRuleTemplate(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, AlertRuleKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, int? alertRulesCreatedByTemplateCount, DateTimeOffset? lastUpdatedOn, DateTimeOffset? createdOn, string description, string displayName, IList<AlertRuleTemplateDataSource> requiredDataConnectors, SecurityInsightsAlertRuleTemplateStatus? status, IList<SecurityInsightsAttackTactic> tactics, IList<string> techniques, string query, SecurityInsightsAlertSeverity? severity, string version, IDictionary<string, string> customDetails, IList<SecurityInsightsAlertRuleEntityMapping> entityMappings, SecurityInsightsAlertDetailsOverride alertDetailsOverride, EventGroupingSettings eventGroupingSettings, IList<SentinelEntityMapping> sentinelEntitiesMappings) : base(id, name, resourceType, systemData, kind, serializedAdditionalRawData)
+        internal NrtAlertRuleTemplate(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, AlertRuleKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData, IList<SecurityInsightsAttackTactic> tactics, IList<string> techniques, int? alertRulesCreatedByTemplateCount, DateTimeOffset? lastUpdatedOn, DateTimeOffset? createdOn, string description, string displayName, IList<AlertRuleTemplateDataSource> requiredDataConnectors, SecurityInsightsAlertRuleTemplateStatus? status, string query, SecurityInsightsAlertSeverity? severity, string version, IDictionary<string, string> customDetails, IList<SecurityInsightsAlertRuleEntityMapping> entityMappings, SecurityInsightsAlertDetailsOverride alertDetailsOverride, EventGroupingSettings eventGroupingSettings, IList<SentinelEntityMapping> sentinelEntitiesMappings) : base(id, name, resourceType, systemData, kind, serializedAdditionalRawData)
         {
+            Tactics = tactics;
+            Techniques = techniques;
             AlertRulesCreatedByTemplateCount = alertRulesCreatedByTemplateCount;
             LastUpdatedOn = lastUpdatedOn;
             CreatedOn = createdOn;
@@ -60,8 +62,6 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             DisplayName = displayName;
             RequiredDataConnectors = requiredDataConnectors;
             Status = status;
-            Tactics = tactics;
-            Techniques = techniques;
             Query = query;
             Severity = severity;
             Version = version;
@@ -73,7 +73,13 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             Kind = kind;
         }
 
-        /// <summary> the number of alert rules that were created by this template. </summary>
+        /// <summary> The tactics of the alert rule. </summary>
+        [WirePath("properties.tactics")]
+        public IList<SecurityInsightsAttackTactic> Tactics { get; }
+        /// <summary> The techniques of the alert rule. </summary>
+        [WirePath("properties.techniques")]
+        public IList<string> Techniques { get; }
+        /// <summary> The number of alert rules that were created by this template. </summary>
         [WirePath("properties.alertRulesCreatedByTemplateCount")]
         public int? AlertRulesCreatedByTemplateCount { get; set; }
         /// <summary> The last time that this alert rule template has been updated. </summary>
@@ -94,12 +100,6 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <summary> The alert rule template status. </summary>
         [WirePath("properties.status")]
         public SecurityInsightsAlertRuleTemplateStatus? Status { get; set; }
-        /// <summary> The tactics of the alert rule. </summary>
-        [WirePath("properties.tactics")]
-        public IList<SecurityInsightsAttackTactic> Tactics { get; }
-        /// <summary> The techniques of the alert rule. </summary>
-        [WirePath("properties.techniques")]
-        public IList<string> Techniques { get; }
         /// <summary> The query that creates alerts for this rule. </summary>
         [WirePath("properties.query")]
         public string Query { get; set; }

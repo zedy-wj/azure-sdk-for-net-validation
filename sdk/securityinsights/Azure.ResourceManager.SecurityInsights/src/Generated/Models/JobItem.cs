@@ -58,7 +58,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="executionOn"> The time the item publishing was completed. </param>
         /// <param name="errors"> The list of error descriptions if the item publication fails. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal JobItem(ResourceIdentifier resourceId, PublicationStatus? status, DateTimeOffset? executionOn, IList<PublicationFailedError> errors, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal JobItem(ResourceIdentifier resourceId, Status? status, DateTimeOffset? executionOn, IList<PublicationFailedError> errors, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             ResourceId = resourceId;
             Status = status;
@@ -72,7 +72,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public ResourceIdentifier ResourceId { get; set; }
         /// <summary> Status of the item publication. </summary>
         [WirePath("status")]
-        public PublicationStatus? Status { get; }
+        public Status? Status { get; }
         /// <summary> The time the item publishing was completed. </summary>
         [WirePath("executionTime")]
         public DateTimeOffset? ExecutionOn { get; }

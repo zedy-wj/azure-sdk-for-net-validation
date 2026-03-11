@@ -40,6 +40,26 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             base.JsonModelWriteCore(writer, options);
             writer.WritePropertyName("properties"u8);
             writer.WriteStartObject();
+            if (Optional.IsCollectionDefined(Tactics))
+            {
+                writer.WritePropertyName("tactics"u8);
+                writer.WriteStartArray();
+                foreach (var item in Tactics)
+                {
+                    writer.WriteStringValue(item.ToString());
+                }
+                writer.WriteEndArray();
+            }
+            if (Optional.IsCollectionDefined(Techniques))
+            {
+                writer.WritePropertyName("techniques"u8);
+                writer.WriteStartArray();
+                foreach (var item in Techniques)
+                {
+                    writer.WriteStringValue(item);
+                }
+                writer.WriteEndArray();
+            }
             if (Optional.IsDefined(AlertRulesCreatedByTemplateCount))
             {
                 writer.WritePropertyName("alertRulesCreatedByTemplateCount"u8);
@@ -79,26 +99,6 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             {
                 writer.WritePropertyName("status"u8);
                 writer.WriteStringValue(Status.Value.ToString());
-            }
-            if (Optional.IsCollectionDefined(Tactics))
-            {
-                writer.WritePropertyName("tactics"u8);
-                writer.WriteStartArray();
-                foreach (var item in Tactics)
-                {
-                    writer.WriteStringValue(item.ToString());
-                }
-                writer.WriteEndArray();
-            }
-            if (Optional.IsCollectionDefined(Techniques))
-            {
-                writer.WritePropertyName("techniques"u8);
-                writer.WriteStartArray();
-                foreach (var item in Techniques)
-                {
-                    writer.WriteStringValue(item);
-                }
-                writer.WriteEndArray();
             }
             if (Optional.IsDefined(Query))
             {
@@ -184,6 +184,8 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             string name = default;
             ResourceType type = default;
             SystemData systemData = default;
+            IList<SecurityInsightsAttackTactic> tactics = default;
+            IList<string> techniques = default;
             int? alertRulesCreatedByTemplateCount = default;
             DateTimeOffset? lastUpdatedDateUTC = default;
             DateTimeOffset? createdDateUTC = default;
@@ -191,8 +193,6 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             string displayName = default;
             IList<AlertRuleTemplateDataSource> requiredDataConnectors = default;
             SecurityInsightsAlertRuleTemplateStatus? status = default;
-            IList<SecurityInsightsAttackTactic> tactics = default;
-            IList<string> techniques = default;
             string query = default;
             SecurityInsightsAlertSeverity? severity = default;
             string version = default;
@@ -243,6 +243,34 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                     }
                     foreach (var property0 in property.Value.EnumerateObject())
                     {
+                        if (property0.NameEquals("tactics"u8))
+                        {
+                            if (property0.Value.ValueKind == JsonValueKind.Null)
+                            {
+                                continue;
+                            }
+                            List<SecurityInsightsAttackTactic> array = new List<SecurityInsightsAttackTactic>();
+                            foreach (var item in property0.Value.EnumerateArray())
+                            {
+                                array.Add(new SecurityInsightsAttackTactic(item.GetString()));
+                            }
+                            tactics = array;
+                            continue;
+                        }
+                        if (property0.NameEquals("techniques"u8))
+                        {
+                            if (property0.Value.ValueKind == JsonValueKind.Null)
+                            {
+                                continue;
+                            }
+                            List<string> array = new List<string>();
+                            foreach (var item in property0.Value.EnumerateArray())
+                            {
+                                array.Add(item.GetString());
+                            }
+                            techniques = array;
+                            continue;
+                        }
                         if (property0.NameEquals("alertRulesCreatedByTemplateCount"u8))
                         {
                             if (property0.Value.ValueKind == JsonValueKind.Null)
@@ -301,34 +329,6 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                                 continue;
                             }
                             status = new SecurityInsightsAlertRuleTemplateStatus(property0.Value.GetString());
-                            continue;
-                        }
-                        if (property0.NameEquals("tactics"u8))
-                        {
-                            if (property0.Value.ValueKind == JsonValueKind.Null)
-                            {
-                                continue;
-                            }
-                            List<SecurityInsightsAttackTactic> array = new List<SecurityInsightsAttackTactic>();
-                            foreach (var item in property0.Value.EnumerateArray())
-                            {
-                                array.Add(new SecurityInsightsAttackTactic(item.GetString()));
-                            }
-                            tactics = array;
-                            continue;
-                        }
-                        if (property0.NameEquals("techniques"u8))
-                        {
-                            if (property0.Value.ValueKind == JsonValueKind.Null)
-                            {
-                                continue;
-                            }
-                            List<string> array = new List<string>();
-                            foreach (var item in property0.Value.EnumerateArray())
-                            {
-                                array.Add(item.GetString());
-                            }
-                            techniques = array;
                             continue;
                         }
                         if (property0.NameEquals("query"u8))
@@ -426,6 +426,8 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 systemData,
                 kind,
                 serializedAdditionalRawData,
+                tactics ?? new ChangeTrackingList<SecurityInsightsAttackTactic>(),
+                techniques ?? new ChangeTrackingList<string>(),
                 alertRulesCreatedByTemplateCount,
                 lastUpdatedDateUTC,
                 createdDateUTC,
@@ -433,8 +435,6 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 displayName,
                 requiredDataConnectors ?? new ChangeTrackingList<AlertRuleTemplateDataSource>(),
                 status,
-                tactics ?? new ChangeTrackingList<SecurityInsightsAttackTactic>(),
-                techniques ?? new ChangeTrackingList<string>(),
                 query,
                 severity,
                 version,
@@ -523,6 +523,65 @@ namespace Azure.ResourceManager.SecurityInsights.Models
 
             builder.Append("  properties:");
             builder.AppendLine(" {");
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Tactics), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("    tactics: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(Tactics))
+                {
+                    if (Tactics.Any())
+                    {
+                        builder.Append("    tactics: ");
+                        builder.AppendLine("[");
+                        foreach (var item in Tactics)
+                        {
+                            builder.AppendLine($"      '{item.ToString()}'");
+                        }
+                        builder.AppendLine("    ]");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Techniques), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("    techniques: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(Techniques))
+                {
+                    if (Techniques.Any())
+                    {
+                        builder.Append("    techniques: ");
+                        builder.AppendLine("[");
+                        foreach (var item in Techniques)
+                        {
+                            if (item == null)
+                            {
+                                builder.Append("null");
+                                continue;
+                            }
+                            if (item.Contains(Environment.NewLine))
+                            {
+                                builder.AppendLine("      '''");
+                                builder.AppendLine($"{item}'''");
+                            }
+                            else
+                            {
+                                builder.AppendLine($"      '{item}'");
+                            }
+                        }
+                        builder.AppendLine("    ]");
+                    }
+                }
+            }
+
             hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(AlertRulesCreatedByTemplateCount), out propertyOverride);
             if (hasPropertyOverride)
             {
@@ -651,65 +710,6 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 {
                     builder.Append("    status: ");
                     builder.AppendLine($"'{Status.Value.ToString()}'");
-                }
-            }
-
-            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Tactics), out propertyOverride);
-            if (hasPropertyOverride)
-            {
-                builder.Append("    tactics: ");
-                builder.AppendLine(propertyOverride);
-            }
-            else
-            {
-                if (Optional.IsCollectionDefined(Tactics))
-                {
-                    if (Tactics.Any())
-                    {
-                        builder.Append("    tactics: ");
-                        builder.AppendLine("[");
-                        foreach (var item in Tactics)
-                        {
-                            builder.AppendLine($"      '{item.ToString()}'");
-                        }
-                        builder.AppendLine("    ]");
-                    }
-                }
-            }
-
-            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(Techniques), out propertyOverride);
-            if (hasPropertyOverride)
-            {
-                builder.Append("    techniques: ");
-                builder.AppendLine(propertyOverride);
-            }
-            else
-            {
-                if (Optional.IsCollectionDefined(Techniques))
-                {
-                    if (Techniques.Any())
-                    {
-                        builder.Append("    techniques: ");
-                        builder.AppendLine("[");
-                        foreach (var item in Techniques)
-                        {
-                            if (item == null)
-                            {
-                                builder.Append("null");
-                                continue;
-                            }
-                            if (item.Contains(Environment.NewLine))
-                            {
-                                builder.AppendLine("      '''");
-                                builder.AppendLine($"{item}'''");
-                            }
-                            else
-                            {
-                                builder.AppendLine($"      '{item}'");
-                            }
-                        }
-                        builder.AppendLine("    ]");
-                    }
                 }
             }
 

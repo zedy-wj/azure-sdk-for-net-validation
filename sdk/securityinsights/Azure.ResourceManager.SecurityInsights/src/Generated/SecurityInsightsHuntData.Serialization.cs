@@ -276,6 +276,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 displayName,
                 description,
                 status,
@@ -284,7 +285,6 @@ namespace Azure.ResourceManager.SecurityInsights
                 attackTechniques ?? new ChangeTrackingList<string>(),
                 labels ?? new ChangeTrackingList<string>(),
                 owner,
-                etag,
                 serializedAdditionalRawData);
         }
 

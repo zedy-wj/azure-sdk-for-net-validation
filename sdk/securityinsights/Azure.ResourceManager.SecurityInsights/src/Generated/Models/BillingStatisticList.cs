@@ -48,7 +48,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
 
         /// <summary> Initializes a new instance of <see cref="BillingStatisticList"/>. </summary>
         /// <param name="value">
-        /// Array of billing statistics.
+        /// The BillingStatistic items on this page
         /// Please note <see cref="SecurityInsightsBillingStatisticData"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="SapSolutionUsageStatistic"/>.
         /// </param>
@@ -61,17 +61,17 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="BillingStatisticList"/>. </summary>
-        /// <param name="nextLink"> URL to fetch the next set of billing statistics. </param>
         /// <param name="value">
-        /// Array of billing statistics.
+        /// The BillingStatistic items on this page
         /// Please note <see cref="SecurityInsightsBillingStatisticData"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="SapSolutionUsageStatistic"/>.
         /// </param>
+        /// <param name="nextLink"> The link to the next page of items. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal BillingStatisticList(string nextLink, IReadOnlyList<SecurityInsightsBillingStatisticData> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal BillingStatisticList(IReadOnlyList<SecurityInsightsBillingStatisticData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
-            NextLink = nextLink;
             Value = value;
+            NextLink = nextLink;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -80,13 +80,13 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         {
         }
 
-        /// <summary> URL to fetch the next set of billing statistics. </summary>
-        public string NextLink { get; }
         /// <summary>
-        /// Array of billing statistics.
+        /// The BillingStatistic items on this page
         /// Please note <see cref="SecurityInsightsBillingStatisticData"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="SapSolutionUsageStatistic"/>.
         /// </summary>
         public IReadOnlyList<SecurityInsightsBillingStatisticData> Value { get; }
+        /// <summary> The link to the next page of items. </summary>
+        public Uri NextLink { get; }
     }
 }

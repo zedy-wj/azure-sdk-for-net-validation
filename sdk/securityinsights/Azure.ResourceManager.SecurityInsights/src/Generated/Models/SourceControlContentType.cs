@@ -22,15 +22,15 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        private const string AnalyticRuleValue = "AnalyticRule";
+        private const string AnalyticsRuleValue = "AnalyticsRule";
         private const string AutomationRuleValue = "AutomationRule";
         private const string HuntingQueryValue = "HuntingQuery";
         private const string ParserValue = "Parser";
         private const string PlaybookValue = "Playbook";
         private const string WorkbookValue = "Workbook";
 
-        /// <summary> AnalyticRule. </summary>
-        public static SourceControlContentType AnalyticRule { get; } = new SourceControlContentType(AnalyticRuleValue);
+        /// <summary> AnalyticsRule. </summary>
+        public static SourceControlContentType AnalyticsRule { get; } = new SourceControlContentType(AnalyticsRuleValue);
         /// <summary> AutomationRule. </summary>
         public static SourceControlContentType AutomationRule { get; } = new SourceControlContentType(AutomationRuleValue);
         /// <summary> HuntingQuery. </summary>

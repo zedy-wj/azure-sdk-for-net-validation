@@ -64,6 +64,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="contentId"> The content id of the package. </param>
         /// <param name="contentProductId"> Unique ID for the content. It should be generated based on the contentId, contentKind and the contentVersion of the package. </param>
         /// <param name="contentKind"> The package kind. </param>
@@ -90,10 +91,10 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="installedVersion"> The version of the installed package, null or absent means not installed. </param>
         /// <param name="metadataResourceId"> The metadata resource id. </param>
         /// <param name="packagedContent"> The json of the ARM template to deploy. Expandable. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsProductPackageData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string contentId, string contentProductId, SecurityInsightsMetadataPackageKind? contentKind, string contentSchemaVersion, SecurityInsightsMetadataFlag? isNew, SecurityInsightsMetadataFlag? isPreview, SecurityInsightsMetadataFlag? isFeatured, SecurityInsightsMetadataFlag? isDeprecated, string version, string displayName, string description, string publisherDisplayName, SecurityInsightsMetadataSource source, SecurityInsightsMetadataAuthor author, SecurityInsightsMetadataSupport support, SecurityInsightsMetadataDependencies dependencies, IList<string> providers, DateTimeOffset? firstPublishOn, DateTimeOffset? lastPublishOn, SecurityInsightsMetadataCategories categories, IList<string> threatAnalysisTactics, IList<string> threatAnalysisTechniques, string icon, string installedVersion, ResourceIdentifier metadataResourceId, BinaryData packagedContent, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsProductPackageData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string contentId, string contentProductId, SecurityInsightsMetadataPackageKind? contentKind, string contentSchemaVersion, SecurityInsightsMetadataFlag? isNew, SecurityInsightsMetadataFlag? isPreview, SecurityInsightsMetadataFlag? isFeatured, SecurityInsightsMetadataFlag? isDeprecated, string version, string displayName, string description, string publisherDisplayName, SecurityInsightsMetadataSource source, SecurityInsightsMetadataAuthor author, SecurityInsightsMetadataSupport support, SecurityInsightsMetadataDependencies dependencies, IList<string> providers, DateTimeOffset? firstPublishOn, DateTimeOffset? lastPublishOn, SecurityInsightsMetadataCategories categories, IList<string> threatAnalysisTactics, IList<string> threatAnalysisTechniques, string icon, string installedVersion, ResourceIdentifier metadataResourceId, BinaryData packagedContent, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             ContentId = contentId;
             ContentProductId = contentProductId;
             ContentKind = contentKind;
@@ -120,10 +121,12 @@ namespace Azure.ResourceManager.SecurityInsights
             InstalledVersion = installedVersion;
             MetadataResourceId = metadataResourceId;
             PackagedContent = packagedContent;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> The content id of the package. </summary>
         [WirePath("properties.contentId")]
         public string ContentId { get; set; }
@@ -231,8 +234,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </summary>
         [WirePath("properties.packagedContent")]
         public BinaryData PackagedContent { get; set; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

@@ -60,21 +60,21 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="message"> The message for the comment. </param>
         /// <param name="etag"> Etag of the azure resource. </param>
+        /// <param name="message"> The message for the comment. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsHuntCommentData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string message, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsHuntCommentData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string message, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
-            Message = message;
             ETag = etag;
+            Message = message;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The message for the comment. </summary>
-        [WirePath("properties.message")]
-        public string Message { get; set; }
         /// <summary> Etag of the azure resource. </summary>
         [WirePath("etag")]
         public ETag? ETag { get; set; }
+        /// <summary> The message for the comment. </summary>
+        [WirePath("properties.message")]
+        public string Message { get; set; }
     }
 }

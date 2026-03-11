@@ -8,7 +8,6 @@
 using System;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.Json;
 using Azure.Core;
@@ -86,51 +85,29 @@ namespace Azure.ResourceManager.SecurityInsights
                 writer.WritePropertyName("updatedBy"u8);
                 writer.WriteObjectValue(UpdatedBy, options);
             }
-            if (Optional.IsCollectionDefined(ItemsKeyValueDictionary))
+            if (Optional.IsDefined(ItemsKeyValueDictionary))
             {
                 writer.WritePropertyName("itemsKeyValue"u8);
-                writer.WriteStartObject();
-                foreach (var item in ItemsKeyValueDictionary)
-                {
-                    writer.WritePropertyName(item.Key);
-                    if (item.Value == null)
-                    {
-                        writer.WriteNullValue();
-                        continue;
-                    }
 #if NET6_0_OR_GREATER
-				writer.WriteRawValue(item.Value);
+				writer.WriteRawValue(ItemsKeyValueDictionary);
 #else
-                    using (JsonDocument document = JsonDocument.Parse(item.Value, ModelSerializationExtensions.JsonDocumentOptions))
-                    {
-                        JsonSerializer.Serialize(writer, document.RootElement);
-                    }
-#endif
+                using (JsonDocument document = JsonDocument.Parse(ItemsKeyValueDictionary, ModelSerializationExtensions.JsonDocumentOptions))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
                 }
-                writer.WriteEndObject();
+#endif
             }
-            if (Optional.IsCollectionDefined(EntityMappingDictionary))
+            if (Optional.IsDefined(EntityMappingDictionary))
             {
                 writer.WritePropertyName("entityMapping"u8);
-                writer.WriteStartObject();
-                foreach (var item in EntityMappingDictionary)
-                {
-                    writer.WritePropertyName(item.Key);
-                    if (item.Value == null)
-                    {
-                        writer.WriteNullValue();
-                        continue;
-                    }
 #if NET6_0_OR_GREATER
-				writer.WriteRawValue(item.Value);
+				writer.WriteRawValue(EntityMappingDictionary);
 #else
-                    using (JsonDocument document = JsonDocument.Parse(item.Value, ModelSerializationExtensions.JsonDocumentOptions))
-                    {
-                        JsonSerializer.Serialize(writer, document.RootElement);
-                    }
-#endif
+                using (JsonDocument document = JsonDocument.Parse(EntityMappingDictionary, ModelSerializationExtensions.JsonDocumentOptions))
+                {
+                    JsonSerializer.Serialize(writer, document.RootElement);
                 }
-                writer.WriteEndObject();
+#endif
             }
             writer.WriteEndObject();
         }
@@ -168,8 +145,8 @@ namespace Azure.ResourceManager.SecurityInsights
             DateTimeOffset? updated = default;
             SecurityInsightsUserInfo createdBy = default;
             SecurityInsightsUserInfo updatedBy = default;
-            IDictionary<string, BinaryData> itemsKeyValue = default;
-            IDictionary<string, BinaryData> entityMapping = default;
+            BinaryData itemsKeyValue = default;
+            BinaryData entityMapping = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
@@ -286,19 +263,7 @@ namespace Azure.ResourceManager.SecurityInsights
                             {
                                 continue;
                             }
-                            Dictionary<string, BinaryData> dictionary = new Dictionary<string, BinaryData>();
-                            foreach (var property1 in property0.Value.EnumerateObject())
-                            {
-                                if (property1.Value.ValueKind == JsonValueKind.Null)
-                                {
-                                    dictionary.Add(property1.Name, null);
-                                }
-                                else
-                                {
-                                    dictionary.Add(property1.Name, BinaryData.FromString(property1.Value.GetRawText()));
-                                }
-                            }
-                            itemsKeyValue = dictionary;
+                            itemsKeyValue = BinaryData.FromString(property0.Value.GetRawText());
                             continue;
                         }
                         if (property0.NameEquals("entityMapping"u8))
@@ -307,19 +272,7 @@ namespace Azure.ResourceManager.SecurityInsights
                             {
                                 continue;
                             }
-                            Dictionary<string, BinaryData> dictionary = new Dictionary<string, BinaryData>();
-                            foreach (var property1 in property0.Value.EnumerateObject())
-                            {
-                                if (property1.Value.ValueKind == JsonValueKind.Null)
-                                {
-                                    dictionary.Add(property1.Name, null);
-                                }
-                                else
-                                {
-                                    dictionary.Add(property1.Name, BinaryData.FromString(property1.Value.GetRawText()));
-                                }
-                            }
-                            entityMapping = dictionary;
+                            entityMapping = BinaryData.FromString(property0.Value.GetRawText());
                             continue;
                         }
                     }
@@ -336,6 +289,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 watchlistItemType,
                 watchlistItemId,
                 tenantId,
@@ -344,9 +298,8 @@ namespace Azure.ResourceManager.SecurityInsights
                 updated,
                 createdBy,
                 updatedBy,
-                itemsKeyValue ?? new ChangeTrackingDictionary<string, BinaryData>(),
-                entityMapping ?? new ChangeTrackingDictionary<string, BinaryData>(),
-                etag,
+                itemsKeyValue,
+                entityMapping,
                 serializedAdditionalRawData);
         }
 
@@ -578,24 +531,10 @@ namespace Azure.ResourceManager.SecurityInsights
             }
             else
             {
-                if (Optional.IsCollectionDefined(ItemsKeyValueDictionary))
+                if (Optional.IsDefined(ItemsKeyValueDictionary))
                 {
-                    if (ItemsKeyValueDictionary.Any())
-                    {
-                        builder.Append("    itemsKeyValue: ");
-                        builder.AppendLine("{");
-                        foreach (var item in ItemsKeyValueDictionary)
-                        {
-                            builder.Append($"        '{item.Key}': ");
-                            if (item.Value == null)
-                            {
-                                builder.Append("null");
-                                continue;
-                            }
-                            builder.AppendLine($"'{item.Value.ToString()}'");
-                        }
-                        builder.AppendLine("    }");
-                    }
+                    builder.Append("    itemsKeyValue: ");
+                    builder.AppendLine($"'{ItemsKeyValueDictionary.ToString()}'");
                 }
             }
 
@@ -607,24 +546,10 @@ namespace Azure.ResourceManager.SecurityInsights
             }
             else
             {
-                if (Optional.IsCollectionDefined(EntityMappingDictionary))
+                if (Optional.IsDefined(EntityMappingDictionary))
                 {
-                    if (EntityMappingDictionary.Any())
-                    {
-                        builder.Append("    entityMapping: ");
-                        builder.AppendLine("{");
-                        foreach (var item in EntityMappingDictionary)
-                        {
-                            builder.Append($"        '{item.Key}': ");
-                            if (item.Value == null)
-                            {
-                                builder.Append("null");
-                                continue;
-                            }
-                            builder.AppendLine($"'{item.Value.ToString()}'");
-                        }
-                        builder.AppendLine("    }");
-                    }
+                    builder.Append("    entityMapping: ");
+                    builder.AppendLine($"'{EntityMappingDictionary.ToString()}'");
                 }
             }
 

@@ -14,7 +14,10 @@ using Azure.ResourceManager.SecurityInsights.Models;
 
 namespace Azure.ResourceManager.SecurityInsights
 {
-    /// <summary> A class representing the SecurityInsightsAutomationRule data model. </summary>
+    /// <summary>
+    /// A class representing the SecurityInsightsAutomationRule data model.
+    /// Concrete proxy resource types can be created by aliasing this type using a specific property type.
+    /// </summary>
     public partial class SecurityInsightsAutomationRuleData : ResourceData
     {
         /// <summary>
@@ -76,6 +79,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="displayName"> The display name of the automation rule. </param>
         /// <param name="order"> The order of execution of the automation rule. </param>
         /// <param name="triggeringLogic"> Describes automation rule triggering logic. </param>
@@ -88,10 +92,10 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="createdOn"> The time the automation rule was created. </param>
         /// <param name="lastModifiedBy"> Information on the client (user or application) that made some action. </param>
         /// <param name="createdBy"> Information on the client (user or application) that made some action. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsAutomationRuleData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string displayName, int order, SecurityInsightsAutomationRuleTriggeringLogic triggeringLogic, IList<SecurityInsightsAutomationRuleAction> actions, DateTimeOffset? lastModifiedOn, DateTimeOffset? createdOn, SecurityInsightsClientInfo lastModifiedBy, SecurityInsightsClientInfo createdBy, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsAutomationRuleData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string displayName, int order, SecurityInsightsAutomationRuleTriggeringLogic triggeringLogic, IList<SecurityInsightsAutomationRuleAction> actions, DateTimeOffset? lastModifiedOn, DateTimeOffset? createdOn, SecurityInsightsClientInfo lastModifiedBy, SecurityInsightsClientInfo createdBy, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             DisplayName = displayName;
             Order = order;
             TriggeringLogic = triggeringLogic;
@@ -100,7 +104,6 @@ namespace Azure.ResourceManager.SecurityInsights
             CreatedOn = createdOn;
             LastModifiedBy = lastModifiedBy;
             CreatedBy = createdBy;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -109,6 +112,9 @@ namespace Azure.ResourceManager.SecurityInsights
         {
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> The display name of the automation rule. </summary>
         [WirePath("properties.displayName")]
         public string DisplayName { get; set; }
@@ -137,8 +143,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> Information on the client (user or application) that made some action. </summary>
         [WirePath("properties.createdBy")]
         public SecurityInsightsClientInfo CreatedBy { get; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

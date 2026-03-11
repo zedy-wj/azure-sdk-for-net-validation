@@ -189,11 +189,11 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 message,
                 createdTimeUtc,
                 lastModifiedTimeUtc,
                 author,
-                etag,
                 serializedAdditionalRawData);
         }
 

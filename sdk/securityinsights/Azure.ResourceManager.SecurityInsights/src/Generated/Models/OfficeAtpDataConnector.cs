@@ -26,31 +26,31 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="kind"> The data connector kind. </param>
+        /// <param name="kind"> Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist this value. </param>
         /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="tenantId"> The tenant id to connect to, and get the data from. </param>
-        /// <param name="alerts"> Alerts data type connection. </param>
-        internal OfficeAtpDataConnector(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, DataConnectorKind kind, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData, Guid? tenantId, DataConnectorDataTypeCommon alerts) : base(id, name, resourceType, systemData, kind, etag, serializedAdditionalRawData)
+        /// <param name="dataTypes"> The available data types for the connector. </param>
+        internal OfficeAtpDataConnector(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, DataConnectorKind kind, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData, Guid? tenantId, SecurityInsightsAlertsDataTypeOfDataConnector dataTypes) : base(id, name, resourceType, systemData, kind, etag, serializedAdditionalRawData)
         {
             TenantId = tenantId;
-            Alerts = alerts;
+            DataTypes = dataTypes;
             Kind = kind;
         }
 
         /// <summary> The tenant id to connect to, and get the data from. </summary>
         [WirePath("properties.tenantId")]
         public Guid? TenantId { get; set; }
-        /// <summary> Alerts data type connection. </summary>
-        internal DataConnectorDataTypeCommon Alerts { get; set; }
+        /// <summary> The available data types for the connector. </summary>
+        internal SecurityInsightsAlertsDataTypeOfDataConnector DataTypes { get; set; }
         /// <summary> Describe whether this data type connection is enabled or not. </summary>
-        [WirePath("properties.alerts.state")]
+        [WirePath("properties.dataTypes.alerts.state")]
         public SecurityInsightsDataTypeConnectionState? AlertsState
         {
-            get => Alerts is null ? default(SecurityInsightsDataTypeConnectionState?) : Alerts.State;
+            get => DataTypes is null ? default : DataTypes.AlertsState;
             set
             {
-                Alerts = value.HasValue ? new DataConnectorDataTypeCommon(value.Value) : null;
+                DataTypes = value.HasValue ? new SecurityInsightsAlertsDataTypeOfDataConnector(value.Value) : null;
             }
         }
     }

@@ -60,22 +60,25 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="relatedResourceId"> The resource ID of the related resource. </param>
         /// <param name="relatedResourceName"> The name of the related resource. </param>
         /// <param name="relatedResourceType"> The resource type of the related resource. </param>
         /// <param name="relatedResourceKind"> The resource kind of the related resource. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsIncidentRelationData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ResourceIdentifier relatedResourceId, string relatedResourceName, ResourceType? relatedResourceType, string relatedResourceKind, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsIncidentRelationData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, ResourceIdentifier relatedResourceId, string relatedResourceName, ResourceType? relatedResourceType, string relatedResourceKind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             RelatedResourceId = relatedResourceId;
             RelatedResourceName = relatedResourceName;
             RelatedResourceType = relatedResourceType;
             RelatedResourceKind = relatedResourceKind;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> The resource ID of the related resource. </summary>
         [WirePath("properties.relatedResourceId")]
         public ResourceIdentifier RelatedResourceId { get; set; }
@@ -88,8 +91,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> The resource kind of the related resource. </summary>
         [WirePath("properties.relatedResourceKind")]
         public string RelatedResourceKind { get; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

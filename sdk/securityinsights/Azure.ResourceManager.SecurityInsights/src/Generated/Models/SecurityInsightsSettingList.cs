@@ -48,7 +48,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
 
         /// <summary> Initializes a new instance of <see cref="SecurityInsightsSettingList"/>. </summary>
         /// <param name="value">
-        /// Array of settings.
+        /// The Settings items on this page
         /// Please note <see cref="SecurityInsightsSettingData"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="SecurityInsightsSettingAnomaliesKind"/>, <see cref="EntityAnalytics"/>, <see cref="SecurityInsightsEyesOn"/> and <see cref="UebaSettings"/>.
         /// </param>
@@ -62,14 +62,16 @@ namespace Azure.ResourceManager.SecurityInsights.Models
 
         /// <summary> Initializes a new instance of <see cref="SecurityInsightsSettingList"/>. </summary>
         /// <param name="value">
-        /// Array of settings.
+        /// The Settings items on this page
         /// Please note <see cref="SecurityInsightsSettingData"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="SecurityInsightsSettingAnomaliesKind"/>, <see cref="EntityAnalytics"/>, <see cref="SecurityInsightsEyesOn"/> and <see cref="UebaSettings"/>.
         /// </param>
+        /// <param name="nextLink"> The link to the next page of items. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsSettingList(IReadOnlyList<SecurityInsightsSettingData> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal SecurityInsightsSettingList(IReadOnlyList<SecurityInsightsSettingData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             Value = value;
+            NextLink = nextLink;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -79,11 +81,12 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         /// <summary>
-        /// Array of settings.
+        /// The Settings items on this page
         /// Please note <see cref="SecurityInsightsSettingData"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="SecurityInsightsSettingAnomaliesKind"/>, <see cref="EntityAnalytics"/>, <see cref="SecurityInsightsEyesOn"/> and <see cref="UebaSettings"/>.
         /// </summary>
-        [WirePath("value")]
         public IReadOnlyList<SecurityInsightsSettingData> Value { get; }
+        /// <summary> The link to the next page of items. </summary>
+        public Uri NextLink { get; }
     }
 }

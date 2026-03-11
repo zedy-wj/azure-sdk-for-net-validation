@@ -200,11 +200,11 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 targetResourceName,
                 lastJobEndTime,
                 lastJobProvisioningState,
                 items ?? new ChangeTrackingList<WorkspaceManagerAssignmentItem>(),
-                etag,
                 serializedAdditionalRawData);
         }
 

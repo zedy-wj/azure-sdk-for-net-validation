@@ -46,7 +46,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 writer.WriteObjectValue(item, options);
             }
             writer.WriteEndArray();
-            if (Optional.IsDefined(ConditionConnective))
+            if (options.Format != "W" && Optional.IsDefined(ConditionConnective))
             {
                 writer.WritePropertyName("conditionConnective"u8);
                 writer.WriteStringValue(ConditionConnective.Value.ToString());

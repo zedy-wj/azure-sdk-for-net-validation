@@ -44,14 +44,11 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 writer.WritePropertyName("tenantId"u8);
                 writer.WriteStringValue(TenantId.Value);
             }
-            writer.WritePropertyName("dataTypes"u8);
-            writer.WriteStartObject();
-            if (Optional.IsDefined(Alerts))
+            if (Optional.IsDefined(DataTypes))
             {
-                writer.WritePropertyName("alerts"u8);
-                writer.WriteObjectValue(Alerts, options);
+                writer.WritePropertyName("dataTypes"u8);
+                writer.WriteObjectValue(DataTypes, options);
             }
-            writer.WriteEndObject();
             writer.WriteEndObject();
         }
 
@@ -82,7 +79,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             ResourceType type = default;
             SystemData systemData = default;
             Guid? tenantId = default;
-            DataConnectorDataTypeCommon alerts = default;
+            SecurityInsightsAlertsDataTypeOfDataConnector dataTypes = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
@@ -147,21 +144,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                         {
                             if (property0.Value.ValueKind == JsonValueKind.Null)
                             {
-                                property0.ThrowNonNullablePropertyIsNull();
                                 continue;
                             }
-                            foreach (var property1 in property0.Value.EnumerateObject())
-                            {
-                                if (property1.NameEquals("alerts"u8))
-                                {
-                                    if (property1.Value.ValueKind == JsonValueKind.Null)
-                                    {
-                                        continue;
-                                    }
-                                    alerts = DataConnectorDataTypeCommon.DeserializeDataConnectorDataTypeCommon(property1.Value, options);
-                                    continue;
-                                }
-                            }
+                            dataTypes = SecurityInsightsAlertsDataTypeOfDataConnector.DeserializeSecurityInsightsAlertsDataTypeOfDataConnector(property0.Value, options);
                             continue;
                         }
                     }
@@ -182,7 +167,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 etag,
                 serializedAdditionalRawData,
                 tenantId,
-                alerts);
+                dataTypes);
         }
 
         private BinaryData SerializeBicep(ModelReaderWriterOptions options)
@@ -293,29 +278,28 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 }
             }
 
-            builder.Append("    dataTypes:");
-            builder.AppendLine(" {");
             hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue("AlertsState", out propertyOverride);
             if (hasPropertyOverride)
             {
-                builder.Append("      alerts: ");
+                builder.Append("    dataTypes: ");
                 builder.AppendLine("{");
+                builder.AppendLine("      dataTypes: {");
                 builder.AppendLine("        alerts: {");
                 builder.Append("          state: ");
                 builder.AppendLine(propertyOverride);
                 builder.AppendLine("        }");
                 builder.AppendLine("      }");
+                builder.AppendLine("    }");
             }
             else
             {
-                if (Optional.IsDefined(Alerts))
+                if (Optional.IsDefined(DataTypes))
                 {
-                    builder.Append("      alerts: ");
-                    BicepSerializationHelpers.AppendChildObject(builder, Alerts, options, 6, false, "      alerts: ");
+                    builder.Append("    dataTypes: ");
+                    BicepSerializationHelpers.AppendChildObject(builder, DataTypes, options, 4, false, "    dataTypes: ");
                 }
             }
 
-            builder.AppendLine("    }");
             builder.AppendLine("  }");
             builder.AppendLine("}");
             return BinaryData.FromString(builder.ToString());

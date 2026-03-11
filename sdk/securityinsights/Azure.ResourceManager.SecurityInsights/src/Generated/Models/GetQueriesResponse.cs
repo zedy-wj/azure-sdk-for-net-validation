@@ -57,10 +57,12 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// Please note <see cref="EntityQueryItem"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="InsightQueryItem"/>.
         /// </param>
+        /// <param name="nextLink"></param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal GetQueriesResponse(IReadOnlyList<EntityQueryItem> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal GetQueriesResponse(IReadOnlyList<EntityQueryItem> value, string nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             Value = value;
+            NextLink = nextLink;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -69,7 +71,8 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// Please note <see cref="EntityQueryItem"/> is the base class. According to the scenario, a derived class of the base class might need to be assigned here, or this property needs to be casted to one of the possible derived classes.
         /// The available derived classes include <see cref="InsightQueryItem"/>.
         /// </summary>
-        [WirePath("value")]
         public IReadOnlyList<EntityQueryItem> Value { get; }
+        /// <summary> Gets the next link. </summary>
+        public string NextLink { get; }
     }
 }

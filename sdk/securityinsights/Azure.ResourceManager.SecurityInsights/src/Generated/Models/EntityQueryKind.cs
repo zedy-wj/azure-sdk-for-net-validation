@@ -10,8 +10,8 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.SecurityInsights.Models
 {
-    /// <summary> The EntityQueryKind. </summary>
-    public readonly partial struct EntityQueryKind : IEquatable<EntityQueryKind>
+    /// <summary> The kind of the entity query. </summary>
+    internal readonly partial struct EntityQueryKind : IEquatable<EntityQueryKind>
     {
         private readonly string _value;
 
@@ -23,10 +23,13 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         private const string ExpansionValue = "Expansion";
+        private const string InsightValue = "Insight";
         private const string ActivityValue = "Activity";
 
         /// <summary> Expansion. </summary>
         public static EntityQueryKind Expansion { get; } = new EntityQueryKind(ExpansionValue);
+        /// <summary> Insight. </summary>
+        public static EntityQueryKind Insight { get; } = new EntityQueryKind(InsightValue);
         /// <summary> Activity. </summary>
         public static EntityQueryKind Activity { get; } = new EntityQueryKind(ActivityValue);
         /// <summary> Determines if two <see cref="EntityQueryKind"/> values are the same. </summary>

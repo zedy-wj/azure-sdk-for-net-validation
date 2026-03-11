@@ -34,7 +34,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 throw new FormatException($"The model {nameof(ThreatIntelligenceQueryConditionClause)} does not support writing '{format}' format.");
             }
 
-            if (Optional.IsDefined(ClauseConnective))
+            if (options.Format != "W" && Optional.IsDefined(ClauseConnective))
             {
                 writer.WritePropertyName("clauseConnective"u8);
                 writer.WriteStringValue(ClauseConnective.Value.ToString());

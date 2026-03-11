@@ -13,7 +13,10 @@ using Azure.ResourceManager.SecurityInsights.Models;
 
 namespace Azure.ResourceManager.SecurityInsights
 {
-    /// <summary> A class representing the SecurityInsightsIncidentTask data model. </summary>
+    /// <summary>
+    /// A class representing the SecurityInsightsIncidentTask data model.
+    /// Describes incident task properties
+    /// </summary>
     public partial class SecurityInsightsIncidentTaskData : ResourceData
     {
         /// <summary>
@@ -50,7 +53,7 @@ namespace Azure.ResourceManager.SecurityInsights
 
         /// <summary> Initializes a new instance of <see cref="SecurityInsightsIncidentTaskData"/>. </summary>
         /// <param name="title"> The title of the task. </param>
-        /// <param name="status"></param>
+        /// <param name="status"> The status of the task. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="title"/> is null. </exception>
         public SecurityInsightsIncidentTaskData(string title, IncidentTaskStatus status)
         {
@@ -65,17 +68,18 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="title"> The title of the task. </param>
         /// <param name="description"> The description of the task. </param>
-        /// <param name="status"></param>
+        /// <param name="status"> The status of the task. </param>
         /// <param name="createdOn"> The time the task was created. </param>
         /// <param name="lastModifiedOn"> The last time the task was updated. </param>
         /// <param name="createdBy"> Information on the client (user or application) that made some action. </param>
         /// <param name="lastModifiedBy"> Information on the client (user or application) that made some action. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsIncidentTaskData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string title, string description, IncidentTaskStatus status, DateTimeOffset? createdOn, DateTimeOffset? lastModifiedOn, SecurityInsightsClientInfo createdBy, SecurityInsightsClientInfo lastModifiedBy, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsIncidentTaskData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string title, string description, IncidentTaskStatus status, DateTimeOffset? createdOn, DateTimeOffset? lastModifiedOn, SecurityInsightsClientInfo createdBy, SecurityInsightsClientInfo lastModifiedBy, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             Title = title;
             Description = description;
             Status = status;
@@ -83,7 +87,6 @@ namespace Azure.ResourceManager.SecurityInsights
             LastModifiedOn = lastModifiedOn;
             CreatedBy = createdBy;
             LastModifiedBy = lastModifiedBy;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -92,13 +95,16 @@ namespace Azure.ResourceManager.SecurityInsights
         {
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> The title of the task. </summary>
         [WirePath("properties.title")]
         public string Title { get; set; }
         /// <summary> The description of the task. </summary>
         [WirePath("properties.description")]
         public string Description { get; set; }
-        /// <summary> Gets or sets the status. </summary>
+        /// <summary> The status of the task. </summary>
         [WirePath("properties.status")]
         public IncidentTaskStatus Status { get; set; }
         /// <summary> The time the task was created. </summary>
@@ -113,8 +119,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> Information on the client (user or application) that made some action. </summary>
         [WirePath("properties.lastModifiedBy")]
         public SecurityInsightsClientInfo LastModifiedBy { get; set; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

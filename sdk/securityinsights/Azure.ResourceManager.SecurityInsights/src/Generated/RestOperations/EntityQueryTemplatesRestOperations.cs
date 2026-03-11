@@ -32,11 +32,11 @@ namespace Azure.ResourceManager.SecurityInsights
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2024-01-01-preview";
+            _apiVersion = apiVersion ?? "2025-07-01-preview";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
-        internal RequestUriBuilder CreateListRequestUri(string subscriptionId, string resourceGroupName, string workspaceName, EntityTemplateQueryKind? kind)
+        internal RequestUriBuilder CreateListRequestUri(string subscriptionId, string resourceGroupName, string workspaceName, EntityQueryTemplateKind? kind)
         {
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -47,15 +47,15 @@ namespace Azure.ResourceManager.SecurityInsights
             uri.AppendPath("/providers/Microsoft.OperationalInsights/workspaces/", false);
             uri.AppendPath(workspaceName, true);
             uri.AppendPath("/providers/Microsoft.SecurityInsights/entityQueryTemplates", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
             if (kind != null)
             {
                 uri.AppendQuery("kind", kind.Value.ToString(), true);
             }
-            uri.AppendQuery("api-version", _apiVersion, true);
             return uri;
         }
 
-        internal HttpMessage CreateListRequest(string subscriptionId, string resourceGroupName, string workspaceName, EntityTemplateQueryKind? kind)
+        internal HttpMessage CreateListRequest(string subscriptionId, string resourceGroupName, string workspaceName, EntityQueryTemplateKind? kind)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -69,11 +69,11 @@ namespace Azure.ResourceManager.SecurityInsights
             uri.AppendPath("/providers/Microsoft.OperationalInsights/workspaces/", false);
             uri.AppendPath(workspaceName, true);
             uri.AppendPath("/providers/Microsoft.SecurityInsights/entityQueryTemplates", false);
+            uri.AppendQuery("api-version", _apiVersion, true);
             if (kind != null)
             {
                 uri.AppendQuery("kind", kind.Value.ToString(), true);
             }
-            uri.AppendQuery("api-version", _apiVersion, true);
             request.Uri = uri;
             request.Headers.Add("Accept", "application/json");
             _userAgent.Apply(message);
@@ -81,14 +81,14 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets all entity query templates. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="kind"> The entity template query kind we want to fetch. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<EntityQueryTemplateList>> ListAsync(string subscriptionId, string resourceGroupName, string workspaceName, EntityTemplateQueryKind? kind = null, CancellationToken cancellationToken = default)
+        public async Task<Response<EntityQueryTemplateList>> ListAsync(string subscriptionId, string resourceGroupName, string workspaceName, EntityQueryTemplateKind? kind = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
@@ -111,14 +111,14 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets all entity query templates. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="kind"> The entity template query kind we want to fetch. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<EntityQueryTemplateList> List(string subscriptionId, string resourceGroupName, string workspaceName, EntityTemplateQueryKind? kind = null, CancellationToken cancellationToken = default)
+        public Response<EntityQueryTemplateList> List(string subscriptionId, string resourceGroupName, string workspaceName, EntityQueryTemplateKind? kind = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
             Argument.AssertNotNullOrEmpty(resourceGroupName, nameof(resourceGroupName));
@@ -179,7 +179,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets an entity query. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="entityQueryTemplateId"> entity query template ID. </param>
@@ -212,7 +212,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets an entity query. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="entityQueryTemplateId"> entity query template ID. </param>
@@ -244,7 +244,7 @@ namespace Azure.ResourceManager.SecurityInsights
             }
         }
 
-        internal RequestUriBuilder CreateListNextPageRequestUri(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, EntityTemplateQueryKind? kind)
+        internal RequestUriBuilder CreateListNextPageRequestUri(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, EntityQueryTemplateKind? kind)
         {
             var uri = new RawRequestUriBuilder();
             uri.Reset(_endpoint);
@@ -252,7 +252,7 @@ namespace Azure.ResourceManager.SecurityInsights
             return uri;
         }
 
-        internal HttpMessage CreateListNextPageRequest(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, EntityTemplateQueryKind? kind)
+        internal HttpMessage CreateListNextPageRequest(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, EntityQueryTemplateKind? kind)
         {
             var message = _pipeline.CreateMessage();
             var request = message.Request;
@@ -268,14 +268,14 @@ namespace Azure.ResourceManager.SecurityInsights
 
         /// <summary> Gets all entity query templates. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="kind"> The entity template query kind we want to fetch. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is an empty string, and was expected to be non-empty. </exception>
-        public async Task<Response<EntityQueryTemplateList>> ListNextPageAsync(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, EntityTemplateQueryKind? kind = null, CancellationToken cancellationToken = default)
+        public async Task<Response<EntityQueryTemplateList>> ListNextPageAsync(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, EntityQueryTemplateKind? kind = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(nextLink, nameof(nextLink));
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));
@@ -300,14 +300,14 @@ namespace Azure.ResourceManager.SecurityInsights
 
         /// <summary> Gets all entity query templates. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="kind"> The entity template query kind we want to fetch. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="nextLink"/>, <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/> or <paramref name="workspaceName"/> is an empty string, and was expected to be non-empty. </exception>
-        public Response<EntityQueryTemplateList> ListNextPage(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, EntityTemplateQueryKind? kind = null, CancellationToken cancellationToken = default)
+        public Response<EntityQueryTemplateList> ListNextPage(string nextLink, string subscriptionId, string resourceGroupName, string workspaceName, EntityQueryTemplateKind? kind = null, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(nextLink, nameof(nextLink));
             Argument.AssertNotNullOrEmpty(subscriptionId, nameof(subscriptionId));

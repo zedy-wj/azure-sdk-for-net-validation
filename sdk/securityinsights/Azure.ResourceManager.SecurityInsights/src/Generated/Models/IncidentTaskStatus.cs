@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.SecurityInsights.Models
 {
-    /// <summary> The IncidentTaskStatus. </summary>
+    /// <summary> The status of the task. </summary>
     public readonly partial struct IncidentTaskStatus : IEquatable<IncidentTaskStatus>
     {
         private readonly string _value;

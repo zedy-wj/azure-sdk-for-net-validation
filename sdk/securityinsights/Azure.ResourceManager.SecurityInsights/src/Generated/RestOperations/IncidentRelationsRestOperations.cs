@@ -32,7 +32,7 @@ namespace Azure.ResourceManager.SecurityInsights
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2024-01-01-preview";
+            _apiVersion = apiVersion ?? "2025-07-01-preview";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
@@ -108,10 +108,10 @@ namespace Azure.ResourceManager.SecurityInsights
             return message;
         }
 
-        /// <summary> Gets all incident relations. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <summary> Gets all relations for a given incident. </summary>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="workspaceName"> The name of the workspace. </param>
+        /// <param name="workspaceName"> The name of the monitor workspace. </param>
         /// <param name="incidentId"> Incident ID. </param>
         /// <param name="filter"> Filters the results, based on a Boolean condition. Optional. </param>
         /// <param name="orderBy"> Sorts the results. Optional. </param>
@@ -143,10 +143,10 @@ namespace Azure.ResourceManager.SecurityInsights
             }
         }
 
-        /// <summary> Gets all incident relations. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <summary> Gets all relations for a given incident. </summary>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="workspaceName"> The name of the workspace. </param>
+        /// <param name="workspaceName"> The name of the monitor workspace. </param>
         /// <param name="incidentId"> Incident ID. </param>
         /// <param name="filter"> Filters the results, based on a Boolean condition. Optional. </param>
         /// <param name="orderBy"> Sorts the results. Optional. </param>
@@ -220,10 +220,10 @@ namespace Azure.ResourceManager.SecurityInsights
             return message;
         }
 
-        /// <summary> Gets an incident relation. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <summary> Gets a relation for a given incident. </summary>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="workspaceName"> The name of the workspace. </param>
+        /// <param name="workspaceName"> The name of the monitor workspace. </param>
         /// <param name="incidentId"> Incident ID. </param>
         /// <param name="relationName"> Relation Name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -255,10 +255,10 @@ namespace Azure.ResourceManager.SecurityInsights
             }
         }
 
-        /// <summary> Gets an incident relation. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <summary> Gets a relation for a given incident. </summary>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="workspaceName"> The name of the workspace. </param>
+        /// <param name="workspaceName"> The name of the monitor workspace. </param>
         /// <param name="incidentId"> Incident ID. </param>
         /// <param name="relationName"> Relation Name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -337,9 +337,9 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Creates or updates the incident relation. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="workspaceName"> The name of the workspace. </param>
+        /// <param name="workspaceName"> The name of the monitor workspace. </param>
         /// <param name="incidentId"> Incident ID. </param>
         /// <param name="relationName"> Relation Name. </param>
         /// <param name="data"> The relation model. </param>
@@ -373,9 +373,9 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Creates or updates the incident relation. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="workspaceName"> The name of the workspace. </param>
+        /// <param name="workspaceName"> The name of the monitor workspace. </param>
         /// <param name="incidentId"> Incident ID. </param>
         /// <param name="relationName"> Relation Name. </param>
         /// <param name="data"> The relation model. </param>
@@ -450,10 +450,10 @@ namespace Azure.ResourceManager.SecurityInsights
             return message;
         }
 
-        /// <summary> Delete the incident relation. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <summary> Deletes a relation for a given incident. </summary>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="workspaceName"> The name of the workspace. </param>
+        /// <param name="workspaceName"> The name of the monitor workspace. </param>
         /// <param name="incidentId"> Incident ID. </param>
         /// <param name="relationName"> Relation Name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -479,10 +479,10 @@ namespace Azure.ResourceManager.SecurityInsights
             }
         }
 
-        /// <summary> Delete the incident relation. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <summary> Deletes a relation for a given incident. </summary>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="workspaceName"> The name of the workspace. </param>
+        /// <param name="workspaceName"> The name of the monitor workspace. </param>
         /// <param name="incidentId"> Incident ID. </param>
         /// <param name="relationName"> Relation Name. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
@@ -530,11 +530,11 @@ namespace Azure.ResourceManager.SecurityInsights
             return message;
         }
 
-        /// <summary> Gets all incident relations. </summary>
+        /// <summary> Gets all relations for a given incident. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="workspaceName"> The name of the workspace. </param>
+        /// <param name="workspaceName"> The name of the monitor workspace. </param>
         /// <param name="incidentId"> Incident ID. </param>
         /// <param name="filter"> Filters the results, based on a Boolean condition. Optional. </param>
         /// <param name="orderBy"> Sorts the results. Optional. </param>
@@ -567,11 +567,11 @@ namespace Azure.ResourceManager.SecurityInsights
             }
         }
 
-        /// <summary> Gets all incident relations. </summary>
+        /// <summary> Gets all relations for a given incident. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
-        /// <param name="workspaceName"> The name of the workspace. </param>
+        /// <param name="workspaceName"> The name of the monitor workspace. </param>
         /// <param name="incidentId"> Incident ID. </param>
         /// <param name="filter"> Filters the results, based on a Boolean condition. Optional. </param>
         /// <param name="orderBy"> Sorts the results. Optional. </param>

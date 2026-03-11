@@ -60,21 +60,21 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="isCustomerManagedKeySet"> Flag that indicates the status of the CMK setting. </param>
         /// <param name="etag"> Etag of the azure resource. </param>
+        /// <param name="isCustomerManagedKeySet"> Flag that indicates the status of the CMK setting. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsSentinelOnboardingStateData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, bool? isCustomerManagedKeySet, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsSentinelOnboardingStateData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, bool? isCustomerManagedKeySet, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
-            IsCustomerManagedKeySet = isCustomerManagedKeySet;
             ETag = etag;
+            IsCustomerManagedKeySet = isCustomerManagedKeySet;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Flag that indicates the status of the CMK setting. </summary>
-        [WirePath("properties.customerManagedKey")]
-        public bool? IsCustomerManagedKeySet { get; set; }
         /// <summary> Etag of the azure resource. </summary>
         [WirePath("etag")]
         public ETag? ETag { get; set; }
+        /// <summary> Flag that indicates the status of the CMK setting. </summary>
+        [WirePath("properties.customerManagedKey")]
+        public bool? IsCustomerManagedKeySet { get; set; }
     }
 }

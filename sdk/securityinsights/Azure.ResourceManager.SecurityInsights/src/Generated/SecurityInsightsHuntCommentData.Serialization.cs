@@ -143,8 +143,8 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
-                message,
                 etag,
+                message,
                 serializedAdditionalRawData);
         }
 

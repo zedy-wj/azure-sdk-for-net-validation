@@ -38,7 +38,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             if (Optional.IsDefined(Status))
             {
                 writer.WritePropertyName("status"u8);
-                writer.WriteNumberValue(Status.Value.ToSerialInt32());
+                writer.WriteNumberValue(Status.Value.ToSerialSingle());
             }
             if (Optional.IsDefined(IsPreview))
             {
@@ -94,7 +94,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                     {
                         continue;
                     }
-                    status = new ConnectorAvailabilityStatus(property.Value.GetInt32());
+                    status = new ConnectorAvailabilityStatus(property.Value.GetSingle());
                     continue;
                 }
                 if (property.NameEquals("isPreview"u8))

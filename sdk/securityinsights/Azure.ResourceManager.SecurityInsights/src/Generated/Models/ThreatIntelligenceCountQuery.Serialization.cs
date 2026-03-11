@@ -34,14 +34,26 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 throw new FormatException($"The model {nameof(ThreatIntelligenceCountQuery)} does not support writing '{format}' format.");
             }
 
-            writer.WritePropertyName("properties"u8);
-            writer.WriteStartObject();
             if (Optional.IsDefined(Condition))
             {
                 writer.WritePropertyName("condition"u8);
                 writer.WriteObjectValue(Condition, options);
             }
-            writer.WriteEndObject();
+            if (Optional.IsDefined(SortBy))
+            {
+                writer.WritePropertyName("sortBy"u8);
+                writer.WriteObjectValue(SortBy, options);
+            }
+            if (Optional.IsDefined(MaxPageSize))
+            {
+                writer.WritePropertyName("maxPageSize"u8);
+                writer.WriteNumberValue(MaxPageSize.Value);
+            }
+            if (Optional.IsDefined(MinPageSize))
+            {
+                writer.WritePropertyName("minPageSize"u8);
+                writer.WriteNumberValue(MinPageSize.Value);
+            }
             if (options.Format != "W" && _serializedAdditionalRawData != null)
             {
                 foreach (var item in _serializedAdditionalRawData)
@@ -79,30 +91,48 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             {
                 return null;
             }
-            ThreatIntelligenceQueryConditionProperties condition = default;
+            ThreatIntelligenceQueryCondition condition = default;
+            ThreatIntelligenceQuerySortBy sortBy = default;
+            int? maxPageSize = default;
+            int? minPageSize = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
-                if (property.NameEquals("properties"u8))
+                if (property.NameEquals("condition"u8))
                 {
                     if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        property.ThrowNonNullablePropertyIsNull();
                         continue;
                     }
-                    foreach (var property0 in property.Value.EnumerateObject())
+                    condition = ThreatIntelligenceQueryCondition.DeserializeThreatIntelligenceQueryCondition(property.Value, options);
+                    continue;
+                }
+                if (property.NameEquals("sortBy"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
                     {
-                        if (property0.NameEquals("condition"u8))
-                        {
-                            if (property0.Value.ValueKind == JsonValueKind.Null)
-                            {
-                                continue;
-                            }
-                            condition = ThreatIntelligenceQueryConditionProperties.DeserializeThreatIntelligenceQueryConditionProperties(property0.Value, options);
-                            continue;
-                        }
+                        continue;
                     }
+                    sortBy = ThreatIntelligenceQuerySortBy.DeserializeThreatIntelligenceQuerySortBy(property.Value, options);
+                    continue;
+                }
+                if (property.NameEquals("maxPageSize"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    maxPageSize = property.Value.GetInt32();
+                    continue;
+                }
+                if (property.NameEquals("minPageSize"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    minPageSize = property.Value.GetInt32();
                     continue;
                 }
                 if (options.Format != "W")
@@ -111,7 +141,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 }
             }
             serializedAdditionalRawData = rawDataDictionary;
-            return new ThreatIntelligenceCountQuery(condition, serializedAdditionalRawData);
+            return new ThreatIntelligenceCountQuery(condition, sortBy, maxPageSize, minPageSize, serializedAdditionalRawData);
         }
 
         BinaryData IPersistableModel<ThreatIntelligenceCountQuery>.Write(ModelReaderWriterOptions options)

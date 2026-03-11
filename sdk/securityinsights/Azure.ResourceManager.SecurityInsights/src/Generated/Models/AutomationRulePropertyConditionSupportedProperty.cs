@@ -33,6 +33,8 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         private const string IncidentUpdatedBySourceValue = "IncidentUpdatedBySource";
         private const string IncidentCustomDetailsKeyValue = "IncidentCustomDetailsKey";
         private const string IncidentCustomDetailsValueValue = "IncidentCustomDetailsValue";
+        private const string IncidentCustomDetectionRuleIdsValue = "IncidentCustomDetectionRuleIds";
+        private const string IncidentAlertTitleValue = "IncidentAlertTitle";
         private const string AccountAadTenantIdValue = "AccountAadTenantId";
         private const string AccountAadUserIdValue = "AccountAadUserId";
         private const string AccountNameValue = "AccountName";
@@ -103,6 +105,10 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public static AutomationRulePropertyConditionSupportedProperty IncidentCustomDetailsKey { get; } = new AutomationRulePropertyConditionSupportedProperty(IncidentCustomDetailsKeyValue);
         /// <summary> The incident custom detail value. </summary>
         public static AutomationRulePropertyConditionSupportedProperty IncidentCustomDetailsValue { get; } = new AutomationRulePropertyConditionSupportedProperty(IncidentCustomDetailsValueValue);
+        /// <summary> The Custom-Detection rule ids associated with any of the incident alerts. </summary>
+        public static AutomationRulePropertyConditionSupportedProperty IncidentCustomDetectionRuleIds { get; } = new AutomationRulePropertyConditionSupportedProperty(IncidentCustomDetectionRuleIdsValue);
+        /// <summary> The alert title associated with any of the incident alerts. </summary>
+        public static AutomationRulePropertyConditionSupportedProperty IncidentAlertTitle { get; } = new AutomationRulePropertyConditionSupportedProperty(IncidentAlertTitleValue);
         /// <summary> The account Azure Active Directory tenant id. </summary>
         public static AutomationRulePropertyConditionSupportedProperty AccountAadTenantId { get; } = new AutomationRulePropertyConditionSupportedProperty(AccountAadTenantIdValue);
         /// <summary> The account Azure Active Directory user id. </summary>

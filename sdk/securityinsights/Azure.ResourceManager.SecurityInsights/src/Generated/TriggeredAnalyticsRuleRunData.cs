@@ -74,21 +74,21 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="executeOn"></param>
         /// <param name="ruleId"></param>
         /// <param name="triggeredAnalyticsRuleRunId"></param>
         /// <param name="provisioningState"> The triggered analytics rule run provisioning state. </param>
         /// <param name="ruleRunAdditionalData"> Dictionary of &lt;any&gt;. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal TriggeredAnalyticsRuleRunData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, DateTimeOffset executeOn, string ruleId, string triggeredAnalyticsRuleRunId, TriggeredAnalyticsRuleRunProvisioningState provisioningState, IDictionary<string, BinaryData> ruleRunAdditionalData, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal TriggeredAnalyticsRuleRunData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, DateTimeOffset executeOn, string ruleId, string triggeredAnalyticsRuleRunId, TriggeredAnalyticsRuleRunProvisioningState provisioningState, IDictionary<string, BinaryData> ruleRunAdditionalData, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             ExecuteOn = executeOn;
             RuleId = ruleId;
             TriggeredAnalyticsRuleRunId = triggeredAnalyticsRuleRunId;
             ProvisioningState = provisioningState;
             RuleRunAdditionalData = ruleRunAdditionalData;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -97,6 +97,9 @@ namespace Azure.ResourceManager.SecurityInsights
         {
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> Gets or sets the execute on. </summary>
         [WirePath("properties.executionTimeUtc")]
         public DateTimeOffset ExecuteOn { get; set; }
@@ -108,7 +111,7 @@ namespace Azure.ResourceManager.SecurityInsights
         public string TriggeredAnalyticsRuleRunId { get; set; }
         /// <summary> The triggered analytics rule run provisioning state. </summary>
         [WirePath("properties.provisioningState")]
-        public TriggeredAnalyticsRuleRunProvisioningState ProvisioningState { get; set; }
+        public TriggeredAnalyticsRuleRunProvisioningState ProvisioningState { get; }
         /// <summary>
         /// Dictionary of &lt;any&gt;
         /// <para>
@@ -141,8 +144,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </summary>
         [WirePath("properties.ruleRunAdditionalData")]
         public IDictionary<string, BinaryData> RuleRunAdditionalData { get; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

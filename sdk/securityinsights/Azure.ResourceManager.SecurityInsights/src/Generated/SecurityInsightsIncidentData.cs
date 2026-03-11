@@ -13,7 +13,10 @@ using Azure.ResourceManager.SecurityInsights.Models;
 
 namespace Azure.ResourceManager.SecurityInsights
 {
-    /// <summary> A class representing the SecurityInsightsIncident data model. </summary>
+    /// <summary>
+    /// A class representing the SecurityInsightsIncident data model.
+    /// Represents an incident in Azure Security Insights.
+    /// </summary>
     public partial class SecurityInsightsIncidentData : ResourceData
     {
         /// <summary>
@@ -60,6 +63,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="title"> The title of the incident. </param>
         /// <param name="description"> The description of the incident. </param>
         /// <param name="severity"> The severity of the incident. </param>
@@ -80,10 +84,10 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="providerName"> The name of the source provider that generated the incident. </param>
         /// <param name="providerIncidentId"> The incident ID assigned by the incident provider. </param>
         /// <param name="teamInformation"> Describes a team for the incident. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsIncidentData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string title, string description, SecurityInsightsIncidentSeverity? severity, SecurityInsightsIncidentStatus? status, SecurityInsightsIncidentClassification? classification, SecurityInsightsIncidentClassificationReason? classificationReason, string classificationComment, SecurityInsightsIncidentOwnerInfo owner, IList<SecurityInsightsIncidentLabel> labels, DateTimeOffset? firstActivityOn, DateTimeOffset? lastActivityOn, DateTimeOffset? lastModifiedOn, DateTimeOffset? createdOn, int? incidentNumber, SecurityInsightsIncidentAdditionalInfo additionalInfo, IReadOnlyList<ResourceIdentifier> relatedAnalyticRuleIds, Uri incidentUri, string providerName, string providerIncidentId, TeamInformation teamInformation, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsIncidentData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string title, string description, SecurityInsightsIncidentSeverity? severity, SecurityInsightsIncidentStatus? status, SecurityInsightsIncidentClassification? classification, SecurityInsightsIncidentClassificationReason? classificationReason, string classificationComment, SecurityInsightsIncidentOwnerInfo owner, IList<SecurityInsightsIncidentLabel> labels, DateTimeOffset? firstActivityOn, DateTimeOffset? lastActivityOn, DateTimeOffset? lastModifiedOn, DateTimeOffset? createdOn, int? incidentNumber, SecurityInsightsIncidentAdditionalInfo additionalInfo, IReadOnlyList<ResourceIdentifier> relatedAnalyticRuleIds, Uri incidentUri, string providerName, string providerIncidentId, TeamInformation teamInformation, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             Title = title;
             Description = description;
             Severity = severity;
@@ -104,10 +108,12 @@ namespace Azure.ResourceManager.SecurityInsights
             ProviderName = providerName;
             ProviderIncidentId = providerIncidentId;
             TeamInformation = teamInformation;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> The title of the incident. </summary>
         [WirePath("properties.title")]
         public string Title { get; set; }
@@ -168,8 +174,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> Describes a team for the incident. </summary>
         [WirePath("properties.teamInformation")]
         public TeamInformation TeamInformation { get; set; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

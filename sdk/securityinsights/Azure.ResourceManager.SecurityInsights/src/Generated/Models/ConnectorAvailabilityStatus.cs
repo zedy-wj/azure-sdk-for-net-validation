@@ -14,27 +14,27 @@ namespace Azure.ResourceManager.SecurityInsights.Models
     /// <summary> The connector Availability Status. </summary>
     public readonly partial struct ConnectorAvailabilityStatus : IEquatable<ConnectorAvailabilityStatus>
     {
-        private readonly int _value;
+        private readonly float _value;
 
         /// <summary> Initializes a new instance of <see cref="ConnectorAvailabilityStatus"/>. </summary>
-        public ConnectorAvailabilityStatus(int value)
+        public ConnectorAvailabilityStatus(float value)
         {
             _value = value;
         }
 
-        private const int _1Value = 1;
+        private const float OneValue = 1F;
 
         /// <summary> 1. </summary>
-        public static ConnectorAvailabilityStatus _1 { get; } = new ConnectorAvailabilityStatus(_1Value);
+        public static ConnectorAvailabilityStatus One { get; } = new ConnectorAvailabilityStatus(OneValue);
 
-        internal int ToSerialInt32() => _value;
+        internal float ToSerialSingle() => _value;
 
         /// <summary> Determines if two <see cref="ConnectorAvailabilityStatus"/> values are the same. </summary>
         public static bool operator ==(ConnectorAvailabilityStatus left, ConnectorAvailabilityStatus right) => left.Equals(right);
         /// <summary> Determines if two <see cref="ConnectorAvailabilityStatus"/> values are not the same. </summary>
         public static bool operator !=(ConnectorAvailabilityStatus left, ConnectorAvailabilityStatus right) => !left.Equals(right);
-        /// <summary> Converts a <see cref="int"/> to a <see cref="ConnectorAvailabilityStatus"/>. </summary>
-        public static implicit operator ConnectorAvailabilityStatus(int value) => new ConnectorAvailabilityStatus(value);
+        /// <summary> Converts a <see cref="float"/> to a <see cref="ConnectorAvailabilityStatus"/>. </summary>
+        public static implicit operator ConnectorAvailabilityStatus(float value) => new ConnectorAvailabilityStatus(value);
 
         /// <inheritdoc />
         [EditorBrowsable(EditorBrowsableState.Never)]

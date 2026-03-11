@@ -58,7 +58,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="instructions"> Gets or sets the instruction step details. </param>
         /// <param name="innerSteps">
         /// Gets or sets the inner instruction steps details.
-        /// Foe Example: instruction step 1 might contain inner instruction steps: [instruction step 1.1, instruction step 1.2].
+        /// For Example: instruction step 1 might contain inner instruction steps: [instruction step 1.1, instruction step 1.2].
         /// </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InstructionStep(string title, string description, IList<InstructionStepDetails> instructions, IList<InstructionStep> innerSteps, IDictionary<string, BinaryData> serializedAdditionalRawData)
@@ -81,7 +81,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public IList<InstructionStepDetails> Instructions { get; }
         /// <summary>
         /// Gets or sets the inner instruction steps details.
-        /// Foe Example: instruction step 1 might contain inner instruction steps: [instruction step 1.1, instruction step 1.2].
+        /// For Example: instruction step 1 might contain inner instruction steps: [instruction step 1.1, instruction step 1.2].
         /// </summary>
         [WirePath("innerSteps")]
         public IList<InstructionStep> InnerSteps { get; }

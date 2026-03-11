@@ -27,6 +27,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         private const string ClosedValue = "Closed";
         private const string BacklogValue = "Backlog";
         private const string ApprovedValue = "Approved";
+        private const string SucceededValue = "Succeeded";
+        private const string FailedValue = "Failed";
+        private const string InProgressValue = "InProgress";
 
         /// <summary> New. </summary>
         public static HuntStatus New { get; } = new HuntStatus(NewValue);
@@ -38,6 +41,12 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public static HuntStatus Backlog { get; } = new HuntStatus(BacklogValue);
         /// <summary> Approved. </summary>
         public static HuntStatus Approved { get; } = new HuntStatus(ApprovedValue);
+        /// <summary> Succeeded. </summary>
+        public static HuntStatus Succeeded { get; } = new HuntStatus(SucceededValue);
+        /// <summary> Failed. </summary>
+        public static HuntStatus Failed { get; } = new HuntStatus(FailedValue);
+        /// <summary> InProgress. </summary>
+        public static HuntStatus InProgress { get; } = new HuntStatus(InProgressValue);
         /// <summary> Determines if two <see cref="HuntStatus"/> values are the same. </summary>
         public static bool operator ==(HuntStatus left, HuntStatus right) => left.Equals(right);
         /// <summary> Determines if two <see cref="HuntStatus"/> values are not the same. </summary>

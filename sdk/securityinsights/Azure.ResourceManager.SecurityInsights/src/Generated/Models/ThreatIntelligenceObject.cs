@@ -75,7 +75,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="lastUpdatedOn"> The timestamp for the last time this TI object was updated. </param>
         /// <param name="relationshipHints"> A dictionary used to help follow relationships from this object to other STIX objects. The keys are field names from the STIX object (in the 'data' field), and the values are lists of sources that can be prepended to the object ID in order to efficiently locate the target TI object. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal ThreatIntelligenceObject(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, TIObjectKind kind, IReadOnlyDictionary<string, BinaryData> data, ThreatIntelligenceUserInfo createdBy, string source, DateTimeOffset? firstIngestedOn, DateTimeOffset? lastIngestedOn, Guid? ingestionRulesVersion, string lastUpdateMethod, ThreatIntelligenceUserInfo lastModifiedBy, DateTimeOffset? lastUpdatedOn, IReadOnlyList<RelationshipHint> relationshipHints, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal ThreatIntelligenceObject(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, TIObjectKind kind, IReadOnlyDictionary<string, BinaryData> data, SecurityInsightsUserInfo createdBy, string source, DateTimeOffset? firstIngestedOn, DateTimeOffset? lastIngestedOn, Guid? ingestionRulesVersion, string lastUpdateMethod, SecurityInsightsUserInfo lastModifiedBy, DateTimeOffset? lastUpdatedOn, IReadOnlyList<RelationshipHint> relationshipHints, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
             Kind = kind;
             Data = data;
@@ -127,7 +127,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public IReadOnlyDictionary<string, BinaryData> Data { get; }
         /// <summary> The UserInfo of the user/entity which originally created this TI object. </summary>
         [WirePath("properties.createdBy")]
-        public ThreatIntelligenceUserInfo CreatedBy { get; }
+        public SecurityInsightsUserInfo CreatedBy { get; }
         /// <summary> The source name for this TI object. </summary>
         [WirePath("properties.source")]
         public string Source { get; }
@@ -145,7 +145,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public string LastUpdateMethod { get; }
         /// <summary> The UserInfo of the user/entity which last modified this TI object. </summary>
         [WirePath("properties.lastModifiedBy")]
-        public ThreatIntelligenceUserInfo LastModifiedBy { get; }
+        public SecurityInsightsUserInfo LastModifiedBy { get; }
         /// <summary> The timestamp for the last time this TI object was updated. </summary>
         [WirePath("properties.lastUpdatedDateTimeUtc")]
         public DateTimeOffset? LastUpdatedOn { get; }

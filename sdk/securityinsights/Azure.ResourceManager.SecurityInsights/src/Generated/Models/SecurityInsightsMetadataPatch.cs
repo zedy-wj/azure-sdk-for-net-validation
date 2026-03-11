@@ -62,7 +62,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="contentId"> Static ID for the content.  Used to identify dependencies and content from solutions or community.  Hard-coded/static for out of the box content and solutions. Dynamic for user-created.  This is the resource name. </param>
+        /// <param name="contentId"> Static ID for the content.  Used to identify dependencies and content from solutions or community.  Hard-coded/static for out of the box content and solutions. Can be optionally set for user created content to define dependencies.  If an active content item is made from a template, both will have the same contentId. </param>
         /// <param name="parentId"> Full parent resource ID of the content item the metadata is for.  This is the full resource ID including the scope (subscription and resource group). </param>
         /// <param name="version"> Version of the content.  Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM template best practices.  Can also be any string, but then we cannot guarantee any version checks. </param>
         /// <param name="kind"> The kind of content the metadata is for. </param>
@@ -72,8 +72,8 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="dependencies"> Dependencies for the content item, what other content items it requires to work.  Can describe more complex dependencies using a recursive/nested structure. For a single dependency an id/kind/version can be supplied or operator/criteria for complex formats. </param>
         /// <param name="categories"> Categories for the solution content item. </param>
         /// <param name="providers"> Providers for the solution content item. </param>
-        /// <param name="firstPublishOn"> first publish date solution content item. </param>
-        /// <param name="lastPublishOn"> last publish date for the solution content item. </param>
+        /// <param name="firstPublishOn"> first publish date of solution content item. </param>
+        /// <param name="lastPublishOn"> last publish date of solution content item. </param>
         /// <param name="customVersion"> The custom version of the content. A optional free text. </param>
         /// <param name="contentSchemaVersion"> Schema version of the content. Can be used to distinguish between different flow based on the schema version. </param>
         /// <param name="icon"> the icon identifier. this id can later be fetched from the solution template. </param>
@@ -108,7 +108,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Static ID for the content.  Used to identify dependencies and content from solutions or community.  Hard-coded/static for out of the box content and solutions. Dynamic for user-created.  This is the resource name. </summary>
+        /// <summary> Static ID for the content.  Used to identify dependencies and content from solutions or community.  Hard-coded/static for out of the box content and solutions. Can be optionally set for user created content to define dependencies.  If an active content item is made from a template, both will have the same contentId. </summary>
         [WirePath("properties.contentId")]
         public string ContentId { get; set; }
         /// <summary> Full parent resource ID of the content item the metadata is for.  This is the full resource ID including the scope (subscription and resource group). </summary>
@@ -138,10 +138,10 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <summary> Providers for the solution content item. </summary>
         [WirePath("properties.providers")]
         public IList<string> Providers { get; }
-        /// <summary> first publish date solution content item. </summary>
+        /// <summary> first publish date of solution content item. </summary>
         [WirePath("properties.firstPublishDate")]
         public DateTimeOffset? FirstPublishOn { get; set; }
-        /// <summary> last publish date for the solution content item. </summary>
+        /// <summary> last publish date of solution content item. </summary>
         [WirePath("properties.lastPublishDate")]
         public DateTimeOffset? LastPublishOn { get; set; }
         /// <summary> The custom version of the content. A optional free text. </summary>

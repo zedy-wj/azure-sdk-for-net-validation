@@ -28,7 +28,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
 
         /// <param name="writer"> The JSON writer. </param>
         /// <param name="options"> The client options for reading and writing models. </param>
-        protected override void JsonModelWriteCore(Utf8JsonWriter writer, ModelReaderWriterOptions options)
+        protected virtual void JsonModelWriteCore(Utf8JsonWriter writer, ModelReaderWriterOptions options)
         {
             var format = options.Format == "W" ? ((IPersistableModel<TemplateProperties>)this).GetFormatFromOptions(options) : options.Format;
             if (format != "J")
@@ -36,7 +36,156 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 throw new FormatException($"The model {nameof(TemplateProperties)} does not support writing '{format}' format.");
             }
 
-            base.JsonModelWriteCore(writer, options);
+            if (Optional.IsDefined(ContentId))
+            {
+                writer.WritePropertyName("contentId"u8);
+                writer.WriteStringValue(ContentId);
+            }
+            if (Optional.IsDefined(ContentProductId))
+            {
+                writer.WritePropertyName("contentProductId"u8);
+                writer.WriteStringValue(ContentProductId);
+            }
+            if (Optional.IsDefined(PackageVersion))
+            {
+                writer.WritePropertyName("packageVersion"u8);
+                writer.WriteStringValue(PackageVersion);
+            }
+            if (Optional.IsDefined(Version))
+            {
+                writer.WritePropertyName("version"u8);
+                writer.WriteStringValue(Version);
+            }
+            if (Optional.IsDefined(DisplayName))
+            {
+                writer.WritePropertyName("displayName"u8);
+                writer.WriteStringValue(DisplayName);
+            }
+            if (Optional.IsDefined(ContentKind))
+            {
+                writer.WritePropertyName("contentKind"u8);
+                writer.WriteStringValue(ContentKind.Value.ToString());
+            }
+            if (Optional.IsDefined(Source))
+            {
+                writer.WritePropertyName("source"u8);
+                writer.WriteObjectValue(Source, options);
+            }
+            if (Optional.IsDefined(Author))
+            {
+                writer.WritePropertyName("author"u8);
+                writer.WriteObjectValue(Author, options);
+            }
+            if (Optional.IsDefined(Support))
+            {
+                writer.WritePropertyName("support"u8);
+                writer.WriteObjectValue(Support, options);
+            }
+            if (Optional.IsDefined(Dependencies))
+            {
+                writer.WritePropertyName("dependencies"u8);
+                writer.WriteObjectValue(Dependencies, options);
+            }
+            if (Optional.IsDefined(Categories))
+            {
+                writer.WritePropertyName("categories"u8);
+                writer.WriteObjectValue(Categories, options);
+            }
+            if (Optional.IsCollectionDefined(Providers))
+            {
+                writer.WritePropertyName("providers"u8);
+                writer.WriteStartArray();
+                foreach (var item in Providers)
+                {
+                    writer.WriteStringValue(item);
+                }
+                writer.WriteEndArray();
+            }
+            if (Optional.IsDefined(FirstPublishOn))
+            {
+                writer.WritePropertyName("firstPublishDate"u8);
+                writer.WriteStringValue(FirstPublishOn.Value, "D");
+            }
+            if (Optional.IsDefined(LastPublishOn))
+            {
+                writer.WritePropertyName("lastPublishDate"u8);
+                writer.WriteStringValue(LastPublishOn.Value, "D");
+            }
+            if (Optional.IsDefined(CustomVersion))
+            {
+                writer.WritePropertyName("customVersion"u8);
+                writer.WriteStringValue(CustomVersion);
+            }
+            if (Optional.IsDefined(ContentSchemaVersion))
+            {
+                writer.WritePropertyName("contentSchemaVersion"u8);
+                writer.WriteStringValue(ContentSchemaVersion);
+            }
+            if (Optional.IsDefined(Icon))
+            {
+                writer.WritePropertyName("icon"u8);
+                writer.WriteStringValue(Icon);
+            }
+            if (Optional.IsCollectionDefined(ThreatAnalysisTactics))
+            {
+                writer.WritePropertyName("threatAnalysisTactics"u8);
+                writer.WriteStartArray();
+                foreach (var item in ThreatAnalysisTactics)
+                {
+                    writer.WriteStringValue(item);
+                }
+                writer.WriteEndArray();
+            }
+            if (Optional.IsCollectionDefined(ThreatAnalysisTechniques))
+            {
+                writer.WritePropertyName("threatAnalysisTechniques"u8);
+                writer.WriteStartArray();
+                foreach (var item in ThreatAnalysisTechniques)
+                {
+                    writer.WriteStringValue(item);
+                }
+                writer.WriteEndArray();
+            }
+            if (Optional.IsCollectionDefined(PreviewImages))
+            {
+                writer.WritePropertyName("previewImages"u8);
+                writer.WriteStartArray();
+                foreach (var item in PreviewImages)
+                {
+                    writer.WriteStringValue(item);
+                }
+                writer.WriteEndArray();
+            }
+            if (Optional.IsCollectionDefined(PreviewImagesDark))
+            {
+                writer.WritePropertyName("previewImagesDark"u8);
+                writer.WriteStartArray();
+                foreach (var item in PreviewImagesDark)
+                {
+                    writer.WriteStringValue(item);
+                }
+                writer.WriteEndArray();
+            }
+            if (Optional.IsDefined(PackageId))
+            {
+                writer.WritePropertyName("packageId"u8);
+                writer.WriteStringValue(PackageId);
+            }
+            if (Optional.IsDefined(PackageKind))
+            {
+                writer.WritePropertyName("packageKind"u8);
+                writer.WriteStringValue(PackageKind.Value.ToString());
+            }
+            if (Optional.IsDefined(PackageName))
+            {
+                writer.WritePropertyName("packageName"u8);
+                writer.WriteStringValue(PackageName);
+            }
+            if (options.Format != "W" && Optional.IsDefined(IsDeprecated))
+            {
+                writer.WritePropertyName("isDeprecated"u8);
+                writer.WriteStringValue(IsDeprecated.Value.ToString());
+            }
             if (Optional.IsDefined(MainTemplate))
             {
                 writer.WritePropertyName("mainTemplate"u8);
@@ -58,6 +207,21 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                     writer.WriteObjectValue(item, options);
                 }
                 writer.WriteEndArray();
+            }
+            if (options.Format != "W" && _serializedAdditionalRawData != null)
+            {
+                foreach (var item in _serializedAdditionalRawData)
+                {
+                    writer.WritePropertyName(item.Key);
+#if NET6_0_OR_GREATER
+				writer.WriteRawValue(item.Value);
+#else
+                    using (JsonDocument document = JsonDocument.Parse(item.Value, ModelSerializationExtensions.JsonDocumentOptions))
+                    {
+                        JsonSerializer.Serialize(writer, document.RootElement);
+                    }
+#endif
+                }
             }
         }
 
@@ -81,8 +245,6 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             {
                 return null;
             }
-            BinaryData mainTemplate = default;
-            IReadOnlyList<TemplateProperties> dependantTemplates = default;
             string contentId = default;
             string contentProductId = default;
             string packageVersion = default;
@@ -108,33 +270,12 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             SecurityInsightsMetadataPackageKind? packageKind = default;
             string packageName = default;
             SecurityInsightsMetadataFlag? isDeprecated = default;
+            BinaryData mainTemplate = default;
+            IReadOnlyList<TemplateProperties> dependantTemplates = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
-                if (property.NameEquals("mainTemplate"u8))
-                {
-                    if (property.Value.ValueKind == JsonValueKind.Null)
-                    {
-                        continue;
-                    }
-                    mainTemplate = BinaryData.FromString(property.Value.GetRawText());
-                    continue;
-                }
-                if (property.NameEquals("dependantTemplates"u8))
-                {
-                    if (property.Value.ValueKind == JsonValueKind.Null)
-                    {
-                        continue;
-                    }
-                    List<TemplateProperties> array = new List<TemplateProperties>();
-                    foreach (var item in property.Value.EnumerateArray())
-                    {
-                        array.Add(DeserializeTemplateProperties(item, options));
-                    }
-                    dependantTemplates = array;
-                    continue;
-                }
                 if (property.NameEquals("contentId"u8))
                 {
                     contentId = property.Value.GetString();
@@ -345,6 +486,29 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                     isDeprecated = new SecurityInsightsMetadataFlag(property.Value.GetString());
                     continue;
                 }
+                if (property.NameEquals("mainTemplate"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    mainTemplate = BinaryData.FromString(property.Value.GetRawText());
+                    continue;
+                }
+                if (property.NameEquals("dependantTemplates"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    List<TemplateProperties> array = new List<TemplateProperties>();
+                    foreach (var item in property.Value.EnumerateArray())
+                    {
+                        array.Add(DeserializeTemplateProperties(item, options));
+                    }
+                    dependantTemplates = array;
+                    continue;
+                }
                 if (options.Format != "W")
                 {
                     rawDataDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
@@ -377,9 +541,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 packageKind,
                 packageName,
                 isDeprecated,
-                serializedAdditionalRawData,
                 mainTemplate,
-                dependantTemplates ?? new ChangeTrackingList<TemplateProperties>());
+                dependantTemplates ?? new ChangeTrackingList<TemplateProperties>(),
+                serializedAdditionalRawData);
         }
 
         private BinaryData SerializeBicep(ModelReaderWriterOptions options)
@@ -392,44 +556,6 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             string propertyOverride = null;
 
             builder.AppendLine("{");
-
-            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(MainTemplate), out propertyOverride);
-            if (hasPropertyOverride)
-            {
-                builder.Append("  mainTemplate: ");
-                builder.AppendLine(propertyOverride);
-            }
-            else
-            {
-                if (Optional.IsDefined(MainTemplate))
-                {
-                    builder.Append("  mainTemplate: ");
-                    builder.AppendLine($"'{MainTemplate.ToString()}'");
-                }
-            }
-
-            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(DependantTemplates), out propertyOverride);
-            if (hasPropertyOverride)
-            {
-                builder.Append("  dependantTemplates: ");
-                builder.AppendLine(propertyOverride);
-            }
-            else
-            {
-                if (Optional.IsCollectionDefined(DependantTemplates))
-                {
-                    if (DependantTemplates.Any())
-                    {
-                        builder.Append("  dependantTemplates: ");
-                        builder.AppendLine("[");
-                        foreach (var item in DependantTemplates)
-                        {
-                            BicepSerializationHelpers.AppendChildObject(builder, item, options, 4, true, "  dependantTemplates: ");
-                        }
-                        builder.AppendLine("  ]");
-                    }
-                }
-            }
 
             hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ContentId), out propertyOverride);
             if (hasPropertyOverride)
@@ -990,6 +1116,44 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 {
                     builder.Append("  isDeprecated: ");
                     builder.AppendLine($"'{IsDeprecated.Value.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(MainTemplate), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  mainTemplate: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(MainTemplate))
+                {
+                    builder.Append("  mainTemplate: ");
+                    builder.AppendLine($"'{MainTemplate.ToString()}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(DependantTemplates), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  dependantTemplates: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsCollectionDefined(DependantTemplates))
+                {
+                    if (DependantTemplates.Any())
+                    {
+                        builder.Append("  dependantTemplates: ");
+                        builder.AppendLine("[");
+                        foreach (var item in DependantTemplates)
+                        {
+                            BicepSerializationHelpers.AppendChildObject(builder, item, options, 4, true, "  dependantTemplates: ");
+                        }
+                        builder.AppendLine("  ]");
+                    }
                 }
             }
 

@@ -40,11 +40,13 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         private const string Dynamics365Value = "Dynamics365";
         private const string MicrosoftThreatProtectionValue = "MicrosoftThreatProtection";
         private const string MicrosoftThreatIntelligenceValue = "MicrosoftThreatIntelligence";
+        private const string PremiumMicrosoftDefenderForThreatIntelligenceValue = "PremiumMicrosoftDefenderForThreatIntelligence";
         private const string GenericUIValue = "GenericUI";
         private const string APIPollingValue = "APIPolling";
         private const string IOTValue = "IOT";
         private const string GCPValue = "GCP";
         private const string RestApiPollerValue = "RestApiPoller";
+        private const string PurviewAuditValue = "PurviewAudit";
 
         /// <summary> AzureActiveDirectory. </summary>
         public static DataConnectorKind AzureActiveDirectory { get; } = new DataConnectorKind(AzureActiveDirectoryValue);
@@ -82,6 +84,8 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public static DataConnectorKind MicrosoftThreatProtection { get; } = new DataConnectorKind(MicrosoftThreatProtectionValue);
         /// <summary> MicrosoftThreatIntelligence. </summary>
         public static DataConnectorKind MicrosoftThreatIntelligence { get; } = new DataConnectorKind(MicrosoftThreatIntelligenceValue);
+        /// <summary> PremiumMicrosoftDefenderForThreatIntelligence. </summary>
+        public static DataConnectorKind PremiumMicrosoftDefenderForThreatIntelligence { get; } = new DataConnectorKind(PremiumMicrosoftDefenderForThreatIntelligenceValue);
         /// <summary> GenericUI. </summary>
         public static DataConnectorKind GenericUI { get; } = new DataConnectorKind(GenericUIValue);
         /// <summary> APIPolling. </summary>
@@ -92,6 +96,8 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public static DataConnectorKind GCP { get; } = new DataConnectorKind(GCPValue);
         /// <summary> RestApiPoller. </summary>
         public static DataConnectorKind RestApiPoller { get; } = new DataConnectorKind(RestApiPollerValue);
+        /// <summary> PurviewAudit. </summary>
+        public static DataConnectorKind PurviewAudit { get; } = new DataConnectorKind(PurviewAuditValue);
         /// <summary> Determines if two <see cref="DataConnectorKind"/> values are the same. </summary>
         public static bool operator ==(DataConnectorKind left, DataConnectorKind right) => left.Equals(right);
         /// <summary> Determines if two <see cref="DataConnectorKind"/> values are not the same. </summary>

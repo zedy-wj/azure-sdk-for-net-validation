@@ -61,8 +61,10 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="tactics"> The tactics associated with incident. </param>
         /// <param name="techniques"> The techniques associated with incident's tactics. </param>
         /// <param name="providerIncidentUri"> The provider incident url to the incident in Microsoft 365 Defender portal. </param>
+        /// <param name="mergedIncidentNumber"> The incident number of the incident that the current incident was merged into. </param>
+        /// <param name="mergedIncidentUri"> The URL to the incident that the current incident was merged into. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsIncidentAdditionalInfo(int? alertsCount, int? bookmarksCount, int? commentsCount, IReadOnlyList<string> alertProductNames, IReadOnlyList<SecurityInsightsAttackTactic> tactics, IReadOnlyList<string> techniques, Uri providerIncidentUri, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal SecurityInsightsIncidentAdditionalInfo(int? alertsCount, int? bookmarksCount, int? commentsCount, IReadOnlyList<string> alertProductNames, IReadOnlyList<SecurityInsightsAttackTactic> tactics, IReadOnlyList<string> techniques, Uri providerIncidentUri, string mergedIncidentNumber, Uri mergedIncidentUri, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             AlertsCount = alertsCount;
             BookmarksCount = bookmarksCount;
@@ -71,6 +73,8 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             Tactics = tactics;
             Techniques = techniques;
             ProviderIncidentUri = providerIncidentUri;
+            MergedIncidentNumber = mergedIncidentNumber;
+            MergedIncidentUri = mergedIncidentUri;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -95,5 +99,11 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <summary> The provider incident url to the incident in Microsoft 365 Defender portal. </summary>
         [WirePath("providerIncidentUrl")]
         public Uri ProviderIncidentUri { get; }
+        /// <summary> The incident number of the incident that the current incident was merged into. </summary>
+        [WirePath("mergedIncidentNumber")]
+        public string MergedIncidentNumber { get; }
+        /// <summary> The URL to the incident that the current incident was merged into. </summary>
+        [WirePath("mergedIncidentUrl")]
+        public Uri MergedIncidentUri { get; }
     }
 }

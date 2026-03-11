@@ -83,7 +83,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
 
         /// <summary> The connective used to join all values in this ConditionClause. </summary>
         [WirePath("clauseConnective")]
-        public ThreatIntelligenceQueryConnective? ClauseConnective { get; set; }
+        public ThreatIntelligenceQueryConnective? ClauseConnective { get; }
         /// <summary> The name of the field that is evaluated. </summary>
         [WirePath("field")]
         public string Field { get; }
