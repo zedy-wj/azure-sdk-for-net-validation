@@ -52,8 +52,11 @@ namespace Azure.ResourceManager.SecurityInsights
             writer.WriteStringValue(RuleId);
             writer.WritePropertyName("triggeredAnalyticsRuleRunId"u8);
             writer.WriteStringValue(TriggeredAnalyticsRuleRunId);
-            writer.WritePropertyName("provisioningState"u8);
-            writer.WriteStringValue(ProvisioningState.ToString());
+            if (options.Format != "W")
+            {
+                writer.WritePropertyName("provisioningState"u8);
+                writer.WriteStringValue(ProvisioningState.ToString());
+            }
             if (Optional.IsCollectionDefined(RuleRunAdditionalData))
             {
                 writer.WritePropertyName("ruleRunAdditionalData"u8);
@@ -211,12 +214,12 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 executionTimeUtc,
                 ruleId,
                 triggeredAnalyticsRuleRunId,
                 provisioningState,
                 ruleRunAdditionalData ?? new ChangeTrackingDictionary<string, BinaryData>(),
-                etag,
                 serializedAdditionalRawData);
         }
 

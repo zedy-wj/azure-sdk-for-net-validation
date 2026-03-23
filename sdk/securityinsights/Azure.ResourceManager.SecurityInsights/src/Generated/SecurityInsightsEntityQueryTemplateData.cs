@@ -63,7 +63,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="kind"> the entity query template kind. </param>
+        /// <param name="kind"> The kind of the entity query template. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal SecurityInsightsEntityQueryTemplateData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, EntityQueryTemplateKind kind, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
@@ -71,7 +71,7 @@ namespace Azure.ResourceManager.SecurityInsights
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> the entity query template kind. </summary>
+        /// <summary> The kind of the entity query template. </summary>
         internal EntityQueryTemplateKind Kind { get; set; }
     }
 }

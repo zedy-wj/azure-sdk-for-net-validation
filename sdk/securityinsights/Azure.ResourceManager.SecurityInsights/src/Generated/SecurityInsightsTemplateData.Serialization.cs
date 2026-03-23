@@ -566,6 +566,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 contentId,
                 contentProductId,
                 packageVersion,
@@ -593,7 +594,6 @@ namespace Azure.ResourceManager.SecurityInsights
                 isDeprecated,
                 mainTemplate,
                 dependantTemplates ?? new ChangeTrackingList<TemplateProperties>(),
-                etag,
                 serializedAdditionalRawData);
         }
 

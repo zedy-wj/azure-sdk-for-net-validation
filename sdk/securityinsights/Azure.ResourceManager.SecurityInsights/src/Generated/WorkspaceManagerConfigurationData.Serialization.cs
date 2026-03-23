@@ -148,8 +148,8 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
-                mode,
                 etag,
+                mode,
                 serializedAdditionalRawData);
         }
 

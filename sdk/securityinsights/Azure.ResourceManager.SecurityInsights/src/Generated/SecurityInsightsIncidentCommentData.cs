@@ -61,22 +61,25 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="message"> The comment message. </param>
         /// <param name="createdOn"> The time the comment was created. </param>
         /// <param name="lastModifiedOn"> The time the comment was updated. </param>
         /// <param name="author"> Describes the client that created the comment. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsIncidentCommentData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string message, DateTimeOffset? createdOn, DateTimeOffset? lastModifiedOn, SecurityInsightsClientInfo author, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsIncidentCommentData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string message, DateTimeOffset? createdOn, DateTimeOffset? lastModifiedOn, SecurityInsightsClientInfo author, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             Message = message;
             CreatedOn = createdOn;
             LastModifiedOn = lastModifiedOn;
             Author = author;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> The comment message. </summary>
         [WirePath("properties.message")]
         public string Message { get; set; }
@@ -89,8 +92,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> Describes the client that created the comment. </summary>
         [WirePath("properties.author")]
         public SecurityInsightsClientInfo Author { get; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

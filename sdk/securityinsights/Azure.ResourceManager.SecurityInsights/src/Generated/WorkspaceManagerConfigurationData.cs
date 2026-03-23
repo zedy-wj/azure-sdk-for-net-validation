@@ -61,21 +61,21 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="mode"> The current mode of the workspace manager configuration. </param>
         /// <param name="etag"> Resource Etag. </param>
+        /// <param name="mode"> The current mode of the workspace manager configuration. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal WorkspaceManagerConfigurationData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, WorkspaceManagerConfigurationMode? mode, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal WorkspaceManagerConfigurationData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, WorkspaceManagerConfigurationMode? mode, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
-            Mode = mode;
             ETag = etag;
+            Mode = mode;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The current mode of the workspace manager configuration. </summary>
-        [WirePath("properties.mode")]
-        public WorkspaceManagerConfigurationMode? Mode { get; set; }
         /// <summary> Resource Etag. </summary>
         [WirePath("etag")]
         public ETag? ETag { get; }
+        /// <summary> The current mode of the workspace manager configuration. </summary>
+        [WirePath("properties.mode")]
+        public WorkspaceManagerConfigurationMode? Mode { get; set; }
     }
 }

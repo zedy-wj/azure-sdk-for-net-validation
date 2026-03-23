@@ -15,7 +15,7 @@ namespace Azure.ResourceManager.SecurityInsights
 {
     /// <summary>
     /// A class representing the SecurityInsightsWatchlistItem data model.
-    /// Represents a Watchlist item in Azure Security Insights.
+    /// Represents a Watchlist Item in Azure Security Insights.
     /// </summary>
     public partial class SecurityInsightsWatchlistItemData : ResourceData
     {
@@ -54,8 +54,6 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> Initializes a new instance of <see cref="SecurityInsightsWatchlistItemData"/>. </summary>
         public SecurityInsightsWatchlistItemData()
         {
-            ItemsKeyValueDictionary = new ChangeTrackingDictionary<string, BinaryData>();
-            EntityMappingDictionary = new ChangeTrackingDictionary<string, BinaryData>();
         }
 
         /// <summary> Initializes a new instance of <see cref="SecurityInsightsWatchlistItemData"/>. </summary>
@@ -63,6 +61,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="watchlistItemType"> The type of the watchlist item. </param>
         /// <param name="watchlistItemId"> The id (a Guid) of the watchlist item. </param>
         /// <param name="tenantId"> The tenantId to which the watchlist item belongs to. </param>
@@ -73,10 +72,10 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="updatedBy"> Describes a user that updated the watchlist item. </param>
         /// <param name="itemsKeyValueDictionary"> key-value pairs for a watchlist item. </param>
         /// <param name="entityMappingDictionary"> key-value pairs for a watchlist item entity mapping. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsWatchlistItemData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string watchlistItemType, string watchlistItemId, Guid? tenantId, bool? isDeleted, DateTimeOffset? createdOn, DateTimeOffset? updatedOn, SecurityInsightsUserInfo createdBy, SecurityInsightsUserInfo updatedBy, IDictionary<string, BinaryData> itemsKeyValueDictionary, IDictionary<string, BinaryData> entityMappingDictionary, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsWatchlistItemData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string watchlistItemType, string watchlistItemId, Guid? tenantId, bool? isDeleted, DateTimeOffset? createdOn, DateTimeOffset? updatedOn, SecurityInsightsUserInfo createdBy, SecurityInsightsUserInfo updatedBy, BinaryData itemsKeyValueDictionary, BinaryData entityMappingDictionary, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             WatchlistItemType = watchlistItemType;
             WatchlistItemId = watchlistItemId;
             TenantId = tenantId;
@@ -87,10 +86,12 @@ namespace Azure.ResourceManager.SecurityInsights
             UpdatedBy = updatedBy;
             ItemsKeyValueDictionary = itemsKeyValueDictionary;
             EntityMappingDictionary = entityMappingDictionary;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> The type of the watchlist item. </summary>
         [WirePath("properties.watchlistItemType")]
         public string WatchlistItemType { get; set; }
@@ -118,7 +119,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary>
         /// key-value pairs for a watchlist item
         /// <para>
-        /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
+        /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
         /// <para>
         /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
@@ -146,11 +147,11 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </para>
         /// </summary>
         [WirePath("properties.itemsKeyValue")]
-        public IDictionary<string, BinaryData> ItemsKeyValueDictionary { get; }
+        public BinaryData ItemsKeyValueDictionary { get; set; }
         /// <summary>
         /// key-value pairs for a watchlist item entity mapping
         /// <para>
-        /// To assign an object to the value of this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
+        /// To assign an object to this property use <see cref="BinaryData.FromObjectAsJson{T}(T, System.Text.Json.JsonSerializerOptions?)"/>.
         /// </para>
         /// <para>
         /// To assign an already formatted json string to this property use <see cref="BinaryData.FromString(string)"/>.
@@ -178,9 +179,6 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </para>
         /// </summary>
         [WirePath("properties.entityMapping")]
-        public IDictionary<string, BinaryData> EntityMappingDictionary { get; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
+        public BinaryData EntityMappingDictionary { get; set; }
     }
 }

@@ -77,13 +77,13 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             ResourceType type = default;
             SystemData systemData = default;
             IReadOnlyDictionary<string, BinaryData> data = default;
-            ThreatIntelligenceUserInfo createdBy = default;
+            SecurityInsightsUserInfo createdBy = default;
             string source = default;
             DateTimeOffset? firstIngestedTimeUtc = default;
             DateTimeOffset? lastIngestedTimeUtc = default;
             Guid? ingestionRulesVersion = default;
             string lastUpdateMethod = default;
-            ThreatIntelligenceUserInfo lastModifiedBy = default;
+            SecurityInsightsUserInfo lastModifiedBy = default;
             DateTimeOffset? lastUpdatedDateTimeUtc = default;
             IReadOnlyList<RelationshipHint> relationshipHints = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
@@ -169,7 +169,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                             {
                                 continue;
                             }
-                            createdBy = ThreatIntelligenceUserInfo.DeserializeThreatIntelligenceUserInfo(property0.Value, options);
+                            createdBy = SecurityInsightsUserInfo.DeserializeSecurityInsightsUserInfo(property0.Value, options);
                             continue;
                         }
                         if (property0.NameEquals("source"u8))
@@ -215,7 +215,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                             {
                                 continue;
                             }
-                            lastModifiedBy = ThreatIntelligenceUserInfo.DeserializeThreatIntelligenceUserInfo(property0.Value, options);
+                            lastModifiedBy = SecurityInsightsUserInfo.DeserializeSecurityInsightsUserInfo(property0.Value, options);
                             continue;
                         }
                         if (property0.NameEquals("lastUpdatedDateTimeUtc"u8))

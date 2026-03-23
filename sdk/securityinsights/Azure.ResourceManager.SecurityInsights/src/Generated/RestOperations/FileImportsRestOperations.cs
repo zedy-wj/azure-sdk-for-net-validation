@@ -32,7 +32,7 @@ namespace Azure.ResourceManager.SecurityInsights
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2024-01-01-preview";
+            _apiVersion = apiVersion ?? "2025-07-01-preview";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
@@ -105,7 +105,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets all file imports. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="filter"> Filters the results, based on a Boolean condition. Optional. </param>
@@ -138,7 +138,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets all file imports. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="filter"> Filters the results, based on a Boolean condition. Optional. </param>
@@ -209,7 +209,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets a file import. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="fileImportId"> File import ID. </param>
@@ -242,7 +242,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets a file import. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="fileImportId"> File import ID. </param>
@@ -317,7 +317,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Creates the file import. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="fileImportId"> File import ID. </param>
@@ -337,6 +337,7 @@ namespace Azure.ResourceManager.SecurityInsights
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
+                case 200:
                 case 201:
                     {
                         SecurityInsightsFileImportData value = default;
@@ -350,7 +351,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Creates the file import. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="fileImportId"> File import ID. </param>
@@ -370,6 +371,7 @@ namespace Azure.ResourceManager.SecurityInsights
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
+                case 200:
                 case 201:
                     {
                         SecurityInsightsFileImportData value = default;
@@ -421,7 +423,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Delete the file import. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="fileImportId"> File import ID. </param>
@@ -439,6 +441,7 @@ namespace Azure.ResourceManager.SecurityInsights
             await _pipeline.SendAsync(message, cancellationToken).ConfigureAwait(false);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -448,7 +451,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Delete the file import. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="fileImportId"> File import ID. </param>
@@ -466,6 +469,7 @@ namespace Azure.ResourceManager.SecurityInsights
             _pipeline.Send(message, cancellationToken);
             switch (message.Response.Status)
             {
+                case 200:
                 case 202:
                 case 204:
                     return message.Response;
@@ -498,7 +502,7 @@ namespace Azure.ResourceManager.SecurityInsights
 
         /// <summary> Gets all file imports. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="filter"> Filters the results, based on a Boolean condition. Optional. </param>
@@ -533,7 +537,7 @@ namespace Azure.ResourceManager.SecurityInsights
 
         /// <summary> Gets all file imports. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="filter"> Filters the results, based on a Boolean condition. Optional. </param>

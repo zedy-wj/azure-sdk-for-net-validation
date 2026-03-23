@@ -79,6 +79,11 @@ namespace Azure.ResourceManager.SecurityInsights
                 writer.WritePropertyName("servicePrincipal"u8);
                 writer.WriteObjectValue(ServicePrincipal, options);
             }
+            if (options.Format != "W" && Optional.IsDefined(WorkloadIdentityFederation))
+            {
+                writer.WritePropertyName("workloadIdentityFederation"u8);
+                writer.WriteObjectValue(WorkloadIdentityFederation, options);
+            }
             if (Optional.IsDefined(RepositoryAccess))
             {
                 writer.WritePropertyName("repositoryAccess"u8);
@@ -135,6 +140,7 @@ namespace Azure.ResourceManager.SecurityInsights
             IList<SourceControlContentType> contentTypes = default;
             SourceControlRepository repository = default;
             SourceControlServicePrincipal servicePrincipal = default;
+            WorkloadIdentityFederation workloadIdentityFederation = default;
             RepositoryAccess repositoryAccess = default;
             RepositoryResourceInfo repositoryResourceInfo = default;
             SourceControlDeploymentInfo lastDeploymentInfo = default;
@@ -242,6 +248,15 @@ namespace Azure.ResourceManager.SecurityInsights
                             servicePrincipal = SourceControlServicePrincipal.DeserializeSourceControlServicePrincipal(property0.Value, options);
                             continue;
                         }
+                        if (property0.NameEquals("workloadIdentityFederation"u8))
+                        {
+                            if (property0.Value.ValueKind == JsonValueKind.Null)
+                            {
+                                continue;
+                            }
+                            workloadIdentityFederation = WorkloadIdentityFederation.DeserializeWorkloadIdentityFederation(property0.Value, options);
+                            continue;
+                        }
                         if (property0.NameEquals("repositoryAccess"u8))
                         {
                             if (property0.Value.ValueKind == JsonValueKind.Null)
@@ -292,6 +307,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 id0,
                 version,
                 displayName,
@@ -300,11 +316,11 @@ namespace Azure.ResourceManager.SecurityInsights
                 contentTypes,
                 repository,
                 servicePrincipal,
+                workloadIdentityFederation,
                 repositoryAccess,
                 repositoryResourceInfo,
                 lastDeploymentInfo,
                 pullRequest,
-                etag,
                 serializedAdditionalRawData);
         }
 
@@ -527,6 +543,21 @@ namespace Azure.ResourceManager.SecurityInsights
                 {
                     builder.Append("    servicePrincipal: ");
                     BicepSerializationHelpers.AppendChildObject(builder, ServicePrincipal, options, 4, false, "    servicePrincipal: ");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(WorkloadIdentityFederation), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("    workloadIdentityFederation: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(WorkloadIdentityFederation))
+                {
+                    builder.Append("    workloadIdentityFederation: ");
+                    BicepSerializationHelpers.AppendChildObject(builder, WorkloadIdentityFederation, options, 4, false, "    workloadIdentityFederation: ");
                 }
             }
 

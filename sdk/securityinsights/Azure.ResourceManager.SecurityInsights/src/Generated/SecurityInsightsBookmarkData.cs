@@ -65,6 +65,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="createdOn"> The time the bookmark was created. </param>
         /// <param name="createdBy"> Describes a user that created the bookmark. </param>
         /// <param name="displayName"> The display name of the bookmark. </param>
@@ -81,10 +82,10 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="entityMappings"> Describes the entity mappings of the bookmark. </param>
         /// <param name="tactics"> A list of relevant mitre attacks. </param>
         /// <param name="techniques"> A list of relevant mitre techniques. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsBookmarkData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, DateTimeOffset? createdOn, SecurityInsightsUserInfo createdBy, string displayName, IList<string> labels, string notes, string query, string queryResult, DateTimeOffset? updatedOn, SecurityInsightsUserInfo updatedBy, DateTimeOffset? eventOn, DateTimeOffset? queryStartOn, DateTimeOffset? queryEndOn, SecurityInsightsBookmarkIncidentInfo incidentInfo, IList<BookmarkEntityMappings> entityMappings, IList<SecurityInsightsAttackTactic> tactics, IList<string> techniques, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsBookmarkData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, DateTimeOffset? createdOn, SecurityInsightsUserInfo createdBy, string displayName, IList<string> labels, string notes, string query, string queryResult, DateTimeOffset? updatedOn, SecurityInsightsUserInfo updatedBy, DateTimeOffset? eventOn, DateTimeOffset? queryStartOn, DateTimeOffset? queryEndOn, SecurityInsightsBookmarkIncidentInfo incidentInfo, IList<BookmarkEntityMappings> entityMappings, IList<SecurityInsightsAttackTactic> tactics, IList<string> techniques, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             CreatedOn = createdOn;
             CreatedBy = createdBy;
             DisplayName = displayName;
@@ -101,10 +102,12 @@ namespace Azure.ResourceManager.SecurityInsights
             EntityMappings = entityMappings;
             Tactics = tactics;
             Techniques = techniques;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> The time the bookmark was created. </summary>
         [WirePath("properties.created")]
         public DateTimeOffset? CreatedOn { get; set; }
@@ -153,8 +156,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> A list of relevant mitre techniques. </summary>
         [WirePath("properties.techniques")]
         public IList<string> Techniques { get; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

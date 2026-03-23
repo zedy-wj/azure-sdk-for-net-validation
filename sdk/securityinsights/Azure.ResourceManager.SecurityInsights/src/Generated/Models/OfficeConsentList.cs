@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="OfficeConsentList"/>. </summary>
-        /// <param name="value"> Array of the consents. </param>
+        /// <param name="value"> The OfficeConsent items on this page. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal OfficeConsentList(IEnumerable<SecurityInsightsOfficeConsentData> value)
         {
@@ -57,13 +57,13 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="OfficeConsentList"/>. </summary>
-        /// <param name="nextLink"> URL to fetch the next set of office consents. </param>
-        /// <param name="value"> Array of the consents. </param>
+        /// <param name="value"> The OfficeConsent items on this page. </param>
+        /// <param name="nextLink"> The link to the next page of items. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal OfficeConsentList(string nextLink, IReadOnlyList<SecurityInsightsOfficeConsentData> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal OfficeConsentList(IReadOnlyList<SecurityInsightsOfficeConsentData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
-            NextLink = nextLink;
             Value = value;
+            NextLink = nextLink;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -72,9 +72,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         {
         }
 
-        /// <summary> URL to fetch the next set of office consents. </summary>
-        public string NextLink { get; }
-        /// <summary> Array of the consents. </summary>
+        /// <summary> The OfficeConsent items on this page. </summary>
         public IReadOnlyList<SecurityInsightsOfficeConsentData> Value { get; }
+        /// <summary> The link to the next page of items. </summary>
+        public Uri NextLink { get; }
     }
 }

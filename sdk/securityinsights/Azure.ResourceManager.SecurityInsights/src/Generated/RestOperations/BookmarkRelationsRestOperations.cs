@@ -32,7 +32,7 @@ namespace Azure.ResourceManager.SecurityInsights
         {
             _pipeline = pipeline ?? throw new ArgumentNullException(nameof(pipeline));
             _endpoint = endpoint ?? new Uri("https://management.azure.com");
-            _apiVersion = apiVersion ?? "2024-01-01-preview";
+            _apiVersion = apiVersion ?? "2025-07-01-preview";
             _userAgent = new TelemetryDetails(GetType().Assembly, applicationId);
         }
 
@@ -109,7 +109,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets all bookmark relations. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="bookmarkId"> Bookmark ID. </param>
@@ -144,7 +144,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets all bookmark relations. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="bookmarkId"> Bookmark ID. </param>
@@ -221,7 +221,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets a bookmark relation. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="bookmarkId"> Bookmark ID. </param>
@@ -256,7 +256,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Gets a bookmark relation. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="bookmarkId"> Bookmark ID. </param>
@@ -337,12 +337,12 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Creates the bookmark relation. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="bookmarkId"> Bookmark ID. </param>
         /// <param name="relationName"> Relation Name. </param>
-        /// <param name="data"> The relation model. </param>
+        /// <param name="data"> Resource create parameters. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="workspaceName"/>, <paramref name="bookmarkId"/>, <paramref name="relationName"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="workspaceName"/>, <paramref name="bookmarkId"/> or <paramref name="relationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -373,12 +373,12 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Creates the bookmark relation. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="bookmarkId"> Bookmark ID. </param>
         /// <param name="relationName"> Relation Name. </param>
-        /// <param name="data"> The relation model. </param>
+        /// <param name="data"> Resource create parameters. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="workspaceName"/>, <paramref name="bookmarkId"/>, <paramref name="relationName"/> or <paramref name="data"/> is null. </exception>
         /// <exception cref="ArgumentException"> <paramref name="subscriptionId"/>, <paramref name="resourceGroupName"/>, <paramref name="workspaceName"/>, <paramref name="bookmarkId"/> or <paramref name="relationName"/> is an empty string, and was expected to be non-empty. </exception>
@@ -451,7 +451,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Delete the bookmark relation. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="bookmarkId"> Bookmark ID. </param>
@@ -480,7 +480,7 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary> Delete the bookmark relation. </summary>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="bookmarkId"> Bookmark ID. </param>
@@ -532,7 +532,7 @@ namespace Azure.ResourceManager.SecurityInsights
 
         /// <summary> Gets all bookmark relations. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="bookmarkId"> Bookmark ID. </param>
@@ -569,7 +569,7 @@ namespace Azure.ResourceManager.SecurityInsights
 
         /// <summary> Gets all bookmark relations. </summary>
         /// <param name="nextLink"> The URL to the next page of results. </param>
-        /// <param name="subscriptionId"> The ID of the target subscription. </param>
+        /// <param name="subscriptionId"> The ID of the target subscription. The value must be an UUID. </param>
         /// <param name="resourceGroupName"> The name of the resource group. The name is case insensitive. </param>
         /// <param name="workspaceName"> The name of the workspace. </param>
         /// <param name="bookmarkId"> Bookmark ID. </param>

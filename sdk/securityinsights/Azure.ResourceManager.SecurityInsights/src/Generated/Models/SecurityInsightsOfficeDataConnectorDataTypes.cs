@@ -50,7 +50,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="sharePoint"> SharePoint data type connection. </param>
         /// <param name="teams"> Teams data type connection. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="exchange"/>, <paramref name="sharePoint"/> or <paramref name="teams"/> is null. </exception>
-        public SecurityInsightsOfficeDataConnectorDataTypes(DataConnectorDataTypeCommon exchange, DataConnectorDataTypeCommon sharePoint, DataConnectorDataTypeCommon teams)
+        public SecurityInsightsOfficeDataConnectorDataTypes(OfficeDataConnectorDataTypesExchange exchange, OfficeDataConnectorDataTypesSharePoint sharePoint, OfficeDataConnectorDataTypesTeams teams)
         {
             Argument.AssertNotNull(exchange, nameof(exchange));
             Argument.AssertNotNull(sharePoint, nameof(sharePoint));
@@ -66,7 +66,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="sharePoint"> SharePoint data type connection. </param>
         /// <param name="teams"> Teams data type connection. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsOfficeDataConnectorDataTypes(DataConnectorDataTypeCommon exchange, DataConnectorDataTypeCommon sharePoint, DataConnectorDataTypeCommon teams, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal SecurityInsightsOfficeDataConnectorDataTypes(OfficeDataConnectorDataTypesExchange exchange, OfficeDataConnectorDataTypesSharePoint sharePoint, OfficeDataConnectorDataTypesTeams teams, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             Exchange = exchange;
             SharePoint = sharePoint;
@@ -75,7 +75,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         /// <summary> Exchange data type connection. </summary>
-        internal DataConnectorDataTypeCommon Exchange { get; set; }
+        internal OfficeDataConnectorDataTypesExchange Exchange { get; set; }
         /// <summary> Describe whether this data type connection is enabled or not. </summary>
         [WirePath("exchange.state")]
         public SecurityInsightsDataTypeConnectionState? ExchangeState
@@ -83,12 +83,12 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             get => Exchange is null ? default(SecurityInsightsDataTypeConnectionState?) : Exchange.State;
             set
             {
-                Exchange = value.HasValue ? new DataConnectorDataTypeCommon(value.Value) : null;
+                Exchange = value.HasValue ? new OfficeDataConnectorDataTypesExchange(value.Value) : null;
             }
         }
 
         /// <summary> SharePoint data type connection. </summary>
-        internal DataConnectorDataTypeCommon SharePoint { get; set; }
+        internal OfficeDataConnectorDataTypesSharePoint SharePoint { get; set; }
         /// <summary> Describe whether this data type connection is enabled or not. </summary>
         [WirePath("sharePoint.state")]
         public SecurityInsightsDataTypeConnectionState? SharePointState
@@ -96,12 +96,12 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             get => SharePoint is null ? default(SecurityInsightsDataTypeConnectionState?) : SharePoint.State;
             set
             {
-                SharePoint = value.HasValue ? new DataConnectorDataTypeCommon(value.Value) : null;
+                SharePoint = value.HasValue ? new OfficeDataConnectorDataTypesSharePoint(value.Value) : null;
             }
         }
 
         /// <summary> Teams data type connection. </summary>
-        internal DataConnectorDataTypeCommon Teams { get; set; }
+        internal OfficeDataConnectorDataTypesTeams Teams { get; set; }
         /// <summary> Describe whether this data type connection is enabled or not. </summary>
         [WirePath("teams.state")]
         public SecurityInsightsDataTypeConnectionState? TeamsState
@@ -109,7 +109,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             get => Teams is null ? default(SecurityInsightsDataTypeConnectionState?) : Teams.State;
             set
             {
-                Teams = value.HasValue ? new DataConnectorDataTypeCommon(value.Value) : null;
+                Teams = value.HasValue ? new OfficeDataConnectorDataTypesTeams(value.Value) : null;
             }
         }
     }

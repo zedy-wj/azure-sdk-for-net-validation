@@ -27,14 +27,14 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="kind"> The data connector kind. </param>
+        /// <param name="kind"> Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist this value. </param>
         /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         /// <param name="destinationTable"> The logs destination table name in LogAnalytics. </param>
         /// <param name="sqsUrls"> The AWS sqs urls for the connector. </param>
         /// <param name="roleArn"> The Aws Role Arn that is used to access the Aws account. </param>
         /// <param name="logs"> Logs data type. </param>
-        internal AwsS3DataConnector(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, DataConnectorKind kind, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData, string destinationTable, IList<string> sqsUrls, string roleArn, DataConnectorDataTypeCommon logs) : base(id, name, resourceType, systemData, kind, etag, serializedAdditionalRawData)
+        internal AwsS3DataConnector(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, DataConnectorKind kind, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData, string destinationTable, IList<string> sqsUrls, string roleArn, AwsS3DataConnectorDataTypesLogs logs) : base(id, name, resourceType, systemData, kind, etag, serializedAdditionalRawData)
         {
             DestinationTable = destinationTable;
             SqsUrls = sqsUrls;
@@ -53,7 +53,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         [WirePath("properties.roleArn")]
         public string RoleArn { get; set; }
         /// <summary> Logs data type. </summary>
-        internal DataConnectorDataTypeCommon Logs { get; set; }
+        internal AwsS3DataConnectorDataTypesLogs Logs { get; set; }
         /// <summary> Describe whether this data type connection is enabled or not. </summary>
         [WirePath("properties.logs.state")]
         public SecurityInsightsDataTypeConnectionState? LogsState
@@ -61,7 +61,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             get => Logs is null ? default(SecurityInsightsDataTypeConnectionState?) : Logs.State;
             set
             {
-                Logs = value.HasValue ? new DataConnectorDataTypeCommon(value.Value) : null;
+                Logs = value.HasValue ? new AwsS3DataConnectorDataTypesLogs(value.Value) : null;
             }
         }
     }

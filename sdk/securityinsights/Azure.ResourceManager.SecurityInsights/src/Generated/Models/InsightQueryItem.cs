@@ -18,7 +18,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <summary> Initializes a new instance of <see cref="InsightQueryItem"/>. </summary>
         internal InsightQueryItem()
         {
-            Kind = new EntityQueryKind("Insight");
+            Kind = EntityQueryKind.Insight;
         }
 
         /// <summary> Initializes a new instance of <see cref="InsightQueryItem"/>. </summary>

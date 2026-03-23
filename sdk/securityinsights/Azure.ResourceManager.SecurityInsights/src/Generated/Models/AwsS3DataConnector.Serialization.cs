@@ -100,7 +100,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             string destinationTable = default;
             IList<string> sqsUrls = default;
             string roleArn = default;
-            DataConnectorDataTypeCommon logs = default;
+            AwsS3DataConnectorDataTypesLogs logs = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
@@ -191,7 +191,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                                     {
                                         continue;
                                     }
-                                    logs = DataConnectorDataTypeCommon.DeserializeDataConnectorDataTypeCommon(property1.Value, options);
+                                    logs = AwsS3DataConnectorDataTypesLogs.DeserializeAwsS3DataConnectorDataTypesLogs(property1.Value, options);
                                     continue;
                                 }
                             }

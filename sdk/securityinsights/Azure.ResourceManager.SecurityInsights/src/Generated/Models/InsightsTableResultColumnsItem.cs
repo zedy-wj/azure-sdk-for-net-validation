@@ -51,8 +51,8 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="InsightsTableResultColumnsItem"/>. </summary>
-        /// <param name="insightsTableResultColumnsItemType"> the type of the colum. </param>
-        /// <param name="name"> the name of the colum. </param>
+        /// <param name="insightsTableResultColumnsItemType"> the type of the column. </param>
+        /// <param name="name"> the name of the column. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
         internal InsightsTableResultColumnsItem(string insightsTableResultColumnsItemType, string name, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
@@ -61,10 +61,10 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> the type of the colum. </summary>
+        /// <summary> the type of the column. </summary>
         [WirePath("type")]
         public string InsightsTableResultColumnsItemType { get; }
-        /// <summary> the name of the colum. </summary>
+        /// <summary> the name of the column. </summary>
         [WirePath("name")]
         public string Name { get; }
     }

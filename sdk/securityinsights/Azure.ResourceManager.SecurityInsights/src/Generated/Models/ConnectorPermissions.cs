@@ -48,15 +48,15 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <summary> Initializes a new instance of <see cref="ConnectorPermissions"/>. </summary>
         public ConnectorPermissions()
         {
-            ResourceProvider = new ChangeTrackingList<ConnectorResourceProvider>();
-            Customs = new ChangeTrackingList<ConnectorCustoms>();
+            ResourceProvider = new ChangeTrackingList<PermissionsResourceProviderItem>();
+            Customs = new ChangeTrackingList<PermissionsCustomsItem>();
         }
 
         /// <summary> Initializes a new instance of <see cref="ConnectorPermissions"/>. </summary>
         /// <param name="resourceProvider"> Resource provider permissions required for the connector. </param>
         /// <param name="customs"> Customs permissions required for the connector. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal ConnectorPermissions(IList<ConnectorResourceProvider> resourceProvider, IList<ConnectorCustoms> customs, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal ConnectorPermissions(IList<PermissionsResourceProviderItem> resourceProvider, IList<PermissionsCustomsItem> customs, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             ResourceProvider = resourceProvider;
             Customs = customs;
@@ -65,9 +65,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
 
         /// <summary> Resource provider permissions required for the connector. </summary>
         [WirePath("resourceProvider")]
-        public IList<ConnectorResourceProvider> ResourceProvider { get; }
+        public IList<PermissionsResourceProviderItem> ResourceProvider { get; }
         /// <summary> Customs permissions required for the connector. </summary>
         [WirePath("customs")]
-        public IList<ConnectorCustoms> Customs { get; }
+        public IList<PermissionsCustomsItem> Customs { get; }
     }
 }

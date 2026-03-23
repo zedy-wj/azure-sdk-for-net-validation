@@ -220,6 +220,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 title,
                 description,
                 status,
@@ -227,7 +228,6 @@ namespace Azure.ResourceManager.SecurityInsights
                 lastModifiedTimeUtc,
                 createdBy,
                 lastModifiedBy,
-                etag,
                 serializedAdditionalRawData);
         }
 

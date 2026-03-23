@@ -39,6 +39,11 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         private const string AzureFunctionValue = "AzureFunction";
         private const string LogicAppsCustomConnectorValue = "LogicAppsCustomConnector";
         private const string AutomationRuleValue = "AutomationRule";
+        private const string ResourcesDataConnectorValue = "ResourcesDataConnector";
+        private const string NotebookValue = "Notebook";
+        private const string StandaloneValue = "Standalone";
+        private const string SummaryRuleValue = "SummaryRule";
+        private const string CustomDetectionValue = "CustomDetection";
 
         /// <summary> DataConnector. </summary>
         public static SecurityInsightsKind DataConnector { get; } = new SecurityInsightsKind(DataConnectorValue);
@@ -74,6 +79,16 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public static SecurityInsightsKind LogicAppsCustomConnector { get; } = new SecurityInsightsKind(LogicAppsCustomConnectorValue);
         /// <summary> AutomationRule. </summary>
         public static SecurityInsightsKind AutomationRule { get; } = new SecurityInsightsKind(AutomationRuleValue);
+        /// <summary> ResourcesDataConnector. </summary>
+        public static SecurityInsightsKind ResourcesDataConnector { get; } = new SecurityInsightsKind(ResourcesDataConnectorValue);
+        /// <summary> Notebook. </summary>
+        public static SecurityInsightsKind Notebook { get; } = new SecurityInsightsKind(NotebookValue);
+        /// <summary> Standalone. </summary>
+        public static SecurityInsightsKind Standalone { get; } = new SecurityInsightsKind(StandaloneValue);
+        /// <summary> SummaryRule. </summary>
+        public static SecurityInsightsKind SummaryRule { get; } = new SecurityInsightsKind(SummaryRuleValue);
+        /// <summary> Custom detections enable proactive monitoring and automated response actions for various events and system states across your tenant. </summary>
+        public static SecurityInsightsKind CustomDetection { get; } = new SecurityInsightsKind(CustomDetectionValue);
         /// <summary> Determines if two <see cref="SecurityInsightsKind"/> values are the same. </summary>
         public static bool operator ==(SecurityInsightsKind left, SecurityInsightsKind right) => left.Equals(right);
         /// <summary> Determines if two <see cref="SecurityInsightsKind"/> values are not the same. </summary>

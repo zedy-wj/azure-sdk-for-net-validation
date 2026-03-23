@@ -525,6 +525,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 contentId,
                 contentProductId,
                 contentKind,
@@ -551,7 +552,6 @@ namespace Azure.ResourceManager.SecurityInsights
                 installedVersion,
                 metadataResourceId,
                 packagedContent,
-                etag,
                 serializedAdditionalRawData);
         }
 

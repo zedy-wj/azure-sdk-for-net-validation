@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ProductPackageList"/>. </summary>
-        /// <param name="value"> Array of packages. </param>
+        /// <param name="value"> The ProductPackageModel items on this page. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal ProductPackageList(IEnumerable<SecurityInsightsProductPackageData> value)
         {
@@ -57,13 +57,13 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ProductPackageList"/>. </summary>
-        /// <param name="nextLink"> URL to fetch the next set of packages. </param>
-        /// <param name="value"> Array of packages. </param>
+        /// <param name="value"> The ProductPackageModel items on this page. </param>
+        /// <param name="nextLink"> The link to the next page of items. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal ProductPackageList(string nextLink, IReadOnlyList<SecurityInsightsProductPackageData> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal ProductPackageList(IReadOnlyList<SecurityInsightsProductPackageData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
-            NextLink = nextLink;
             Value = value;
+            NextLink = nextLink;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -72,9 +72,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         {
         }
 
-        /// <summary> URL to fetch the next set of packages. </summary>
-        public string NextLink { get; }
-        /// <summary> Array of packages. </summary>
+        /// <summary> The ProductPackageModel items on this page. </summary>
         public IReadOnlyList<SecurityInsightsProductPackageData> Value { get; }
+        /// <summary> The link to the next page of items. </summary>
+        public Uri NextLink { get; }
     }
 }

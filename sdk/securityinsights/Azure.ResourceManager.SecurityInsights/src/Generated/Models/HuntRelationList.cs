@@ -47,7 +47,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="HuntRelationList"/>. </summary>
-        /// <param name="value"> Array of hunt relations. </param>
+        /// <param name="value"> The HuntRelation items on this page. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
         internal HuntRelationList(IEnumerable<SecurityInsightsHuntRelationData> value)
         {
@@ -57,13 +57,13 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="HuntRelationList"/>. </summary>
-        /// <param name="nextLink"> URL to fetch the next set of hunt relations. </param>
-        /// <param name="value"> Array of hunt relations. </param>
+        /// <param name="value"> The HuntRelation items on this page. </param>
+        /// <param name="nextLink"> The link to the next page of items. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal HuntRelationList(string nextLink, IReadOnlyList<SecurityInsightsHuntRelationData> value, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal HuntRelationList(IReadOnlyList<SecurityInsightsHuntRelationData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
-            NextLink = nextLink;
             Value = value;
+            NextLink = nextLink;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -72,9 +72,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         {
         }
 
-        /// <summary> URL to fetch the next set of hunt relations. </summary>
-        public string NextLink { get; }
-        /// <summary> Array of hunt relations. </summary>
+        /// <summary> The HuntRelation items on this page. </summary>
         public IReadOnlyList<SecurityInsightsHuntRelationData> Value { get; }
+        /// <summary> The link to the next page of items. </summary>
+        public Uri NextLink { get; }
     }
 }

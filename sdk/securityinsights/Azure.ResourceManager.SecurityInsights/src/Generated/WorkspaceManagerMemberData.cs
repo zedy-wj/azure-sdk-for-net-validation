@@ -60,26 +60,26 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Resource Etag. </param>
         /// <param name="targetWorkspaceResourceId"> Fully qualified resource ID of the target Sentinel workspace joining the given Sentinel workspace manager. </param>
         /// <param name="targetWorkspaceTenantId"> Tenant id of the target Sentinel workspace joining the given Sentinel workspace manager. </param>
-        /// <param name="etag"> Resource Etag. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal WorkspaceManagerMemberData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string targetWorkspaceResourceId, string targetWorkspaceTenantId, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal WorkspaceManagerMemberData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string targetWorkspaceResourceId, string targetWorkspaceTenantId, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             TargetWorkspaceResourceId = targetWorkspaceResourceId;
             TargetWorkspaceTenantId = targetWorkspaceTenantId;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Resource Etag. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; }
         /// <summary> Fully qualified resource ID of the target Sentinel workspace joining the given Sentinel workspace manager. </summary>
         [WirePath("properties.targetWorkspaceResourceId")]
         public string TargetWorkspaceResourceId { get; set; }
         /// <summary> Tenant id of the target Sentinel workspace joining the given Sentinel workspace manager. </summary>
         [WirePath("properties.targetWorkspaceTenantId")]
         public string TargetWorkspaceTenantId { get; set; }
-        /// <summary> Resource Etag. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; }
     }
 }

@@ -441,6 +441,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 contentId,
                 parentId,
                 version,
@@ -460,7 +461,6 @@ namespace Azure.ResourceManager.SecurityInsights
                 threatAnalysisTechniques ?? new ChangeTrackingList<string>(),
                 previewImages ?? new ChangeTrackingList<string>(),
                 previewImagesDark ?? new ChangeTrackingList<string>(),
-                etag,
                 serializedAdditionalRawData);
         }
 

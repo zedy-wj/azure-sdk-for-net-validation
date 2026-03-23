@@ -180,10 +180,10 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 description,
                 displayName,
                 memberResourceNames ?? new ChangeTrackingList<string>(),
-                etag,
                 serializedAdditionalRawData);
         }
 

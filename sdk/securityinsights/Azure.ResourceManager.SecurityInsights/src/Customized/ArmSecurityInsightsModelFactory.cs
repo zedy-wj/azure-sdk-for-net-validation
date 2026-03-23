@@ -32,9 +32,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 name,
                 resourceType,
                 systemData,
+                etag,
                 logicAppResourceId,
                 workflowId,
-                etag,
                 serializedAdditionalRawData: null);
         }
 
@@ -69,11 +69,11 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 name,
                 resourceType,
                 systemData,
+                etag,
                 message,
                 createdOn,
                 lastModifiedOn,
                 author,
-                etag,
                 serializedAdditionalRawData: null);
         }
 
@@ -154,6 +154,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 name,
                 resourceType,
                 systemData,
+                etag,
                 watchlistId,
                 displayName,
                 provider,
@@ -175,7 +176,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 itemsSearchKey,
                 contentType,
                 uploadStatus,
-                etag,
+                provisioningState: null,
                 serializedAdditionalRawData: null);
         }
 
@@ -204,6 +205,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 name,
                 resourceType,
                 systemData,
+                etag,
                 watchlistItemType,
                 watchlistItemId,
                 tenantId,
@@ -214,8 +216,56 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 updatedBy,
                 null,
                 null,
-                etag,
                 serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SecurityInsights.SecurityInsightsAutomationRuleData"/>. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SecurityInsightsAutomationRuleData SecurityInsightsAutomationRuleData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string displayName = null, int order = default, SecurityInsightsAutomationRuleTriggeringLogic triggeringLogic = null, IEnumerable<SecurityInsightsAutomationRuleAction> actions = null, DateTimeOffset? createdOn = null, DateTimeOffset? lastModifiedOn = null, SecurityInsightsClientInfo createdBy = null, SecurityInsightsClientInfo lastModifiedBy = null, ETag? etag = null)
+        {
+            return SecurityInsightsAutomationRuleData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                etag,
+                displayName,
+                order,
+                triggeringLogic,
+                actions,
+                lastModifiedOn,
+                createdOn,
+                lastModifiedBy,
+                createdBy);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SecurityInsights.SecurityInsightsIncidentRelationData"/>. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SecurityInsightsIncidentRelationData SecurityInsightsIncidentRelationData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, ResourceIdentifier relatedResourceId = null, string relatedResourceName = null, ResourceType? relatedResourceType = null, string relatedResourceKind = null, ETag? etag = null)
+        {
+            return SecurityInsightsIncidentRelationData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                etag,
+                relatedResourceId,
+                relatedResourceName,
+                relatedResourceType,
+                relatedResourceKind);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="SecurityInsights.SecurityInsightsSentinelOnboardingStateData"/>. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static SecurityInsightsSentinelOnboardingStateData SecurityInsightsSentinelOnboardingStateData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, bool? isCustomerManagedKeySet = null, ETag? etag = null)
+        {
+            return SecurityInsightsSentinelOnboardingStateData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                etag,
+                isCustomerManagedKeySet);
         }
     }
 }

@@ -78,26 +78,26 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             {
                 return null;
             }
-            DataConnectorDataTypeCommon exchange = default;
-            DataConnectorDataTypeCommon sharePoint = default;
-            DataConnectorDataTypeCommon teams = default;
+            OfficeDataConnectorDataTypesExchange exchange = default;
+            OfficeDataConnectorDataTypesSharePoint sharePoint = default;
+            OfficeDataConnectorDataTypesTeams teams = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
             {
                 if (property.NameEquals("exchange"u8))
                 {
-                    exchange = DataConnectorDataTypeCommon.DeserializeDataConnectorDataTypeCommon(property.Value, options);
+                    exchange = OfficeDataConnectorDataTypesExchange.DeserializeOfficeDataConnectorDataTypesExchange(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("sharePoint"u8))
                 {
-                    sharePoint = DataConnectorDataTypeCommon.DeserializeDataConnectorDataTypeCommon(property.Value, options);
+                    sharePoint = OfficeDataConnectorDataTypesSharePoint.DeserializeOfficeDataConnectorDataTypesSharePoint(property.Value, options);
                     continue;
                 }
                 if (property.NameEquals("teams"u8))
                 {
-                    teams = DataConnectorDataTypeCommon.DeserializeDataConnectorDataTypeCommon(property.Value, options);
+                    teams = OfficeDataConnectorDataTypesTeams.DeserializeOfficeDataConnectorDataTypesTeams(property.Value, options);
                     continue;
                 }
                 if (options.Format != "W")

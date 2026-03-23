@@ -176,7 +176,7 @@ namespace Azure.ResourceManager.SecurityInsights.Tests.Helpers
         {
             return new SecurityInsightsWatchlistItemData()
             {
-                ItemsKeyValueDictionary = { { "ipaddress", BinaryData.FromString("\"1.1.1.2\"") } }
+                ItemsKeyValueDictionary = BinaryData.FromObjectAsJson(new Dictionary<string, string> { { "ipaddress", "1.1.1.2" } })
             };
         }
         #endregion

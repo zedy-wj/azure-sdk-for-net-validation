@@ -184,11 +184,11 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 relatedResourceId,
                 relatedResourceName,
                 relatedResourceType,
                 relatedResourceKind,
-                etag,
                 serializedAdditionalRawData);
         }
 

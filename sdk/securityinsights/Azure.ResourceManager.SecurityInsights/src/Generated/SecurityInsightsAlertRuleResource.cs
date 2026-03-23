@@ -113,7 +113,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -144,7 +144,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -175,7 +175,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -215,7 +215,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -255,7 +255,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -299,7 +299,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -343,7 +343,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -391,7 +391,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -439,15 +439,15 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="analyticsRuleRunTriggerParameter"> The Analytics Rule Run Trigger parameter. </param>
+        /// <param name="analyticsRuleRunTriggerParameter"> The content of the action request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="analyticsRuleRunTriggerParameter"/> is null. </exception>
-        public virtual async Task<ArmOperation> TriggerRuleRunAlertRuleAsync(WaitUntil waitUntil, AnalyticsRuleRunTrigger analyticsRuleRunTriggerParameter, CancellationToken cancellationToken = default)
+        public virtual async Task<ArmOperation<SecurityInsightsAlertRuleResource>> TriggerRuleRunAlertRuleAsync(WaitUntil waitUntil, AnalyticsRuleRunTrigger analyticsRuleRunTriggerParameter, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(analyticsRuleRunTriggerParameter, nameof(analyticsRuleRunTriggerParameter));
 
@@ -456,9 +456,9 @@ namespace Azure.ResourceManager.SecurityInsights
             try
             {
                 var response = await _alertRuleRestClient.TriggerRuleRunAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, analyticsRuleRunTriggerParameter, cancellationToken).ConfigureAwait(false);
-                var operation = new SecurityInsightsArmOperation(_alertRuleClientDiagnostics, Pipeline, _alertRuleRestClient.CreateTriggerRuleRunRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, analyticsRuleRunTriggerParameter).Request, response, OperationFinalStateVia.Location);
+                var operation = new SecurityInsightsArmOperation<SecurityInsightsAlertRuleResource>(new SecurityInsightsAlertRuleOperationSource(Client), _alertRuleClientDiagnostics, Pipeline, _alertRuleRestClient.CreateTriggerRuleRunRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, analyticsRuleRunTriggerParameter).Request, response, OperationFinalStateVia.Location);
                 if (waitUntil == WaitUntil.Completed)
-                    await operation.WaitForCompletionResponseAsync(cancellationToken).ConfigureAwait(false);
+                    await operation.WaitForCompletionAsync(cancellationToken).ConfigureAwait(false);
                 return operation;
             }
             catch (Exception e)
@@ -481,15 +481,15 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// </list>
         /// </summary>
         /// <param name="waitUntil"> <see cref="WaitUntil.Completed"/> if the method should wait to return until the long-running operation has completed on the service; <see cref="WaitUntil.Started"/> if it should return after starting the operation. For more information on long-running operations, please see <see href="https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/core/Azure.Core/samples/LongRunningOperations.md"> Azure.Core Long-Running Operation samples</see>. </param>
-        /// <param name="analyticsRuleRunTriggerParameter"> The Analytics Rule Run Trigger parameter. </param>
+        /// <param name="analyticsRuleRunTriggerParameter"> The content of the action request. </param>
         /// <param name="cancellationToken"> The cancellation token to use. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="analyticsRuleRunTriggerParameter"/> is null. </exception>
-        public virtual ArmOperation TriggerRuleRunAlertRule(WaitUntil waitUntil, AnalyticsRuleRunTrigger analyticsRuleRunTriggerParameter, CancellationToken cancellationToken = default)
+        public virtual ArmOperation<SecurityInsightsAlertRuleResource> TriggerRuleRunAlertRule(WaitUntil waitUntil, AnalyticsRuleRunTrigger analyticsRuleRunTriggerParameter, CancellationToken cancellationToken = default)
         {
             Argument.AssertNotNull(analyticsRuleRunTriggerParameter, nameof(analyticsRuleRunTriggerParameter));
 
@@ -498,9 +498,9 @@ namespace Azure.ResourceManager.SecurityInsights
             try
             {
                 var response = _alertRuleRestClient.TriggerRuleRun(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, analyticsRuleRunTriggerParameter, cancellationToken);
-                var operation = new SecurityInsightsArmOperation(_alertRuleClientDiagnostics, Pipeline, _alertRuleRestClient.CreateTriggerRuleRunRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, analyticsRuleRunTriggerParameter).Request, response, OperationFinalStateVia.Location);
+                var operation = new SecurityInsightsArmOperation<SecurityInsightsAlertRuleResource>(new SecurityInsightsAlertRuleOperationSource(Client), _alertRuleClientDiagnostics, Pipeline, _alertRuleRestClient.CreateTriggerRuleRunRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, analyticsRuleRunTriggerParameter).Request, response, OperationFinalStateVia.Location);
                 if (waitUntil == WaitUntil.Completed)
-                    operation.WaitForCompletionResponse(cancellationToken);
+                    operation.WaitForCompletion(cancellationToken);
                 return operation;
             }
             catch (Exception e)

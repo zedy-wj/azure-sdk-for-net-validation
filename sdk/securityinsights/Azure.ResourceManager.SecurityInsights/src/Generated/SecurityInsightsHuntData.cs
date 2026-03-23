@@ -64,6 +64,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="displayName"> The display name of the hunt. </param>
         /// <param name="description"> The description of the hunt. </param>
         /// <param name="status"> The status of the hunt. </param>
@@ -72,10 +73,10 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="attackTechniques"> A list of a mitre attack techniques the hunt is associated with. </param>
         /// <param name="labels"> List of labels relevant to this hunt. </param>
         /// <param name="owner"> Describes a user that the hunt is assigned to. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsHuntData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string displayName, string description, HuntStatus? status, HypothesisStatus? hypothesisStatus, IList<SecurityInsightsAttackTactic> attackTactics, IList<string> attackTechniques, IList<string> labels, SecurityInsightsHuntOwner owner, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsHuntData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string displayName, string description, HuntStatus? status, HypothesisStatus? hypothesisStatus, IList<SecurityInsightsAttackTactic> attackTactics, IList<string> attackTechniques, IList<string> labels, SecurityInsightsHuntOwner owner, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             DisplayName = displayName;
             Description = description;
             Status = status;
@@ -84,10 +85,12 @@ namespace Azure.ResourceManager.SecurityInsights
             AttackTechniques = attackTechniques;
             Labels = labels;
             Owner = owner;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> The display name of the hunt. </summary>
         [WirePath("properties.displayName")]
         public string DisplayName { get; set; }
@@ -112,8 +115,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> Describes a user that the hunt is assigned to. </summary>
         [WirePath("properties.owner")]
         public SecurityInsightsHuntOwner Owner { get; set; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

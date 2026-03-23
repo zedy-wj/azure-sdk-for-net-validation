@@ -114,7 +114,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -145,7 +145,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -176,7 +176,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -216,7 +216,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -244,84 +244,6 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary>
-        /// Triggers playbook on a specific entity.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityIdentifier}/runPlaybook</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Entities_RunPlaybook</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="SecurityInsightsEntityResource"/></description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="content"> Describes the request body for triggering a playbook on an entity. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public virtual async Task<Response> RunPlaybookAsync(EntityManualTriggerRequestContent content = null, CancellationToken cancellationToken = default)
-        {
-            using var scope = _securityInsightsEntityEntitiesClientDiagnostics.CreateScope("SecurityInsightsEntityResource.RunPlaybook");
-            scope.Start();
-            try
-            {
-                var response = await _securityInsightsEntityEntitiesRestClient.RunPlaybookAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, content, cancellationToken).ConfigureAwait(false);
-                return response;
-            }
-            catch (Exception e)
-            {
-                scope.Failed(e);
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Triggers playbook on a specific entity.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityIdentifier}/runPlaybook</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Entities_RunPlaybook</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="SecurityInsightsEntityResource"/></description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="content"> Describes the request body for triggering a playbook on an entity. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        public virtual Response RunPlaybook(EntityManualTriggerRequestContent content = null, CancellationToken cancellationToken = default)
-        {
-            using var scope = _securityInsightsEntityEntitiesClientDiagnostics.CreateScope("SecurityInsightsEntityResource.RunPlaybook");
-            scope.Start();
-            try
-            {
-                var response = _securityInsightsEntityEntitiesRestClient.RunPlaybook(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, content, cancellationToken);
-                return response;
-            }
-            catch (Exception e)
-            {
-                scope.Failed(e);
-                throw;
-            }
-        }
-
-        /// <summary>
         /// Expands an entity.
         /// <list type="bullet">
         /// <item>
@@ -334,7 +256,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -376,7 +298,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -406,66 +328,6 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary>
-        /// Get Insights and Activities for an entity.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}/queries</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Entities_Queries</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="SecurityInsightsEntityResource"/></description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="kind"> The Kind parameter for queries. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> An async collection of <see cref="EntityQueryItem"/> that may take multiple service requests to iterate over. </returns>
-        public virtual AsyncPageable<EntityQueryItem> QueriesAsync(EntityItemQueryKind kind, CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => _securityInsightsEntityEntitiesRestClient.CreateQueriesRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, kind);
-            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => EntityQueryItem.DeserializeEntityQueryItem(e), _securityInsightsEntityEntitiesClientDiagnostics, Pipeline, "SecurityInsightsEntityResource.Queries", "value", null, cancellationToken);
-        }
-
-        /// <summary>
-        /// Get Insights and Activities for an entity.
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Request Path</term>
-        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}/queries</description>
-        /// </item>
-        /// <item>
-        /// <term>Operation Id</term>
-        /// <description>Entities_Queries</description>
-        /// </item>
-        /// <item>
-        /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
-        /// </item>
-        /// <item>
-        /// <term>Resource</term>
-        /// <description><see cref="SecurityInsightsEntityResource"/></description>
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="kind"> The Kind parameter for queries. </param>
-        /// <param name="cancellationToken"> The cancellation token to use. </param>
-        /// <returns> A collection of <see cref="EntityQueryItem"/> that may take multiple service requests to iterate over. </returns>
-        public virtual Pageable<EntityQueryItem> Queries(EntityItemQueryKind kind, CancellationToken cancellationToken = default)
-        {
-            HttpMessage FirstPageRequest(int? pageSizeHint) => _securityInsightsEntityEntitiesRestClient.CreateQueriesRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, kind);
-            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => EntityQueryItem.DeserializeEntityQueryItem(e), _securityInsightsEntityEntitiesClientDiagnostics, Pipeline, "SecurityInsightsEntityResource.Queries", "value", null, cancellationToken);
-        }
-
-        /// <summary>
         /// Execute Insights for an entity.
         /// <list type="bullet">
         /// <item>
@@ -478,7 +340,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -511,7 +373,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// <item>
         /// <term>Resource</term>
@@ -532,6 +394,146 @@ namespace Azure.ResourceManager.SecurityInsights
         }
 
         /// <summary>
+        /// Get Insights and Activities for an entity.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}/queries</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Entities_Queries</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityInsightsEntityResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="kind"> The Kind parameter for queries. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="EntityQueryItem"/> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<EntityQueryItem> QueriesAsync(EntityItemQueryKind kind, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => _securityInsightsEntityEntitiesRestClient.CreateQueriesRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, kind);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _securityInsightsEntityEntitiesRestClient.CreateQueriesNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, kind);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, NextPageRequest, e => EntityQueryItem.DeserializeEntityQueryItem(e), _securityInsightsEntityEntitiesClientDiagnostics, Pipeline, "SecurityInsightsEntityResource.Queries", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Get Insights and Activities for an entity.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityId}/queries</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Entities_Queries</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityInsightsEntityResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="kind"> The Kind parameter for queries. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="EntityQueryItem"/> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<EntityQueryItem> Queries(EntityItemQueryKind kind, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => _securityInsightsEntityEntitiesRestClient.CreateQueriesRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, kind);
+            HttpMessage NextPageRequest(int? pageSizeHint, string nextLink) => _securityInsightsEntityEntitiesRestClient.CreateQueriesNextPageRequest(nextLink, Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, kind);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, NextPageRequest, e => EntityQueryItem.DeserializeEntityQueryItem(e), _securityInsightsEntityEntitiesClientDiagnostics, Pipeline, "SecurityInsightsEntityResource.Queries", "value", "nextLink", cancellationToken);
+        }
+
+        /// <summary>
+        /// Triggers playbook on a specific entity.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityIdentifier}/runPlaybook</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Entities_RunPlaybook</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityInsightsEntityResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="content"> Describes the request body for triggering a playbook on an entity. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual async Task<Response> RunPlaybookAsync(EntityManualTriggerRequestContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = _securityInsightsEntityEntitiesClientDiagnostics.CreateScope("SecurityInsightsEntityResource.RunPlaybook");
+            scope.Start();
+            try
+            {
+                var response = await _securityInsightsEntityEntitiesRestClient.RunPlaybookAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, content, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Triggers playbook on a specific entity.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityIdentifier}/runPlaybook</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>Entities_RunPlaybook</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2025-07-01-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="SecurityInsightsEntityResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="content"> Describes the request body for triggering a playbook on an entity. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        public virtual Response RunPlaybook(EntityManualTriggerRequestContent content = null, CancellationToken cancellationToken = default)
+        {
+            using var scope = _securityInsightsEntityEntitiesClientDiagnostics.CreateScope("SecurityInsightsEntityResource.RunPlaybook");
+            scope.Start();
+            try
+            {
+                var response = _securityInsightsEntityEntitiesRestClient.RunPlaybook(Id.SubscriptionId, Id.ResourceGroupName, Id.Parent.Name, Id.Name, content, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Timeline for an entity.
         /// <list type="bullet">
         /// <item>
@@ -544,7 +546,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// </list>
         /// </summary>
@@ -573,7 +575,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// </item>
         /// <item>
         /// <term>Default Api Version</term>
-        /// <description>2024-01-01-preview</description>
+        /// <description>2025-07-01-preview</description>
         /// </item>
         /// </list>
         /// </summary>

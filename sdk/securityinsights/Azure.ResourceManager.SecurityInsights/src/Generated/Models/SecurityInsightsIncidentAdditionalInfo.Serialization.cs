@@ -86,6 +86,16 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 writer.WritePropertyName("providerIncidentUrl"u8);
                 writer.WriteStringValue(ProviderIncidentUri.AbsoluteUri);
             }
+            if (options.Format != "W" && Optional.IsDefined(MergedIncidentNumber))
+            {
+                writer.WritePropertyName("mergedIncidentNumber"u8);
+                writer.WriteStringValue(MergedIncidentNumber);
+            }
+            if (options.Format != "W" && Optional.IsDefined(MergedIncidentUri))
+            {
+                writer.WritePropertyName("mergedIncidentUrl"u8);
+                writer.WriteStringValue(MergedIncidentUri.AbsoluteUri);
+            }
             if (options.Format != "W" && _serializedAdditionalRawData != null)
             {
                 foreach (var item in _serializedAdditionalRawData)
@@ -130,6 +140,8 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             IReadOnlyList<SecurityInsightsAttackTactic> tactics = default;
             IReadOnlyList<string> techniques = default;
             Uri providerIncidentUrl = default;
+            string mergedIncidentNumber = default;
+            Uri mergedIncidentUrl = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
@@ -212,6 +224,20 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                     providerIncidentUrl = new Uri(property.Value.GetString());
                     continue;
                 }
+                if (property.NameEquals("mergedIncidentNumber"u8))
+                {
+                    mergedIncidentNumber = property.Value.GetString();
+                    continue;
+                }
+                if (property.NameEquals("mergedIncidentUrl"u8))
+                {
+                    if (property.Value.ValueKind == JsonValueKind.Null)
+                    {
+                        continue;
+                    }
+                    mergedIncidentUrl = new Uri(property.Value.GetString());
+                    continue;
+                }
                 if (options.Format != "W")
                 {
                     rawDataDictionary.Add(property.Name, BinaryData.FromString(property.Value.GetRawText()));
@@ -226,6 +252,8 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 tactics ?? new ChangeTrackingList<SecurityInsightsAttackTactic>(),
                 techniques ?? new ChangeTrackingList<string>(),
                 providerIncidentUrl,
+                mergedIncidentNumber,
+                mergedIncidentUrl,
                 serializedAdditionalRawData);
         }
 
@@ -392,6 +420,44 @@ namespace Azure.ResourceManager.SecurityInsights.Models
                 {
                     builder.Append("  providerIncidentUrl: ");
                     builder.AppendLine($"'{ProviderIncidentUri.AbsoluteUri}'");
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(MergedIncidentNumber), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  mergedIncidentNumber: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(MergedIncidentNumber))
+                {
+                    builder.Append("  mergedIncidentNumber: ");
+                    if (MergedIncidentNumber.Contains(Environment.NewLine))
+                    {
+                        builder.AppendLine("'''");
+                        builder.AppendLine($"{MergedIncidentNumber}'''");
+                    }
+                    else
+                    {
+                        builder.AppendLine($"'{MergedIncidentNumber}'");
+                    }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(MergedIncidentUri), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("  mergedIncidentUrl: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(MergedIncidentUri))
+                {
+                    builder.Append("  mergedIncidentUrl: ");
+                    builder.AppendLine($"'{MergedIncidentUri.AbsoluteUri}'");
                 }
             }
 

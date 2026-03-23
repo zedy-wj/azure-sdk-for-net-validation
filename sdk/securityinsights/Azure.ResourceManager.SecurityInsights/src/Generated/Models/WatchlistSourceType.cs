@@ -22,13 +22,13 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        private const string LocalFileValue = "Local file";
-        private const string RemoteStorageValue = "Remote storage";
+        private const string LocalValue = "Local";
+        private const string AzureStorageValue = "AzureStorage";
 
-        /// <summary> Local file. </summary>
-        public static WatchlistSourceType LocalFile { get; } = new WatchlistSourceType(LocalFileValue);
-        /// <summary> Remote storage. </summary>
-        public static WatchlistSourceType RemoteStorage { get; } = new WatchlistSourceType(RemoteStorageValue);
+        /// <summary> The source from local file. </summary>
+        public static WatchlistSourceType Local { get; } = new WatchlistSourceType(LocalValue);
+        /// <summary> The source from Azure storage. </summary>
+        public static WatchlistSourceType AzureStorage { get; } = new WatchlistSourceType(AzureStorageValue);
         /// <summary> Determines if two <see cref="WatchlistSourceType"/> values are the same. </summary>
         public static bool operator ==(WatchlistSourceType left, WatchlistSourceType right) => left.Equals(right);
         /// <summary> Determines if two <see cref="WatchlistSourceType"/> values are not the same. </summary>

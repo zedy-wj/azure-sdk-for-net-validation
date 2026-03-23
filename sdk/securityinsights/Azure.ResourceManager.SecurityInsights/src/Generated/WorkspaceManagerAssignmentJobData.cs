@@ -62,24 +62,27 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="endOn"> The time the job completed. </param>
         /// <param name="items"> List of items published by the job. </param>
         /// <param name="provisioningState"> State of the job. </param>
         /// <param name="startOn"> The time the job started. </param>
         /// <param name="errorMessage"> Message to describe error, if an error exists. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal WorkspaceManagerAssignmentJobData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, DateTimeOffset? endOn, IList<JobItem> items, TriggeredAnalyticsRuleRunProvisioningState? provisioningState, DateTimeOffset? startOn, string errorMessage, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal WorkspaceManagerAssignmentJobData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, DateTimeOffset? endOn, IList<JobItem> items, TriggeredAnalyticsRuleRunProvisioningState? provisioningState, DateTimeOffset? startOn, string errorMessage, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             EndOn = endOn;
             Items = items;
             ProvisioningState = provisioningState;
             StartOn = startOn;
             ErrorMessage = errorMessage;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> The time the job completed. </summary>
         [WirePath("properties.endTime")]
         public DateTimeOffset? EndOn { get; }
@@ -95,8 +98,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> Message to describe error, if an error exists. </summary>
         [WirePath("properties.errorMessage")]
         public string ErrorMessage { get; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

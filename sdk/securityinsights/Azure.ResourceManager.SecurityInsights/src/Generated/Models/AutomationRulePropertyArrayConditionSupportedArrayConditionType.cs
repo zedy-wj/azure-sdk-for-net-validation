@@ -23,9 +23,12 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         private const string AnyItemValue = "AnyItem";
+        private const string AllItemsValue = "AllItems";
 
         /// <summary> Evaluate the condition as true if any item fulfills it. </summary>
         public static AutomationRulePropertyArrayConditionSupportedArrayConditionType AnyItem { get; } = new AutomationRulePropertyArrayConditionSupportedArrayConditionType(AnyItemValue);
+        /// <summary> Evaluate the condition as true if all the items fulfill it. </summary>
+        public static AutomationRulePropertyArrayConditionSupportedArrayConditionType AllItems { get; } = new AutomationRulePropertyArrayConditionSupportedArrayConditionType(AllItemsValue);
         /// <summary> Determines if two <see cref="AutomationRulePropertyArrayConditionSupportedArrayConditionType"/> values are the same. </summary>
         public static bool operator ==(AutomationRulePropertyArrayConditionSupportedArrayConditionType left, AutomationRulePropertyArrayConditionSupportedArrayConditionType right) => left.Equals(right);
         /// <summary> Determines if two <see cref="AutomationRulePropertyArrayConditionSupportedArrayConditionType"/> values are not the same. </summary>

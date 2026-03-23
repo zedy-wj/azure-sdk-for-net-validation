@@ -82,6 +82,6 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public IList<ThreatIntelligenceQueryConditionClause> Clauses { get; }
         /// <summary> The top level connective operator for this condition. </summary>
         [WirePath("conditionConnective")]
-        public ThreatIntelligenceQueryConnective? ConditionConnective { get; set; }
+        public ThreatIntelligenceQueryConnective? ConditionConnective { get; }
     }
 }

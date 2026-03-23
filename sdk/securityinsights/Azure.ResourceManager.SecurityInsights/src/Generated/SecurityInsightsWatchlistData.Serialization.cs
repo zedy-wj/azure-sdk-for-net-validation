@@ -156,6 +156,11 @@ namespace Azure.ResourceManager.SecurityInsights
                 writer.WritePropertyName("uploadStatus"u8);
                 writer.WriteStringValue(UploadStatus);
             }
+            if (options.Format != "W" && Optional.IsDefined(ProvisioningState))
+            {
+                writer.WritePropertyName("provisioningState"u8);
+                writer.WriteStringValue(ProvisioningState.Value.ToString());
+            }
             writer.WriteEndObject();
         }
 
@@ -205,6 +210,7 @@ namespace Azure.ResourceManager.SecurityInsights
             string itemsSearchKey = default;
             string contentType = default;
             string uploadStatus = default;
+            TriggeredAnalyticsRuleRunProvisioningState? provisioningState = default;
             IDictionary<string, BinaryData> serializedAdditionalRawData = default;
             Dictionary<string, BinaryData> rawDataDictionary = new Dictionary<string, BinaryData>();
             foreach (var property in element.EnumerateObject())
@@ -405,6 +411,15 @@ namespace Azure.ResourceManager.SecurityInsights
                             uploadStatus = property0.Value.GetString();
                             continue;
                         }
+                        if (property0.NameEquals("provisioningState"u8))
+                        {
+                            if (property0.Value.ValueKind == JsonValueKind.Null)
+                            {
+                                continue;
+                            }
+                            provisioningState = new TriggeredAnalyticsRuleRunProvisioningState(property0.Value.GetString());
+                            continue;
+                        }
                     }
                     continue;
                 }
@@ -419,6 +434,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 watchlistId,
                 displayName,
                 provider,
@@ -440,7 +456,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 itemsSearchKey,
                 contentType,
                 uploadStatus,
-                etag,
+                provisioningState,
                 serializedAdditionalRawData);
         }
 
@@ -942,6 +958,21 @@ namespace Azure.ResourceManager.SecurityInsights
                     {
                         builder.AppendLine($"'{UploadStatus}'");
                     }
+                }
+            }
+
+            hasPropertyOverride = hasObjectOverride && propertyOverrides.TryGetValue(nameof(ProvisioningState), out propertyOverride);
+            if (hasPropertyOverride)
+            {
+                builder.Append("    provisioningState: ");
+                builder.AppendLine(propertyOverride);
+            }
+            else
+            {
+                if (Optional.IsDefined(ProvisioningState))
+                {
+                    builder.Append("    provisioningState: ");
+                    builder.AppendLine($"'{ProvisioningState.Value.ToString()}'");
                 }
             }
 

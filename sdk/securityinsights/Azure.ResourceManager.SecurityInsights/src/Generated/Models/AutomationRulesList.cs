@@ -7,10 +7,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Azure.ResourceManager.SecurityInsights.Models
 {
-    /// <summary> The AutomationRulesList. </summary>
+    /// <summary> Paged collection of AutomationRule items. </summary>
     internal partial class AutomationRulesList
     {
         /// <summary>
@@ -46,25 +47,34 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AutomationRulesList"/>. </summary>
-        internal AutomationRulesList()
+        /// <param name="value"> The AutomationRule items on this page. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="value"/> is null. </exception>
+        internal AutomationRulesList(IEnumerable<SecurityInsightsAutomationRuleData> value)
         {
-            Value = new ChangeTrackingList<SecurityInsightsAutomationRuleData>();
+            Argument.AssertNotNull(value, nameof(value));
+
+            Value = value.ToList();
         }
 
         /// <summary> Initializes a new instance of <see cref="AutomationRulesList"/>. </summary>
-        /// <param name="value"></param>
-        /// <param name="nextLink"></param>
+        /// <param name="value"> The AutomationRule items on this page. </param>
+        /// <param name="nextLink"> The link to the next page of items. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal AutomationRulesList(IReadOnlyList<SecurityInsightsAutomationRuleData> value, string nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal AutomationRulesList(IReadOnlyList<SecurityInsightsAutomationRuleData> value, Uri nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             Value = value;
             NextLink = nextLink;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets the value. </summary>
+        /// <summary> Initializes a new instance of <see cref="AutomationRulesList"/> for deserialization. </summary>
+        internal AutomationRulesList()
+        {
+        }
+
+        /// <summary> The AutomationRule items on this page. </summary>
         public IReadOnlyList<SecurityInsightsAutomationRuleData> Value { get; }
-        /// <summary> Gets the next link. </summary>
-        public string NextLink { get; }
+        /// <summary> The link to the next page of items. </summary>
+        public Uri NextLink { get; }
     }
 }

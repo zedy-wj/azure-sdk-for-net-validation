@@ -61,20 +61,23 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Resource Etag. </param>
         /// <param name="description"> The description of the workspace manager group. </param>
         /// <param name="displayName"> The display name of the workspace manager group. </param>
         /// <param name="memberResourceNames"> The names of the workspace manager members participating in this group. </param>
-        /// <param name="etag"> Resource Etag. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal WorkspaceManagerGroupData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string description, string displayName, IList<string> memberResourceNames, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal WorkspaceManagerGroupData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string description, string displayName, IList<string> memberResourceNames, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             Description = description;
             DisplayName = displayName;
             MemberResourceNames = memberResourceNames;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Resource Etag. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; }
         /// <summary> The description of the workspace manager group. </summary>
         [WirePath("properties.description")]
         public string Description { get; set; }
@@ -84,8 +87,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> The names of the workspace manager members participating in this group. </summary>
         [WirePath("properties.memberResourceNames")]
         public IList<string> MemberResourceNames { get; }
-        /// <summary> Resource Etag. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; }
     }
 }

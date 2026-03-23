@@ -63,6 +63,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="recommendationTypeId"> Id of the recommendation type. </param>
         /// <param name="state"> State of the recommendation. </param>
         /// <param name="title"> Title of the recommendation. </param>
@@ -73,10 +74,10 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="suggestions"> List of suggestions to take for this recommendation. </param>
         /// <param name="resourceId"> Id of the resource this recommendation refers to. </param>
         /// <param name="additionalProperties"> Collection of additional properties for the recommendation. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsRecommendationData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, string recommendationTypeId, RecommendationState? state, string title, string description, DateTimeOffset? createdOn, DateTimeOffset? lastEvaluatedOn, DateTimeOffset? lastModifiedOn, IList<RecommendedSuggestion> suggestions, string resourceId, IDictionary<string, string> additionalProperties, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsRecommendationData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, string recommendationTypeId, RecommendationState? state, string title, string description, DateTimeOffset? createdOn, DateTimeOffset? lastEvaluatedOn, DateTimeOffset? lastModifiedOn, IList<RecommendedSuggestion> suggestions, string resourceId, IDictionary<string, string> additionalProperties, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             RecommendationTypeId = recommendationTypeId;
             State = state;
             Title = title;
@@ -87,10 +88,12 @@ namespace Azure.ResourceManager.SecurityInsights
             Suggestions = suggestions;
             ResourceId = resourceId;
             AdditionalProperties = additionalProperties;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> Id of the recommendation type. </summary>
         [WirePath("properties.recommendationTypeId")]
         public string RecommendationTypeId { get; set; }
@@ -121,8 +124,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> Collection of additional properties for the recommendation. </summary>
         [WirePath("properties.additionalProperties")]
         public IDictionary<string, string> AdditionalProperties { get; set; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

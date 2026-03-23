@@ -398,6 +398,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 created,
                 createdBy,
                 displayName,
@@ -414,7 +415,6 @@ namespace Azure.ResourceManager.SecurityInsights
                 entityMappings ?? new ChangeTrackingList<BookmarkEntityMappings>(),
                 tactics ?? new ChangeTrackingList<SecurityInsightsAttackTactic>(),
                 techniques ?? new ChangeTrackingList<string>(),
-                etag,
                 serializedAdditionalRawData);
         }
 

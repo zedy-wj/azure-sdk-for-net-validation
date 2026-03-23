@@ -308,6 +308,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 recommendationTypeId,
                 state,
                 title,
@@ -318,7 +319,6 @@ namespace Azure.ResourceManager.SecurityInsights
                 suggestions ?? new ChangeTrackingList<RecommendedSuggestion>(),
                 resourceId,
                 additionalProperties ?? new ChangeTrackingDictionary<string, string>(),
-                etag,
                 serializedAdditionalRawData);
         }
 

@@ -59,7 +59,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="permissions"> Permissions required for the connector. </param>
         /// <param name="instructionSteps"> Instruction steps to enable the connector. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="title"/>, <paramref name="publisher"/>, <paramref name="descriptionMarkdown"/>, <paramref name="graphQueriesTableName"/>, <paramref name="graphQueries"/>, <paramref name="sampleQueries"/>, <paramref name="dataTypes"/>, <paramref name="connectivityCriteria"/>, <paramref name="availability"/>, <paramref name="permissions"/> or <paramref name="instructionSteps"/> is null. </exception>
-        public CodelessUiConnectorConfigProperties(string title, string publisher, string descriptionMarkdown, string graphQueriesTableName, IEnumerable<ConnectorGraphQueries> graphQueries, IEnumerable<SourceControlSampleQueries> sampleQueries, IEnumerable<LastDataReceivedDataType> dataTypes, IEnumerable<ConnectorConnectivityCriteria> connectivityCriteria, ConnectorAvailability availability, ConnectorPermissions permissions, IEnumerable<InstructionSteps> instructionSteps)
+        public CodelessUiConnectorConfigProperties(string title, string publisher, string descriptionMarkdown, string graphQueriesTableName, IEnumerable<CodelessUiConnectorConfigPropertiesGraphQueriesItem> graphQueries, IEnumerable<CodelessUiConnectorConfigPropertiesSampleQueriesItem> sampleQueries, IEnumerable<CodelessUiConnectorConfigPropertiesDataTypesItem> dataTypes, IEnumerable<CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem> connectivityCriteria, ConnectorAvailability availability, ConnectorPermissions permissions, IEnumerable<CodelessUiConnectorConfigPropertiesInstructionStepsItem> instructionSteps)
         {
             Argument.AssertNotNull(title, nameof(title));
             Argument.AssertNotNull(publisher, nameof(publisher));
@@ -100,7 +100,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="permissions"> Permissions required for the connector. </param>
         /// <param name="instructionSteps"> Instruction steps to enable the connector. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal CodelessUiConnectorConfigProperties(string title, string publisher, string descriptionMarkdown, string customImage, string graphQueriesTableName, IList<ConnectorGraphQueries> graphQueries, IList<SourceControlSampleQueries> sampleQueries, IList<LastDataReceivedDataType> dataTypes, IList<ConnectorConnectivityCriteria> connectivityCriteria, ConnectorAvailability availability, ConnectorPermissions permissions, IList<InstructionSteps> instructionSteps, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal CodelessUiConnectorConfigProperties(string title, string publisher, string descriptionMarkdown, string customImage, string graphQueriesTableName, IList<CodelessUiConnectorConfigPropertiesGraphQueriesItem> graphQueries, IList<CodelessUiConnectorConfigPropertiesSampleQueriesItem> sampleQueries, IList<CodelessUiConnectorConfigPropertiesDataTypesItem> dataTypes, IList<CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem> connectivityCriteria, ConnectorAvailability availability, ConnectorPermissions permissions, IList<CodelessUiConnectorConfigPropertiesInstructionStepsItem> instructionSteps, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             Title = title;
             Publisher = publisher;
@@ -139,16 +139,16 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public string GraphQueriesTableName { get; set; }
         /// <summary> The graph query to show the current data status. </summary>
         [WirePath("graphQueries")]
-        public IList<ConnectorGraphQueries> GraphQueries { get; }
+        public IList<CodelessUiConnectorConfigPropertiesGraphQueriesItem> GraphQueries { get; }
         /// <summary> The sample queries for the connector. </summary>
         [WirePath("sampleQueries")]
-        public IList<SourceControlSampleQueries> SampleQueries { get; }
+        public IList<CodelessUiConnectorConfigPropertiesSampleQueriesItem> SampleQueries { get; }
         /// <summary> Data types to check for last data received. </summary>
         [WirePath("dataTypes")]
-        public IList<LastDataReceivedDataType> DataTypes { get; }
+        public IList<CodelessUiConnectorConfigPropertiesDataTypesItem> DataTypes { get; }
         /// <summary> Define the way the connector check connectivity. </summary>
         [WirePath("connectivityCriteria")]
-        public IList<ConnectorConnectivityCriteria> ConnectivityCriteria { get; }
+        public IList<CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem> ConnectivityCriteria { get; }
         /// <summary> Connector Availability Status. </summary>
         [WirePath("availability")]
         public ConnectorAvailability Availability { get; set; }
@@ -157,6 +157,6 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public ConnectorPermissions Permissions { get; set; }
         /// <summary> Instruction steps to enable the connector. </summary>
         [WirePath("instructionSteps")]
-        public IList<InstructionSteps> InstructionSteps { get; }
+        public IList<CodelessUiConnectorConfigPropertiesInstructionStepsItem> InstructionSteps { get; }
     }
 }

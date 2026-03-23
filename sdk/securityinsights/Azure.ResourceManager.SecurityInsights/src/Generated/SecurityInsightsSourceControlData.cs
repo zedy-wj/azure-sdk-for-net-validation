@@ -75,6 +75,7 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
+        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="sourceControlId"> The id (a Guid) of the source control. </param>
         /// <param name="version"> The version number associated with the source control. </param>
         /// <param name="displayName"> The display name of the source control. </param>
@@ -83,14 +84,15 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="contentTypes"> Array of source control content types. </param>
         /// <param name="repository"> Repository metadata. </param>
         /// <param name="servicePrincipal"> Service principal metadata. </param>
+        /// <param name="workloadIdentityFederation"> Workload Identity metadata. </param>
         /// <param name="repositoryAccess"> Repository access credentials. This is write-only object and it never returns back to a user. </param>
         /// <param name="repositoryResourceInfo"> Information regarding the resources created in user's repository. </param>
         /// <param name="lastDeploymentInfo"> Information regarding the latest deployment for the source control. </param>
         /// <param name="pullRequest"> Information regarding the pull request of the source control. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsSourceControlData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, Guid? sourceControlId, SourceControlVersion? version, string displayName, string description, SourceControlRepoType repoType, IList<SourceControlContentType> contentTypes, SourceControlRepository repository, SourceControlServicePrincipal servicePrincipal, RepositoryAccess repositoryAccess, RepositoryResourceInfo repositoryResourceInfo, SourceControlDeploymentInfo lastDeploymentInfo, PullRequestInfo pullRequest, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsSourceControlData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ETag? etag, Guid? sourceControlId, SourceControlVersion? version, string displayName, string description, SourceControlRepoType repoType, IList<SourceControlContentType> contentTypes, SourceControlRepository repository, SourceControlServicePrincipal servicePrincipal, WorkloadIdentityFederation workloadIdentityFederation, RepositoryAccess repositoryAccess, RepositoryResourceInfo repositoryResourceInfo, SourceControlDeploymentInfo lastDeploymentInfo, PullRequestInfo pullRequest, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
+            ETag = etag;
             SourceControlId = sourceControlId;
             Version = version;
             DisplayName = displayName;
@@ -99,11 +101,11 @@ namespace Azure.ResourceManager.SecurityInsights
             ContentTypes = contentTypes;
             Repository = repository;
             ServicePrincipal = servicePrincipal;
+            WorkloadIdentityFederation = workloadIdentityFederation;
             RepositoryAccess = repositoryAccess;
             RepositoryResourceInfo = repositoryResourceInfo;
             LastDeploymentInfo = lastDeploymentInfo;
             PullRequest = pullRequest;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -112,6 +114,9 @@ namespace Azure.ResourceManager.SecurityInsights
         {
         }
 
+        /// <summary> Etag of the azure resource. </summary>
+        [WirePath("etag")]
+        public ETag? ETag { get; set; }
         /// <summary> The id (a Guid) of the source control. </summary>
         [WirePath("properties.id")]
         public Guid? SourceControlId { get; }
@@ -136,6 +141,9 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> Service principal metadata. </summary>
         [WirePath("properties.servicePrincipal")]
         public SourceControlServicePrincipal ServicePrincipal { get; set; }
+        /// <summary> Workload Identity metadata. </summary>
+        [WirePath("properties.workloadIdentityFederation")]
+        public WorkloadIdentityFederation WorkloadIdentityFederation { get; }
         /// <summary> Repository access credentials. This is write-only object and it never returns back to a user. </summary>
         [WirePath("properties.repositoryAccess")]
         public RepositoryAccess RepositoryAccess { get; set; }
@@ -148,8 +156,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> Information regarding the pull request of the source control. </summary>
         [WirePath("properties.pullRequest")]
         public PullRequestInfo PullRequest { get; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

@@ -7,6 +7,7 @@
 
 using System;
 using System.Collections.Generic;
+using Azure.Core;
 
 namespace Azure.ResourceManager.SecurityInsights.Models
 {
@@ -46,9 +47,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="ManualTriggerRequestBody"/>. </summary>
-        /// <param name="logicAppsResourceId"></param>
+        /// <param name="logicAppsResourceId"> Related Analytic rule resource id. </param>
         /// <exception cref="ArgumentNullException"> <paramref name="logicAppsResourceId"/> is null. </exception>
-        public ManualTriggerRequestBody(string logicAppsResourceId)
+        public ManualTriggerRequestBody(ResourceIdentifier logicAppsResourceId)
         {
             Argument.AssertNotNull(logicAppsResourceId, nameof(logicAppsResourceId));
 
@@ -56,10 +57,10 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         /// <summary> Initializes a new instance of <see cref="ManualTriggerRequestBody"/>. </summary>
-        /// <param name="tenantId"></param>
-        /// <param name="logicAppsResourceId"></param>
+        /// <param name="tenantId"> Universally Unique Identifier. </param>
+        /// <param name="logicAppsResourceId"> Related Analytic rule resource id. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal ManualTriggerRequestBody(Guid? tenantId, string logicAppsResourceId, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal ManualTriggerRequestBody(Guid? tenantId, ResourceIdentifier logicAppsResourceId, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
             TenantId = tenantId;
             LogicAppsResourceId = logicAppsResourceId;
@@ -71,11 +72,11 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         {
         }
 
-        /// <summary> Gets or sets the tenant id. </summary>
+        /// <summary> Universally Unique Identifier. </summary>
         [WirePath("tenantId")]
         public Guid? TenantId { get; set; }
-        /// <summary> Gets the logic apps resource id. </summary>
+        /// <summary> Related Analytic rule resource id. </summary>
         [WirePath("logicAppsResourceId")]
-        public string LogicAppsResourceId { get; }
+        public ResourceIdentifier LogicAppsResourceId { get; }
     }
 }

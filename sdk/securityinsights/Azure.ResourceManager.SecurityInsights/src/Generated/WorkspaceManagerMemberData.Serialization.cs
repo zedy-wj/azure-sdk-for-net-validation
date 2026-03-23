@@ -154,9 +154,9 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 targetWorkspaceResourceId,
                 targetWorkspaceTenantId,
-                etag,
                 serializedAdditionalRawData);
         }
 

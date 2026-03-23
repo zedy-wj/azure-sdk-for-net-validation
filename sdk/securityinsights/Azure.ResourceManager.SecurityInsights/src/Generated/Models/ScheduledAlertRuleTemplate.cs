@@ -33,9 +33,9 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// <param name="name"> The name. </param>
         /// <param name="resourceType"> The resourceType. </param>
         /// <param name="systemData"> The systemData. </param>
-        /// <param name="kind"> The kind of the alert rule. </param>
+        /// <param name="kind"> Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist this value. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        /// <param name="alertRulesCreatedByTemplateCount"> the number of alert rules that were created by this template. </param>
+        /// <param name="alertRulesCreatedByTemplateCount"> The number of alert rules that were created by this template. </param>
         /// <param name="createdDateUTC"> The time that this alert rule template has been added. </param>
         /// <param name="lastUpdatedDateUTC"> The time that this alert rule template was last updated. </param>
         /// <param name="description"> The description of the alert rule template. </param>
@@ -84,7 +84,7 @@ namespace Azure.ResourceManager.SecurityInsights.Models
             Kind = kind;
         }
 
-        /// <summary> the number of alert rules that were created by this template. </summary>
+        /// <summary> The number of alert rules that were created by this template. </summary>
         [WirePath("properties.alertRulesCreatedByTemplateCount")]
         public int? AlertRulesCreatedByTemplateCount { get; set; }
         /// <summary> The time that this alert rule template has been added. </summary>

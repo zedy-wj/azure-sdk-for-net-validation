@@ -236,6 +236,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 displayName,
                 order,
                 triggeringLogic,
@@ -244,7 +245,6 @@ namespace Azure.ResourceManager.SecurityInsights
                 createdTimeUtc,
                 lastModifiedBy,
                 createdBy,
-                etag,
                 serializedAdditionalRawData);
         }
 

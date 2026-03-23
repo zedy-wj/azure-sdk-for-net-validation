@@ -66,16 +66,14 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <param name="relationType"> The type of the hunt relation. </param>
         /// <param name="relatedResourceKind"> The resource that the relation is related to. </param>
         /// <param name="labels"> List of labels relevant to this hunt. </param>
-        /// <param name="etag"> Etag of the azure resource. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal SecurityInsightsHuntRelationData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ResourceIdentifier relatedResourceId, string relatedResourceName, string relationType, string relatedResourceKind, IList<string> labels, ETag? etag, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal SecurityInsightsHuntRelationData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, ResourceIdentifier relatedResourceId, string relatedResourceName, string relationType, string relatedResourceKind, IList<string> labels, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
             RelatedResourceId = relatedResourceId;
             RelatedResourceName = relatedResourceName;
             RelationType = relationType;
             RelatedResourceKind = relatedResourceKind;
             Labels = labels;
-            ETag = etag;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
@@ -94,8 +92,5 @@ namespace Azure.ResourceManager.SecurityInsights
         /// <summary> List of labels relevant to this hunt. </summary>
         [WirePath("properties.labels")]
         public IList<string> Labels { get; }
-        /// <summary> Etag of the azure resource. </summary>
-        [WirePath("etag")]
-        public ETag? ETag { get; set; }
     }
 }

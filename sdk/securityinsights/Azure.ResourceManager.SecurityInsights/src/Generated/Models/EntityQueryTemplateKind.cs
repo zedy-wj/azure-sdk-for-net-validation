@@ -10,8 +10,8 @@ using System.ComponentModel;
 
 namespace Azure.ResourceManager.SecurityInsights.Models
 {
-    /// <summary> The kind of the entity query template. </summary>
-    internal readonly partial struct EntityQueryTemplateKind : IEquatable<EntityQueryTemplateKind>
+    /// <summary> The EntityQueryTemplateKind. </summary>
+    public readonly partial struct EntityQueryTemplateKind : IEquatable<EntityQueryTemplateKind>
     {
         private readonly string _value;
 
@@ -23,9 +23,27 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         }
 
         private const string ActivityValue = "Activity";
+        private const string InsightValue = "Insight";
+        private const string SecurityAlertValue = "SecurityAlert";
+        private const string BookmarkValue = "Bookmark";
+        private const string ExpansionValue = "Expansion";
+        private const string GuidedInsightValue = "GuidedInsight";
+        private const string AnomalyValue = "Anomaly";
 
         /// <summary> Activity. </summary>
         public static EntityQueryTemplateKind Activity { get; } = new EntityQueryTemplateKind(ActivityValue);
+        /// <summary> Insight. </summary>
+        public static EntityQueryTemplateKind Insight { get; } = new EntityQueryTemplateKind(InsightValue);
+        /// <summary> SecurityAlert. </summary>
+        public static EntityQueryTemplateKind SecurityAlert { get; } = new EntityQueryTemplateKind(SecurityAlertValue);
+        /// <summary> Bookmark. </summary>
+        public static EntityQueryTemplateKind Bookmark { get; } = new EntityQueryTemplateKind(BookmarkValue);
+        /// <summary> Expansion. </summary>
+        public static EntityQueryTemplateKind Expansion { get; } = new EntityQueryTemplateKind(ExpansionValue);
+        /// <summary> GuidedInsight. </summary>
+        public static EntityQueryTemplateKind GuidedInsight { get; } = new EntityQueryTemplateKind(GuidedInsightValue);
+        /// <summary> Anomaly. </summary>
+        public static EntityQueryTemplateKind Anomaly { get; } = new EntityQueryTemplateKind(AnomalyValue);
         /// <summary> Determines if two <see cref="EntityQueryTemplateKind"/> values are the same. </summary>
         public static bool operator ==(EntityQueryTemplateKind left, EntityQueryTemplateKind right) => left.Equals(right);
         /// <summary> Determines if two <see cref="EntityQueryTemplateKind"/> values are not the same. </summary>

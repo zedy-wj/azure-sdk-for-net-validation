@@ -12,5 +12,14 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         public SecurityInsightsAlertsDataTypeOfDataConnector()
         {
         }
+
+        /// <summary>
+        /// Convenience constructor to wrap the inner state directly.
+        /// Works around AutoRest code gen bug with nested DataType wrappers.
+        /// </summary>
+        internal SecurityInsightsAlertsDataTypeOfDataConnector(SecurityInsightsDataTypeConnectionState state)
+            : this(new DataConnectorDataTypeCommon(state))
+        {
+        }
     }
 }

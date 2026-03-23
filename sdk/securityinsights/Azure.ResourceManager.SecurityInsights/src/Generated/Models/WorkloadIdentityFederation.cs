@@ -10,8 +10,8 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.SecurityInsights.Models
 {
-    /// <summary> Data about a user or client application. </summary>
-    public partial class ThreatIntelligenceUserInfo
+    /// <summary> Workload Identity Federation metadata. </summary>
+    public partial class WorkloadIdentityFederation
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.
@@ -45,32 +45,42 @@ namespace Azure.ResourceManager.SecurityInsights.Models
         /// </summary>
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
-        /// <summary> Initializes a new instance of <see cref="ThreatIntelligenceUserInfo"/>. </summary>
-        internal ThreatIntelligenceUserInfo()
+        /// <summary> Initializes a new instance of <see cref="WorkloadIdentityFederation"/>. </summary>
+        internal WorkloadIdentityFederation()
         {
         }
 
-        /// <summary> Initializes a new instance of <see cref="ThreatIntelligenceUserInfo"/>. </summary>
-        /// <param name="objectId"> The user's object ID. </param>
-        /// <param name="email"> The user's email address. </param>
-        /// <param name="name"> The user's name. </param>
+        /// <summary> Initializes a new instance of <see cref="WorkloadIdentityFederation"/>. </summary>
+        /// <param name="id"> Id of Workload Identity Federation. </param>
+        /// <param name="tenantId"> Tenant id of Workload Identity Federation. </param>
+        /// <param name="appId"> App id of Workload Identity Federation. </param>
+        /// <param name="subject"> Subject of Workload Identity Federation. </param>
+        /// <param name="issuer"> Issuer of Workload Identity Federation. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal ThreatIntelligenceUserInfo(Guid? objectId, string email, string name, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal WorkloadIdentityFederation(string id, Guid? tenantId, string appId, string subject, string issuer, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
-            ObjectId = objectId;
-            Email = email;
-            Name = name;
+            Id = id;
+            TenantId = tenantId;
+            AppId = appId;
+            Subject = subject;
+            Issuer = issuer;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> The user's object ID. </summary>
-        [WirePath("objectId")]
-        public Guid? ObjectId { get; }
-        /// <summary> The user's email address. </summary>
-        [WirePath("email")]
-        public string Email { get; }
-        /// <summary> The user's name. </summary>
-        [WirePath("name")]
-        public string Name { get; }
+        /// <summary> Id of Workload Identity Federation. </summary>
+        [WirePath("id")]
+        public string Id { get; }
+        /// <summary> Tenant id of Workload Identity Federation. </summary>
+        [WirePath("tenantId")]
+        public Guid? TenantId { get; }
+        /// <summary> App id of Workload Identity Federation. </summary>
+        [WirePath("appId")]
+        public string AppId { get; }
+        /// <summary> Subject of Workload Identity Federation. </summary>
+        [WirePath("subject")]
+        public string Subject { get; }
+        /// <summary> Issuer of Workload Identity Federation. </summary>
+        [WirePath("issuer")]
+        public string Issuer { get; }
     }
 }

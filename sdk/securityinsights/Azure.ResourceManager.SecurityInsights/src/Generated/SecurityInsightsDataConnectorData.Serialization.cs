@@ -90,6 +90,8 @@ namespace Azure.ResourceManager.SecurityInsights
                     case "OfficeATP": return OfficeAtpDataConnector.DeserializeOfficeAtpDataConnector(element, options);
                     case "OfficeIRM": return OfficeIrmDataConnector.DeserializeOfficeIrmDataConnector(element, options);
                     case "OfficePowerBI": return OfficePowerBIDataConnector.DeserializeOfficePowerBIDataConnector(element, options);
+                    case "PremiumMicrosoftDefenderForThreatIntelligence": return PremiumMicrosoftDefenderForThreatIntelligence.DeserializePremiumMicrosoftDefenderForThreatIntelligence(element, options);
+                    case "PurviewAudit": return PurviewAuditDataConnector.DeserializePurviewAuditDataConnector(element, options);
                     case "RestApiPoller": return RestApiPollerDataConnector.DeserializeRestApiPollerDataConnector(element, options);
                     case "ThreatIntelligence": return SecurityInsightsTIDataConnector.DeserializeSecurityInsightsTIDataConnector(element, options);
                     case "ThreatIntelligenceTaxii": return ThreatIntelligenceTaxiiDataConnector.DeserializeThreatIntelligenceTaxiiDataConnector(element, options);

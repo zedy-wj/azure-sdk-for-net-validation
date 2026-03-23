@@ -446,6 +446,7 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 title,
                 description,
                 severity,
@@ -466,7 +467,6 @@ namespace Azure.ResourceManager.SecurityInsights
                 providerName,
                 providerIncidentId,
                 teamInformation,
-                etag,
                 serializedAdditionalRawData);
         }
 

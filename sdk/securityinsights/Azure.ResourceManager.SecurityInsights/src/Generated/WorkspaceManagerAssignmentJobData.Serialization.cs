@@ -215,12 +215,12 @@ namespace Azure.ResourceManager.SecurityInsights
                 name,
                 type,
                 systemData,
+                etag,
                 endTime,
                 items ?? new ChangeTrackingList<JobItem>(),
                 provisioningState,
                 startTime,
                 errorMessage,
-                etag,
                 serializedAdditionalRawData);
         }
 

@@ -8,8 +8,8 @@ azure-arm: true
 csharp: true
 library-name: SecurityInsights
 namespace: Azure.ResourceManager.SecurityInsights
-require: https://github.com/Azure/azure-rest-api-specs/blob/2d973fccf9f28681a481e9760fa12b2334216e21/specification/securityinsights/resource-manager/readme.md
-tag: package-preview-2024-01
+require: https://github.com/Azure/azure-rest-api-specs/blob/655c3496e5039d370056027f1e28a8491257fe14/specification/securityinsights/resource-manager/Microsoft.SecurityInsights/SecurityInsights/readme.md
+tag: package-preview-2025-07-01
 output-folder: $(this-folder)/Generated
 clear-output-folder: true
 sample-gen:
@@ -108,6 +108,7 @@ rename-mapping:
   CloudApplicationEntity: SecurityInsightsCloudApplicationEntity
   ConditionClause: ThreatIntelligenceQueryConditionClause
   ConditionProperties: ThreatIntelligenceQueryConditionProperties
+  CountQuery: ThreatIntelligenceCountQuery
   ConfidenceLevel: SecurityInsightsAlertConfidenceLevel
   ConfidenceScoreStatus: SecurityInsightsAlertConfidenceScoreStatus
   Connective: ThreatIntelligenceQueryConnective
@@ -127,6 +128,7 @@ rename-mapping:
   DataTypeState: SecurityInsightsDataTypeConnectionState
   DCRConfiguration: DcrConfiguration
   DeleteStatus: SecurityInsightsFileDeleteStatus
+  TiTaxiiDataConnectorDataTypesTaxiiClient: ThreatIntelligenceTaxiiDataConnectorTaxiiClientDataType
   DeliveryAction: SecurityInsightsMailMessageDeliveryAction
   DeliveryLocation: SecurityInsightsMailMessageDeliveryLocation
   Deployment: SourceControlDeployment
@@ -484,7 +486,7 @@ directive:
   - rename-operation:
       from: Bookmark_Expand
       to: Bookmarks_Expand
-  - from: dataConnectors.json
+  - from: openapi.json
     where: $.definitions
     transform: >
       $.DataConnectorWithAlertsProperties.properties.dataTypes["x-ms-client-flatten"] = true;
@@ -499,120 +501,33 @@ directive:
       $.TiTaxiiDataConnectorProperties.properties.dataTypes["x-ms-client-flatten"] = true;
       $.CodelessUiConnectorConfigProperties.properties.dataTypes["x-ms-client-flatten"] = true;
       $.MicrosoftPurviewInformationProtectionDataConnectorProperties.properties.dataTypes["x-ms-client-flatten"] = true;
-  - from: AlertRules.json
+  - from: openapi.json
     where: $.definitions
     transform: >
       $.ActionPropertiesBase.properties.logicAppResourceId['x-ms-format'] = 'arm-id';
   # Reslove `Duplicate Schema` issue for 2024-01-01-preview version
-  - from: EnrichmentWithWorkspace.json
+  - from: openapi.json
     where: $.definitions
     transform: >
       $.EnrichmentIpGeodata['x-ms-client-name'] = 'WorkspaceEnrichmentIpGeodata';
-  - from: ThreatIntelligenceQuery.json
+  - from: openapi.json
     where: $.definitions
     transform: >
       $.Query['x-ms-client-name'] = 'ThreatIntelligenceQuery';
-      $.UserInfo['x-ms-client-name'] = 'ThreatIntelligenceUserInfo';
-  - from: ThreatIntelligenceCount.json
-    where: $.definitions
-    transform: >
-      $.Query['x-ms-client-name'] = 'ThreatIntelligenceCountQuery';
-  # Add this because the parameter order is mismatch in 2024-01-01-preview version
-  - from: ThreatIntelligence.json
-    where: $.paths["/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators"].get
-    transform: >
-      $["parameters"] = [
-          {
-            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ApiVersionParameter"
-          },
-          {
-            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/SubscriptionIdParameter"
-          },
-          {
-            "$ref": "../../../../../common-types/resource-management/v3/types.json#/parameters/ResourceGroupNameParameter"
-          },
-          {
-            "$ref": "../../../common/2.0/types.json#/parameters/WorkspaceName"
-          },
-          {
-            "$ref": "../../../common/2.0/types.json#/parameters/ODataFilter"
-          },
-          {
-            "$ref": "../../../common/2.0/types.json#/parameters/ODataTop"
-          },
-          {
-            "$ref": "../../../common/2.0/types.json#/parameters/ODataSkipToken"
-          },
-          {
-            "$ref": "../../../common/2.0/types.json#/parameters/ODataOrderBy"
-          }
-        ];
-  # Add this because lack of x-ms-enum value
-  - from: EntityQueries.json
-    where: $.parameters
-    transform: >
-      $.EntityQueryKind["x-ms-enum"] = {
-        "modelAsString": true,
-        "name": "EntityQueryKind",
-        "values": [
-          {
-            "value": "Expansion"
-          },
-          {
-            "value": "Activity"
-          }
-        ]};
   # Add this due to the naming requirement and actually there are two status in this service
-  - from: Hunts.json
+  - from: openapi.json
     where: $.definitions.HuntProperties.properties.status
     transform: >
       $['x-ms-enum'].name = 'HuntStatus';
-  - from: WorkspaceManagerAssignments.json
-    where: $.definitions.jobItem.properties.status
-    transform: >
-      $['x-ms-enum'].name = 'PublicationStatus';
-  # Remove all incorrect usage of `allOf`
-  - from: dataConnectors.json
+  # jobItem.status now uses $ref to Status definition - old directive cannot apply x-ms-enum to $ref
+  # PublicationStatus will be handled via rename-mapping or customization
+  # allOf cleanup directives removed - TypeSpec openapi.json already uses $ref instead of allOf
+  # Fix duplicate schema errors for EnrichmentType, EntityItemQueryKind, TiType
+  # Remove orphaned definitions (keep inline x-ms-enum on path/query parameters)
+  - from: openapi.json
     where: $.definitions
     transform: >
-      delete $.CodelessUiConnectorConfigProperties.properties.graphQueries.items.allOf;
-      $.CodelessUiConnectorConfigProperties.properties.graphQueries.items['$ref'] = '#/definitions/GraphQueries';
-      delete $.CodelessUiConnectorConfigProperties.properties.sampleQueries.items.allOf;
-      $.CodelessUiConnectorConfigProperties.properties.sampleQueries.items['$ref'] = '#/definitions/SampleQueries';
-      delete $.CodelessUiConnectorConfigProperties.properties.dataTypes.items.allOf;
-      $.CodelessUiConnectorConfigProperties.properties.dataTypes.items['$ref'] = '#/definitions/LastDataReceivedDataType';
-      delete $.CodelessUiConnectorConfigProperties.properties.connectivityCriteria.items.allOf;
-      $.CodelessUiConnectorConfigProperties.properties.connectivityCriteria.items['$ref'] = '#/definitions/ConnectivityCriteria';
-      delete $.CodelessUiConnectorConfigProperties.properties.instructionSteps.items.allOf;
-      $.CodelessUiConnectorConfigProperties.properties.instructionSteps.items['$ref'] = '#/definitions/InstructionSteps';
-      delete $.Permissions.properties.resourceProvider.items.allOf;
-      $.Permissions.properties.resourceProvider.items['$ref'] = '#/definitions/ResourceProvider';
-      delete $.Permissions.properties.customs.items.allOf;
-      $.Permissions.properties.customs.items['$ref'] = '#/definitions/Customs';
-      delete $.InstructionSteps.properties.instructions.items.allOf;
-      $.InstructionSteps.properties.instructions.items['$ref'] = '#/definitions/ConnectorInstructionModelBase';
-      delete $.MSTIDataConnectorDataTypes.properties.microsoftEmergingThreatFeed.allOf;
-      $.MSTIDataConnectorDataTypes.properties.microsoftEmergingThreatFeed['$ref'] = '#/definitions/DataConnectorDataTypeCommon';
-      delete $.OfficeDataConnectorDataTypes.properties.exchange.allOf;
-      $.OfficeDataConnectorDataTypes.properties.exchange['$ref'] = '#/definitions/DataConnectorDataTypeCommon';
-      delete $.OfficeDataConnectorDataTypes.properties.sharePoint.allOf;
-      $.OfficeDataConnectorDataTypes.properties.sharePoint['$ref'] = '#/definitions/DataConnectorDataTypeCommon';
-      delete $.OfficeDataConnectorDataTypes.properties.teams.allOf;
-      $.OfficeDataConnectorDataTypes.properties.teams['$ref'] = '#/definitions/DataConnectorDataTypeCommon';
-      delete $.TiTaxiiDataConnectorDataTypes.properties.taxiiClient.allOf;
-      $.TiTaxiiDataConnectorDataTypes.properties.taxiiClient['$ref'] = '#/definitions/DataConnectorDataTypeCommon';
-      delete $.MTPDataConnectorDataTypes.properties.incidents.allOf;
-      $.MTPDataConnectorDataTypes.properties.incidents['$ref'] = '#/definitions/DataConnectorDataTypeCommon';
-      delete $.MTPDataConnectorDataTypes.properties.alerts.allOf;
-      $.MTPDataConnectorDataTypes.properties.alerts['$ref'] = '#/definitions/DataConnectorDataTypeCommon';
-      delete $.AwsCloudTrailDataConnectorDataTypes.properties.logs.allOf;
-      $.AwsCloudTrailDataConnectorDataTypes.properties.logs['$ref'] = '#/definitions/DataConnectorDataTypeCommon';
-      delete $.AwsS3DataConnectorDataTypes.properties.logs.allOf;
-      $.AwsS3DataConnectorDataTypes.properties.logs['$ref'] = '#/definitions/DataConnectorDataTypeCommon';
-      delete $.MicrosoftPurviewInformationProtectionConnectorDataTypes.properties.logs.allOf;
-      $.MicrosoftPurviewInformationProtectionConnectorDataTypes.properties.logs['$ref'] = '#/definitions/DataConnectorDataTypeCommon';
-      delete $.Office365ProjectConnectorDataTypes.properties.logs.allOf;
-      $.Office365ProjectConnectorDataTypes.properties.logs['$ref'] = '#/definitions/DataConnectorDataTypeCommon';
-      delete $.OfficePowerBIConnectorDataTypes.properties.logs.allOf;
-      $.OfficePowerBIConnectorDataTypes.properties.logs['$ref'] = '#/definitions/DataConnectorDataTypeCommon';
+      delete $.EnrichmentType;
+      delete $.EntityItemQueryKind;
+      delete $.TiType;
 ```
