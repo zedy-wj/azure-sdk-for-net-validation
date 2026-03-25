@@ -45,6 +45,11 @@ namespace Azure.ResourceManager.Automation
             }
             writer.WritePropertyName("properties"u8);
             writer.WriteStartObject();
+            if (Optional.IsDefined(RuntimeEnvironment))
+            {
+                writer.WritePropertyName("runtimeEnvironment"u8);
+                writer.WriteStringValue(RuntimeEnvironment);
+            }
             if (Optional.IsDefined(RunbookType))
             {
                 writer.WritePropertyName("runbookType"u8);
@@ -161,6 +166,7 @@ namespace Azure.ResourceManager.Automation
             string name = default;
             ResourceType type = default;
             SystemData systemData = default;
+            string runtimeEnvironment = default;
             AutomationRunbookType? runbookType = default;
             AutomationContentLink publishContentLink = default;
             RunbookState? state = default;
@@ -171,7 +177,7 @@ namespace Azure.ResourceManager.Automation
             IDictionary<string, RunbookParameterDefinition> parameters = default;
             IList<string> outputTypes = default;
             AutomationRunbookDraft draft = default;
-            RunbookProvisioningState? provisioningState = default;
+            RunbookPropertiesProvisioningState? provisioningState = default;
             string lastModifiedBy = default;
             DateTimeOffset? creationTime = default;
             DateTimeOffset? lastModifiedTime = default;
@@ -241,6 +247,11 @@ namespace Azure.ResourceManager.Automation
                     }
                     foreach (var property0 in property.Value.EnumerateObject())
                     {
+                        if (property0.NameEquals("runtimeEnvironment"u8))
+                        {
+                            runtimeEnvironment = property0.Value.GetString();
+                            continue;
+                        }
                         if (property0.NameEquals("runbookType"u8))
                         {
                             if (property0.Value.ValueKind == JsonValueKind.Null)
@@ -347,7 +358,7 @@ namespace Azure.ResourceManager.Automation
                             {
                                 continue;
                             }
-                            provisioningState = new RunbookProvisioningState(property0.Value.GetString());
+                            provisioningState = new RunbookPropertiesProvisioningState(property0.Value.GetString());
                             continue;
                         }
                         if (property0.NameEquals("lastModifiedBy"u8))
@@ -395,6 +406,7 @@ namespace Azure.ResourceManager.Automation
                 tags ?? new ChangeTrackingDictionary<string, string>(),
                 location,
                 etag,
+                runtimeEnvironment,
                 runbookType,
                 publishContentLink,
                 state,

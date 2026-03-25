@@ -52,7 +52,7 @@ namespace Azure.ResourceManager.Automation
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
         /// <summary> Initializes a new instance of <see cref="AutomationJobScheduleData"/>. </summary>
-        internal AutomationJobScheduleData()
+        public AutomationJobScheduleData()
         {
             Parameters = new ChangeTrackingDictionary<string, string>();
         }
@@ -68,7 +68,7 @@ namespace Azure.ResourceManager.Automation
         /// <param name="runOn"> Gets or sets the hybrid worker group that the scheduled job should run on. </param>
         /// <param name="parameters"> Gets or sets the parameters of the job schedule. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal AutomationJobScheduleData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, Guid? jobScheduleId, ScheduleAssociationProperty schedule, RunbookAssociationProperty runbook, string runOn, IReadOnlyDictionary<string, string> parameters, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
+        internal AutomationJobScheduleData(ResourceIdentifier id, string name, ResourceType resourceType, SystemData systemData, Guid? jobScheduleId, ScheduleAssociationProperty schedule, RunbookAssociationProperty runbook, string runOn, IDictionary<string, string> parameters, IDictionary<string, BinaryData> serializedAdditionalRawData) : base(id, name, resourceType, systemData)
         {
             JobScheduleId = jobScheduleId;
             Schedule = schedule;
@@ -79,26 +79,38 @@ namespace Azure.ResourceManager.Automation
         }
 
         /// <summary> Gets or sets the id of job schedule. </summary>
-        public Guid? JobScheduleId { get; }
+        public Guid? JobScheduleId { get; set; }
         /// <summary> Gets or sets the schedule. </summary>
-        internal ScheduleAssociationProperty Schedule { get; }
+        internal ScheduleAssociationProperty Schedule { get; set; }
         /// <summary> Gets or sets the name of the Schedule. </summary>
         public string ScheduleName
         {
-            get => Schedule?.Name;
+            get => Schedule is null ? default : Schedule.Name;
+            set
+            {
+                if (Schedule is null)
+                    Schedule = new ScheduleAssociationProperty();
+                Schedule.Name = value;
+            }
         }
 
         /// <summary> Gets or sets the runbook. </summary>
-        internal RunbookAssociationProperty Runbook { get; }
+        internal RunbookAssociationProperty Runbook { get; set; }
         /// <summary> Gets or sets the name of the runbook. </summary>
         public string RunbookName
         {
-            get => Runbook?.Name;
+            get => Runbook is null ? default : Runbook.Name;
+            set
+            {
+                if (Runbook is null)
+                    Runbook = new RunbookAssociationProperty();
+                Runbook.Name = value;
+            }
         }
 
         /// <summary> Gets or sets the hybrid worker group that the scheduled job should run on. </summary>
-        public string RunOn { get; }
+        public string RunOn { get; set; }
         /// <summary> Gets or sets the parameters of the job schedule. </summary>
-        public IReadOnlyDictionary<string, string> Parameters { get; }
+        public IDictionary<string, string> Parameters { get; }
     }
 }

@@ -8,7 +8,7 @@ azure-arm: true
 csharp: true
 library-name: Automation
 namespace: Azure.ResourceManager.Automation
-require: https://github.com/Azure/azure-rest-api-specs/blob/d1b0569d8adbd342a1111d6a69764d099f5f717c/specification/automation/resource-manager/readme.md
+require: https://github.com/Azure/azure-rest-api-specs/blob/90c2c832bd4a1c74a7e6217ea48871a5705a4fef/specification/automation/resource-manager/readme.md
 output-folder: $(this-folder)/Generated
 clear-output-folder: true
 sample-gen:
@@ -250,31 +250,50 @@ operation-positions:
   SoftwareUpdateConfigurations_List: collection
 
 directive:
-  - from: softwareUpdateConfigurationMachineRun.json
+  - from: openapi.json
     where: $.definitions
     transform: >
         $.updateConfigurationMachineRunProperties.properties.configuredDuration['format'] = 'duration';
-  - from: softwareUpdateConfigurationRun.json
+  - from: openapi.json
     where: $.definitions
     transform: >
         $.softwareUpdateConfigurationRunProperties.properties.configuredDuration['format'] = 'duration';
-  - from: dscConfiguration.json
-    where: $
-    transform: >
-        $.consumes =  [ "application/json" ];
-        $.produces =  [ "application/json" ];
-  - from: softwareUpdateConfiguration.json
+  - from: openapi.json
     where: $.paths['/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/softwareUpdateConfigurations'].get
     transform: >
       $['x-ms-pageable'] = {
         'nextLinkName': null
       };
-  - from: account.json
+  - from: openapi.json
     where: $.paths['/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/listKeys'].post
     transform: >
       $['x-ms-pageable'] = {
             'nextLinkName': null,
             'itemName': 'keys'
           }
+  - from: openapi.json
+    where: $.paths['/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/webhooks/generateUri'].post
+    transform: >
+      $.produces = ["application/json"]
+  - from: openapi.json
+    where: $.paths['/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/runbooks/{runbookName}/draft/content'].get
+    transform: >
+      $.produces = ["text/powershell"]
+  - from: openapi.json
+    where: $.paths['/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/runbooks/{runbookName}/content'].get
+    transform: >
+      $.produces = ["text/powershell"]
+  - from: openapi.json
+    where: $.paths['/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/jobs/{jobName}/output'].get
+    transform: >
+      $.produces = ["text/plain"]
+  - from: openapi.json
+    where: $.paths['/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/jobs/{jobName}/runbookContent'].get
+    transform: >
+      $.produces = ["text/powershell"]
+  - from: openapi.json
+    where: $.paths['/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/configurations/{configurationName}/content'].get
+    transform: >
+      $.produces = ["text/powershell"]
 
 ```
