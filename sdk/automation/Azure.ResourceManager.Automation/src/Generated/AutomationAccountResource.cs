@@ -62,6 +62,10 @@ namespace Azure.ResourceManager.Automation
         private readonly UsagesRestOperations _usagesRestClient;
         private readonly ClientDiagnostics _automationWebhookWebhookClientDiagnostics;
         private readonly WebhookRestOperations _automationWebhookWebhookRestClient;
+        private readonly ClientDiagnostics _dscCompilationJobClientDiagnostics;
+        private readonly DscCompilationJobRestOperations _dscCompilationJobRestClient;
+        private readonly ClientDiagnostics _dscCompilationJobStreamClientDiagnostics;
+        private readonly DscCompilationJobStreamRestOperations _dscCompilationJobStreamRestClient;
         private readonly AutomationAccountData _data;
 
         /// <summary> Gets the resource type for the operations. </summary>
@@ -114,6 +118,11 @@ namespace Azure.ResourceManager.Automation
             _automationWebhookWebhookClientDiagnostics = new ClientDiagnostics("Azure.ResourceManager.Automation", AutomationWebhookResource.ResourceType.Namespace, Diagnostics);
             TryGetApiVersion(AutomationWebhookResource.ResourceType, out string automationWebhookWebhookApiVersion);
             _automationWebhookWebhookRestClient = new WebhookRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint, automationWebhookWebhookApiVersion);
+            _dscCompilationJobClientDiagnostics = new ClientDiagnostics("Azure.ResourceManager.Automation", DscCompilationJobResource.ResourceType.Namespace, Diagnostics);
+            TryGetApiVersion(DscCompilationJobResource.ResourceType, out string dscCompilationJobApiVersion);
+            _dscCompilationJobRestClient = new DscCompilationJobRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint, dscCompilationJobApiVersion);
+            _dscCompilationJobStreamClientDiagnostics = new ClientDiagnostics("Azure.ResourceManager.Automation", ProviderConstants.DefaultProviderNamespace, Diagnostics);
+            _dscCompilationJobStreamRestClient = new DscCompilationJobStreamRestOperations(Pipeline, Diagnostics.ApplicationId, Endpoint);
 #if DEBUG
 			ValidateResourceId(Id);
 #endif
@@ -1658,6 +1667,75 @@ namespace Azure.ResourceManager.Automation
             return GetAutomationWebhooks().Get(webhookName, cancellationToken);
         }
 
+        /// <summary> Gets a collection of DscCompilationJobResources in the AutomationAccount. </summary>
+        /// <returns> An object representing collection of DscCompilationJobResources and their operations over a DscCompilationJobResource. </returns>
+        public virtual DscCompilationJobCollection GetDscCompilationJobs()
+        {
+            return GetCachedClient(client => new DscCompilationJobCollection(client, Id));
+        }
+
+        /// <summary>
+        /// Retrieve the Dsc configuration compilation job identified by job id.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/compilationjobs/{compilationJobName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DscCompilationJob_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DscCompilationJobResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="compilationJobName"> The DSC configuration Id. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="compilationJobName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="compilationJobName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public virtual async Task<Response<DscCompilationJobResource>> GetDscCompilationJobAsync(string compilationJobName, CancellationToken cancellationToken = default)
+        {
+            return await GetDscCompilationJobs().GetAsync(compilationJobName, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Retrieve the Dsc configuration compilation job identified by job id.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/compilationjobs/{compilationJobName}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DscCompilationJob_Get</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DscCompilationJobResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="compilationJobName"> The DSC configuration Id. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentNullException"> <paramref name="compilationJobName"/> is null. </exception>
+        /// <exception cref="ArgumentException"> <paramref name="compilationJobName"/> is an empty string, and was expected to be non-empty. </exception>
+        [ForwardsClientCalls]
+        public virtual Response<DscCompilationJobResource> GetDscCompilationJob(string compilationJobName, CancellationToken cancellationToken = default)
+        {
+            return GetDscCompilationJobs().Get(compilationJobName, cancellationToken);
+        }
+
         /// <summary>
         /// Get information about an Automation Account.
         /// <list type="bullet">
@@ -2914,6 +2992,146 @@ namespace Azure.ResourceManager.Automation
                 scope.Failed(e);
                 throw;
             }
+        }
+
+        /// <summary>
+        /// Retrieve the job stream identified by job stream id.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/compilationjobs/{jobId}/streams/{jobStreamId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DscCompilationJob_GetStream</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DscCompilationJobResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="jobId"> The job id. </param>
+        /// <param name="jobStreamId"> The job stream id. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="jobStreamId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="jobStreamId"/> is null. </exception>
+        public virtual async Task<Response<AutomationJobStream>> GetStreamDscCompilationJobAsync(Guid jobId, string jobStreamId, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(jobStreamId, nameof(jobStreamId));
+
+            using var scope = _dscCompilationJobClientDiagnostics.CreateScope("AutomationAccountResource.GetStreamDscCompilationJob");
+            scope.Start();
+            try
+            {
+                var response = await _dscCompilationJobRestClient.GetStreamAsync(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, jobId, jobStreamId, cancellationToken).ConfigureAwait(false);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Retrieve the job stream identified by job stream id.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/compilationjobs/{jobId}/streams/{jobStreamId}</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DscCompilationJob_GetStream</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// <item>
+        /// <term>Resource</term>
+        /// <description><see cref="DscCompilationJobResource"/></description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="jobId"> The job id. </param>
+        /// <param name="jobStreamId"> The job stream id. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <exception cref="ArgumentException"> <paramref name="jobStreamId"/> is an empty string, and was expected to be non-empty. </exception>
+        /// <exception cref="ArgumentNullException"> <paramref name="jobStreamId"/> is null. </exception>
+        public virtual Response<AutomationJobStream> GetStreamDscCompilationJob(Guid jobId, string jobStreamId, CancellationToken cancellationToken = default)
+        {
+            Argument.AssertNotNullOrEmpty(jobStreamId, nameof(jobStreamId));
+
+            using var scope = _dscCompilationJobClientDiagnostics.CreateScope("AutomationAccountResource.GetStreamDscCompilationJob");
+            scope.Start();
+            try
+            {
+                var response = _dscCompilationJobRestClient.GetStream(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, jobId, jobStreamId, cancellationToken);
+                return response;
+            }
+            catch (Exception e)
+            {
+                scope.Failed(e);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Retrieve all the job streams for the compilation Job.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/compilationjobs/{jobId}/streams</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DscCompilationJobStream_ListByJob</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="jobId"> The job id. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> An async collection of <see cref="AutomationJobStream"/> that may take multiple service requests to iterate over. </returns>
+        public virtual AsyncPageable<AutomationJobStream> GetDscCompilationJobStreamsAsync(Guid jobId, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => _dscCompilationJobStreamRestClient.CreateListByJobRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, jobId);
+            return GeneratorPageableHelpers.CreateAsyncPageable(FirstPageRequest, null, e => AutomationJobStream.DeserializeAutomationJobStream(e), _dscCompilationJobStreamClientDiagnostics, Pipeline, "AutomationAccountResource.GetDscCompilationJobStreams", "value", null, cancellationToken);
+        }
+
+        /// <summary>
+        /// Retrieve all the job streams for the compilation Job.
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Request Path</term>
+        /// <description>/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Automation/automationAccounts/{automationAccountName}/compilationjobs/{jobId}/streams</description>
+        /// </item>
+        /// <item>
+        /// <term>Operation Id</term>
+        /// <description>DscCompilationJobStream_ListByJob</description>
+        /// </item>
+        /// <item>
+        /// <term>Default Api Version</term>
+        /// <description>2020-01-13-preview</description>
+        /// </item>
+        /// </list>
+        /// </summary>
+        /// <param name="jobId"> The job id. </param>
+        /// <param name="cancellationToken"> The cancellation token to use. </param>
+        /// <returns> A collection of <see cref="AutomationJobStream"/> that may take multiple service requests to iterate over. </returns>
+        public virtual Pageable<AutomationJobStream> GetDscCompilationJobStreams(Guid jobId, CancellationToken cancellationToken = default)
+        {
+            HttpMessage FirstPageRequest(int? pageSizeHint) => _dscCompilationJobStreamRestClient.CreateListByJobRequest(Id.SubscriptionId, Id.ResourceGroupName, Id.Name, jobId);
+            return GeneratorPageableHelpers.CreatePageable(FirstPageRequest, null, e => AutomationJobStream.DeserializeAutomationJobStream(e), _dscCompilationJobStreamClientDiagnostics, Pipeline, "AutomationAccountResource.GetDscCompilationJobStreams", "value", null, cancellationToken);
         }
 
         /// <summary>

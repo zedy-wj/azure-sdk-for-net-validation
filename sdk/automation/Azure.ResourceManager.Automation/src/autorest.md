@@ -8,7 +8,7 @@ azure-arm: true
 csharp: true
 library-name: Automation
 namespace: Azure.ResourceManager.Automation
-require: https://github.com/Azure/azure-rest-api-specs/blob/1116f6655f2756046998e0a6e832ac8f7e193d12/specification/automation/resource-manager/readme.md
+tag: package-all
 output-folder: $(this-folder)/Generated
 clear-output-folder: true
 sample-gen:
@@ -17,9 +17,24 @@ sample-gen:
 skip-csproj: true
 modelerfour:
   flatten-payloads: false
+  lenient-model-deduplication: true
 use-model-reader-writer: true
 # mgmt-debug:
 #   show-serialized-names: true
+```
+
+### Tag: package-all
+
+These settings apply only when `--tag=package-all` is specified on the command line.
+
+```yaml $(tag) == 'package-all'
+title: AutomationClient
+description: Automation Client
+openapi-type: arm
+
+input-file:
+  - https://github.com/Azure/azure-rest-api-specs/blob/1116f6655f2756046998e0a6e832ac8f7e193d12/specification/automation/resource-manager/Microsoft.Automation/stable/2024-10-23/openapi.json
+  - https://github.com/Azure/azure-rest-api-specs/blob/1116f6655f2756046998e0a6e832ac8f7e193d12/specification/automation/resource-manager/Microsoft.Automation/preview/2020-01-13-preview/dscCompilationJob.json
 
 rename-mapping:
   AutomationAccount.properties.publicNetworkAccess: IsPublicNetworkAccessAllowed
@@ -250,6 +265,47 @@ operation-positions:
   SoftwareUpdateConfigurations_List: collection
 
 directive:
+  # --- Align dscCompilationJob.json definitions with openapi.json to eliminate duplicate schemas ---
+  # 1. JobStream: add missing 'type: object'
+  - from: dscCompilationJob.json
+    where: $.definitions.JobStream
+    transform: >
+      $['type'] = 'object';
+  # 2. JobStreamListResult: add type, required, align descriptions
+  - from: dscCompilationJob.json
+    where: $.definitions.JobStreamListResult
+    transform: >
+      $['type'] = 'object';
+      $['required'] = ['value'];
+      $.properties.value.description = 'The JobStream items on this page';
+      $.properties.nextLink.description = 'The link to the next page of items';
+      $.properties.nextLink['format'] = 'uri';
+  # 3. JobStreamProperties: align all differences with openapi.json version
+  - from: dscCompilationJob.json
+    where: $.definitions.JobStreamProperties
+    transform: >
+      $['type'] = 'object';
+      delete $['x-ms-client-flatten'];
+      $.properties.summary['x-nullable'] = true;
+      delete $.properties.time['x-nullable'];
+      $.properties.value.additionalProperties = {};
+      $.properties.streamType = {
+        '$ref': '#/definitions/JobStreamType',
+        'description': 'Gets or sets the stream type.'
+      };
+  # 4. Inject JobStreamType definition (needed by streamType $ref above)
+  - from: dscCompilationJob.json
+    where: $.definitions
+    transform: >
+      $['JobStreamType'] = {
+        'type': 'string',
+        'description': 'Gets or sets the stream type.',
+        'enum': ['Progress', 'Output', 'Warning', 'Error', 'Debug', 'Verbose', 'Any'],
+        'x-ms-enum': {
+          'name': 'JobStreamType',
+          'modelAsString': true
+        }
+      };
   - from: openapi.json
     where: $.definitions
     transform: >

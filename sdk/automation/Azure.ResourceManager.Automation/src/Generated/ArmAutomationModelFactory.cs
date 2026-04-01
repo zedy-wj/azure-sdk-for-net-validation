@@ -1875,6 +1875,75 @@ namespace Azure.ResourceManager.Automation.Models
                 serializedAdditionalRawData: null);
         }
 
+        /// <summary> Initializes a new instance of <see cref="Models.DscCompilationJobCreateOrUpdateContent"/>. </summary>
+        /// <param name="name"> Gets or sets name of the resource. </param>
+        /// <param name="location"> Gets or sets the location of the resource. </param>
+        /// <param name="tags"> Gets or sets the tags attached to the resource. </param>
+        /// <param name="configurationName"> Gets or sets the configuration. </param>
+        /// <param name="parameters"> Gets or sets the parameters of the job. </param>
+        /// <param name="isIncrementNodeConfigurationBuildRequired"> If a new build version of NodeConfiguration is required. </param>
+        /// <returns> A new <see cref="Models.DscCompilationJobCreateOrUpdateContent"/> instance for mocking. </returns>
+        public static DscCompilationJobCreateOrUpdateContent DscCompilationJobCreateOrUpdateContent(string name = null, AzureLocation? location = null, IDictionary<string, string> tags = null, string configurationName = null, IDictionary<string, string> parameters = null, bool? isIncrementNodeConfigurationBuildRequired = null)
+        {
+            tags ??= new Dictionary<string, string>();
+            parameters ??= new Dictionary<string, string>();
+
+            return new DscCompilationJobCreateOrUpdateContent(
+                name,
+                location,
+                tags,
+                configurationName != null ? new DscConfigurationAssociationProperty(configurationName, serializedAdditionalRawData: null) : null,
+                parameters,
+                isIncrementNodeConfigurationBuildRequired,
+                serializedAdditionalRawData: null);
+        }
+
+        /// <summary> Initializes a new instance of <see cref="Automation.DscCompilationJobData"/>. </summary>
+        /// <param name="id"> The id. </param>
+        /// <param name="name"> The name. </param>
+        /// <param name="resourceType"> The resourceType. </param>
+        /// <param name="systemData"> The systemData. </param>
+        /// <param name="configurationName"> Gets or sets the configuration. </param>
+        /// <param name="startedBy"> Gets the compilation job started by. </param>
+        /// <param name="jobId"> Gets the id of the job. </param>
+        /// <param name="createdOn"> Gets the creation time of the job. </param>
+        /// <param name="provisioningState"> The current provisioning state of the job. </param>
+        /// <param name="runOn"> Gets or sets the runOn which specifies the group name where the job is to be executed. </param>
+        /// <param name="status"> Gets or sets the status of the job. </param>
+        /// <param name="statusDetails"> Gets or sets the status details of the job. </param>
+        /// <param name="startOn"> Gets the start time of the job. </param>
+        /// <param name="endOn"> Gets the end time of the job. </param>
+        /// <param name="exception"> Gets the exception of the job. </param>
+        /// <param name="lastModifiedOn"> Gets the last modified time of the job. </param>
+        /// <param name="lastStatusModifiedOn"> Gets the last status modified time of the job. </param>
+        /// <param name="parameters"> Gets or sets the parameters of the job. </param>
+        /// <returns> A new <see cref="Automation.DscCompilationJobData"/> instance for mocking. </returns>
+        public static DscCompilationJobData DscCompilationJobData(ResourceIdentifier id = null, string name = null, ResourceType resourceType = default, SystemData systemData = null, string configurationName = null, string startedBy = null, Guid? jobId = null, DateTimeOffset? createdOn = null, JobProvisioningState? provisioningState = null, string runOn = null, AutomationJobStatus? status = null, string statusDetails = null, DateTimeOffset? startOn = null, DateTimeOffset? endOn = null, string exception = null, DateTimeOffset? lastModifiedOn = null, DateTimeOffset? lastStatusModifiedOn = null, IReadOnlyDictionary<string, string> parameters = null)
+        {
+            parameters ??= new Dictionary<string, string>();
+
+            return new DscCompilationJobData(
+                id,
+                name,
+                resourceType,
+                systemData,
+                configurationName != null ? new DscConfigurationAssociationProperty(configurationName, serializedAdditionalRawData: null) : null,
+                startedBy,
+                jobId,
+                createdOn,
+                provisioningState,
+                runOn,
+                status,
+                statusDetails,
+                startOn,
+                endOn,
+                exception,
+                lastModifiedOn,
+                lastStatusModifiedOn,
+                parameters,
+                serializedAdditionalRawData: null);
+        }
+
         /// <summary> Initializes a new instance of <see cref="T:Azure.ResourceManager.Automation.AutomationJobData" />. </summary>
         /// <param name="id"> The id. </param>
         /// <param name="name"> The name. </param>

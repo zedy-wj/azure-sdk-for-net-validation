@@ -333,5 +333,17 @@ namespace Azure.ResourceManager.Automation.Mocking
             AutomationWebhookResource.ValidateResourceId(id);
             return new AutomationWebhookResource(Client, id);
         }
+
+        /// <summary>
+        /// Gets an object representing a <see cref="DscCompilationJobResource"/> along with the instance operations that can be performed on it but with no data.
+        /// You can use <see cref="DscCompilationJobResource.CreateResourceIdentifier" /> to create a <see cref="DscCompilationJobResource"/> <see cref="ResourceIdentifier"/> from its components.
+        /// </summary>
+        /// <param name="id"> The resource ID of the resource to get. </param>
+        /// <returns> Returns a <see cref="DscCompilationJobResource"/> object. </returns>
+        public virtual DscCompilationJobResource GetDscCompilationJobResource(ResourceIdentifier id)
+        {
+            DscCompilationJobResource.ValidateResourceId(id);
+            return new DscCompilationJobResource(Client, id);
+        }
     }
 }

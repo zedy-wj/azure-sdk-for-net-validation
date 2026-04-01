@@ -13,7 +13,7 @@ using Azure.Core;
 
 namespace Azure.ResourceManager.Automation.Models
 {
-    internal partial class DscConfigurationAssociationProperty : IUtf8JsonSerializable, IJsonModel<DscConfigurationAssociationProperty>
+    public partial class DscConfigurationAssociationProperty : IUtf8JsonSerializable, IJsonModel<DscConfigurationAssociationProperty>
     {
         void IUtf8JsonSerializable.Write(Utf8JsonWriter writer) => ((IJsonModel<DscConfigurationAssociationProperty>)this).Write(writer, ModelSerializationExtensions.WireOptions);
 

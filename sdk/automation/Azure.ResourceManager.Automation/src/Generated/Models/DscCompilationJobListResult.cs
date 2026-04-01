@@ -10,8 +10,8 @@ using System.Collections.Generic;
 
 namespace Azure.ResourceManager.Automation.Models
 {
-    /// <summary> The Dsc configuration property associated with the entity. </summary>
-    public partial class DscConfigurationAssociationProperty
+    /// <summary> The response model for the list job operation. </summary>
+    internal partial class DscCompilationJobListResult
     {
         /// <summary>
         /// Keeps track of any properties unknown to the library.
@@ -45,21 +45,26 @@ namespace Azure.ResourceManager.Automation.Models
         /// </summary>
         private IDictionary<string, BinaryData> _serializedAdditionalRawData;
 
-        /// <summary> Initializes a new instance of <see cref="DscConfigurationAssociationProperty"/>. </summary>
-        public DscConfigurationAssociationProperty()
+        /// <summary> Initializes a new instance of <see cref="DscCompilationJobListResult"/>. </summary>
+        internal DscCompilationJobListResult()
         {
+            Value = new ChangeTrackingList<DscCompilationJobData>();
         }
 
-        /// <summary> Initializes a new instance of <see cref="DscConfigurationAssociationProperty"/>. </summary>
-        /// <param name="configurationName"> Gets or sets the name of the Dsc configuration. </param>
+        /// <summary> Initializes a new instance of <see cref="DscCompilationJobListResult"/>. </summary>
+        /// <param name="value"> Gets or sets a list of Dsc Compilation jobs. </param>
+        /// <param name="nextLink"> Gets or sets the next link. </param>
         /// <param name="serializedAdditionalRawData"> Keeps track of any properties unknown to the library. </param>
-        internal DscConfigurationAssociationProperty(string configurationName, IDictionary<string, BinaryData> serializedAdditionalRawData)
+        internal DscCompilationJobListResult(IReadOnlyList<DscCompilationJobData> value, string nextLink, IDictionary<string, BinaryData> serializedAdditionalRawData)
         {
-            ConfigurationName = configurationName;
+            Value = value;
+            NextLink = nextLink;
             _serializedAdditionalRawData = serializedAdditionalRawData;
         }
 
-        /// <summary> Gets or sets the name of the Dsc configuration. </summary>
-        public string ConfigurationName { get; set; }
+        /// <summary> Gets or sets a list of Dsc Compilation jobs. </summary>
+        public IReadOnlyList<DscCompilationJobData> Value { get; }
+        /// <summary> Gets or sets the next link. </summary>
+        public string NextLink { get; }
     }
 }
