@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/Microsoft.ResourceHealth.csproj" />
+  <Project Path="tests/Microsoft.ResourceHealth.Tests.csproj" />
+</Solution>

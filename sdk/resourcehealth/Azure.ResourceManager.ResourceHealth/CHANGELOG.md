@@ -4,11 +4,15 @@
 
 ### Features Added
 
+- Upgraded API version to 2025-05-01.
+
 ### Breaking Changes
 
-### Bugs Fixed
+- Migrated from AutoRest/Swagger to TypeSpec-based code generation.
 
 ### Other Changes
+
+- Updated code generator to the TypeSpec management plane generator.
 
 ## 1.1.0-beta.5 (2025-08-21)
 
